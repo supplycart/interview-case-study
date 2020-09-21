@@ -14,7 +14,7 @@ This case study is designed for candidates to showcase their skills and coding s
 
 ### Requirements
 
-You must work on this assignment using any of these:
+You must work on this assignment using:
  - Vue (optional for BE dev)
  - TailwindCSS
  - Laravel (optional for FE dev)
