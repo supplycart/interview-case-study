@@ -4,6 +4,7 @@
 
 # Supplycart Interview Case Study
 
+This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned. 
 
 ### Instructions
 
@@ -26,7 +27,7 @@ You must work on this assignment using any of these:
 4. As user, I want to be able to add product to cart
 5. As user, I want to be able to place order for added products in cart
 6. As user, I want to user my order history
-6. As user, I want to be able to logout
+7. As user, I want to be able to logout
 
 ### Bonus Tasks
 
