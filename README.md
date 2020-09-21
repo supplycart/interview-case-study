@@ -11,6 +11,7 @@ This case study is designed for candidates to showcase their skills and coding s
 - Fork this repo to your github account
 - Complete the tasks given
 - Once completed, create a PR to this repository
+- Lastly, add some guidance or instruction on how to run your code
 
 ### Requirements
 
