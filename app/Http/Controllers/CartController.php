@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -11,11 +13,17 @@ class CartController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        //
+        $cart = Auth::user()->cart;
+        if (is_null($cart)) {
+            $cart = Cart::create(['user_id' => Auth::user()->id]);
+        }
+        $cart_with_items = Cart::with(['items'])->where('id', $cart->id)->first();
+
+        return response->json(['name' => $cart_with_items]);
     }
 
 
@@ -35,7 +43,7 @@ class CartController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Cart  $cart
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(Cart $cart)
     {
@@ -46,7 +54,7 @@ class CartController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Cart  $cart
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(Cart $cart)
     {
@@ -58,7 +66,7 @@ class CartController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Cart  $cart
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, Cart $cart)
     {
@@ -69,7 +77,7 @@ class CartController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Cart  $cart
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(Cart $cart)
     {

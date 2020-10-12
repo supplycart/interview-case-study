@@ -19,14 +19,15 @@
                                 </p>
                             </div>
                             <div class="px-6 pt-4 pb-2">
-                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" @click.prevent="addToCart">
+                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                                     RM {{ product.price }}
                                 </span>
+                            </div>
+                            <div class="px-6 pt-4 pb-2">
                                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded-full">
                                     Add to Cart
                                 </button>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -53,25 +54,30 @@ export default {
     name: "App",
     data() {
         return {
-            cols:3,
+            cols:4,
             products: [],
-            $user:[]
+            user:[],
+            $cart:[]
         };
     },
     created() {
         axios.get("/api/products")
             .then(res => {
-                console.log(res.data)
                 this.products = res.data
             })
             .catch(err => console.error(err));
-        axios.get("/api/user")
+        axios.get("/api/users")
             .then(res => {
-                console.log('hello')
                 this.user = res.data
             })
             .catch(err => console.error(err));
+        axios.get("/cart")
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => console.error(err));
     },
+
     computed: {
         columns () {
             let columns = []
@@ -82,17 +88,6 @@ export default {
             return columns
         }
     },
-    // methods:{
-    //     addToCart(){
-    //         axios.post('/cart', {
-    //             user_id: this.users[0].id
-    //         })
-    //             .then(res => {
-    //                 const data = res.data;
-    //                 this.products.push(res.data);
-    //             })
-    //             .catch(err => console.error(err));
-    //     }
-    // }
+
 };
 </script>
