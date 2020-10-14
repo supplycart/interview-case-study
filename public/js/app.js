@@ -1697,6 +1697,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1979,6 +1981,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
   data: function data() {
@@ -1989,13 +1996,18 @@ __webpack_require__.r(__webpack_exports__);
       cart: [],
       orders: [],
       showModalCart: false,
-      showModalOrder: false
+      showModalOrder: false,
+      searchQuery: "",
+      isTyping: false,
+      isLoading: false,
+      url: '/api/products',
+      pagination: []
     };
   },
   created: function created() {
     var _this = this;
 
-    axios.get("/api/products").then(function (res) {
+    axios.get(this.url).then(function (res) {
       _this.products = res.data;
     })["catch"](function (err) {
       return console.error(err);
@@ -2007,7 +2019,6 @@ __webpack_require__.r(__webpack_exports__);
     });
     axios.get("/api/orders").then(function (res) {
       _this.orders = res.data[0];
-      console.log(_this.orders[0].items);
     })["catch"](function (err) {
       return console.error(err);
     });
@@ -2048,6 +2059,22 @@ __webpack_require__.r(__webpack_exports__);
     },
     toggleModalOrder: function toggleModalOrder() {
       this.showModalOrder = !this.showModalOrder;
+    },
+    searchProduct: function searchProduct(searchQuery) {
+      var _this4 = this;
+
+      this.isLoading = true;
+
+      if (searchQuery === null || searchQuery === "") {
+        axios.get("/api/products").then(function (res) {
+          _this4.products = res.data;
+        });
+      }
+
+      axios.get("/api/products?name=" + searchQuery).then(function (res) {
+        _this4.products = res.data;
+        _this4.isLoading = false;
+      });
     }
   },
   computed: {
@@ -2060,6 +2087,16 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return columns;
+    }
+  },
+  watch: {
+    searchQuery: lodash__WEBPACK_IMPORTED_MODULE_0___default.a.debounce(function () {
+      this.isTyping = false;
+    }, 500),
+    isTyping: function isTyping(value) {
+      if (!value) {
+        this.searchProduct(this.searchQuery);
+      }
     }
   }
 });
@@ -20387,6 +20424,34 @@ var render = function() {
     [
       _c("div", { staticClass: "flex w-full" }, [
         _c("div", { staticClass: "bg-blue-800 w-48 border-r-2 " }, [
+          _c("div", { staticClass: "pl-2" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchQuery,
+                  expression: "searchQuery"
+                }
+              ],
+              attrs: { type: "text" },
+              domProps: { value: _vm.searchQuery },
+              on: {
+                input: [
+                  function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.searchQuery = $event.target.value
+                  },
+                  function($event) {
+                    _vm.isTyping = true
+                  }
+                ]
+              }
+            })
+          ]),
+          _vm._v(" "),
           _c("div", { staticClass: "justify-center p-8" }, [
             _c(
               "button",
@@ -33657,12 +33722,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/App */ "./resources/js/components/App.vue");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
 
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.silent = true;

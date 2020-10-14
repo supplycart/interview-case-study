@@ -29,8 +29,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/add-to-cart', 'CartController@additem');
     Route::post('/checkout', 'CartController@checkout');
     Route::get('/orders',  'OrderController@index');
-    Route::get('/products', 'ProductController@index');
+//    Route::get('/products', 'ProductController@index');
 });
+Route::get('/products', 'ProductController@index');
 
-//Route::get('/cart', 'CartController@index');
 

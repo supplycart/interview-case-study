@@ -19,7 +19,7 @@ class ProductsTableSeeder extends Seeder
                 'name' => $faker->name,
                 'type' => rand ( 1, 5) ,
                 'price' =>  rand ( 10, 50),
-                'image_src' => $faker->imageUrl()
+                'image_src' => 'https://i.insider.com/4fe4946d69bedd5d23000000?width=300&format=jpeg&auto=webp'
             ]);
         }
     }
