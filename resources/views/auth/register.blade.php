@@ -3,8 +3,8 @@
 @section('content')
     <div class="mx-auto h-full flex justify-center items-center bg-gray-300">
         <div class="w-96 bg-blue-900 rounded-lg shadow-xl p-6">
-            <h1 class="text-white text-3xl">Come and Join Us</h1>
-            <h2 class="text-blue-300">Enter your credentials below</h2>
+            <h1 class="text-white text-3xl">Random E-Shop</h1>
+            <h2 class="text-blue-300">Register</h2>
 
             <form method="POST" action="{{ route('register') }}" class="pt-8">
                 @csrf
@@ -40,18 +40,6 @@
                         <input id="password" type="password" class="pt-8 w-full rounded p-3 text-gray-800 outline-none" name="password" autocomplete="current-password">
 
                         @error('password')
-                        <span class="text-red-600 text-sm pt-1" role="alert"><strong>{{ $message }}</strong></span>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="pt-4 relative">
-                    <label for="password-confirm" class="uppercase text-blue-500 text-xs font-bold absolute pl-3 pt-2">Confirm Password</label>
-
-                    <div class="col-md-6">
-                        <input id="password-confirm" type="password" class="pt-8 w-full rounded p-3 text-gray-800 outline-none" name="password-confirm">
-
-                        @error('password-confirm')
                         <span class="text-red-600 text-sm pt-1" role="alert"><strong>{{ $message }}</strong></span>
                         @enderror
                     </div>

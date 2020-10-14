@@ -4,4 +4,5 @@
 </head>
 @section('content')
     <App></App>
+    <flash-message></flash-message>
 @endsection

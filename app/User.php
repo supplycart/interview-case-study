@@ -7,7 +7,7 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens,Notifiable;
 
@@ -45,4 +45,13 @@ class User extends Authenticatable
     {
         return $this->hasOne(Cart::class);
     }
+
+    /**
+     * Get the phone record associated with the user.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
 }

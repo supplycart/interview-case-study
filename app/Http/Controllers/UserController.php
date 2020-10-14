@@ -11,4 +11,11 @@ class UserController extends Controller
         $user = Auth::user();
         return response($user, 200);
     }
+
+    public function logoutApi()
+    {
+        if (Auth::check()) {
+            Auth::user()->AauthAcessToken()->delete();
+        }
+    }
 }

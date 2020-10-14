@@ -9,6 +9,6 @@ class CartItem extends Model
     public $guarded = [];
 
     public function cart() {
-        return $this->hasOne(Cart::class);
+        return $this->belongsTo(Cart::class);
     }
 }

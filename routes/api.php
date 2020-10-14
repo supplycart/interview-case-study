@@ -17,12 +17,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->get('/users', function (Request $request) {
+Route::middleware('auth:api')->get('/user-name', function (Request $request) {
 
-    return response()->json(['name' => Auth::User()->name]);
+    return response()->json(['name' => Auth::User()], 200);
 
 });
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('/orders', 'OrderController@index');
+    Route::post('logout','UserController@logoutApi');
+    Route::get('/cart',  'CartController@index');
+    Route::post('/add-to-cart', 'CartController@additem');
+    Route::post('/checkout', 'CartController@checkout');
+    Route::get('/orders',  'OrderController@index');
+    Route::get('/products', 'ProductController@index');
+});
 
-Route::get('/products', 'ProductController@index');
-Route::get('/cart', 'CartController@index');
-Route::post('/add-to-cart', 'HomeController@addcart');
+//Route::get('/cart', 'CartController@index');
+

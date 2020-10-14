@@ -3,11 +3,11 @@ require('./bootstrap');
 import App from './components/App';
 import _ from 'lodash';
 
-Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
+Vue.config.silent = true
 
 const app = new Vue({
     el: '#app',
     components: {
-        App
+        App,
     },
 });
