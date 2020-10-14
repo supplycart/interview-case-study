@@ -17,7 +17,7 @@ class ProductsTableSeeder extends Seeder
         for ($x = 0; $x <= 10; $x++) {
             DB::table('products')->insert([
                 'name' => $faker->name,
-                'type' => rand ( 1, 5) ,
+                'type' => $faker->safeColorName ,
                 'price' =>  rand ( 10, 50),
                 'image_src' => 'https://i.insider.com/4fe4946d69bedd5d23000000?width=300&format=jpeg&auto=webp'
             ]);

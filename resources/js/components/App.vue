@@ -374,7 +374,7 @@ export default {
                         this.products = res.data
                     })
             }
-            axios.get("/api/products?name=" + searchQuery)
+            axios.get("/api/products?query=" + searchQuery)
                 .then(res => {
                     this.products = res.data
                     this.isLoading = false;

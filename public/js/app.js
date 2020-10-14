@@ -2084,7 +2084,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
-      axios.get("/api/products?name=" + searchQuery).then(function (res) {
+      axios.get("/api/products?query=" + searchQuery).then(function (res) {
         _this4.products = res.data;
         _this4.isLoading = false;
       });
