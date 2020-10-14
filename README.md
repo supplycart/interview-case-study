@@ -34,5 +34,6 @@ You must work on this assignment using:
 
 1. Verify email after registration
 2. Product attributes and filtering e.g brand, category
-3. Add unit tests
+3. Different user can see different price for products
+4. Add unit tests
 5. Deploy app to a server
