@@ -1999,15 +1999,13 @@ __webpack_require__.r(__webpack_exports__);
       showModalOrder: false,
       searchQuery: "",
       isTyping: false,
-      isLoading: false,
-      url: '/api/products',
-      pagination: []
+      isLoading: false
     };
   },
   created: function created() {
     var _this = this;
 
-    axios.get(this.url).then(function (res) {
+    axios.get('/api/products').then(function (res) {
       _this.products = res.data;
     })["catch"](function (err) {
       return console.error(err);
@@ -2048,11 +2046,15 @@ __webpack_require__.r(__webpack_exports__);
         items: cart.items,
         user_id: cart.user_id
       };
-      axios.post("/api/checkout", payload).then(function (res) {
-        console.log(res.data);
-        _this3.cart.items = [];
+      axios.post("/api/checkout", payload)["catch"](function (err) {
+        return console.error(err);
       });
       this.cart.items = [];
+      axios.get("/api/orders").then(function (res) {
+        _this3.orders = res.data[0];
+      })["catch"](function (err) {
+        return console.error(err);
+      });
     },
     toggleModalCart: function toggleModalCart() {
       this.showModalCart = !this.showModalCart;

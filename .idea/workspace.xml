@@ -24,10 +24,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2fafa65e-9380-4f02-b1f2-99bbbd80e8e8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/ProductsTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/ProductsTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
@@ -204,7 +205,8 @@
       <workItem from="1602578688526" duration="8498000" />
       <workItem from="1602597363948" duration="2325000" />
       <workItem from="1602602801692" duration="2656000" />
-      <workItem from="1602645091898" duration="6410000" />
+      <workItem from="1602645091898" duration="7498000" />
+      <workItem from="1602683197738" duration="6135000" />
     </task>
     <servers />
   </component>
@@ -228,26 +230,26 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="770" y="402" key="#Composer/0.0.1920.1050@0.0.1920.1050" timestamp="1602320790219" />
-    <state x="734" y="315" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602494956468">
+    <state x="734" y="315" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602683728052">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="734" y="315" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1602494956468" />
+    <state x="734" y="315" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1602683728052" />
     <state x="729" y="77" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602409386678">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="729" y="77" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1602409386678" />
-    <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602490140100">
+    <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602685457361">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1602490140100" />
+    <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1602685457361" />
     <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1602459349517">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1602459349517" />
-    <state x="698" y="232" key="NewPhpClassDialog" timestamp="1602323434971">
+    <state x="698" y="232" key="NewPhpClassDialog" timestamp="1602686080629">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="698" y="232" key="NewPhpClassDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1602323434971" />
+    <state x="698" y="232" key="NewPhpClassDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1602686080629" />
     <state x="668" y="242" width="583" height="566" key="find.popup" timestamp="1602597698297">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -256,9 +258,9 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1602383879266" />
-    <state x="1103" y="245" width="672" height="678" key="search.everywhere.popup" timestamp="1602666436433">
+    <state x="1103" y="245" width="672" height="678" key="search.everywhere.popup" timestamp="1602688948322">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="1103" y="245" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1602666436433" />
+    <state x="1103" y="245" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1602688948322" />
   </component>
 </project>

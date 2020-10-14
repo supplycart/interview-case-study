@@ -300,12 +300,10 @@ export default {
             searchQuery: "",
             isTyping: false,
             isLoading: false,
-            url: '/api/products',
-            pagination: []
         };
     },
     created() {
-        axios.get(this.url)
+        axios.get('/api/products')
             .then(res => {
                 this.products = res.data
             })
@@ -344,12 +342,13 @@ export default {
                 items: cart.items,
                 user_id: cart.user_id
             }
-            axios.post("/api/checkout", payload)
-                .then(res => {
-                    console.log(res.data);
-                    this.cart.items = [];
-                })
+            axios.post("/api/checkout", payload).catch(err => console.error(err));
             this.cart.items = [];
+            axios.get("/api/orders")
+                .then(res => {
+                    this.orders = res.data[0]
+                })
+                .catch(err => console.error(err));
         },
         toggleModalCart: function(){
             this.showModalCart = !this.showModalCart;

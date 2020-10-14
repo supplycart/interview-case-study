@@ -8,6 +8,7 @@ use App\Order;
 use App\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use mysql_xdevapi\Exception;
 
 class CartController extends Controller
 {
@@ -33,13 +34,17 @@ class CartController extends Controller
      */
     public function additem(Request $request)
     {
-        $cart_item = CartItem::create([
-            'cart_id' => $request->cart_id,
-            'product_id' => $request->id,
-            'product_name' => $request->name,
-            'product_type' => $request->type,
-            'product_price' =>$request->price
-        ]);
+        try {
+            $cart_item = CartItem::create([
+                'cart_id' => $request->cart_id,
+                'product_id' => $request->id,
+                'product_name' => $request->name,
+                'product_type' => $request->type,
+                'product_price' =>$request->price
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['Bad Request'], 400);
+        }
         return response()->json([$cart_item], 200);
     }
 
@@ -48,32 +53,28 @@ class CartController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function checkout(Request $request) {
-        $order = Order::create(['user_id' => $request->user_id]);
-        $order->items = [];
-        foreach ($request->items as $item) {
-            $created_item = OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $item['product_id'],
-                'product_name' => $item['product_name'],
-                'product_type' => $item['product_type'],
-                'product_price' => $item['product_price']
-            ]);
-        }
-
-        foreach ($request->items as $item) {
-            CartItem::find($item['id'])->delete();
+        try {
+            $order = Order::create(['user_id' => $request->user_id]);
+            foreach ($request->items as $item) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item['product_id'],
+                    'product_name' => $item['product_name'],
+                    'product_type' => $item['product_type'],
+                    'product_price' => $item['product_price']
+                ]);
+                $cart_item = CartItem::find($item['id']);
+                if ( ! is_null($cart_item)) {
+                    CartItem::find($item['id'])->delete();
+                }
+            }
+        } catch (\Exception $e) {
+            return response()->json(['Failed Operation'], 400);
         }
 
         return response()->json([$order], 200);
     }
 
-    /**
-     *
-     */
-    public function order() {
-        $orders = Auth::user()->orders;
-        return response()->json([$orders], 200);
-    }
 
 
 }
