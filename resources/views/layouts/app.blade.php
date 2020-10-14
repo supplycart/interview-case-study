@@ -49,8 +49,6 @@
                 </div>
             </nav>
         @endguest
-
-
         <main class="h-screen">
             @yield('content')
         </main>

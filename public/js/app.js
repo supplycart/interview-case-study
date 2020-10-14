@@ -1985,6 +1985,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
@@ -1999,7 +2008,8 @@ __webpack_require__.r(__webpack_exports__);
       showModalOrder: false,
       searchQuery: "",
       isTyping: false,
-      isLoading: false
+      isLoading: false,
+      total: 0
     };
   },
   created: function created() {
@@ -2044,7 +2054,8 @@ __webpack_require__.r(__webpack_exports__);
       var payload = {
         id: cart.id,
         items: cart.items,
-        user_id: cart.user_id
+        user_id: cart.user_id,
+        total_price: this.total
       };
       axios.post("/api/checkout", payload)["catch"](function (err) {
         return console.error(err);
@@ -2089,6 +2100,12 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return columns;
+    },
+    totalPrice: function totalPrice() {
+      this.total = this.cart.items.reduce(function (sum, i) {
+        return sum + Number(i.product_price);
+      }, 0);
+      return this.total;
     }
   },
   watch: {
@@ -20425,33 +20442,80 @@ var render = function() {
     { staticClass: "h-screen bg-white content-center" },
     [
       _c("div", { staticClass: "flex w-full" }, [
-        _c("div", { staticClass: "bg-blue-800 w-48 border-r-2 " }, [
+        _c("div", { staticClass: "bg-blue-800 w-64 border-r-2 " }, [
           _c("div", { staticClass: "pl-2" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.searchQuery,
-                  expression: "searchQuery"
-                }
-              ],
-              attrs: { type: "text" },
-              domProps: { value: _vm.searchQuery },
-              on: {
-                input: [
-                  function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.searchQuery = $event.target.value
-                  },
-                  function($event) {
-                    _vm.isTyping = true
+            _c("div", { staticClass: "pt-2 relative mx-auto text-gray-600" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.searchQuery,
+                    expression: "searchQuery"
                   }
+                ],
+                staticClass:
+                  "border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none",
+                attrs: {
+                  type: "search",
+                  name: "search",
+                  placeholder: "Search"
+                },
+                domProps: { value: _vm.searchQuery },
+                on: {
+                  input: [
+                    function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.searchQuery = $event.target.value
+                    },
+                    function($event) {
+                      _vm.isTyping = true
+                    }
+                  ]
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "absolute right-0 top-0 mt-5 mr-4",
+                  attrs: { type: "submit" }
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "text-gray-600 h-4 w-4 fill-current",
+                      staticStyle: {
+                        "enable-background": "new 0 0 56.966 56.966"
+                      },
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                        version: "1.1",
+                        id: "Capa_1",
+                        x: "0px",
+                        y: "0px",
+                        viewBox: "0 0 56.966 56.966",
+                        "xml:space": "preserve",
+                        width: "512px",
+                        height: "512px"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
+                        }
+                      })
+                    ]
+                  )
                 ]
-              }
-            })
+              )
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "justify-center p-8" }, [
@@ -20459,7 +20523,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "zoom-icon focus:outline-none focus:shadow-outline focus:border-blue-300",
+                  "pl-8 zoom-icon focus:outline-none focus:shadow-outline focus:border-blue-300",
                 on: {
                   click: function($event) {
                     return _vm.toggleModalCart()
@@ -20608,12 +20672,12 @@ var render = function() {
             _vm._m(0)
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "justify-center p-8" }, [
+          _c("div", { staticClass: "justify-center px-8 py-4" }, [
             _c(
               "button",
               {
                 staticClass:
-                  "zoom-icon focus:outline-none focus:shadow-outline focus:border-blue-300",
+                  "pl-8 zoom-icon focus:outline-none focus:shadow-outline focus:border-blue-300",
                 on: {
                   click: function($event) {
                     return _vm.toggleModalOrder()
@@ -20756,7 +20820,13 @@ var render = function() {
                       _c("div", { staticClass: "px-6 py-4" }, [
                         _c("div", { staticClass: "font-bold text-xl mb-2" }, [
                           _vm._v(_vm._s(product.name))
-                        ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "font-normal text-base mb-2" },
+                          [_vm._v(_vm._s(product.type))]
+                        )
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "px-6 pt-4 pb-2" }, [
@@ -20768,9 +20838,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                    RM " +
+                              "\n                                RM " +
                                 _vm._s(product.price) +
-                                "\n                                "
+                                "\n                            "
                             )
                           ]
                         )
@@ -20790,7 +20860,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                    Add to Cart\n                                "
+                              "\n                                Add to Cart\n                            "
                             )
                           ]
                         )
@@ -20840,7 +20910,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                Cart\n                            "
+                                  "\n                            Cart\n                        "
                                 )
                               ]
                             ),
@@ -20937,41 +21007,36 @@ var render = function() {
                                               _vm._v(" "),
                                               _c(
                                                 "tbody",
-                                                _vm._l(_vm.cart.items, function(
-                                                  product
-                                                ) {
-                                                  return _c("tr", [
-                                                    _c(
-                                                      "td",
-                                                      {
-                                                        staticClass:
-                                                          "hidden pb-4 md:table-cell"
-                                                      },
-                                                      [
+                                                [
+                                                  _vm._l(
+                                                    _vm.cart.items,
+                                                    function(product) {
+                                                      return _c("tr", [
                                                         _c(
-                                                          "p",
+                                                          "td",
                                                           {
                                                             staticClass:
-                                                              "mb-2 md:ml-4"
+                                                              "hidden pb-4 md:table-cell"
                                                           },
                                                           [
-                                                            _vm._v(
-                                                              _vm._s(
-                                                                product.product_name
-                                                              )
+                                                            _c(
+                                                              "p",
+                                                              {
+                                                                staticClass:
+                                                                  "mb-2 md:ml-4"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    product.product_name
+                                                                  )
+                                                                )
+                                                              ]
                                                             )
                                                           ]
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c("td", [
-                                                      _c(
-                                                        "a",
-                                                        {
-                                                          attrs: { href: "#" }
-                                                        },
-                                                        [
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c("td", [
                                                           _c(
                                                             "p",
                                                             {
@@ -20985,39 +21050,48 @@ var render = function() {
                                                                 )
                                                               )
                                                             ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "form",
-                                                            {
-                                                              attrs: {
-                                                                action: "",
-                                                                method: "POST"
-                                                              }
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "button",
-                                                                {
-                                                                  staticClass:
-                                                                    "text-gray-700 md:ml-4",
-                                                                  attrs: {
-                                                                    type:
-                                                                      "submit"
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _c("small", [
-                                                                    _vm._v(
-                                                                      "(Remove item)"
-                                                                    )
-                                                                  ])
-                                                                ]
-                                                              )
-                                                            ]
                                                           )
-                                                        ]
-                                                      )
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "td",
+                                                          {
+                                                            staticClass:
+                                                              "hidden text-right md:table-cell"
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "span",
+                                                              {
+                                                                staticClass:
+                                                                  "text-sm lg:text-base font-medium"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "RM " +
+                                                                    _vm._s(
+                                                                      product.product_price
+                                                                    )
+                                                                )
+                                                              ]
+                                                            )
+                                                          ]
+                                                        )
+                                                      ])
+                                                    }
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("tr", [
+                                                    _c("td", {
+                                                      staticClass:
+                                                        "py-4 hidden pb-4 md:table-cell"
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c("td", [
+                                                      _c("p", {
+                                                        staticClass:
+                                                          "mb-2 md:ml-4"
+                                                      })
                                                     ]),
                                                     _vm._v(" "),
                                                     _c(
@@ -21031,13 +21105,13 @@ var render = function() {
                                                           "span",
                                                           {
                                                             staticClass:
-                                                              "text-sm lg:text-base font-medium"
+                                                              "text-sm lg:text-bold font-medium"
                                                           },
                                                           [
                                                             _vm._v(
                                                               "RM " +
                                                                 _vm._s(
-                                                                  product.product_price
+                                                                  _vm.totalPrice
                                                                 )
                                                             )
                                                           ]
@@ -21045,8 +21119,8 @@ var render = function() {
                                                       ]
                                                     )
                                                   ])
-                                                }),
-                                                0
+                                                ],
+                                                2
                                               )
                                             ]
                                           )
@@ -21084,7 +21158,7 @@ var render = function() {
                                                 },
                                                 [
                                                   _vm._v(
-                                                    "\n                                            Add something to your cart\n                                            "
+                                                    "\n                                        Add something to your cart\n                                        "
                                                   )
                                                 ]
                                               )
@@ -21120,7 +21194,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                Close\n                            "
+                                  "\n                            Close\n                        "
                                 )
                               ]
                             ),
@@ -21140,7 +21214,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                Checkout\n                            "
+                                  "\n                            Checkout\n                        "
                                 )
                               ]
                             )
@@ -21193,7 +21267,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                Order History\n                            "
+                                  "\n                            Order History\n                        "
                                 )
                               ]
                             ),
@@ -21497,7 +21571,7 @@ var render = function() {
                                                 },
                                                 [
                                                   _vm._v(
-                                                    "\n                                            Order Something\n                                            "
+                                                    "\n                                        Order Something\n                                        "
                                                   )
                                                 ]
                                               )
@@ -21531,7 +21605,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "px-4 py-4 text-white" }, [
+    return _c("div", { staticClass: "px-8 py-6 text-white" }, [
       _c("h1", [_vm._v("Shopping Cart")])
     ])
   },
@@ -21539,7 +21613,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: " px-12 text-white" }, [
+    return _c("div", { staticClass: " pl-16 text-white" }, [
       _c("h1", [_vm._v("Order History")])
     ])
   }

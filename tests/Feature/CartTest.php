@@ -174,7 +174,8 @@ class CartTest extends TestCase
                     "product_price" => "38.00",
                 ]
             ],
-            "user_id" => '1'
+            "user_id" => '1',
+            "total_price" => 30.00
         ];
 
         $response = $this->postJson('/api/checkout',$data);

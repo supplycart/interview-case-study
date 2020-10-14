@@ -54,7 +54,9 @@ class CartController extends Controller
      */
     public function checkout(Request $request) {
         try {
-            $order = Order::create(['user_id' => $request->user_id]);
+            $order = Order::create([
+                'user_id' => $request->user_id,
+                'total_price' => $request->total_price ]);
             foreach ($request->items as $item) {
                 OrderItem::create([
                     'order_id' => $order->id,
@@ -74,7 +76,5 @@ class CartController extends Controller
 
         return response()->json([$order], 200);
     }
-
-
 
 }
