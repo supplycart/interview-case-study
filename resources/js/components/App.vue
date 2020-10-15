@@ -30,7 +30,7 @@
             </div>
 
             <div>
-                <div class="flex">
+                <div class="flex" >
                     <div class="col " v-for="column in columns">
                         <div class="p-6 max-w-sm rounded overflow-hidden shadow-lg p-6" v-for="product in column">
                             <img class="zoom object-contain h-48" :src="product.image_src">
@@ -40,7 +40,7 @@
                             </div>
                             <div class="px-6 pt-4 pb-2">
                                 <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                                    RM {{ product.price }}
+                                    RM {{ isMember ? product.member_price : product.price }}
                                 </span>
                             </div>
                             <div class="px-6 pt-4 pb-2">
@@ -302,7 +302,7 @@ export default {
         return {
             cols:4,
             products: [],
-            user:{},
+            isMember:false,
             cart:[],
             orders:[],
             showModalCart: false,
@@ -314,6 +314,16 @@ export default {
         };
     },
     created() {
+        axios.get('/api/user')
+            .then(res => {
+                this.isMember = !!+res.data.is_member
+            })
+            .catch(err => console.error(err));
+        axios.get('/api/products')
+            .then(res => {
+                this.products = res.data
+            })
+            .catch(err => console.error(err));
         axios.get('/api/products')
             .then(res => {
                 this.products = res.data

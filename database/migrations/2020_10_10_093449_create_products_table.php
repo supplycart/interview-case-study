@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('type');
             $table->decimal('price', 8,2);
+            $table->decimal('member_price', 8,2);
             $table->string('image_src')->nullable();
             $table->timestamps();
         });

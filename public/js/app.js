@@ -2001,7 +2001,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       cols: 4,
       products: [],
-      user: {},
+      isMember: false,
       cart: [],
       orders: [],
       showModalCart: false,
@@ -2015,6 +2015,16 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
+    axios.get('/api/user').then(function (res) {
+      _this.isMember = !!+res.data.is_member;
+    })["catch"](function (err) {
+      return console.error(err);
+    });
+    axios.get('/api/products').then(function (res) {
+      _this.products = res.data;
+    })["catch"](function (err) {
+      return console.error(err);
+    });
     axios.get('/api/products').then(function (res) {
       _this.products = res.data;
     })["catch"](function (err) {
@@ -20901,7 +20911,11 @@ var render = function() {
                           [
                             _vm._v(
                               "\n                                RM " +
-                                _vm._s(product.price) +
+                                _vm._s(
+                                  _vm.isMember
+                                    ? product.member_price
+                                    : product.price
+                                ) +
                                 "\n                            "
                             )
                           ]
@@ -34071,15 +34085,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************!*\
   !*** ./resources/js/components/FlashMessage.vue ***!
   \**************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FlashMessage_vue_vue_type_template_id_3cea7a62___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FlashMessage.vue?vue&type=template&id=3cea7a62& */ "./resources/js/components/FlashMessage.vue?vue&type=template&id=3cea7a62&");
 /* harmony import */ var _FlashMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FlashMessage.vue?vue&type=script&lang=js& */ "./resources/js/components/FlashMessage.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _FlashMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _FlashMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -34109,7 +34122,7 @@ component.options.__file = "resources/js/components/FlashMessage.vue"
 /*!***************************************************************************!*\
   !*** ./resources/js/components/FlashMessage.vue?vue&type=script&lang=js& ***!
   \***************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
