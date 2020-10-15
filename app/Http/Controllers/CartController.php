@@ -53,6 +53,9 @@ class CartController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function checkout(Request $request) {
+        if (count($request->items) === 0) {
+            return response()->json(['BAD_PARAMS:empty_cart_items'], 400);
+        }
         try {
             $order = Order::create([
                 'user_id' => $request->user_id,

@@ -2076,26 +2076,34 @@ __webpack_require__.r(__webpack_exports__);
     checkout: function checkout(cart) {
       var _this3 = this;
 
-      var payload = {
-        id: cart.id,
-        items: cart.items,
-        user_id: cart.user_id,
-        total_price: this.total
-      };
-      axios.post("/api/checkout", payload)["catch"](function (err) {
-        return console.error(err);
-      });
-      this.cart.items = [];
-      axios.get("/api/orders").then(function (res) {
-        _this3.orders = res.data[0];
-      })["catch"](function (err) {
-        return console.error(err);
-      });
-      var message = {
-        text: 'Cart has been Checkout, Thanks for buying !',
-        type: 'success'
-      };
-      Bus.$emit('flash-message', message);
+      if (this.cart.items.length === 0) {
+        var message = {
+          text: 'Please add some items before checkout!',
+          type: 'error'
+        };
+        Bus.$emit('flash-message', message);
+      } else {
+        var payload = {
+          id: cart.id,
+          items: cart.items,
+          user_id: cart.user_id,
+          total_price: this.total
+        };
+        axios.post("/api/checkout", payload)["catch"](function (err) {
+          return console.error(err);
+        });
+        this.cart.items = [];
+        axios.get("/api/orders").then(function (res) {
+          _this3.orders = res.data[0];
+        })["catch"](function (err) {
+          return console.error(err);
+        });
+        var _message = {
+          text: 'Cart has been Checkout, Thanks for buying !',
+          type: 'success'
+        };
+        Bus.$emit('flash-message', _message);
+      }
     },
     toggleModalCart: function toggleModalCart() {
       this.showModalCart = !this.showModalCart;

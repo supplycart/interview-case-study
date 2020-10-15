@@ -373,24 +373,33 @@ export default {
 
         },
         checkout: function(cart){
-            let payload = {
-                id: cart.id,
-                items: cart.items,
-                user_id: cart.user_id,
-                total_price: this.total
+            if (this.cart.items.length === 0) {
+                let message = {
+                    text: 'Please add some items before checkout!',
+                    type: 'error'
+                }
+                Bus.$emit('flash-message', message);
+            } else {
+                let payload = {
+                    id: cart.id,
+                    items: cart.items,
+                    user_id: cart.user_id,
+                    total_price: this.total
+                }
+                axios.post("/api/checkout", payload).catch(err => console.error(err));
+                this.cart.items = [];
+                axios.get("/api/orders")
+                    .then(res => {
+                        this.orders = res.data[0]
+                    })
+                    .catch(err => console.error(err));
+                let message = {
+                    text: 'Cart has been Checkout, Thanks for buying !',
+                    type: 'success'
+                }
+                Bus.$emit('flash-message', message);
             }
-            axios.post("/api/checkout", payload).catch(err => console.error(err));
-            this.cart.items = [];
-            axios.get("/api/orders")
-                .then(res => {
-                    this.orders = res.data[0]
-                })
-                .catch(err => console.error(err));
-            let message = {
-                text: 'Cart has been Checkout, Thanks for buying !',
-                type: 'success'
-            }
-            Bus.$emit('flash-message', message);
+
         },
         toggleModalCart: function(){
             this.showModalCart = !this.showModalCart;

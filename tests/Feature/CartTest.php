@@ -3,12 +3,8 @@
 namespace Tests\Feature;
 
 use App\User;
-use Illuminate\Support\Str;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
-use Faker\Generator as Faker;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CartTest extends TestCase
 {
@@ -118,7 +114,7 @@ class CartTest extends TestCase
     }
 
     /**
-     * Negative Case: Get Cart with Cart Items
+     * Negative Case: Checkout items without authentication
      * Expected: Return unauthorised (401)
      * @test
      * @return void
@@ -130,19 +126,26 @@ class CartTest extends TestCase
     }
 
     /**
-     * Negative Case: Get Cart with Cart Items
-     * Expected: Return unauthorised (401)
+     * Negative Case: Checkout without items
+     * Expected: Return unauthorised (400)
      * @test
      * @return void
      */
-    public function negative_case_checkout_without_data()
+    public function negative_case_checkout_without_items()
     {
         Passport::actingAs(
             factory(User::class)->create(),
             ['add-to-cart']
         );
 
-        $response = $this->postJson('/api/checkout');
+        $data = [
+            'id' => 1,
+            'items' => [],
+            "user_id" => '1',
+            "total_price" => 30.00
+        ];
+
+        $response = $this->postJson('/api/checkout',$data);
         $response->assertStatus(400);
     }
 
@@ -150,7 +153,6 @@ class CartTest extends TestCase
      * Negative Case: Get Cart with Cart Items
      * Expected: Return unauthorised (401)
      * @test
-     * @param Faker $faker
      * @return void
      */
     public function positive_case_checkout_with_data()
