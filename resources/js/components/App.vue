@@ -97,10 +97,10 @@
                                                 <td class="py-4 hidden pb-4 md:table-cell">
                                                 </td>
                                                 <td>
-                                                    <p class="mb-2 md:ml-4"></p>
+                                                    <p class="mb-2 md:ml-4 text-bold">Total Price</p>
                                                 </td>
                                                 <td class="hidden text-right md:table-cell">
-                                                    <span class="text-sm lg:text-bold font-medium">RM {{totalPrice}}</span>
+                                                    <span class="text-sm lg:text-bold font-medium">RM {{totalPrice.toFixed(2)}}</span>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -310,7 +310,7 @@ export default {
             searchQuery: "",
             isTyping: false,
             isLoading: false,
-            total: 0
+            total: 0,
         };
     },
     created() {
@@ -344,6 +344,13 @@ export default {
                     this.cart.items.push(res.data[0]);
                 })
                 .catch(err => console.error(err));
+            let message = {
+                text: `${product.name} is added to cart`,
+                type: 'success'
+            }
+            Bus.$emit('flash-message', message);
+
+
         },
         checkout: function(cart){
             let payload = {
@@ -359,6 +366,11 @@ export default {
                     this.orders = res.data[0]
                 })
                 .catch(err => console.error(err));
+            let message = {
+                text: 'Cart has been Checkout, Thanks for buying !',
+                type: 'success'
+            }
+            Bus.$emit('flash-message', message);
         },
         toggleModalCart: function(){
             this.showModalCart = !this.showModalCart;
