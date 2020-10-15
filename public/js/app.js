@@ -1994,6 +1994,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App",
@@ -21511,102 +21521,151 @@ var render = function() {
                                                               _vm._v(" "),
                                                               _c(
                                                                 "tbody",
-                                                                _vm._l(
-                                                                  order.items,
-                                                                  function(
-                                                                    product
-                                                                  ) {
-                                                                    return _c(
-                                                                      "tr",
+                                                                [
+                                                                  _vm._l(
+                                                                    order.items,
+                                                                    function(
+                                                                      product
+                                                                    ) {
+                                                                      return _c(
+                                                                        "tr",
+                                                                        [
+                                                                          _c(
+                                                                            "td",
+                                                                            {
+                                                                              staticClass:
+                                                                                "hidden pb-4 md:table-cell"
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "p",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "mb-2 md:ml-4"
+                                                                                },
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    _vm._s(
+                                                                                      product.product_name
+                                                                                    )
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "td",
+                                                                            [
+                                                                              _c(
+                                                                                "a",
+                                                                                {
+                                                                                  attrs: {
+                                                                                    href:
+                                                                                      "#"
+                                                                                  }
+                                                                                },
+                                                                                [
+                                                                                  _c(
+                                                                                    "p",
+                                                                                    {
+                                                                                      staticClass:
+                                                                                        "mb-2 md:ml-4"
+                                                                                    },
+                                                                                    [
+                                                                                      _vm._v(
+                                                                                        _vm._s(
+                                                                                          product.product_type
+                                                                                        )
+                                                                                      )
+                                                                                    ]
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "td",
+                                                                            {
+                                                                              staticClass:
+                                                                                "hidden text-right md:table-cell"
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "span",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "text-sm lg:text-base font-medium"
+                                                                                },
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    "RM " +
+                                                                                      _vm._s(
+                                                                                        product.product_price
+                                                                                      )
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            ]
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    }
+                                                                  ),
+                                                                  _vm._v(" "),
+                                                                  _c("tr", [
+                                                                    _c("td", {
+                                                                      staticClass:
+                                                                        "py-4 hidden pb-4 md:table-cell"
+                                                                    }),
+                                                                    _vm._v(" "),
+                                                                    _c("td", [
+                                                                      _c(
+                                                                        "p",
+                                                                        {
+                                                                          staticClass:
+                                                                            "mb-2 md:ml-4 text-bold"
+                                                                        },
+                                                                        [
+                                                                          _vm._v(
+                                                                            "Total Price"
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    ]),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "td",
+                                                                      {
+                                                                        staticClass:
+                                                                          "hidden text-right md:table-cell"
+                                                                      },
                                                                       [
                                                                         _c(
-                                                                          "td",
+                                                                          "span",
                                                                           {
                                                                             staticClass:
-                                                                              "hidden pb-4 md:table-cell"
+                                                                              "text-sm lg:text-bold font-medium"
                                                                           },
                                                                           [
-                                                                            _c(
-                                                                              "p",
-                                                                              {
-                                                                                staticClass:
-                                                                                  "mb-2 md:ml-4"
-                                                                              },
-                                                                              [
-                                                                                _vm._v(
-                                                                                  _vm._s(
-                                                                                    product.product_name
-                                                                                  )
+                                                                            _vm._v(
+                                                                              "RM " +
+                                                                                _vm._s(
+                                                                                  order.total_price
                                                                                 )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          [
-                                                                            _c(
-                                                                              "a",
-                                                                              {
-                                                                                attrs: {
-                                                                                  href:
-                                                                                    "#"
-                                                                                }
-                                                                              },
-                                                                              [
-                                                                                _c(
-                                                                                  "p",
-                                                                                  {
-                                                                                    staticClass:
-                                                                                      "mb-2 md:ml-4"
-                                                                                  },
-                                                                                  [
-                                                                                    _vm._v(
-                                                                                      _vm._s(
-                                                                                        product.product_type
-                                                                                      )
-                                                                                    )
-                                                                                  ]
-                                                                                )
-                                                                              ]
-                                                                            )
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          " "
-                                                                        ),
-                                                                        _c(
-                                                                          "td",
-                                                                          {
-                                                                            staticClass:
-                                                                              "hidden text-right md:table-cell"
-                                                                          },
-                                                                          [
-                                                                            _c(
-                                                                              "span",
-                                                                              {
-                                                                                staticClass:
-                                                                                  "text-sm lg:text-base font-medium"
-                                                                              },
-                                                                              [
-                                                                                _vm._v(
-                                                                                  "RM " +
-                                                                                    _vm._s(
-                                                                                      product.product_price
-                                                                                    )
-                                                                                )
-                                                                              ]
                                                                             )
                                                                           ]
                                                                         )
                                                                       ]
                                                                     )
-                                                                  }
-                                                                ),
-                                                                0
+                                                                  ])
+                                                                ],
+                                                                2
                                                               )
                                                             ]
                                                           )

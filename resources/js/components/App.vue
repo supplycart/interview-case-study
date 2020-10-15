@@ -184,6 +184,16 @@
                                                                     <span class="text-sm lg:text-base font-medium">RM {{product.product_price}}</span>
                                                                 </td>
                                                             </tr>
+                                                            <tr>
+                                                                <td class="py-4 hidden pb-4 md:table-cell">
+                                                                </td>
+                                                                <td>
+                                                                    <p class="mb-2 md:ml-4 text-bold">Total Price</p>
+                                                                </td>
+                                                                <td class="hidden text-right md:table-cell">
+                                                                    <span class="text-sm lg:text-bold font-medium">RM {{order.total_price}}</span>
+                                                                </td>
+                                                            </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>

@@ -22,7 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fafa65e-9380-4f02-b1f2-99bbbd80e8e8" name="Default Changelist" comment="" />
+    <list default="true" id="2fafa65e-9380-4f02-b1f2-99bbbd80e8e8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -158,12 +160,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test/interview-case-study" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.2.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\amiru\Desktop\interview-case-study" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\amiru\Desktop\interview-case-study\resources\js\components" />
     </key>
@@ -199,7 +204,7 @@
       <workItem from="1602645091898" duration="7498000" />
       <workItem from="1602683197738" duration="6729000" />
       <workItem from="1602712986057" duration="5334000" />
-      <workItem from="1602723996746" duration="4197000" />
+      <workItem from="1602723996746" duration="5590000" />
     </task>
     <servers />
   </component>
@@ -235,10 +240,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1602685457361" />
-    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1602722980087">
+    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1602728415085">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1602722980087" />
+    <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1602728415085" />
     <state x="698" y="232" key="NewPhpClassDialog" timestamp="1602686080629">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
