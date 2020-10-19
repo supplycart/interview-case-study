@@ -46,11 +46,20 @@ class UserController extends Controller
     {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = User::find(Auth::user()->id);
+            $success['id'] = $user->id;
+            $success['name'] = $user->name;
             $success['token'] = $user->createToken('MyApp')->accessToken;
             return response()->json(['success' => $success], $this->successStatus);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return response()->json(['success' => 'user logout'], $this->successStatus);
     }
 
     public function register(Request $request)

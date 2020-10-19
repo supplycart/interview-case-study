@@ -18,6 +18,6 @@ class ProductService implements ProductContract
           return $query->where('category_id', $request->category);
         });
 
-        return $product->get();
+        return $product->with('brand')->get();
     }
 }
