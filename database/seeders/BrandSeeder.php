@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
 use Illuminate\Database\Seeder;
 
 class BrandSeeder extends Seeder
@@ -13,6 +14,25 @@ class BrandSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $brands = [
+            [
+                'id' => 1,
+                'name' => 'Nestle',
+            ],
+
+            [
+                'id' => 2,
+                'name' => 'Power Root',
+            ],
+
+            [
+                'id' => 3,
+                'name' => 'Samyang',
+            ]
+        ];
+
+        foreach ($brands as $brand) {
+            Brand::updateOrCreate($brand);
+        }
     }
 }

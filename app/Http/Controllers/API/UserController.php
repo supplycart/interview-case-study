@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Mail\EmailConfirmation;
+use App\Models\Cart;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +16,7 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
     public $successStatus = 200;
+
     public function confirmEmail($id)
     {
         $user = User::findOrFail($id);
@@ -28,6 +31,14 @@ class UserController extends Controller
     public function getDetails()
     {
         $user = Auth::user();
+        return response()->json(['success' => $user], $this->successStatus);
+    }
+
+    public function getOrderHistory()
+    {
+        $user = User::find(Auth::user()->id);
+        $user['order_history'] = Order::where('cart_id', $user->cart->id)->where('status_id', 2)->with('product')->get();
+
         return response()->json(['success' => $user], $this->successStatus);
     }
 
@@ -60,6 +71,10 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->password = bcrypt($request->password);
         $user->save();
+        
+        $cart = new Cart();
+        $cart->user_id = $user->id;
+        $cart->save();
 
         $data = ['name' => $request->name, 'id' => $user->id];
         Mail::to($request->email)->send(new EmailConfirmation($data));

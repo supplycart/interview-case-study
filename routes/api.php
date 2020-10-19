@@ -1,6 +1,8 @@
 <?php
+
+use App\Http\Controllers\API\Order\OrderController;
+use App\Http\Controllers\API\Product\ProductController;
 use App\Http\Controllers\API\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 Route::get('user/{id}/confirm_email', [UserController::class, 'confirmEmail']);
+
 Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('user/{id}/order_history', [UserController::class, 'getOrderHistory']);
     Route::post('details', [UserController::class, 'getDetails']);
+    Route::resource('products', ProductController::class);
+    Route::resource('orders', OrderController::class);
 });
