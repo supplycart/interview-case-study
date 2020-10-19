@@ -106,14 +106,7 @@ export default {
     async registerUser() {
       this.fields.c_password = this.fields.password
       const {data} = await axios.post('/api/register', this.fields)
-      // console.log(data)
-      // this.$router.push('/products')
-      this.$router.push({
-        name: "productListing",
-        params: {
-          isRegistrationCallback: true
-        }
-      })
+      this.$router.push('/')
     },
 
     onSignUpClicked() {
