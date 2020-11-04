@@ -1,0 +1,57 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "test": "cross-env NODE_ENV=test mocha-webpack --webpack-config tests/webpack.config.js --require tests/js/setup.js tests/js/**/*.spec.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@vue/babel-preset-app": "^3.5.3",
+    "@vue/test-utils": "^1.0.0-beta.28",
+    "axios": "^0.18.1",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-istanbul": "^6.0.0",
+    "bootstrap-confirmation2": "^2.4.4",
+    "bootstrap-sass": "^3.3.7",
+    "bootstrap-select": "^1.13.8",
+    "cross-env": "^5.2.0",
+    "expect": "^26.0.1",
+    "jquery": "^3.5.1",
+    "jquery.easing": "^1.4.1",
+    "jsdom": "^13.1.0",
+    "jsdom-global": "^3.0.2",
+    "laravel-mix": "^4.0.15",
+    "lodash": "^4.17.19",
+    "mocha": "^7.1.2",
+    "mocha-webpack": "^2.0.0-beta.0",
+    "moxios": "^0.4.0",
+    "node-sass": "^4.14.1",
+    "prettier": "^1.16",
+    "resolve-url-loader": "^2.3.1",
+    "sass": "^1.26.5",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "dependencies": {
+    "bootstrap": "^3.4.0",
+    "moment": "^2.24.0",
+    "tailwindcss": "^1.9.6",
+    "uiv": "^0.31.5",
+    "vue-slide-up-down": "^1.7.2"
+  },
+  "jshintConfig": {
+    "esversion": 6,
+    "asi": true
+  }
+}

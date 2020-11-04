@@ -1,0 +1,41 @@
+export default {
+  uiv: {
+    datePicker: {
+      clear: '清空',
+      today: '今天',
+      month: '月',
+      month1: '一月',
+      month2: '二月',
+      month3: '三月',
+      month4: '四月',
+      month5: '五月',
+      month6: '六月',
+      month7: '七月',
+      month8: '八月',
+      month9: '九月',
+      month10: '十月',
+      month11: '十一月',
+      month12: '十二月',
+      year: '年',
+      week1: '一',
+      week2: '二',
+      week3: '三',
+      week4: '四',
+      week5: '五',
+      week6: '六',
+      week7: '日'
+    },
+    timePicker: {
+      am: '上午',
+      pm: '下午'
+    },
+    modal: {
+      cancel: '取消',
+      ok: '确认'
+    },
+    multiSelect: {
+      placeholder: '选择...',
+      filterPlaceholder: '搜索...'
+    }
+  }
+}
