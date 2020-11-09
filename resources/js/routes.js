@@ -1,9 +1,9 @@
-import Products from './components/AllProducts.vue'
+// import Products from './components/AllProducts.vue'
 
-export const routes = [
-    {
-        name: 'home',
-        path:'/',
-        component:Products
-    },
-];
+// export const routes = [
+//     {
+//         name: 'home',
+//         path:'/home',
+//         component:Products
+//     },
+// ];
