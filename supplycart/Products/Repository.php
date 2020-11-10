@@ -18,7 +18,7 @@ class Repository
      * @param string $userId
      * @return \Illuminate\Database\Eloquent\Collection 
      */
-    public function getAllwithSpecialPrice(string $userId): object
+    public function getAllwithSpecialPrice(): object
     {
         return Product::with(['special_prices' => function ($query) {
             $query->where('user_id', Auth::id());
