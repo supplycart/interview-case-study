@@ -33,10 +33,10 @@ You must work on this assignment using:
 ### Bonus Tasks
 
 1. Verify email after registration
-<strike>2. Product attributes and filtering e.g brand, category</strike>
+<br><strike>2. Product attributes and filtering e.g brand, category</strike>
 3. Different user can see different price for products
 4. Add unit tests
-<strike>5. Deploy app to a server</strike>
+<br><strike>5. Deploy app to a server</strike>
 
 ### To deploy
 
