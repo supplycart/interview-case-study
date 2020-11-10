@@ -14,7 +14,14 @@
                     <p class="text-blue-500 text-sm font-semibold">{{ $product->brand }}</p>
                     <p class="text-blue-700 text-sm font-semibold">{{ $product->category }}</p>
                     <p class="text-gray-500 text-sm">{{ $product->descriptions }}</p>
-                    <p class="text-red-500 mt-2"> RM {{ $product->price }}</p>
+                    <p class="font-bold mt-2line-through"> 
+                      @if($product->special_prices->first() !== null) 
+                      <span class="line-through text-red-500"> RM {{$product->price}} </span>
+                      @endif
+                      <span class="text-orange-500"> RM {{$product->special_prices->first()->price ?? $product->price}}</span>
+                    </p> 
+
+
                 </div>
             </button>
         </div>

@@ -1,7 +1,7 @@
 <?php
 
 namespace Supplycart\Products;
-
+use Auth;
 
 
 class Products
@@ -26,6 +26,6 @@ class Products
      */
     public function get(): object
     {
-        return $this->repository->getAll();
+        return $this->repository->getAllwithSpecialPrice(Auth::id());
     }
 }

@@ -13,4 +13,10 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Cart');
     }
+
+    public function special_prices()
+    {
+        return $this->hasMany('App\Models\SpecialPrice');
+    }
+    
 }
