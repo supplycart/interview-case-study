@@ -20,7 +20,7 @@ You must work on this assignment using:
  - TailwindCSS
  - Laravel (optional for FE dev)
 
-### Tasks
+### Finished Tasks (unfinished task is strike through)
 
 1. As guest, I want to be able to register an account
 2. As guest, I want to be able to login using registered account
@@ -33,7 +33,15 @@ You must work on this assignment using:
 ### Bonus Tasks
 
 1. Verify email after registration
-2. Product attributes and filtering e.g brand, category
+<strike>2. Product attributes and filtering e.g brand, category</strike>
 3. Different user can see different price for products
 4. Add unit tests
-5. Deploy app to a server
+<strike>5. Deploy app to a server</strike>
+
+### To deploy
+
+1. Composer install
+2. configure env with db and mailtrap.io (for email verification)
+3. php artisan migrate
+4. php artisan db:seed
+5. php artisan serve

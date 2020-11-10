@@ -10,7 +10,7 @@
                         class="w-full max-w-sm mx-auto rounded-md shadow-lg overflow-hidden text-left add-to-cart "
                         data-name="{{ $product->name }}" data-price="{{ $product->price }}" data-id="{{ $product->id }}">
                         <div class="flex items-end justify-end h-56 w-full bg-cover"
-                            style="background-image: url('https://images.unsplash.com/photo-1495856458515-0637185db551?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80')">
+                            style="background-image: url('{{asset('product_default.jpg')}}')">
                         </div>
                         <div class="px-5 py-3 space-y-3">
                             <h3 class="text-gray-700 uppercase font-semibold">{{ $product->name }}</h3>

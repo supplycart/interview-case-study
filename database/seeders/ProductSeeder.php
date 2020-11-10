@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
                 'descriptions' => $faker->sentence(5),
                 'quantity' => rand(1,100),
                 'price' => rand(100,1000),
-                'image' =>  asset('product_default'),
+                'image' =>  asset('product_default.jpg'),
                 'category' => Arr::random(['phone-tablets','computing']),
                 'brand' => Arr::random(['Sony','Apple','Samsung']),
             ]);
