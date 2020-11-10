@@ -31,6 +31,8 @@
                         @endif
                     @else
                         <button type="button" class="modal-open btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span class="total-count"></span>)</button><button class="clear-cart btn btn-danger">Clear Cart</button>
+                        <a href="{{ route('orders') }}"
+                           class="no-underline hover:underline">Order History</a>
                         <a href="{{ route('logout') }}"
                            class="no-underline hover:underline"
                            onclick="event.preventDefault();
@@ -47,6 +49,8 @@
         <main class="sm:container sm:mx-auto sm:mt-10">
             @yield('content')
         </main>
+        @include('components.cart')
+        @include('components.toast-alert')
     </div>
 </body>
 

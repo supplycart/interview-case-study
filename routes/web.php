@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('home')->middleware('verified');
+Route::post('/orders/save', [App\Http\Controllers\OrderController::class, 'store'])->name('store-order');
+Route::get('/orders', [App\Http\Controllers\OrderController::class, 'show'])->name('orders');
 Route::get('/', function () {
     return redirect('/products');
 });
