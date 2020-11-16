@@ -55,3 +55,6 @@ docs/_book
 test/
 
 # End of https://www.toptal.com/developers/gitignore/api/laravel,vue
+
+public/css
+public/js
