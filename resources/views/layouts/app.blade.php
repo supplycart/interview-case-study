@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @stack('head')
 </head>
 
 
@@ -27,7 +29,7 @@
 
     <div class="relative bg-white" id="header">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+            <div class="flex justify-between items-center py-6 md:justify-start md:space-x-10">
                 <div class="-ml-2 -my-2 md:hidden">
                     <button type="button" @click="mobileMenuOpen = true" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                         <!-- Heroicon name: menu -->
@@ -64,6 +66,11 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                     </a>
+                    @auth
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="whitespace-no-wrap text-base leading-6 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900">
+                        Logout
+                    </a>
+                    @endauth
                 </div>
             </div>
         </div>
@@ -116,12 +123,22 @@
                                         View Cart
                                     </a>
                                 </span>
+                                @auth
+                                <p class="text-center text-base leading-6 font-medium text-gray-500">
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-indigo-600 hover:text-indigo-500 transition ease-in-out duration-150">
+                                        Logout
+                                    </a>
+                                </p>
+                                @endauth
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </transition>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
     </div>
 
     @yield('content')

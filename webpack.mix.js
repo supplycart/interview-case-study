@@ -1,6 +1,6 @@
 const mix = require('laravel-mix');
 const tailwindcss = require('tailwindcss');
-
+const fs = require('fs');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -12,8 +12,20 @@ const tailwindcss = require('tailwindcss');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
+ /* source : https://stackoverflow.com/a/52733704/3126835 */
+let getFiles = function (dir) {
+  // get all 'files' in this directory
+  // filter directories
+  return fs.readdirSync(dir).filter(file => {
+      return fs.statSync(`${dir}/${file}`).isFile();
+  });
+};
+
+getFiles('resources/js').forEach(function (filepath) {
+  mix.js('resources/js/' + filepath, 'js');
+});
+
+mix.sass('resources/sass/app.scss', 'public/css')
     .options({
         processCssUrls: false,
         postCss: [ tailwindcss('./tailwind.config.js') ],

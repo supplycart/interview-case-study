@@ -26,11 +26,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const header = new Vue({
-    el: '#header',
-    data: {
-        mobileMenuOpen: false
-      },
-      methods: {
-        
-      },
+  el: '#header',
+  data: {
+    mobileMenuOpen: false
+  },
+  methods: {
+
+  },
 });
