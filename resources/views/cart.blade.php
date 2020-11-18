@@ -41,15 +41,17 @@
                 </div>
                 @endforeach
                 <a href="#" class="flex font-semibold text-sm text-blue-600 mt-8 mb-8">
-                    <- Continue Shopping </a> <div class="border-t mt-8">
-                        <div class="flex font-semibold justify-between py-6 text-sm uppercase">
-                            <span>Total cost</span>
-                            <span>RM {{number_format($total, 2)}}</span>
-                        </div>
-                        <button onclick="location.href='/checkout';" class="bg-blue-500 font-semibold hover:bg-blue-600 py-3 text-sm text-white uppercase w-full m-3">Checkout</button>
+                    Continue Shopping
+                </a>
+                <div class="border-t mt-8">
+                    <div class="flex font-semibold justify-between py-6 text-sm uppercase">
+                        <span>Total cost</span>
+                        <span>RM {{number_format($total, 2)}}</span>
+                    </div>
+                    <button onclick="location.href='/checkout';" class="bg-blue-500 font-semibold hover:bg-blue-600 py-3 text-sm text-white uppercase w-full m-3">Checkout</button>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </main>
 @endsection

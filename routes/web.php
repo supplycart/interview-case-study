@@ -30,4 +30,6 @@ Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name
 Route::get('/cart', [App\Http\Controllers\ShopController::class, 'cart'])->name('cart');
 Route::get('/checkout', [App\Http\Controllers\ShopController::class, 'checkout'])->name('checkout');
 
+Route::get('/orders', [App\Http\Controllers\ShopController::class, 'orderHistory'])->name('orders');
+
 Route::post('/shop/add/{id}', [App\Http\Controllers\ShopController::class, 'addToCart']);

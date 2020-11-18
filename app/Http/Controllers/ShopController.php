@@ -77,6 +77,12 @@ class ShopController extends Controller
         return Redirect::route('shop');
     }
 
+    public function orderHistory() {
+        $orders = Order::where("user_id", Auth::id())->with('orderItem.product')->get();
+
+        return view('order_history', compact('orders'));
+    }
+
     public function addToCart($id)
     {
         $product = Product::find($id);
