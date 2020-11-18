@@ -13,7 +13,7 @@
                     <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
                     <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
                 </div>
-                @foreach ($cart as $product)
+                @forelse  ($cart as $product)
                 <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
                     <div class="flex w-2/5">
                         <!-- product -->
@@ -39,10 +39,13 @@
                     <span class="text-center w-1/5 font-semibold text-sm">RM {{number_format($product->price, 2)}}</span>
                     <span class="text-center w-1/5 font-semibold text-sm">RM {{number_format($product->total, 2)}}</span>
                 </div>
-                @endforeach
-                <a href="#" class="flex font-semibold text-sm text-blue-600 mt-8 mb-8">
+                @empty
+                    <p class="font-bold text-2xl text-center">No items in cart.</p>
+                @endforelse
+                <a href="/shop" class="flex font-semibold text-sm text-blue-600 mt-8 mb-8">
                     Continue Shopping
                 </a>
+                @if(!empty($cart))
                 <div class="border-t mt-8">
                     <div class="flex font-semibold justify-between py-6 text-sm uppercase">
                         <span>Total cost</span>
@@ -50,6 +53,7 @@
                     </div>
                     <button onclick="location.href='/checkout';" class="bg-blue-500 font-semibold hover:bg-blue-600 py-3 text-sm text-white uppercase w-full m-3">Checkout</button>
                 </div>
+                @endif
             </div>
         </div>
     </div>

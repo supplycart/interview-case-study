@@ -35,7 +35,8 @@ Vue.use(VueToast);
 const header = new Vue({
   el: '#header',
   data: {
-    mobileMenuOpen: false
+    mobileMenuOpen: false,
+    cartOpen: false
   },
   methods: {
 
@@ -45,8 +46,7 @@ const header = new Vue({
 const app = new Vue({
   el: '#app',
   data: {
-    message: '',
-    notifications: []
+
   },
   methods: {
     addToCart : function(id) {
@@ -56,7 +56,14 @@ const app = new Vue({
         {  }
       ).then(data => {
         console.log(data);
-        let instance = Vue.$toast.open('Added to Cart!');
+        if(data['data']['status'] =="ok") {
+          let instance = Vue.$toast.open('Added to Cart!');
+          document.getElementById("cartProducts").innerHTML = data['data']['code'];
+        } else {
+          let instance = Vue.$toast.open('There was some error adding.');
+        }
+       
+        
       });
     }
   },

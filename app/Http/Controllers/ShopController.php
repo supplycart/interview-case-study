@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 
 class ShopController extends Controller
@@ -73,12 +74,12 @@ class ShopController extends Controller
         OrderItem::insert($orderItems);
 
         session()->put('cart', []);
-
-        return Redirect::route('shop');
+        Session::flash('message', sprintf("Order #%s successful", $order->id)); 
+        return Redirect::route('orders');
     }
 
     public function orderHistory() {
-        $orders = Order::where("user_id", Auth::id())->with('orderItem.product')->get();
+        $orders = Order::where("user_id", Auth::id())->with('orderItem.product')->orderBy('created_at', 'DESC')->get();
 
         return view('order_history', compact('orders'));
     }
@@ -111,7 +112,8 @@ class ShopController extends Controller
             ];
         }
         session()->put('cart', $cart);
-        return response()->json($cart);
+        $html = view('cart_product', compact('cart'))->render();
+        return response()->json(['status'=>"ok", 'code' => $html]);
     }
 
     public function getProducts()

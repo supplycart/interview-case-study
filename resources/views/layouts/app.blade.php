@@ -44,7 +44,7 @@
                     </a>
                 </div>
                 <div class="-mr-2 -my-2 md:hidden">
-                    <a href="/cart" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                    <a  @click="cartOpen = !cartOpen" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                         <svg class="flex-shrink-0 h-6 w-6 text-blue-600  hover:text-gray-900 focus:text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
@@ -65,7 +65,7 @@
                 </nav>
 
                 <div class="hidden md:flex items-center justify-end space-x-8 md:flex-1 lg:w-0">
-                    <a href="/cart" class="whitespace-no-wrap focus:outline-none ">
+                    <a @click="cartOpen = !cartOpen" class="whitespace-no-wrap focus:outline-none ">
                         <svg class="flex-shrink-0 h-6 w-6 text-blue-600  hover:text-gray-900 focus:text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
@@ -151,8 +151,39 @@
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
         </form>
+        <transition enter-active-class="transition duration-200 ease-out" leave-active-class="transition duration-100 ease-in" enter-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
+            <div v-if="cartOpen" class="fixed top-10 right-0 max-w-xs w-full h-auto px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-2 border-gray-300" style="max-height: 90vh;">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-2xl font-medium text-gray-700">Your cart</h3>
+                    <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none">
+                        <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <hr class="my-3">
+                <div id="cartProducts">
+                    @forelse (Session::get('cart') as $product)
+                    <div class="flex justify-between mt-6 pb-2 border-b">
+                        <div class="flex">
+                            <img class="h-20 w-20 object-cover rounded" src="{{$product->image_path}}" alt="">
+                            <div class="mx-3">
+                                <h3 class="text-sm font-bold">{{$product->name}}</h3>
+                                <div class="flex text-gray-700 mt-2">{{$product->qty}} x RM{{number_format($product->price, 2)}}</div>
+                            </div>
+                        </div>
+                        <div class="flex">{{number_format($product->total, 2)}}</div>
+                    </div>
+                    @empty
+                    <p class="font-bold text-2xl text-center">No items in cart.</p>
+                    @endforelse
+                </div>
+                <a href="/cart" class="flex justify-center bg-blue-500 mt-3 font-semibold hover:bg-blue-600 py-3 text-sm text-white uppercase w-full m-3">
+                    <span>View Cart</span>
+                </a>
+            </div>
+        </transition>
     </div>
-
     <div id="app">
         @yield('content')
     </div>

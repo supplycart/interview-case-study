@@ -4,7 +4,14 @@
 <main class="my-8">
     <div class="container mx-auto px-6">
         <h3 class="text-gray-700 text-2xl font-medium text-center">My Orders</h3>
-
+        @if(Session::has('message'))
+        <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md mt-4" role="alert">
+            <div class="flex">
+                    <p class="font-bold">{{ Session::get('message') }}</p>
+                
+            </div>
+        </div>
+        @endif
         @foreach ($orders as $order)
 
         <div class="flex shadow-md my-10">
