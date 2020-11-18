@@ -1,3 +1,7 @@
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -5,6 +9,7 @@
  */
 
 window.Vue = require('vue');
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,6 +24,8 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+Vue.use(VueAxios, axios)
+Vue.use(VueToast);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -32,5 +39,25 @@ const header = new Vue({
   },
   methods: {
 
+  },
+});
+
+const app = new Vue({
+  el: '#app',
+  data: {
+    message: '',
+    notifications: []
+  },
+  methods: {
+    addToCart : function(id) {
+      var url = "/shop/add/" + id;
+      this.$http.post(
+        url, 
+        {  }
+      ).then(data => {
+        console.log(data);
+        let instance = Vue.$toast.open('Added to Cart!');
+      });
+    }
   },
 });
