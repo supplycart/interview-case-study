@@ -29,8 +29,17 @@ class ShopController extends Controller
         return view('shop', compact('products'));
     }
 
-    public function addToCart($id)
+    public function cart()
     {
+        $cart = session()->has('cart') ? session()->get('cart') : [];
+        $total = array_sum(array_map(function($product) { 
+            return $product->total; 
+        }, $cart));
+        return view('cart', compact('cart', 'total'));
+    }
+
+    public function addToCart($id)
+    { 
         $product = Products::find($id);
 
         if(!$product) {
@@ -40,13 +49,16 @@ class ShopController extends Controller
         $cart = session()->has('cart') ? session()->get('cart') : [];
 
         if(isset($cart[$id])){
-            $cart[$id]['qty']++;
+            $cart[$id]->qty++;
+            $cart[$id]->total =  $cart[$id]->qty *  $cart[$id]->price;
         } else {
-            $cart[$id] = [
+            $cart[$id] = (object) [
                 'id' => $id,
                 'name' => $product->name,
                 'price' => $product->price,
-                'qty' => 1
+                'qty' => 1,
+                'total' => $product->price,
+                'image_path' => $product->image_path
             ];
         }
         session()->put('cart', $cart);

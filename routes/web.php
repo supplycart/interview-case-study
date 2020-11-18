@@ -25,4 +25,6 @@ Auth::routes(['verify' => true]);
 
 Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop');
 
+Route::get('/cart', [App\Http\Controllers\ShopController::class, 'cart'])->name('cart');
+
 Route::post('/shop/add/{id}', [App\Http\Controllers\ShopController::class, 'addToCart']);
