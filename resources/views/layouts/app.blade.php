@@ -163,7 +163,8 @@
                 </div>
                 <hr class="my-3">
                 <div id="cartProducts">
-                    @forelse (Session::get('cart') as $product)
+             
+                    @forelse (Session::get('cart', []) as $product)
                     <div class="flex justify-between mt-6 pb-2 border-b">
                         <div class="flex">
                             <img class="h-20 w-20 object-cover rounded" src="{{$product->image_path}}" alt="">
@@ -177,6 +178,7 @@
                     @empty
                     <p class="font-bold text-2xl text-center">No items in cart.</p>
                     @endforelse
+               
                 </div>
                 <a href="/cart" class="flex justify-center bg-blue-500 mt-3 font-semibold hover:bg-blue-600 py-3 text-sm text-white uppercase w-full m-3">
                     <span>View Cart</span>
