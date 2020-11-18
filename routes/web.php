@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +28,6 @@ Auth::routes(['verify' => true]);
 Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop');
 
 Route::get('/cart', [App\Http\Controllers\ShopController::class, 'cart'])->name('cart');
+Route::get('/checkout', [App\Http\Controllers\ShopController::class, 'checkout'])->name('checkout');
 
 Route::post('/shop/add/{id}', [App\Http\Controllers\ShopController::class, 'addToCart']);

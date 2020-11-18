@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
+use App\Models\OrderItem;
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 
 class ShopController extends Controller
@@ -32,23 +36,62 @@ class ShopController extends Controller
     public function cart()
     {
         $cart = session()->has('cart') ? session()->get('cart') : [];
-        $total = array_sum(array_map(function($product) { 
-            return $product->total; 
+        $total = array_sum(array_map(function ($product) {
+            return $product->total;
         }, $cart));
         return view('cart', compact('cart', 'total'));
     }
 
-    public function addToCart($id)
-    { 
-        $product = Products::find($id);
+    public function checkout()
+    {
+        $cart = session()->has('cart') ? session()->get('cart') : [];
+        $user = Auth::user();
 
-        if(!$product) {
+        if(empty($cart)) {
+            return Redirect::route('shop');
+        }
+
+        $total = array_sum(array_map(function ($product) {
+            return $product->total;
+        }, $cart));
+
+        $order = new Order();
+        $order->user_id = $user->id;
+        $order->total = $total;
+        $order->save();
+
+        $orderItems = [];
+        foreach($cart as $product) {
+            $orderItems[] = [
+                'order_id' => $order->id,
+                'product_id' => $product->id,
+                'quantity' => $product->qty,
+                'price' => $product->price,
+                'total' => $product->total
+            ];
+        }
+        OrderItem::insert($orderItems);
+
+        session()->put('cart', []);
+
+        return Redirect::route('shop');
+    }
+
+    public function addToCart($id)
+    {
+        $product = Product::find($id);
+
+        if (!$product) { 
+            //Product not found so abort.
             abort(404);
         }
 
+        //Check if session already has cart, if not create new one
         $cart = session()->has('cart') ? session()->get('cart') : [];
 
-        if(isset($cart[$id])){
+        //Check if cart already has the product id, so can just add qty
+        //TODO: Check Stock
+        if (isset($cart[$id])) {
             $cart[$id]->qty++;
             $cart[$id]->total =  $cart[$id]->qty *  $cart[$id]->price;
         } else {
@@ -62,12 +105,11 @@ class ShopController extends Controller
             ];
         }
         session()->put('cart', $cart);
-        session()->flash('message', $product->title.' added to cart.');
         return response()->json($cart);
     }
 
     public function getProducts()
     {
-        return Products::limit(30)->get();
+        return Product::limit(30)->get();
     }
 }
