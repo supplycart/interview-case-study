@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Products;
 use Illuminate\Http\Request;
+
 
 class ShopController extends Controller
 {
@@ -23,6 +25,12 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return view('shop');
+        $products = $this->getProducts();
+        return view('shop', compact('products'));
+    }
+
+    public function getProducts()
+    {
+        return Products::limit(30)->get();
     }
 }

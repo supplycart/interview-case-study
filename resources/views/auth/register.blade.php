@@ -35,7 +35,7 @@
                 </span>
                 @enderror
                 <div class="-mt-px">
-                    <input v-on:blur="validatePassword" v-model="password2" name="password-confirm" type="password" required class="appearance-none rounded-none relative block w-full mt-2 p-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5  @error('password') border-red-300  @enderror" v-bind:class="{'border-red-300': invalidPass}" placeholder="Confirm Password">
+                    <input v-on:blur="validatePassword" v-model="password2" name="password_confirmation" type="password" required class="appearance-none rounded-none relative block w-full mt-2 p-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5  @error('password') border-red-300  @enderror" v-bind:class="{'border-red-300': invalidPass}" placeholder="Confirm Password">
                 </div>
                 <span v-if="invalidPass" class="text-red-500 font-normal p-1 w-full text-center text-xs" role="alert">
                     <strong>The password confirmation does not match.</strong>

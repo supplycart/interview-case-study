@@ -14,10 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return Redirect::route('shop');
 });
+
+Route::get('/home', function () {
+    return Redirect::route('shop');
+})->name('home');
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop');
