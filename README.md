@@ -39,7 +39,7 @@ You must work on this assignment using:
 5. Deploy app to a server
 
 
-#################### INSTRUCTIONS TO RUN CODE ###################
+### INSTRUCTIONS TO RUN CODE 
 
 note : I use Laravel Homestead to run my code
 
@@ -53,3 +53,5 @@ note : I use Laravel Homestead to run my code
 8. After that run "php artisan migrate"
 9. Make sure the database configuration in .env is correct. 
 10. After complete setting up all the environment, run supplycart.test at your browser
+
+
