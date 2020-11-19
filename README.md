@@ -39,7 +39,7 @@ You must work on this assignment using:
 5. Deploy app to a server
 
 
-### INSTRUCTIONS TO RUN CODE 
+## INSTRUCTIONS TO RUN CODE 
 
 note : I use Laravel Homestead to run my code
 
