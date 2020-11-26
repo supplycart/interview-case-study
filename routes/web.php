@@ -13,11 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes(['verify' => true]);
+
+Route::name('product.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\ProductController::class, 'index'])->name('index');
+    Route::get('detail/{product}', [\App\Http\Controllers\ProductController::class, 'view'])->name('view');
+});
+
+
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

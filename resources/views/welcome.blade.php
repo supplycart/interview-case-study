@@ -2,39 +2,65 @@
 
 @section('content')
     <main class="sm:container sm:mx-auto sm:mt-10">
-        <div class="min-h-screen flex items-center justify-center">
-            <div class="flex flex-col justify-around h-full">
-                <div>
-                    <h1 class="mb-6 text-gray-600 text-center font-light tracking-wider text-4xl sm:mb-8 sm:text-6xl">
-                        {{ config('app.name', 'Laravel') }}
-                    </h1>
-                    <ul class="flex flex-col space-y-2 sm:flex-row sm:flex-wrap sm:space-x-8 sm:space-y-0">
-                        <li>
-                            <a href="https://laravel.com/docs" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Documentation">Documentation</a>
-                        </li>
-                        <li>
-                            <a href="https://laracasts.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Laracasts">Laracasts</a>
-                        </li>
-                        <li>
-                            <a href="https://laravel-news.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="News">News</a>
-                        </li>
-                        <li>
-                            <a href="https://nova.laravel.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Nova">Nova</a>
-                        </li>
-                        <li>
-                            <a href="https://forge.laravel.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Forge">Forge</a>
-                        </li>
-                        <li>
-                            <a href="https://vapor.laravel.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Vapor">Vapor</a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/laravel/laravel" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="GitHub">GitHub</a>
-                        </li>
-                        <li>
-                            <a href="https://tailwindcss.com" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase" title="Tailwind Css">Tailwind CSS</a>
-                        </li>
-                    </ul>
+        <div class="mx-auto px-4 sm:px-8 py-2 text-center">
+
+            <div class="text-center max-w-lg mx-auto mt-6">
+                <div class="h-4 bg-gray-500 w-40 block mx-auto rounded-sm"></div>
+                <div class="h-2 bg-gray-400 w-64 mt-4 block mx-auto rounded-sm"></div>
+                <div class="h-2 bg-gray-400 w-48 mt-2 block mx-auto rounded-sm"></div>
+            </div>
+
+            <div class="grid grid-cols-8 gap-4 items-start mt-8 mx-auto px-8">
+
+                <div class="col-span-8 sm:col-span-6 md:col-span-3 lg:col-span-2 xl:col-span-2">
+                    <div class="bg-white shadow-lg rounded-lg px-4 py-6 mx-4 my-4">
+                        <div class="mx-auto h-40 bg-gray-200 rounded-md"></div>
+                        <div class="h-4 bg-gray-200 w-40 mt-8 block mx-auto rounded-sm"></div>
+                        <div class="h-2 bg-gray-200 w-35 mt-2 block mx-auto rounded-sm"></div>
+                        <div class="flex justify-center mt-4">
+                            <div class="rounded-sm h-8 w-20 px-4 bg-gray-200 mr-2"></div>
+                            <div class="rounded-sm h-8 w-20 px-4 bg-green-300"></div>
+                        </div>
+                    </div>
                 </div>
+
+
+                <div class="col-span-8 sm:col-span-6 md:col-span-3 lg:col-span-2 xl:col-span-2">
+                    <div class="bg-white shadow-lg rounded-lg px-4 py-6 mx-4 my-4">
+                        <div class="mx-auto h-40 bg-gray-200 rounded-md"></div>
+                        <div class="h-4 bg-gray-200 w-40 mt-8 block mx-auto rounded-sm"></div>
+                        <div class="h-2 bg-gray-200 w-35 mt-2 block mx-auto rounded-sm"></div>
+                        <div class="flex justify-center mt-4">
+                            <div class="rounded-sm h-8 w-20 px-4 bg-gray-200 mr-2"></div>
+                            <div class="rounded-sm h-8 w-20 px-4 bg-green-300"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-8 sm:col-span-6 md:col-span-6 lg:col-span-2 xl:col-span-2">
+                    <div class="bg-white shadow-lg rounded-lg px-4 py-6 mx-4 my-4">
+                        <div class="mx-auto h-40 bg-gray-200 rounded-md"></div>
+                        <div class="h-4 bg-gray-200 w-40 mt-8 block mx-auto rounded-sm"></div>
+                        <div class="h-2 bg-gray-200 w-35 mt-2 block mx-auto rounded-sm"></div>
+                        <div class="flex justify-center mt-4">
+                            <div class="rounded-sm h-8 w-20 px-4 bg-gray-200 mr-2"></div>
+                            <div class="rounded-sm h-8 w-20 px-4 bg-green-300"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-8 sm:col-span-6 md:col-span-6 lg:col-span-2 xl:col-span-2">
+                    <div class="bg-white shadow-lg rounded-lg px-4 py-6 mx-4 my-4">
+                        <div class="mx-auto h-40 bg-gray-200 rounded-md"></div>
+                        <div class="h-4 bg-gray-200 w-40 mt-8 block mx-auto rounded-sm"></div>
+                        <div class="h-2 bg-gray-200 w-35 mt-2 block mx-auto rounded-sm"></div>
+                        <div class="flex justify-center mt-4">
+                            <div class="rounded-sm h-8 w-20 px-4 bg-gray-200 mr-2"></div>
+                            <div class="rounded-sm h-8 w-20 px-4 bg-green-300"></div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </main>

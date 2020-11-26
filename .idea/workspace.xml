@@ -161,8 +161,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606225055793</updated>
+<<<<<<< Updated upstream
       <workItem from="1606225057558" duration="1830000" />
       <workItem from="1606394098143" duration="2737000" />
+=======
+      <workItem from="1606225057558" duration="2899000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
