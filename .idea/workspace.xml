@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b24bbe9a-e8a6-4288-be04-a5f90261b0d9" name="Default Changelist" comment="" />
+    <list default="true" id="b24bbe9a-e8a6-4288-be04-a5f90261b0d9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -138,7 +144,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -156,6 +162,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606225055793</updated>
       <workItem from="1606225057558" duration="1830000" />
+      <workItem from="1606394098143" duration="2737000" />
     </task>
     <servers />
   </component>
@@ -163,9 +170,13 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1585" y="511" width="670" height="676" key="search.everywhere.popup" timestamp="1606314395392">
+    <state x="1429" y="719" key="SettingsEditor" timestamp="1606396027674">
       <screen x="0" y="0" width="3840" height="2160" />
     </state>
-    <state x="1585" y="511" width="670" height="676" key="search.everywhere.popup/1025.2160.1680.1050/0.0.3840.2160@0.0.3840.2160" timestamp="1606314395392" />
+    <state x="1429" y="719" key="SettingsEditor/1025.2160.1680.1050/0.0.3840.2160@0.0.3840.2160" timestamp="1606396027674" />
+    <state x="1585" y="511" width="670" height="676" key="search.everywhere.popup" timestamp="1606396815610">
+      <screen x="0" y="0" width="3840" height="2160" />
+    </state>
+    <state x="1585" y="511" width="670" height="676" key="search.everywhere.popup/1025.2160.1680.1050/0.0.3840.2160@0.0.3840.2160" timestamp="1606396815610" />
   </component>
 </project>
