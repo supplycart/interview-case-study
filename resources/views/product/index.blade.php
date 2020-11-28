@@ -21,19 +21,10 @@
                                 <p class="text-center truncate">{{ $product->name }}</p>
                             </div>
                             <div class="h-2 w-35 mt-2 block mx-auto rounded-sm">
-                                <p class="text-center truncate">MYR {{ $product->price }}</p>
+                                <p class="text-center truncate">MYR {{ $product->product_price }}</p>
                             </div>
                             <div class="flex justify-center mt-4">
-                                {{--<button class="rounded-sm h-8 w-20 px-4 bg-gray-200 mr-2 font-bold">--}}
-                                {{--    <span>View Details</span>--}}
-                                {{--</button>--}}
-                                {{--<button class="rounded-sm h-8 w-20 px-4 bg-green-300">Add to Cart</button>--}}
-                                <a href="{{ route('product.view', $product) }}"  class="border border-gray-500 bg-gray-500 text-white rounded-md h-8 w-20 px-4 mr-2 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline">
-                                    View
-                                </a>
-                                <button type="button" class="border border-green-500 bg-green-500 text-white rounded-md h-8 w-20 px-4 mr-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">
-                                    Add to Cart
-                                </button>
+                                <a href="{{ route('product.view', [$product]) }}" type="button" class="flex text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded text-center">View Detail</a>
                             </div>
                         </div>
                     </div>

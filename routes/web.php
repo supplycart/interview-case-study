@@ -24,6 +24,12 @@ Route::name('product.')->group(function () {
     Route::get('detail/{product}', [\App\Http\Controllers\ProductController::class, 'view'])->name('view');
 });
 
+Route::name('cart.')->prefix('cart')->group(function () {
+    Route::get('/', [\App\Http\Controllers\CartController::class, 'index'])->name('index');
+    Route::post('add/{product}', [\App\Http\Controllers\CartController::class, 'add'])->name('add');
+    Route::delete('remove/{cart}', [\App\Http\Controllers\CartController::class, 'remove'])->name('remove');
+    Route::post('checkout', [\App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
+});
 
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');

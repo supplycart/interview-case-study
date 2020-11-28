@@ -19,4 +19,14 @@ class Product extends Model
     {
         return $query->where('status', 1);
     }
+
+    public function getProductPriceAttribute()
+    {
+
+        if (auth()->user() && auth()->user()->is_special) {
+            return $this->special_price;
+        }
+
+        return $this->price;
+    }
 }
