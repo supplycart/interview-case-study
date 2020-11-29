@@ -28,7 +28,12 @@ Route::name('cart.')->prefix('cart')->group(function () {
     Route::get('/', [\App\Http\Controllers\CartController::class, 'index'])->name('index');
     Route::post('add/{product}', [\App\Http\Controllers\CartController::class, 'add'])->name('add');
     Route::delete('remove/{cart}', [\App\Http\Controllers\CartController::class, 'remove'])->name('remove');
-    Route::post('checkout', [\App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
+    Route::post('checkout', [\App\Http\Controllers\CartController::class, 'checkout'])->name('checkout')->middleware(['auth', 'verified']);
+});
+
+Route::name('order.')->prefix('order')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [\App\Http\Controllers\OrderController::class, 'index'])->name('index');
+    Route::get('detail/{order}', [\App\Http\Controllers\OrderController::class, 'view'])->name('view');
 });
 
 

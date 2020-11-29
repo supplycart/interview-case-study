@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -51,8 +52,37 @@ class CartController extends Controller
 
     public function checkout(Request $request)
     {
+        $request->validate([
+            'address' => 'required',
+        ]);
+
         $items = Cart::where('user_id', auth()->user()->id)->get();
 
-        dd($items);
+        if ($items->count() > 1) {
+
+            // create order
+            $order = Order::create([
+                'user_id' => auth()->user()->id,
+                'total_amount' => $items->sum('sub_total'),
+                'address' => $request->address,
+            ]);
+
+            foreach ($items as $item) {
+                // create order item
+                $order->items()->create([
+                    'product_id' => $item->product_id,
+                    'price' => $item->product->product_price,
+                    'quantity' => $item->quantity,
+                    'total' => $item->sub_total,
+                ]);
+
+                // delete from cart
+                $item->delete();
+            }
+
+            return back()->with('success', 'Successfully placed order.');
+        }
+
+        return back()->with('error', 'Issue with order placement.');
     }
 }
