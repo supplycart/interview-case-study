@@ -4,11 +4,11 @@
     <main class="sm:container sm:mx-auto sm:mt-10">
         <div class="mx-auto px-4 sm:px-8 py-2 text-center">
 
-            <div class="text-center max-w-lg mx-auto mt-6">
-                <div class="h-4 bg-gray-500 w-40 block mx-auto rounded-sm"></div>
-                <div class="h-2 bg-gray-400 w-64 mt-4 block mx-auto rounded-sm"></div>
-                <div class="h-2 bg-gray-400 w-48 mt-2 block mx-auto rounded-sm"></div>
-            </div>
+            {{--<div class="text-center max-w-lg mx-auto mt-6">--}}
+            {{--    <div class="h-4 bg-gray-500 w-40 block mx-auto rounded-sm"></div>--}}
+            {{--    <div class="h-2 bg-gray-400 w-64 mt-4 block mx-auto rounded-sm"></div>--}}
+            {{--    <div class="h-2 bg-gray-400 w-48 mt-2 block mx-auto rounded-sm"></div>--}}
+            {{--</div>--}}
 
             <div class="grid grid-cols-8 gap-4 items-start mt-8 mx-auto px-8">
                 @foreach($products as $product)
