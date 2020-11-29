@@ -13,7 +13,13 @@ class CartController extends Controller
 {
     public function index()
     {
-        $items = Cart::where('token', session()->getId())->get();
+        $items = Cart::where('token', session()->getId());
+
+        if (auth()->user()) {
+            $items = $items->orWhere('user_id', auth()->user()->id);
+        }
+
+        $items = $items->get();
 
         return view('cart.index', compact('items'));
     }
@@ -58,7 +64,7 @@ class CartController extends Controller
 
         $items = Cart::where('user_id', auth()->user()->id)->get();
 
-        if ($items->count() > 1) {
+        if ($items->count() >= 1) {
 
             // create order
             $order = Order::create([
@@ -80,7 +86,7 @@ class CartController extends Controller
                 $item->delete();
             }
 
-            return back()->with('success', 'Successfully placed order.');
+            return redirect()->route('order.index')->with('success', 'Successfully placed order.');
         }
 
         return back()->with('error', 'Issue with order placement.');

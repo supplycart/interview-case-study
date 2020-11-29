@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    @if ($items->count() > 1)
+                    @if ($items->count() >= 1)
                         <table class="w-full text-sm lg:text-base" cellspacing="0">
                             <thead>
                             <tr class="h-12 uppercase">
