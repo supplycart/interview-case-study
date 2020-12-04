@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9306cf4c2bf29c194111138f9268d5bf",
+    "content-hash": "f498d3d84e229a7e7341a87d57deeda7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -554,6 +554,54 @@
             "time": "2020-11-14T15:56:27+00:00"
         },
         {
+            "name": "fakerphp/faker",
+            "version": "v1.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FakerPHP/Faker.git",
+                "reference": "9aa6c9e289860951e6b4d010c7a841802d015cd8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/9aa6c9e289860951e6b4d010c7a841802d015cd8",
+                "reference": "9aa6c9e289860951e6b4d010c7a841802d015cd8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1 || ^8.0"
+            },
+            "conflict": {
+                "fzaninotto/faker": "*"
+            },
+            "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.4.1",
+                "ext-intl": "*",
+                "phpunit/phpunit": "^7.5.20 || ^8.5.8 || ^9.4.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2020-11-23T09:33:08+00:00"
+        },
+        {
             "name": "fideloper/proxy",
             "version": "4.4.1",
             "source": {
@@ -1014,16 +1062,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.16.1",
+            "version": "v8.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f7dfc22e6c42e9ed4dda14c05814349af6943206"
+                "reference": "b89363b540bd8ad6e727ee165b510a19fe170a28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f7dfc22e6c42e9ed4dda14c05814349af6943206",
-                "reference": "f7dfc22e6c42e9ed4dda14c05814349af6943206",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b89363b540bd8ad6e727ee165b510a19fe170a28",
+                "reference": "b89363b540bd8ad6e727ee165b510a19fe170a28",
                 "shasum": ""
             },
             "require": {
@@ -1173,7 +1221,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-11-25T15:01:02+00:00"
+            "time": "2020-12-03T13:47:59+00:00"
         },
         {
             "name": "laravel/passport",
@@ -1784,16 +1832,16 @@
         },
         {
             "name": "league/oauth2-server",
-            "version": "8.2.2",
+            "version": "8.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/oauth2-server.git",
-                "reference": "e87248ffcd905c3dd91ca58d002caa0ec1381c2c"
+                "reference": "70bb329bc79b7965a56f46e293da946c5a976ef1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/e87248ffcd905c3dd91ca58d002caa0ec1381c2c",
-                "reference": "e87248ffcd905c3dd91ca58d002caa0ec1381c2c",
+                "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/70bb329bc79b7965a56f46e293da946c5a976ef1",
+                "reference": "70bb329bc79b7965a56f46e293da946c5a976ef1",
                 "shasum": ""
             },
             "require": {
@@ -1802,7 +1850,7 @@
                 "ext-openssl": "*",
                 "lcobucci/jwt": "^3.4 || ^4.0",
                 "league/event": "^2.2",
-                "php": "^7.3 || ^8.0",
+                "php": "^7.2 || ^8.0",
                 "psr/http-message": "^1.0.1"
             },
             "replace": {
@@ -1810,10 +1858,10 @@
                 "lncd/oauth2": "*"
             },
             "require-dev": {
-                "laminas/laminas-diactoros": "^2.5.0",
+                "laminas/laminas-diactoros": "^2.4.1",
                 "phpstan/phpstan": "^0.12.57",
                 "phpstan/phpstan-phpunit": "^0.12.16",
-                "phpunit/phpunit": "^9.4.3",
+                "phpunit/phpunit": "^8.5.13",
                 "roave/security-advisories": "dev-master"
             },
             "type": "library",
@@ -1863,7 +1911,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-30T10:10:52+00:00"
+            "time": "2020-12-03T21:32:29+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2047,16 +2095,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.10.2",
+            "version": "v4.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "658f1be311a230e0907f5dfe0213742aff0596de"
+                "reference": "dbe56d23de8fcb157bbc0cfb3ad7c7de0cfb0984"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/658f1be311a230e0907f5dfe0213742aff0596de",
-                "reference": "658f1be311a230e0907f5dfe0213742aff0596de",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/dbe56d23de8fcb157bbc0cfb3ad7c7de0cfb0984",
+                "reference": "dbe56d23de8fcb157bbc0cfb3ad7c7de0cfb0984",
                 "shasum": ""
             },
             "require": {
@@ -2095,7 +2143,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2020-09-26T10:30:38+00:00"
+            "time": "2020-12-03T17:45:45+00:00"
         },
         {
             "name": "nyholm/psr7",
@@ -2889,16 +2937,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.10.4",
+            "version": "v0.10.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "a8aec1b2981ab66882a01cce36a49b6317dc3560"
+                "reference": "7c710551d4a2653afa259c544508dc18a9098956"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/a8aec1b2981ab66882a01cce36a49b6317dc3560",
-                "reference": "a8aec1b2981ab66882a01cce36a49b6317dc3560",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/7c710551d4a2653afa259c544508dc18a9098956",
+                "reference": "7c710551d4a2653afa259c544508dc18a9098956",
                 "shasum": ""
             },
             "require": {
@@ -2957,7 +3005,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2020-05-03T19:32:03+00:00"
+            "time": "2020-12-04T02:51:30+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -5874,54 +5922,6 @@
                 "ignition"
             ],
             "time": "2020-10-16T08:27:54+00:00"
-        },
-        {
-            "name": "fakerphp/faker",
-            "version": "v1.12.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FakerPHP/Faker.git",
-                "reference": "9aa6c9e289860951e6b4d010c7a841802d015cd8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/9aa6c9e289860951e6b4d010c7a841802d015cd8",
-                "reference": "9aa6c9e289860951e6b4d010c7a841802d015cd8",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1 || ^8.0"
-            },
-            "conflict": {
-                "fzaninotto/faker": "*"
-            },
-            "require-dev": {
-                "bamarni/composer-bin-plugin": "^1.4.1",
-                "ext-intl": "*",
-                "phpunit/phpunit": "^7.5.20 || ^8.5.8 || ^9.4.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Faker\\": "src/Faker/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Zaninotto"
-                }
-            ],
-            "description": "Faker is a PHP library that generates fake data for you.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "time": "2020-11-23T09:33:08+00:00"
         },
         {
             "name": "filp/whoops",
