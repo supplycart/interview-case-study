@@ -1,4 +1,4 @@
-###steps
+### steps
 1. composer install
 2. php artisan migrate
 3. php artisan db:seed
@@ -11,3 +11,7 @@
 4. a login user can view product list, add to cart, and checkout order.
 5. disclaimer: payment system is not included.
  
+### demo
+to test the app, go to http://interview-case-study.herokuapp.com/
+
+please note that since this version of heroku is free, sometimes it might be inaccessible after a few hours of inactivity. (hey, its free that's why)
