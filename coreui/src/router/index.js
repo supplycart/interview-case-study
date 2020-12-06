@@ -111,7 +111,6 @@ const EditMenuElement = () => import('@/views/menuElements/EditMenuElement')
 const ShowMenuElement = () => import('@/views/menuElements/ShowMenuElement')
 const DeleteMenuElement = () => import('@/views/menuElements/DeleteMenuElement')
 
-const Media = () => import('@/views/media/Media')
 
 
 Vue.use(Router)
@@ -131,11 +130,6 @@ function configRoutes () {
       name: 'Home',
       component: TheContainer,
       children: [
-        {
-          path: 'media',
-          name: 'Media',
-          component: Media
-        },
         {
           path: 'dashboard',
           name: 'Dashboard',
