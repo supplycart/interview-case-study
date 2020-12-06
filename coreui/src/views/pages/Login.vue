@@ -26,12 +26,12 @@
                   <template #prepend-content><CIcon name="cil-lock-locked"/></template>
                 </CInput>
                 <CRow>
-                  <CCol col="6">
+                  <CCol col="12">
                     <CButton type="submit" color="primary" class="px-4">Login</CButton>
                   </CCol>
-                  <CCol col="6" class="text-right">
+                  <!-- <CCol col="6" class="text-right">
                     <CButton color="link" class="px-0">Forgot password?</CButton>
-                  </CCol>
+                  </CCol> -->
                 </CRow>
               </CForm>
             </CCardBody>
@@ -43,7 +43,6 @@
             body-wrapper
           >
             <h2>Sign up</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             <CButton
               color="primary"
               class="active mt-3"
@@ -85,7 +84,7 @@ import axios from "axios";
             self.email = '';
             self.password = '';
             localStorage.setItem("api_token", response.data.access_token);
-            self.$router.push({ path: 'notes' });
+            self.$router.push({ path: 'products' });
           })
           .catch(function (error) {
             self.message = 'Incorrect E-mail or password';

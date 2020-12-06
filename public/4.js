@@ -623,10 +623,20 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TheContainer',
+  data: function data() {
+    return {
+      cart: 0
+    };
+  },
   components: {
     TheSidebar: _TheSidebar__WEBPACK_IMPORTED_MODULE_0__["default"],
     TheHeader: _TheHeader__WEBPACK_IMPORTED_MODULE_1__["default"],
     TheFooter: _TheFooter__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  methods: {
+    updateCart: function updateCart(value) {
+      this.cart++;
+    }
   }
 });
 
@@ -641,11 +651,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
 //
 //
 //
@@ -708,37 +713,167 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TheHeader',
+  props: ['cart'],
   data: function data() {
     return {
-      items: []
+      items: [],
+      warningModal: false
     };
+  },
+  computed: {
+    cItems: {
+      get: function get() {
+        return this.items;
+      },
+      set: function set(i) {
+        this.items = i;
+      }
+    },
+    computedCount: function computedCount() {
+      var count = 0;
+      this.items.forEach(function (i) {
+        return count = count + i.pivot.amount;
+      });
+      return count;
+    }
   },
   components: {
     TheHeaderDropdownAccnt: _TheHeaderDropdownAccnt__WEBPACK_IMPORTED_MODULE_2__["default"],
     CMenu: _Menu__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  updated: function updated() {
-    this.getCartItems();
   },
   mounted: function mounted() {
     this.getCartItems();
   },
   methods: {
     getCartItems: function getCartItems() {
+      var self = this;
+      this.count = 0;
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/cart?token=' + localStorage.getItem("api_token")).then(function (response) {
-        console.log(response);
-        self.items = response.data;
+        var items = response.data;
+        self.items = items;
+        console.log(items);
+        return items;
       })["catch"](function (error) {
         console.log(error);
+      });
+    },
+    addItem: function addItem(id) {
+      var self = this;
+      this.count = 0;
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.put('/api/cart/addItem/' + id + '?token=' + localStorage.getItem("api_token"), {
+        _method: 'PUT'
+      }).then(function (response) {
+        self.message = 'Successfully added.';
+        self.$emit('updateCart', 1);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    removeItem: function removeItem(id) {
+      var self = this;
+      this.count = 0;
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.put('/api/cart/removeItem/' + id + '?token=' + localStorage.getItem("api_token")).then(function (response) {
+        self.message = 'Successfully removed.';
+        self.$emit('updateCart', 1);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    logout: function logout() {
+      var self = this;
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/logout?token=' + localStorage.getItem("api_token"), {}).then(function (response) {
         self.$router.push({
           path: '/login'
         });
+      })["catch"](function (error) {
+        console.log(error);
       });
+    },
+    checkOut: function checkOut(id) {
+      var self = this;
+      this.count = 0;
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/order/' + id + '?token=' + localStorage.getItem("api_token"), {
+        _method: 'POST'
+      }).then(function (response) {
+        self.message = 'Successfully checked out.';
+        self.$emit('updateCart', 1);
+        self.warningModal = false;
+        self.$router.push({
+          path: '/order'
+        });
+        self.showAlert();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  watch: {
+    cart: function cart() {
+      this.getCartItems();
     }
   }
 });
@@ -858,6 +993,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./coreui/node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
 //
 //
 //
@@ -1200,7 +1336,10 @@ var render = function() {
       _c(
         "CWrapper",
         [
-          _c("TheHeader"),
+          _c("TheHeader", {
+            attrs: { cart: _vm.cart },
+            on: { updateCart: _vm.updateCart }
+          }),
           _vm._v(" "),
           _c(
             "div",
@@ -1217,7 +1356,11 @@ var render = function() {
                       _c(
                         "transition",
                         { attrs: { name: "fade" } },
-                        [_c("router-view")],
+                        [
+                          _c("router-view", {
+                            on: { updateCart: _vm.updateCart }
+                          })
+                        ],
                         1
                       )
                     ],
@@ -1261,21 +1404,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("CFooter", { attrs: { fixed: false } }, [
-    _c("div", [
-      _c("a", { attrs: { href: "https://coreui.io", target: "_blank" } }, [
-        _vm._v("CoreUI")
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "ml-1" }, [
-        _vm._v("© " + _vm._s(new Date().getFullYear()) + " creativeLabs.")
-      ])
-    ]),
-    _vm._v(" "),
     _c("div", { staticClass: "ml-auto" }, [
-      _c("span", { staticClass: "mr-1" }, [_vm._v("Powered by")]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "https://coreui.io/vue", target: "_blank" } }, [
-        _vm._v("CoreUI for Vue")
+      _c("span", { staticClass: "mr-1" }, [
+        _vm._v("For SupplyCart Interview Only")
       ])
     ])
   ])
@@ -1343,36 +1474,116 @@ var render = function() {
             "CHeaderNavItem",
             { staticClass: "d-md-down-none mx-2" },
             [
-              _c("CDropdown", {
-                attrs: { "toggler-content": "", color: "light", caret: false },
-                scopedSlots: _vm._u([
-                  {
-                    key: "toggler-content",
-                    fn: function() {
-                      return [
-                        _c(
-                          "h6",
-                          { staticClass: "m-0" },
-                          [
-                            _vm._v("Cart  "),
-                            _c("CIcon", {
-                              staticClass: "ml-1",
-                              attrs: { name: "cil-basket" }
-                            })
-                          ],
-                          1
-                        )
-                      ]
-                    },
-                    proxy: true
+              _c(
+                "CButton",
+                {
+                  attrs: { color: "warning", variant: "outline", size: "lg" },
+                  on: {
+                    click: function($event) {
+                      return _vm.logout()
+                    }
                   }
-                ])
-              })
+                },
+                [_c("h6", { staticClass: "m-0" }, [_vm._v("Log Out ")])]
+              ),
+              _vm._v(" "),
+              _c(
+                "CButton",
+                {
+                  attrs: { color: "light" },
+                  on: {
+                    click: function($event) {
+                      _vm.warningModal = true
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "h6",
+                    { staticClass: "m-0" },
+                    [
+                      _c("CIcon", {
+                        staticClass: "ml-1",
+                        attrs: { name: "cil-basket" }
+                      }),
+                      _vm._v(" Cart "),
+                      _c(
+                        "CBadge",
+                        { attrs: { color: "primary", shape: "pill" } },
+                        [_vm._v(_vm._s(_vm.computedCount))]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
             ],
             1
           )
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "CModal",
+        {
+          attrs: {
+            title: "Cart",
+            color: "primary",
+            show: _vm.warningModal,
+            footer: ""
+          },
+          on: {
+            "update:show": function($event) {
+              _vm.warningModal = $event
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "footer",
+              fn: function() {
+                return [
+                  _c(
+                    "div",
+                    [
+                      _c(
+                        "CButton",
+                        {
+                          staticClass: "m-2",
+                          attrs: {
+                            size: "lg",
+                            color: "primary",
+                            variant: "outline"
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.checkOut(_vm.cItems[0].pivot.cart_id)
+                            }
+                          }
+                        },
+                        [_c("b", [_vm._v("Check out")])]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              },
+              proxy: true
+            }
+          ])
+        },
+        _vm._l(_vm.cItems, function(item) {
+          return _c("div", { key: item.id, staticClass: "flex" }, [
+            _c("div", { staticClass: "flex-1" }, [
+              _vm._v("\n        " + _vm._s(item.name) + " \n      ")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex-1" }, [
+              _vm._v("\n        " + _vm._s(item.price.amount) + "\n      ")
+            ])
+          ])
+        }),
+        0
       )
     ],
     1
@@ -1596,22 +1807,7 @@ var render = function() {
       }
     },
     [
-      _c(
-        "CSidebarBrand",
-        { staticClass: "d-md-down-none", attrs: { to: "/" } },
-        [
-          _c("CIcon", {
-            staticClass: "d-block",
-            attrs: {
-              name: "logo",
-              size: "custom-size",
-              height: 35,
-              viewBox: "0 0 " + (_vm.minimize ? 110 : 556) + " 134"
-            }
-          })
-        ],
-        1
-      ),
+      _c("h4", { staticClass: "m-3" }, [_vm._v("Store")]),
       _vm._v(" "),
       _c("CRenderFunction", {
         attrs: { flat: "", "content-to-render": _vm.nav }

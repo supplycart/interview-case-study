@@ -66,6 +66,9 @@ const CreateNote = () => import('@/views/notes/CreateNote')
 
 //Notes
 const Products = () => import('@/views/products/Products')
+const Orders = () => import('@/views/orders/Orders')
+const Order = () => import('@/views/orders/Order')
+
 // const Note = () => import('@/views/notes/Note')
 // const EditNote = () => import('@/views/notes/EditNote')
 // const CreateNote = () => import('@/views/notes/CreateNote')
@@ -152,6 +155,25 @@ function configRoutes () {
           path: 'products',
           name: 'products',
           component: Products
+        },
+        {
+          path: 'order',
+          meta: { label: 'Orders'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: Orders,
+            },
+            {
+              path: ':id',
+              meta: { label: 'Order Details'},
+              name: 'Order',
+              component: Order,
+            }
+          ]
         },
         {
           path: 'charts',

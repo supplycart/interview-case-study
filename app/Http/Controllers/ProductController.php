@@ -31,8 +31,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')
-        ->get();
+        $products = Product::with(['categories', 'brands', 'price'])->get();
+        foreach($products as $product){
+          $product->priceAmount();
+        }
         return response()->json( $products );
     }
 

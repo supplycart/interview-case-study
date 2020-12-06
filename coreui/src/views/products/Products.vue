@@ -4,7 +4,6 @@
       <transition name="slide">
       <CCard>
         <CCardBody>
-            <CButton color="primary" @click="createNote()">Create Note</CButton>
             <CAlert
               :show.sync="dismissCountDown"
               color="primary"
@@ -12,41 +11,30 @@
             >
               ({{dismissCountDown}}) {{ message }}
             </CAlert>
+            <h3>Products</h3>
             <CDataTable
               hover
-              :items="items"
+              :items="computedItems"
               :fields="fields"
               :items-per-page="10"
+              column-filter
+              table-filter
+              sorter
               pagination
             >
-              <template #author="{item}">
+              <template #category="{item}">
                 <td>
-                  <strong>{{item.author}}</strong>
+                  <strong>{{item.categories[0].name}}</strong>
                 </td>
               </template>
-              <template #title="{item}">
+              <template #brand="{item}">
                 <td>
-                  <strong>{{item.title}}</strong>
+                  <strong>{{item.brands[0].name}}</strong>
                 </td>
               </template>
-              <template #content="{item}">
+              <template #price="{item}">
                 <td>
-                  {{item.content}}
-                </td>  
-              </template>
-              <template #applies_to_date="{item}">
-                <td>
-                  {{item.applies_to_date}}
-                </td>
-              </template>
-              <template #status="{item}">
-                <td>
-                  <CBadge :color="item.status_class">{{item.status}}</CBadge>
-                </td>
-              </template>
-              <template #note_type="{item}">
-                <td>
-                  <strong>{{item.note_type}}</strong>
+                  <strong>{{ item.price.amount.toFixed(2) }}</strong>
                 </td>
               </template>
               <template #show="{item}">
@@ -61,7 +49,7 @@
               </template>
               <template #action="{item}">
                 <td>
-                  <CButton v-if="you!=item.id" color="success" @click="addToCart( item.id )">Add to Cart</CButton>
+                  <CButton v-if="you!=item.id" color="success" @click="addToCart( item )">Add to Cart</CButton>
                 </td>
               </template>
             </CDataTable>
@@ -80,20 +68,7 @@ export default {
   data: () => {
     return {
       items: [],
-      /*
-      fields: [
-        {key: 'author'},
-        {key: 'title'},
-        {key: 'content'},
-        {key: 'applies_to_date'},
-        {key: 'status'},
-        {key: 'note_type'},
-        {key: 'show'},
-        {key: 'edit'},
-        {key: 'delete'}
-      ],
-      */
-      fields: ['name', 'brand', 'category', 'created_at', 'updated_at', 'action'],
+      fields: ['name', 'price', 'brand', 'category', 'created_at', 'updated_at', 'action'],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
@@ -106,6 +81,15 @@ export default {
     }
   },
   computed: {
+    computedItems () {
+      return this.items.map(item => {
+        return { 
+          ...item, 
+          category: item.categories[0].name, 
+          brand: item.brands[0].name 
+        }
+      })
+    },
   },
   methods: {
     getRowCount (items) {
@@ -125,17 +109,18 @@ export default {
       const editLink = this.editLink( id );
       this.$router.push({path: editLink});
     },
-    addToCart ( id ) {
+    addToCart ( item ) {
+      let id = item.id;
       let self = this;
       let noteId = id;
       axios.post(  '/api/cart/add/' + id + '?token=' + localStorage.getItem("api_token"), {
         _method: 'POST'
       })
       .then(function (response) {
-          console.log(response);
-          self.message = 'Successfully added to cart.';
+          self.message = 'Successfully added ' + item.name + ' to cart.';
           self.showAlert();
           self.getNotes();
+          self.$emit('updateCart', 1);
       }).catch(function (error) {
         console.log(error);
         // self.$router.push({ path: '/login' });
@@ -155,11 +140,12 @@ export default {
       axios.get(  '/api/products?token=' + localStorage.getItem("api_token") )
       .then(function (response) {
         self.items = response.data;
+        console.log(self.items);
       }).catch(function (error) {
         console.log(error);
-        self.$router.push({ path: '/login' });
+        // self.$router.push({ path: '/login' });
       });
-    }
+    },
   },
   mounted: function(){
     this.getNotes();

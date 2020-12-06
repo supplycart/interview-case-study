@@ -1,16 +1,16 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[58],{
 
-/***/ "./coreui/src/views/notes/EditNote.vue":
-/*!*********************************************!*\
-  !*** ./coreui/src/views/notes/EditNote.vue ***!
-  \*********************************************/
+/***/ "./coreui/src/views/menuElements/ShowMenuElement.vue":
+/*!***********************************************************!*\
+  !*** ./coreui/src/views/menuElements/ShowMenuElement.vue ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EditNote_vue_vue_type_template_id_5f2a9058___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditNote.vue?vue&type=template&id=5f2a9058& */ "./coreui/src/views/notes/EditNote.vue?vue&type=template&id=5f2a9058&");
-/* harmony import */ var _EditNote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditNote.vue?vue&type=script&lang=js& */ "./coreui/src/views/notes/EditNote.vue?vue&type=script&lang=js&");
+/* harmony import */ var _ShowMenuElement_vue_vue_type_template_id_78caedb1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShowMenuElement.vue?vue&type=template&id=78caedb1& */ "./coreui/src/views/menuElements/ShowMenuElement.vue?vue&type=template&id=78caedb1&");
+/* harmony import */ var _ShowMenuElement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ShowMenuElement.vue?vue&type=script&lang=js& */ "./coreui/src/views/menuElements/ShowMenuElement.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -20,9 +20,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _EditNote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _EditNote_vue_vue_type_template_id_5f2a9058___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _EditNote_vue_vue_type_template_id_5f2a9058___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _ShowMenuElement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ShowMenuElement_vue_vue_type_template_id_78caedb1___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ShowMenuElement_vue_vue_type_template_id_78caedb1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -32,47 +32,47 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "coreui/src/views/notes/EditNote.vue"
+component.options.__file = "coreui/src/views/menuElements/ShowMenuElement.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./coreui/src/views/notes/EditNote.vue?vue&type=script&lang=js&":
-/*!**********************************************************************!*\
-  !*** ./coreui/src/views/notes/EditNote.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************/
+/***/ "./coreui/src/views/menuElements/ShowMenuElement.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./coreui/src/views/menuElements/ShowMenuElement.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditNote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditNote.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/notes/EditNote.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditNote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowMenuElement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ShowMenuElement.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/menuElements/ShowMenuElement.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowMenuElement_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./coreui/src/views/notes/EditNote.vue?vue&type=template&id=5f2a9058&":
-/*!****************************************************************************!*\
-  !*** ./coreui/src/views/notes/EditNote.vue?vue&type=template&id=5f2a9058& ***!
-  \****************************************************************************/
+/***/ "./coreui/src/views/menuElements/ShowMenuElement.vue?vue&type=template&id=78caedb1&":
+/*!******************************************************************************************!*\
+  !*** ./coreui/src/views/menuElements/ShowMenuElement.vue?vue&type=template&id=78caedb1& ***!
+  \******************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditNote_vue_vue_type_template_id_5f2a9058___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditNote.vue?vue&type=template&id=5f2a9058& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/notes/EditNote.vue?vue&type=template&id=5f2a9058&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditNote_vue_vue_type_template_id_5f2a9058___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowMenuElement_vue_vue_type_template_id_78caedb1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ShowMenuElement.vue?vue&type=template&id=78caedb1& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/menuElements/ShowMenuElement.vue?vue&type=template&id=78caedb1&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowMenuElement_vue_vue_type_template_id_78caedb1___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditNote_vue_vue_type_template_id_5f2a9058___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowMenuElement_vue_vue_type_template_id_78caedb1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/notes/EditNote.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/notes/EditNote.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/menuElements/ShowMenuElement.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/menuElements/ShowMenuElement.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -117,98 +117,57 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'EditUser',
-  props: {
-    caption: {
-      type: String,
-      "default": 'User id'
-    }
-  },
+  name: 'CreateMenuElement',
   data: function data() {
     return {
-      note: {
-        title: '',
-        content: '',
-        applies_to_date: '',
-        status_id: null,
-        note_type: ''
-      },
-      statuses: [],
+      roles: '',
+      menuroles: [],
+      menuelement: [],
       message: '',
       dismissSecs: 7,
-      dismissCountDown: 0
+      dismissCountDown: 0,
+      showDismissibleAlert: false
     };
   },
   methods: {
     goBack: function goBack() {
       this.$router.go(-1); // this.$router.replace({path: '/users'})
     },
-    update: function update() {
+    getData: function getData() {
       var self = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/notes/' + self.$route.params.id + '?token=' + localStorage.getItem("api_token"), {
-        _method: 'PUT',
-        title: self.note.title,
-        content: self.note.content,
-        applies_to_date: self.note.applies_to_date,
-        status_id: self.note.status_id,
-        note_type: self.note.note_type
-      }).then(function (response) {
-        self.message = 'Successfully updated note.';
-        self.showAlert();
-      })["catch"](function (error) {
-        if (error.response.data.message == 'The given data was invalid.') {
-          self.message = '';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/menu/element/show?token=' + localStorage.getItem("api_token") + '&id=' + self.$route.params.id).then(function (response) {
+        self.menuelement = response.data.menuElement;
+        self.menuroles = response.data.menuroles;
+        self.roles = '';
 
-          for (var key in error.response.data.errors) {
-            if (error.response.data.errors.hasOwnProperty(key)) {
-              self.message += error.response.data.errors[key][0] + '  ';
-            }
+        for (var i = 0; i < self.menuroles.length; i++) {
+          if (i > 0) {
+            self.roles += ', ';
           }
 
-          self.showAlert();
-        } else {
-          console.log(error);
-          self.$router.push({
-            path: '/login'
-          });
+          self.roles += self.menuroles[i].role_name;
         }
+      })["catch"](function (error) {
+        console.log(error);
+        self.$router.push({
+          path: '/login'
+        });
       });
-    },
-    showAlert: function showAlert() {
-      this.dismissCountDown = this.dismissSecs;
     }
   },
   mounted: function mounted() {
-    var self = this;
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/notes/' + self.$route.params.id + '/edit?token=' + localStorage.getItem("api_token")).then(function (response) {
-      self.note = response.data.note;
-      self.statuses = response.data.statuses;
-    })["catch"](function (error) {
-      console.log(error);
-      self.$router.push({
-        path: '/login'
-      });
-    });
+    this.getData();
   }
 });
-/*
-      items: (id) => {
-        const user = usersData.find( user => user.id.toString() === id)
-        const userDetails = user ? Object.entries(user) : [['id', 'Not found']]
-        return userDetails.map(([key, value]) => {return {key: key, value: value}})
-      },
-*/
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/notes/EditNote.vue?vue&type=template&id=5f2a9058&":
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/notes/EditNote.vue?vue&type=template&id=5f2a9058& ***!
-  \**********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/menuElements/ShowMenuElement.vue?vue&type=template&id=78caedb1&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/menuElements/ShowMenuElement.vue?vue&type=template&id=78caedb1& ***!
+  \************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -229,17 +188,12 @@ var render = function() {
         [
           _c(
             "CCard",
+            { attrs: { "no-header": "" } },
             [
               _c(
                 "CCardBody",
                 [
-                  _c("h3", [
-                    _vm._v(
-                      "\n          Edit Note id:  " +
-                        _vm._s(_vm.$route.params.id) +
-                        "\n        "
-                    )
-                  ]),
+                  _c("h3", [_vm._v("\n          Show Menu Element\n        ")]),
                   _vm._v(" "),
                   _c(
                     "CAlert",
@@ -266,84 +220,38 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("CInput", {
-                    attrs: {
-                      label: "Title",
-                      type: "text",
-                      placeholder: "Title"
-                    },
-                    model: {
-                      value: _vm.note.title,
-                      callback: function($$v) {
-                        _vm.$set(_vm.note, "title", $$v)
-                      },
-                      expression: "note.title"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("CInput", {
-                    attrs: {
-                      label: "Content",
-                      placeholder: "Content..",
-                      textarea: "true",
-                      rows: "9"
-                    },
-                    model: {
-                      value: _vm.note.content,
-                      callback: function($$v) {
-                        _vm.$set(_vm.note, "content", $$v)
-                      },
-                      expression: "note.content"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("CInput", {
-                    attrs: { label: "Applies to date", type: "date" },
-                    model: {
-                      value: _vm.note.applies_to_date,
-                      callback: function($$v) {
-                        _vm.$set(_vm.note, "applies_to_date", $$v)
-                      },
-                      expression: "note.applies_to_date"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("CSelect", {
-                    attrs: {
-                      value: _vm.note.status_id,
-                      options: _vm.statuses,
-                      label: "Status"
-                    },
-                    on: {
-                      "update:value": function($event) {
-                        return _vm.$set(_vm.note, "status_id", $event)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("CInput", {
-                    attrs: { label: "Note type", type: "text" },
-                    model: {
-                      value: _vm.note.note_type,
-                      callback: function($$v) {
-                        _vm.$set(_vm.note, "note_type", $$v)
-                      },
-                      expression: "note.note_type"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "CButton",
-                    {
-                      attrs: { color: "primary" },
-                      on: {
-                        click: function($event) {
-                          return _vm.update()
-                        }
-                      }
-                    },
-                    [_vm._v("Save")]
+                  _c("h4", [_vm._v("Menu")]),
+                  _vm._v(
+                    "\n        " +
+                      _vm._s(_vm.menuelement.menu_name) +
+                      "\n        "
                   ),
+                  _c("h4", [_vm._v("User Roles")]),
+                  _vm._v("\n        " + _vm._s(_vm.roles) + "\n        "),
+                  _c("h4", [_vm._v("Name")]),
+                  _vm._v(
+                    "\n        " + _vm._s(_vm.menuelement.name) + "\n        "
+                  ),
+                  _c("h4", [_vm._v("Type")]),
+                  _vm._v(
+                    "\n        " + _vm._s(_vm.menuelement.slug) + "\n        "
+                  ),
+                  _c("h4", [_vm._v("Href")]),
+                  _vm._v(
+                    "\n        " + _vm._s(_vm.menuelement.href) + "\n        "
+                  ),
+                  _c("h4", [_vm._v("Dropdown parent")]),
+                  _vm._v(
+                    "\n        " +
+                      _vm._s(_vm.menuelement.parent_name) +
+                      "\n        "
+                  ),
+                  _c("h4", [_vm._v("Icon")]),
+                  _vm._v(
+                    "\n        " + _vm._s(_vm.menuelement.icon) + "\n        "
+                  ),
+                  _c("br"),
+                  _c("br"),
                   _vm._v(" "),
                   _c(
                     "CButton",

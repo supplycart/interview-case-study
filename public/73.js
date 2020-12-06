@@ -1,16 +1,16 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[73],{
 
-/***/ "./coreui/src/views/users/User.vue":
-/*!*****************************************!*\
-  !*** ./coreui/src/views/users/User.vue ***!
-  \*****************************************/
+/***/ "./coreui/src/views/theme/Typography.vue":
+/*!***********************************************!*\
+  !*** ./coreui/src/views/theme/Typography.vue ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _User_vue_vue_type_template_id_d2b970c8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./User.vue?vue&type=template&id=d2b970c8& */ "./coreui/src/views/users/User.vue?vue&type=template&id=d2b970c8&");
-/* harmony import */ var _User_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./User.vue?vue&type=script&lang=js& */ "./coreui/src/views/users/User.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Typography_vue_vue_type_template_id_7ed44e5f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Typography.vue?vue&type=template&id=7ed44e5f& */ "./coreui/src/views/theme/Typography.vue?vue&type=template&id=7ed44e5f&");
+/* harmony import */ var _Typography_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Typography.vue?vue&type=script&lang=js& */ "./coreui/src/views/theme/Typography.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -20,9 +20,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _User_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _User_vue_vue_type_template_id_d2b970c8___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _User_vue_vue_type_template_id_d2b970c8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Typography_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Typography_vue_vue_type_template_id_7ed44e5f___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Typography_vue_vue_type_template_id_7ed44e5f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -32,62 +32,52 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "coreui/src/views/users/User.vue"
+component.options.__file = "coreui/src/views/theme/Typography.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./coreui/src/views/users/User.vue?vue&type=script&lang=js&":
-/*!******************************************************************!*\
-  !*** ./coreui/src/views/users/User.vue?vue&type=script&lang=js& ***!
-  \******************************************************************/
+/***/ "./coreui/src/views/theme/Typography.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./coreui/src/views/theme/Typography.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./User.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/users/User.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Typography_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Typography.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/theme/Typography.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Typography_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./coreui/src/views/users/User.vue?vue&type=template&id=d2b970c8&":
-/*!************************************************************************!*\
-  !*** ./coreui/src/views/users/User.vue?vue&type=template&id=d2b970c8& ***!
-  \************************************************************************/
+/***/ "./coreui/src/views/theme/Typography.vue?vue&type=template&id=7ed44e5f&":
+/*!******************************************************************************!*\
+  !*** ./coreui/src/views/theme/Typography.vue?vue&type=template&id=7ed44e5f& ***!
+  \******************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_template_id_d2b970c8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./User.vue?vue&type=template&id=d2b970c8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/users/User.vue?vue&type=template&id=d2b970c8&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_template_id_d2b970c8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Typography_vue_vue_type_template_id_7ed44e5f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Typography.vue?vue&type=template&id=7ed44e5f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/theme/Typography.vue?vue&type=template&id=7ed44e5f&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Typography_vue_vue_type_template_id_7ed44e5f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_template_id_d2b970c8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Typography_vue_vue_type_template_id_7ed44e5f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/users/User.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/users/User.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/theme/Typography.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/theme/Typography.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./coreui/node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 //
 //
 //
@@ -116,69 +106,203 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'User',
-  data: function data() {
-    return {
-      items: [],
-      fields: [{
-        key: 'key'
-      }, {
-        key: 'value'
-      }]
-    };
-  },
-  methods: {
-    getUserData: function getUserData(id) {
-      var user = usersData.find(function (user, index) {
-        return index + 1 == id;
-      });
-      var userDetails = user ? Object.entries(user) : [['id', 'Not found']];
-      return userDetails.map(function (_ref) {
-        var _ref2 = _slicedToArray(_ref, 2),
-            key = _ref2[0],
-            value = _ref2[1];
-
-        return {
-          key: key,
-          value: value
-        };
-      });
-    },
-    goBack: function goBack() {
-      this.$router.go(-1);
-    }
-  },
-  mounted: function mounted() {
-    var self = this;
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/users/' + self.$route.params.id + '?token=' + localStorage.getItem("api_token")).then(function (response) {
-      var items = Object.entries(response.data);
-      self.items = items.map(function (_ref3) {
-        var _ref4 = _slicedToArray(_ref3, 2),
-            key = _ref4[0],
-            value = _ref4[1];
-
-        return {
-          key: key,
-          value: value
-        };
-      });
-    })["catch"](function (error) {
-      console.log(error);
-      self.$router.push({
-        path: '/login'
-      });
-    });
-  }
+  name: 'Typography'
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/users/User.vue?vue&type=template&id=d2b970c8&":
-/*!******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/users/User.vue?vue&type=template&id=d2b970c8& ***!
-  \******************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/theme/Typography.vue?vue&type=template&id=7ed44e5f&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/theme/Typography.vue?vue&type=template&id=7ed44e5f& ***!
+  \************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -190,72 +314,379 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "CRow",
-    [
-      _c(
-        "CCol",
-        { attrs: { col: "12", lg: "6" } },
-        [
-          _c(
-            "CCard",
-            [
-              _c("CCardHeader", [
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _vm._v("\n      Headings\n    ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("p", [
+            _vm._v(
+              "Documentation and examples for Bootstrap typography,\n        including global settings, headings, body text, lists, and more."
+            )
+          ]),
+          _vm._v(" "),
+          _c("table", { staticClass: "table" }, [
+            _c("thead", [
+              _c("tr", [
+                _c("th", [_vm._v("Heading")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Example")])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tbody", [
+              _c("tr", [
+                _c("td", [
+                  _c("p", [
+                    _c("code", { staticClass: "highlighter-rouge" }, [
+                      _vm._v("\n                  <h1></h1>\n                ")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("span", { staticClass: "h1" }, [
+                    _vm._v("h1. Bootstrap heading")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("p", [
+                    _c("code", { staticClass: "highlighter-rouge" }, [
+                      _vm._v("\n                  <h2></h2>\n                ")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("span", { staticClass: "h2" }, [
+                    _vm._v("h2. Bootstrap heading")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("p", [
+                    _c("code", { staticClass: "highlighter-rouge" }, [
+                      _vm._v("\n                  <h3></h3>\n                ")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("span", { staticClass: "h3" }, [
+                    _vm._v("h3. Bootstrap heading")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("p", [
+                    _c("code", { staticClass: "highlighter-rouge" }, [
+                      _vm._v("\n                  <h4></h4>\n                ")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("span", { staticClass: "h4" }, [
+                    _vm._v("h4. Bootstrap heading")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("p", [
+                    _c("code", { staticClass: "highlighter-rouge" }, [
+                      _vm._v("\n                  <h5></h5>\n                ")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("span", { staticClass: "h5" }, [
+                    _vm._v("h5. Bootstrap heading")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("td", [
+                  _c("p", [
+                    _c("code", { staticClass: "highlighter-rouge" }, [
+                      _vm._v("\n                  <h6></h6>\n                ")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("span", { staticClass: "h6" }, [
+                    _vm._v("h6. Bootstrap heading")
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _vm._v("\n      Headings\n    ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("p", [
+            _c("code", { staticClass: "highlighter-rouge" }, [_vm._v(".h1")]),
+            _vm._v(" through\n        "),
+            _c("code", { staticClass: "highlighter-rouge" }, [_vm._v(".h6")]),
+            _vm._v(
+              "\n        classes are also available, for when you want to match the font\n        styling of a heading but cannot use the associated HTML element.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "bd-example" }, [
+            _c("p", { staticClass: "h1" }, [_vm._v("h1. Bootstrap heading")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "h2" }, [_vm._v("h2. Bootstrap heading")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "h3" }, [_vm._v("h3. Bootstrap heading")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "h4" }, [_vm._v("h4. Bootstrap heading")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "h5" }, [_vm._v("h5. Bootstrap heading")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "h6" }, [_vm._v("h6. Bootstrap heading")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _vm._v("\n      Display headings\n    ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("p", [
+            _vm._v(
+              "\n        Traditional heading elements are designed to work best in the meat\n        of your page content. When you need a heading to stand out,\n        consider using a "
+            ),
+            _c("strong", [_vm._v("display heading")]),
+            _vm._v(
+              "—a larger,\n         slightly more opinionated heading style.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "bd-example bd-example-type" }, [
+            _c("table", { staticClass: "table" }, [
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", [
+                    _c("span", { staticClass: "display-1" }, [
+                      _vm._v("Display 1")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [
+                    _c("span", { staticClass: "display-2" }, [
+                      _vm._v("Display 2")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [
+                    _c("span", { staticClass: "display-3" }, [
+                      _vm._v("Display 3")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [
+                    _c("span", { staticClass: "display-4" }, [
+                      _vm._v("Display 4")
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _vm._v("\n      Inline text elements\n    ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("p", [
+            _vm._v(
+              "\n        Traditional heading elements are designed to work best in the meat\n        of your page content. When you need a heading to stand out,\n        consider using a "
+            ),
+            _c("strong", [_vm._v("display heading")]),
+            _vm._v(
+              "—a larger,\n        slightly more opinionated heading style.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "bd-example" }, [
+            _c("p", [
+              _vm._v("You can use the mark tag to "),
+              _c("mark", [_vm._v("highlight")]),
+              _vm._v(" text.")
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("del", [
                 _vm._v(
-                  "\n        User id:  " +
-                    _vm._s(_vm.$route.params.id) +
-                    "\n      "
+                  "\n          This line of text is meant to be treated as deleted text.\n        "
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("s", [
+                _vm._v(
+                  "\n          This line of text is meant to be treated as no longer accurate.\n        "
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("ins", [
+                _vm._v(
+                  "\n          This line of text is meant to be treated as an addition to the document.\n        "
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("u", [_vm._v("This line of text will render as underlined")])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("small", [
+                _vm._v(
+                  "\n          This line of text is meant to be treated as fine print.\n        "
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("strong", [_vm._v("This line rendered as bold text.")])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c("em", [_vm._v("This line rendered as italicized text.")])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _vm._v("\n      Description list alignment\n    ")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("p", [
+            _vm._v(
+              "\n        Align terms and descriptions horizontally by using our grid system’s\n        predefined classes (or semantic mixins). For longer terms, you can\n        optionally add a "
+            ),
+            _c("code", { staticClass: "highlighter-rouge" }, [
+              _vm._v(".text-truncate")
+            ]),
+            _vm._v(
+              "\n        class to truncate the text with an ellipsis.\n      "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "bd-example" }, [
+            _c("dl", { staticClass: "row" }, [
+              _c("dt", { staticClass: "col-sm-3" }, [
+                _vm._v("Description lists")
+              ]),
+              _vm._v(" "),
+              _c("dd", { staticClass: "col-sm-9" }, [
+                _vm._v(
+                  "\n            A description list is perfect for defining terms.\n          "
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "CCardBody",
-                [
-                  _c("CDataTable", {
-                    attrs: {
-                      striped: "",
-                      small: "",
-                      fixed: "",
-                      items: _vm.items,
-                      fields: _vm.fields
-                    },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "value",
-                        fn: function(data) {
-                          return [
-                            _c("strong", [_vm._v(_vm._s(data.item.value))])
-                          ]
-                        }
-                      }
-                    ])
-                  })
-                ],
-                1
-              ),
+              _c("dt", { staticClass: "col-sm-3" }, [_vm._v("Euismod")]),
               _vm._v(" "),
-              _c(
-                "CCardFooter",
-                [
-                  _c(
-                    "CButton",
-                    { attrs: { color: "primary" }, on: { click: _vm.goBack } },
-                    [_vm._v("Back")]
+              _c("dd", { staticClass: "col-sm-9" }, [
+                _c("p", [
+                  _vm._v(
+                    "Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit."
                   )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v("Donec id elit non mi porta gravida at eget metus.")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("dt", { staticClass: "col-sm-3" }, [
+                _vm._v("Malesuada porta")
+              ]),
+              _vm._v(" "),
+              _c("dd", { staticClass: "col-sm-9" }, [
+                _vm._v(
+                  "\n            Etiam porta sem malesuada magna mollis euismod.\n          "
+                )
+              ]),
+              _vm._v(" "),
+              _c("dt", { staticClass: "col-sm-3 text-truncate" }, [
+                _vm._v("Truncated term is truncated")
+              ]),
+              _vm._v(" "),
+              _c("dd", { staticClass: "col-sm-9" }, [
+                _vm._v(
+                  "\n            Fusce dapibus, tellus ac cursus commodo, tortor mauris\n            condimentum nibh, ut fermentum massa justo sit amet risus.\n          "
+                )
+              ]),
+              _vm._v(" "),
+              _c("dt", { staticClass: "col-sm-3" }, [_vm._v("Nesting")]),
+              _vm._v(" "),
+              _c("dd", { staticClass: "col-sm-9" }, [
+                _c("dl", { staticClass: "row" }, [
+                  _c("dt", { staticClass: "col-sm-4" }, [
+                    _vm._v("Nested definition list")
+                  ]),
+                  _vm._v(" "),
+                  _c("dd", { staticClass: "col-sm-8" }, [
+                    _vm._v(
+                      "\n                Aenean posuere, tortor sed cursus feugiat, nunc augue nunc.\n              "
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

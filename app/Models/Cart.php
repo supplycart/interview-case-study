@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Product;
 use App\Models\Cart;
-use App\Models\CartProduct;
+use App\Models\Order;
 
 class Cart extends Model
 {
@@ -15,7 +15,7 @@ class Cart extends Model
   ];
 
   /**
-   * Get the cart for user
+   * Get the products for cart
    */
   public function products()
   {
@@ -23,6 +23,17 @@ class Cart extends Model
     ->withPivot([
         'cart_id',
         'product_id',
-    ]);  
+        'amount',
+        'id'
+    ])
+    ->wherePivot('deleted_at', NULL);
+  }
+
+  /**
+   * Get the products for cart
+   */
+  public function orders()
+  {
+    return $this->hasMany(Order::class, 'cart_id');
   }
 }

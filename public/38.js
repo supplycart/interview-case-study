@@ -1,16 +1,16 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[38],{
 
-/***/ "./coreui/src/views/buttons/StandardButtons.vue":
-/*!******************************************************!*\
-  !*** ./coreui/src/views/buttons/StandardButtons.vue ***!
-  \******************************************************/
+/***/ "./coreui/src/views/buttons/ButtonGroups.vue":
+/*!***************************************************!*\
+  !*** ./coreui/src/views/buttons/ButtonGroups.vue ***!
+  \***************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _StandardButtons_vue_vue_type_template_id_48db7488___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StandardButtons.vue?vue&type=template&id=48db7488& */ "./coreui/src/views/buttons/StandardButtons.vue?vue&type=template&id=48db7488&");
-/* harmony import */ var _StandardButtons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StandardButtons.vue?vue&type=script&lang=js& */ "./coreui/src/views/buttons/StandardButtons.vue?vue&type=script&lang=js&");
+/* harmony import */ var _ButtonGroups_vue_vue_type_template_id_73dee81e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ButtonGroups.vue?vue&type=template&id=73dee81e& */ "./coreui/src/views/buttons/ButtonGroups.vue?vue&type=template&id=73dee81e&");
+/* harmony import */ var _ButtonGroups_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ButtonGroups.vue?vue&type=script&lang=js& */ "./coreui/src/views/buttons/ButtonGroups.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -20,9 +20,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _StandardButtons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _StandardButtons_vue_vue_type_template_id_48db7488___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _StandardButtons_vue_vue_type_template_id_48db7488___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _ButtonGroups_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ButtonGroups_vue_vue_type_template_id_73dee81e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ButtonGroups_vue_vue_type_template_id_73dee81e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -32,555 +32,52 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "coreui/src/views/buttons/StandardButtons.vue"
+component.options.__file = "coreui/src/views/buttons/ButtonGroups.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./coreui/src/views/buttons/StandardButtons.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./coreui/src/views/buttons/StandardButtons.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
+/***/ "./coreui/src/views/buttons/ButtonGroups.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./coreui/src/views/buttons/ButtonGroups.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StandardButtons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./StandardButtons.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/buttons/StandardButtons.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StandardButtons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ButtonGroups_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ButtonGroups.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/buttons/ButtonGroups.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ButtonGroups_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./coreui/src/views/buttons/StandardButtons.vue?vue&type=template&id=48db7488&":
-/*!*************************************************************************************!*\
-  !*** ./coreui/src/views/buttons/StandardButtons.vue?vue&type=template&id=48db7488& ***!
-  \*************************************************************************************/
+/***/ "./coreui/src/views/buttons/ButtonGroups.vue?vue&type=template&id=73dee81e&":
+/*!**********************************************************************************!*\
+  !*** ./coreui/src/views/buttons/ButtonGroups.vue?vue&type=template&id=73dee81e& ***!
+  \**********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StandardButtons_vue_vue_type_template_id_48db7488___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./StandardButtons.vue?vue&type=template&id=48db7488& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/buttons/StandardButtons.vue?vue&type=template&id=48db7488&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StandardButtons_vue_vue_type_template_id_48db7488___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ButtonGroups_vue_vue_type_template_id_73dee81e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ButtonGroups.vue?vue&type=template&id=73dee81e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/buttons/ButtonGroups.vue?vue&type=template&id=73dee81e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ButtonGroups_vue_vue_type_template_id_73dee81e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StandardButtons_vue_vue_type_template_id_48db7488___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ButtonGroups_vue_vue_type_template_id_73dee81e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/buttons/StandardButtons.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/buttons/StandardButtons.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/buttons/ButtonGroups.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/buttons/ButtonGroups.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -775,20 +272,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'StandardButtons',
-  data: function data() {
-    return {
-      togglePress: false
-    };
-  }
+  name: 'ButtonGroups'
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/buttons/StandardButtons.vue?vue&type=template&id=48db7488&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/buttons/StandardButtons.vue?vue&type=template&id=48db7488& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/buttons/ButtonGroups.vue?vue&type=template&id=73dee81e&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/buttons/ButtonGroups.vue?vue&type=template&id=73dee81e& ***!
+  \****************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -801,574 +293,126 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "CRow",
     [
       _c(
-        "CCard",
+        "CCol",
+        { attrs: { col: "12" } },
         [
-          _c("CCardHeader", [
-            _c("strong", [_vm._v("Standard buttons")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-header-actions" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "card-header-action",
-                  attrs: {
-                    href:
-                      "https://coreui.io/vue/docs/components/button-components",
-                    rel: "noreferrer noopener",
-                    target: "_blank"
-                  }
-                },
-                [_c("small", { staticClass: "text-muted" }, [_vm._v("docs")])]
-              )
-            ])
-          ]),
-          _vm._v(" "),
           _c(
-            "CCardBody",
+            "CCard",
             [
               _c(
-                "CRow",
-                { staticClass: "align-items-center" },
+                "CCardHeader",
                 [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Normal\n        ")]
-                  ),
+                  _c("CIcon", { attrs: { name: "cil-justify-center" } }),
                   _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "primary" } },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
+                  _c("strong", [_vm._v(" Bootstrap button group")]),
                   _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "secondary" } },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "success" } },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "warning" } },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c("CButton", { attrs: { block: "", color: "danger" } }, [
-                        _vm._v("Danger")
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c("CButton", { attrs: { block: "", color: "info" } }, [
-                        _vm._v("Info")
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c("CButton", { attrs: { block: "", color: "light" } }, [
-                        _vm._v("Light")
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c("CButton", { attrs: { block: "", color: "dark" } }, [
-                        _vm._v("Dark")
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c("CButton", { attrs: { block: "", color: "link" } }, [
-                        _vm._v("Link")
-                      ])
-                    ],
-                    1
-                  )
+                  _c("div", { staticClass: "card-header-actions" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "card-header-action",
+                        attrs: {
+                          href:
+                            "https://coreui.io/vue/docs/components/button-components",
+                          rel: "noreferrer noopener",
+                          target: "_blank"
+                        }
+                      },
+                      [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _vm._v("docs")
+                        ])
+                      ]
+                    )
+                  ])
                 ],
                 1
               ),
               _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center mt-3" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Active State\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "primary",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "secondary",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "success",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "warning",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "danger",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "info",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "light",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "dark",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "link",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Link")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center mt-3" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Disabled\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { block: "", color: "primary", disabled: "" }
-                        },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { block: "", color: "secondary", disabled: "" }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { block: "", color: "success", disabled: "" }
-                        },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { block: "", color: "warning", disabled: "" }
-                        },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "danger", disabled: "" } },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "info", disabled: "" } },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "light", disabled: "" } },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "dark", disabled: "" } },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "link", disabled: "" } },
-                        [_vm._v("Link")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
+              _c("CCardBody", [
+                _c(
+                  "div",
+                  [
+                    _c(
+                      "CButtonGroup",
+                      [
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("One")
+                        ]),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Two")
+                        ]),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Three")
+                        ]),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Four")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "CButton",
+                          {
+                            staticClass: "d-sm-down-none",
+                            attrs: { color: "secondary" }
+                          },
+                          [_vm._v("Five")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("br"),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "CButtonGroup",
+                      [
+                        _c(
+                          "CButton",
+                          {
+                            staticClass: "d-sm-down-none",
+                            attrs: { color: "success" }
+                          },
+                          [_vm._v("Success")]
+                        ),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "info" } }, [
+                          _vm._v("Info")
+                        ]),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "warning" } }, [
+                          _vm._v("Warn")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "CButton",
+                          {
+                            staticClass: "d-sm-down-none",
+                            attrs: { color: "primary" }
+                          },
+                          [_vm._v("Primary")]
+                        ),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "danger" } }, [
+                          _vm._v("Danger")
+                        ]),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "link" } }, [
+                          _vm._v("Link")
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
             ],
             1
           )
@@ -1377,633 +421,92 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "CCard",
+        "CCol",
+        { attrs: { col: "12" } },
         [
-          _c("CCardHeader", [_c("strong", [_vm._v("Outline Buttons")])]),
-          _vm._v(" "),
           _c(
-            "CCardBody",
+            "CCard",
             [
-              _c("p", [
-                _vm._v("\n        Use "),
-                _c("code", [_vm._v('variant="outline"')]),
-                _vm._v(" prop\n      ")
-              ]),
-              _vm._v(" "),
               _c(
-                "CRow",
-                { staticClass: "align-items-center" },
+                "CCardHeader",
                 [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Normal\n        ")]
-                  ),
+                  _c("CIcon", { attrs: { name: "cil-justify-center" } }),
                   _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "primary"
-                          }
-                        },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "secondary"
-                          }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "success"
-                          }
-                        },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "warning"
-                          }
-                        },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "danger"
-                          }
-                        },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "info"
-                          }
-                        },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "light"
-                          }
-                        },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "dark"
-                          }
-                        },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("CCol", {
-                    staticClass: "mb-3 mb-xl-0",
-                    attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                  })
+                  _c("strong", [_vm._v(" Button group ")]),
+                  _vm._v("sizing\n      ")
                 ],
                 1
               ),
               _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center mt-3" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Active State\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "outline",
-                            color: "primary",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "outline",
-                            color: "secondary",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "outline",
-                            color: "success",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "outline",
-                            color: "warning",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "outline",
-                            color: "danger",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "outline",
-                            color: "info",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "outline",
-                            color: "light",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "outline",
-                            color: "dark",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("CCol", {
-                    staticClass: "mb-3 mb-xl-0",
-                    attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center mt-3" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Disabled\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "primary",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "secondary",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "success",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "warning",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "danger",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "info",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "light",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "outline",
-                            color: "dark",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("CCol", {
-                    staticClass: "mb-3 mb-xl-0",
-                    attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                  })
-                ],
-                1
-              )
+              _c("CCardBody", [
+                _c(
+                  "div",
+                  [
+                    _c(
+                      "CButtonGroup",
+                      [
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Left")
+                        ]),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Middle")
+                        ]),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Right")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("br"),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "CButtonGroup",
+                      { attrs: { size: "sm" } },
+                      [
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Left")
+                        ]),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Middle")
+                        ]),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Right")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("br"),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "CButtonGroup",
+                      { attrs: { size: "lg" } },
+                      [
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Left")
+                        ]),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Middle")
+                        ]),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Right")
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
             ],
             1
           )
@@ -2012,621 +515,101 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "CCard",
+        "CCol",
+        { attrs: { col: "12" } },
         [
-          _c("CCardHeader", [_c("strong", [_vm._v("Ghost Buttons")])]),
-          _vm._v(" "),
           _c(
-            "CCardBody",
+            "CCard",
             [
-              _c("p", [
-                _vm._v("\n        Use\n        "),
-                _c("code", [_vm._v('variant="ghost"')]),
-                _vm._v(" prop for ghost buttons.\n      ")
-              ]),
-              _vm._v(" "),
               _c(
-                "CRow",
-                { staticClass: "align-items-center" },
+                "CCardHeader",
                 [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Normal\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "ghost",
-                            color: "primary"
-                          }
-                        },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "ghost",
-                            color: "secondary"
-                          }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "ghost",
-                            color: "success"
-                          }
-                        },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "ghost",
-                            color: "warning"
-                          }
-                        },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "ghost",
-                            color: "danger"
-                          }
-                        },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { block: "", variant: "ghost", color: "info" }
-                        },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { block: "", variant: "ghost", color: "light" }
-                        },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { block: "", variant: "ghost", color: "dark" }
-                        },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("CCol", {
-                    staticClass: "mb-3 mb-xl-0",
-                    attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                  })
+                  _c("CIcon", { attrs: { name: "cil-justify-center" } }),
+                  _c("strong", [_vm._v(" Button group ")]),
+                  _vm._v("dropdown support\n      ")
                 ],
                 1
               ),
               _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center mt-3" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Active State\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "ghost",
-                            color: "primary",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "ghost",
-                            color: "secondary",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "ghost",
-                            color: "success",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "ghost",
-                            color: "warning",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "ghost",
-                            color: "danger",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "ghost",
-                            color: "info",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "ghost",
-                            color: "light",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            pressed: "",
-                            variant: "ghost",
-                            color: "dark",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("CCol", {
-                    staticClass: "mb-3 mb-xl-0",
-                    attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center mt-3" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Disabled\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "ghost",
-                            color: "primary",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "ghost",
-                            color: "secondary",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "ghost",
-                            color: "success",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "ghost",
-                            color: "warning",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "ghost",
-                            color: "danger",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "ghost",
-                            color: "info",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "ghost",
-                            color: "light",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            variant: "ghost",
-                            color: "dark",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("CCol", {
-                    staticClass: "mb-3 mb-xl-0",
-                    attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                  })
-                ],
-                1
-              )
+              _c("CCardBody", [
+                _c(
+                  "div",
+                  [
+                    _c(
+                      "CButtonGroup",
+                      [
+                        _c(
+                          "CButton",
+                          {
+                            staticClass: "d-sm-down-none",
+                            attrs: { color: "secondary" }
+                          },
+                          [_vm._v("Button 1")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "CButton",
+                          {
+                            staticClass: "d-sm-down-none",
+                            attrs: { color: "secondary" }
+                          },
+                          [_vm._v("Button 2")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "CDropdown",
+                          {
+                            attrs: { right: "", text: "Menu", color: "success" }
+                          },
+                          [
+                            _c("CDropdownItem", [_vm._v("Item 1")]),
+                            _vm._v(" "),
+                            _c("CDropdownItem", [_vm._v("Item 2")]),
+                            _vm._v(" "),
+                            _c("CDropdownDivider"),
+                            _vm._v(" "),
+                            _c("CDropdownItem", [_vm._v("Item 3")])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "CButton",
+                          {
+                            staticClass: "d-sm-down-none",
+                            attrs: { color: "secondary" }
+                          },
+                          [_vm._v("Button 3")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "CDropdown",
+                          {
+                            attrs: {
+                              right: "",
+                              split: "",
+                              text: "Split Menu",
+                              color: "info"
+                            }
+                          },
+                          [
+                            _c("CDropdownItem", [_vm._v("Item 1")]),
+                            _vm._v(" "),
+                            _c("CDropdownItem", [_vm._v("Item 2")]),
+                            _vm._v(" "),
+                            _c("CDropdownDivider"),
+                            _vm._v(" "),
+                            _c("CDropdownItem", [_vm._v("Item 3")])
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
             ],
             1
           )
@@ -2635,635 +618,49 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "CCard",
+        "CCol",
+        { attrs: { col: "12" } },
         [
-          _c("CCardHeader", [_c("strong", [_vm._v("Square Buttons")])]),
-          _vm._v(" "),
           _c(
-            "CCardBody",
+            "CCard",
             [
-              _c("p", [
-                _vm._v("\n        Use\n        "),
-                _c("code", [_vm._v("square")]),
-                _vm._v(" prop for square buttons.\n      ")
-              ]),
-              _vm._v(" "),
               _c(
-                "CRow",
-                { staticClass: "align-items-center" },
+                "CCardHeader",
                 [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Normal\n        ")]
-                  ),
+                  _c("CIcon", { attrs: { name: "cil-justify-center" } }),
                   _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "primary", square: "" } },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { block: "", color: "secondary", square: "" }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "success", square: "" } },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "warning", square: "" } },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "danger", square: "" } },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "info", square: "" } },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "light", square: "" } },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "dark", square: "" } },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "link", square: "" } },
-                        [_vm._v("Link")]
-                      )
-                    ],
-                    1
-                  )
+                  _c("strong", [_vm._v(" Button group ")]),
+                  _vm._v("vertical variation\n      ")
                 ],
                 1
               ),
               _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center mt-3" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Active State\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "primary",
-                            square: "",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "secondary",
-                            square: "",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "success",
-                            square: "",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "warning",
-                            square: "",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "danger",
-                            square: "",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "info",
-                            square: "",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "light",
-                            square: "",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "dark",
-                            square: "",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "link",
-                            square: "",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Link")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center mt-3" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Disabled\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "primary",
-                            square: "",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "secondary",
-                            square: "",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "success",
-                            square: "",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "warning",
-                            square: "",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "danger",
-                            square: "",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "info",
-                            square: "",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "light",
-                            square: "",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "dark",
-                            square: "",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "link",
-                            square: "",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Link")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
+              _c("CCardBody", [
+                _c(
+                  "div",
+                  [
+                    _c(
+                      "CButtonGroup",
+                      { attrs: { vertical: "" } },
+                      [
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Top")
+                        ]),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Middle")
+                        ]),
+                        _vm._v(" "),
+                        _c("CButton", { attrs: { color: "secondary" } }, [
+                          _vm._v("Bottom")
+                        ])
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
             ],
             1
           )
@@ -3272,1015 +669,91 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "CCard",
+        "CCol",
+        { attrs: { col: "12" } },
         [
-          _c("CCardHeader", [_c("strong", [_vm._v("Pill Buttons")])]),
-          _vm._v(" "),
           _c(
-            "CCardBody",
-            [
-              _c("p", [
-                _vm._v("\n        Use\n        "),
-                _c("code", [_vm._v("pill")]),
-                _vm._v(" prop for pill buttons.\n      ")
-              ]),
-              _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Normal\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { block: "", color: "primary", shape: "pill" }
-                        },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "secondary",
-                            shape: "pill"
-                          }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { block: "", color: "success", shape: "pill" }
-                        },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { block: "", color: "warning", shape: "pill" }
-                        },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { block: "", color: "danger", shape: "pill" }
-                        },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "info", shape: "pill" } },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "light", shape: "pill" } },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "dark", shape: "pill" } },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { block: "", color: "link", shape: "pill" } },
-                        [_vm._v("Link")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center mt-3" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Active State\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "primary",
-                            shape: "pill",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "secondary",
-                            shape: "pill",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "success",
-                            shape: "pill",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "warning",
-                            shape: "pill",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "danger",
-                            shape: "pill",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "info",
-                            shape: "pill",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "light",
-                            shape: "pill",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "dark",
-                            shape: "pill",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            pressed: "",
-                            block: "",
-                            color: "link",
-                            shape: "pill",
-                            "aria-pressed": "true"
-                          }
-                        },
-                        [_vm._v("Link")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center mt-3" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "12", xl: "" }
-                    },
-                    [_vm._v("\n          Disabled\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "primary",
-                            shape: "pill",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Primary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "secondary",
-                            shape: "pill",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Secondary")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "success",
-                            shape: "pill",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Success")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "warning",
-                            shape: "pill",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Warning")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "danger",
-                            shape: "pill",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Danger")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "info",
-                            shape: "pill",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Info")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "light",
-                            shape: "pill",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Light")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "dark",
-                            shape: "pill",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Dark")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "6", sm: "4", md: "2", xl: "" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            block: "",
-                            color: "link",
-                            shape: "pill",
-                            disabled: ""
-                          }
-                        },
-                        [_vm._v("Link")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "CCard",
-        [
-          _c("CCardHeader", [_c("strong", [_vm._v("Sizes")])]),
-          _vm._v(" "),
-          _c(
-            "CCardBody",
-            [
-              _c("p", [
-                _vm._v("Fancy larger or smaller buttons? Add "),
-                _c("code", [_vm._v('size="lg"')]),
-                _vm._v(" or "),
-                _c("code", [_vm._v('size="sm"')]),
-                _vm._v(" for additional sizes.")
-              ]),
-              _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "2", xl: "" }
-                    },
-                    [_vm._v("\n          Small\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { color: "primary", size: "sm" } },
-                        [_vm._v("Standard Button")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            variant: "outline",
-                            color: "secondary",
-                            size: "sm"
-                          }
-                        },
-                        [_vm._v("Outline Button")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            size: "sm",
-                            variant: "ghost",
-                            color: "success"
-                          }
-                        },
-                        [_vm._v("Ghost Button")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { color: "warning", size: "sm", square: "" } },
-                        [_vm._v("Square Button")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { color: "danger", size: "sm", shape: "pill" }
-                        },
-                        [_vm._v("Pill Button")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center mt-3" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "2", xl: "" }
-                    },
-                    [_vm._v("\n          Normal\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c("CButton", { attrs: { color: "primary" } }, [
-                        _vm._v("Standard Button")
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { variant: "outline", color: "secondary" } },
-                        [_vm._v("Outline Button")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { variant: "ghost", color: "success" } },
-                        [_vm._v("Ghost Button")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { color: "warning", square: "" } },
-                        [_vm._v("Square Button")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { color: "danger", shape: "pill" } },
-                        [_vm._v("Pill Button")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "CRow",
-                { staticClass: "align-items-center mt-3" },
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0",
-                      attrs: { col: "2", xl: "" }
-                    },
-                    [_vm._v("\n          Large\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { color: "primary", size: "lg" } },
-                        [_vm._v("Standard Button")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            variant: "outline",
-                            color: "secondary",
-                            size: "lg"
-                          }
-                        },
-                        [_vm._v("Outline Button")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            variant: "ghost",
-                            color: "success",
-                            size: "lg"
-                          }
-                        },
-                        [_vm._v("Ghost Button")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { color: "warning", size: "lg", square: "" } },
-                        [_vm._v("Square Button")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "mb-3 mb-xl-0 text-center",
-                      attrs: { col: "2" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { color: "danger", size: "lg", shape: "pill" }
-                        },
-                        [_vm._v("Pill Button")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "CCard",
-        [
-          _c("CCardHeader", [_c("strong", [_vm._v("With Icons")])]),
-          _vm._v(" "),
-          _c(
-            "CCardBody",
+            "CCard",
             [
               _c(
-                "CRow",
-                { staticClass: "align-items-center" },
+                "CCardHeader",
+                [
+                  _c("CIcon", { attrs: { name: "cil-justify-center" } }),
+                  _vm._v(" "),
+                  _c("strong", [_vm._v(" Button toolbar ")]),
+                  _vm._v(" "),
+                  _c("small", [_vm._v("with button groups")])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "CCardBody",
                 [
                   _c(
-                    "CCol",
-                    {
-                      staticClass: "text-center mt-3",
-                      attrs: { sm: "", xs: "12" }
-                    },
+                    "CButtonToolbar",
+                    { attrs: { "aria-label": "Toolbar with button groups" } },
                     [
                       _c(
-                        "CButton",
-                        { attrs: { color: "primary" } },
+                        "CButtonGroup",
+                        { staticClass: "mx-1" },
                         [
-                          _c("CIcon", { attrs: { name: "cil-lightbulb" } }),
-                          _vm._v(" Standard Button\n          ")
+                          _c(
+                            "CButton",
+                            {
+                              staticClass: "d-sm-down-none",
+                              attrs: { color: "secondary" }
+                            },
+                            [_vm._v("«")]
+                          ),
+                          _vm._v(" "),
+                          _c("CButton", { attrs: { color: "secondary" } }, [
+                            _vm._v("‹")
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "CButtonGroup",
+                        { staticClass: "mx-1" },
+                        [
+                          _c(
+                            "CButton",
+                            {
+                              staticClass: "d-sm-down-none",
+                              attrs: { color: "secondary" }
+                            },
+                            [_vm._v("Edit")]
+                          ),
+                          _vm._v(" "),
+                          _c("CButton", { attrs: { color: "secondary" } }, [
+                            _vm._v("Undo")
+                          ]),
+                          _vm._v(" "),
+                          _c("CButton", { attrs: { color: "secondary" } }, [
+                            _vm._v("Redo")
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "CButtonGroup",
+                        { staticClass: "mx-1" },
+                        [
+                          _c("CButton", { attrs: { color: "secondary" } }, [
+                            _vm._v("›")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "CButton",
+                            {
+                              staticClass: "d-sm-down-none",
+                              attrs: { color: "secondary" }
+                            },
+                            [_vm._v("»")]
+                          )
                         ],
                         1
                       )
@@ -4288,19 +761,65 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
+                  _c("hr", { staticClass: "d-sm-down-none" }),
+                  _vm._v(" "),
                   _c(
-                    "CCol",
+                    "CButtonToolbar",
                     {
-                      staticClass: "text-center mt-3",
-                      attrs: { sm: "", xs: "12" }
+                      staticClass: "d-sm-down-none",
+                      attrs: {
+                        "aria-label":
+                          "Toolbar with button groups and input groups"
+                      }
                     },
                     [
                       _c(
-                        "CButton",
-                        { attrs: { color: "secondary", variant: "outline" } },
+                        "CButtonGroup",
+                        { staticClass: "mx-1", attrs: { size: "sm" } },
                         [
-                          _c("CIcon", { attrs: { name: "cil-lightbulb" } }),
-                          _vm._v(" Outline Button\n          ")
+                          _c("CButton", { attrs: { color: "secondary" } }, [
+                            _vm._v("New")
+                          ]),
+                          _vm._v(" "),
+                          _c("CButton", { attrs: { color: "secondary" } }, [
+                            _vm._v("Edit")
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("CInput", {
+                        staticClass: "mb-0 w-25 mx-1",
+                        attrs: {
+                          size: "sm",
+                          append: ".00",
+                          value: "100",
+                          prepend: "$"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("CSelect", {
+                        staticClass: "mb-0 w-25 mx-1",
+                        attrs: {
+                          size: "sm",
+                          value: "Medium",
+                          options: ["Large", "Medium", "Small"],
+                          custom: "",
+                          prepend: "Size"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "CButtonGroup",
+                        { staticClass: "mx-1", attrs: { size: "sm" } },
+                        [
+                          _c("CButton", { attrs: { color: "secondary" } }, [
+                            _vm._v("Save")
+                          ]),
+                          _vm._v(" "),
+                          _c("CButton", { attrs: { color: "secondary" } }, [
+                            _vm._v("Cancel")
+                          ])
                         ],
                         1
                       )
@@ -4308,463 +827,69 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "text-center mt-3",
-                      attrs: { sm: "", xs: "12" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        { attrs: { color: "success" } },
-                        [
-                          _c("CIcon", { attrs: { name: "cil-lightbulb" } }),
-                          _vm._v(" Ghost Button\n          ")
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
+                  _c("hr"),
                   _vm._v(" "),
                   _c(
-                    "CCol",
+                    "CButtonToolbar",
                     {
-                      staticClass: "text-center mt-3",
-                      attrs: { sm: "", xs: "12" }
+                      attrs: {
+                        "aria-label":
+                          "Toolbar with button groups and dropdown menu"
+                      }
                     },
                     [
                       _c(
-                        "CButton",
-                        { attrs: { color: "warning", square: "" } },
+                        "CButtonGroup",
+                        { staticClass: "mx-1 d-sm-down-none" },
                         [
-                          _c("CIcon", { attrs: { name: "cil-lightbulb" } }),
-                          _vm._v(" Square Button\n          ")
+                          _c("CButton", { attrs: { color: "secondary" } }, [
+                            _vm._v("New")
+                          ]),
+                          _vm._v(" "),
+                          _c("CButton", { attrs: { color: "secondary" } }, [
+                            _vm._v("Edit")
+                          ]),
+                          _vm._v(" "),
+                          _c("CButton", { attrs: { color: "secondary" } }, [
+                            _vm._v("Undo")
+                          ])
                         ],
                         1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "text-center mt-3",
-                      attrs: { sm: "", xs: "12" }
-                    },
-                    [
+                      ),
+                      _vm._v(" "),
                       _c(
-                        "CButton",
-                        { attrs: { color: "danger", shape: "pill" } },
-                        [
-                          _c("CIcon", { attrs: { name: "cil-lightbulb" } }),
-                          _vm._v(" Pill Button\n          ")
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "CCard",
-        [
-          _c("CCardHeader", [_c("strong", [_vm._v("Toggle pressed state")])]),
-          _vm._v(" "),
-          _c(
-            "CCardBody",
-            [
-              _c(
-                "CRow",
-                [
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "text-center mt-3",
-                      attrs: { sm: "", xs: "12" }
-                    },
-                    [
-                      _c(
-                        "CButton",
+                        "CDropdown",
                         {
+                          staticClass: "mx-1",
                           attrs: {
-                            variant: "outline",
-                            color: "primary",
-                            pressed: _vm.togglePress
-                          },
-                          on: {
-                            "update:pressed": function($event) {
-                              _vm.togglePress = $event
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "Primary " + _vm._s(_vm.togglePress ? "On " : "Off")
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "text-center mt-3",
-                      attrs: { sm: "", xs: "12" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            variant: "outline",
                             color: "secondary",
-                            pressed: _vm.togglePress
-                          },
-                          on: {
-                            "update:pressed": function($event) {
-                              _vm.togglePress = $event
-                            }
+                            placement: "bottom-end",
+                            "button-content": "Menu"
                           }
                         },
                         [
-                          _vm._v(
-                            "Secondary " +
-                              _vm._s(_vm.togglePress ? "On " : "Off")
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "text-center mt-3",
-                      attrs: { sm: "", xs: "12" }
-                    },
-                    [
+                          _c("CDropdownItem", [_vm._v("Item 1")]),
+                          _vm._v(" "),
+                          _c("CDropdownItem", [_vm._v("Item 2")]),
+                          _vm._v(" "),
+                          _c("CDropdownItem", [_vm._v("Item 3")])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
                       _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            variant: "outline",
-                            color: "success",
-                            pressed: _vm.togglePress
-                          },
-                          on: {
-                            "update:pressed": function($event) {
-                              _vm.togglePress = $event
-                            }
-                          }
-                        },
+                        "CButtonGroup",
+                        { staticClass: "mx-1" },
                         [
-                          _vm._v(
-                            "Success " + _vm._s(_vm.togglePress ? "On " : "Off")
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "text-center mt-3",
-                      attrs: { sm: "", xs: "12" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            variant: "outline",
-                            color: "info",
-                            pressed: _vm.togglePress
-                          },
-                          on: {
-                            "update:pressed": function($event) {
-                              _vm.togglePress = $event
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "Info " + _vm._s(_vm.togglePress ? "On " : "Off")
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "text-center mt-3",
-                      attrs: { sm: "", xs: "12" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            variant: "outline",
-                            color: "warning",
-                            pressed: _vm.togglePress
-                          },
-                          on: {
-                            "update:pressed": function($event) {
-                              _vm.togglePress = $event
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "Warning " + _vm._s(_vm.togglePress ? "On " : "Off")
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCol",
-                    {
-                      staticClass: "text-center mt-3",
-                      attrs: { sm: "", xs: "12" }
-                    },
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            variant: "outline",
-                            color: "danger",
-                            pressed: _vm.togglePress
-                          },
-                          on: {
-                            "update:pressed": function($event) {
-                              _vm.togglePress = $event
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "Danger " + _vm._s(_vm.togglePress ? "On " : "Off")
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "CRow",
-        [
-          _c(
-            "CCol",
-            { attrs: { xs: "12", md: "6" } },
-            [
-              _c(
-                "CCard",
-                [
-                  _c("CCardHeader", [
-                    _c("strong", [_vm._v("Block Level CButtons ")]),
-                    _c("small", [
-                      _vm._v("Add this "),
-                      _c("code", [_vm._v("block")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "CCardBody",
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: { size: "lg", color: "secondary", block: "" }
-                        },
-                        [_vm._v("Block level button")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "CButton",
-                        { attrs: { size: "lg", color: "primary", block: "" } },
-                        [_vm._v("Block level button")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "CButton",
-                        { attrs: { size: "lg", color: "success", block: "" } },
-                        [_vm._v("Block level button")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "CButton",
-                        { attrs: { size: "lg", color: "info", block: "" } },
-                        [_vm._v("Block level button")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "CButton",
-                        { attrs: { size: "lg", color: "warning", block: "" } },
-                        [_vm._v("Block level button")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "CButton",
-                        { attrs: { size: "lg", color: "danger", block: "" } },
-                        [_vm._v("Block level button")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "CButton",
-                        { attrs: { size: "lg", color: "link", block: "" } },
-                        [_vm._v("Block level button")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "CCol",
-            { attrs: { xs: "12", md: "6" } },
-            [
-              _c(
-                "CCard",
-                [
-                  _c("CCardHeader", [
-                    _c("strong", [_vm._v("Block Level CButtons ")]),
-                    _c("small", [
-                      _vm._v("Add this "),
-                      _c("code", [_vm._v("block")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "CCardBody",
-                    [
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            size: "lg",
-                            variant: "outline",
-                            color: "secondary",
-                            block: ""
-                          }
-                        },
-                        [_vm._v("Block level button")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            size: "lg",
-                            variant: "outline",
-                            color: "primary",
-                            block: ""
-                          }
-                        },
-                        [_vm._v("Block level button")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            size: "lg",
-                            variant: "outline",
-                            color: "success",
-                            block: ""
-                          }
-                        },
-                        [_vm._v("Block level button")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            size: "lg",
-                            variant: "outline",
-                            color: "info",
-                            block: ""
-                          }
-                        },
-                        [_vm._v("Block level button")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            size: "lg",
-                            variant: "outline",
-                            color: "warning",
-                            block: ""
-                          }
-                        },
-                        [_vm._v("Block level button")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            size: "lg",
-                            variant: "outline",
-                            color: "danger",
-                            block: ""
-                          }
-                        },
-                        [_vm._v("Block level button")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "CButton",
-                        {
-                          attrs: {
-                            size: "lg",
-                            variant: "ghost",
-                            color: "info",
-                            block: ""
-                          }
-                        },
-                        [_vm._v("Block level button")]
+                          _c("CButton", { attrs: { color: "secondary" } }, [
+                            _vm._v("Save")
+                          ]),
+                          _vm._v(" "),
+                          _c("CButton", { attrs: { color: "secondary" } }, [
+                            _vm._v("Cancel")
+                          ])
+                        ],
+                        1
                       )
                     ],
                     1

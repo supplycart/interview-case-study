@@ -1,16 +1,16 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[41],{
 
-/***/ "./coreui/src/views/email/EditEmail.vue":
-/*!**********************************************!*\
-  !*** ./coreui/src/views/email/EditEmail.vue ***!
-  \**********************************************/
+/***/ "./coreui/src/views/charts/Charts.vue":
+/*!********************************************!*\
+  !*** ./coreui/src/views/charts/Charts.vue ***!
+  \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EditEmail_vue_vue_type_template_id_b75a4676___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditEmail.vue?vue&type=template&id=b75a4676& */ "./coreui/src/views/email/EditEmail.vue?vue&type=template&id=b75a4676&");
-/* harmony import */ var _EditEmail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditEmail.vue?vue&type=script&lang=js& */ "./coreui/src/views/email/EditEmail.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Charts_vue_vue_type_template_id_10c5a2d5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Charts.vue?vue&type=template&id=10c5a2d5& */ "./coreui/src/views/charts/Charts.vue?vue&type=template&id=10c5a2d5&");
+/* harmony import */ var _Charts_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Charts.vue?vue&type=script&lang=js& */ "./coreui/src/views/charts/Charts.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -20,9 +20,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _EditEmail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _EditEmail_vue_vue_type_template_id_b75a4676___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _EditEmail_vue_vue_type_template_id_b75a4676___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Charts_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Charts_vue_vue_type_template_id_10c5a2d5___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Charts_vue_vue_type_template_id_10c5a2d5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -32,54 +32,90 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "coreui/src/views/email/EditEmail.vue"
+component.options.__file = "coreui/src/views/charts/Charts.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./coreui/src/views/email/EditEmail.vue?vue&type=script&lang=js&":
-/*!***********************************************************************!*\
-  !*** ./coreui/src/views/email/EditEmail.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************/
+/***/ "./coreui/src/views/charts/Charts.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./coreui/src/views/charts/Charts.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditEmail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditEmail.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/email/EditEmail.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditEmail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Charts_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Charts.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/charts/Charts.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Charts_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./coreui/src/views/email/EditEmail.vue?vue&type=template&id=b75a4676&":
-/*!*****************************************************************************!*\
-  !*** ./coreui/src/views/email/EditEmail.vue?vue&type=template&id=b75a4676& ***!
-  \*****************************************************************************/
+/***/ "./coreui/src/views/charts/Charts.vue?vue&type=template&id=10c5a2d5&":
+/*!***************************************************************************!*\
+  !*** ./coreui/src/views/charts/Charts.vue?vue&type=template&id=10c5a2d5& ***!
+  \***************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditEmail_vue_vue_type_template_id_b75a4676___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditEmail.vue?vue&type=template&id=b75a4676& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/email/EditEmail.vue?vue&type=template&id=b75a4676&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditEmail_vue_vue_type_template_id_b75a4676___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Charts_vue_vue_type_template_id_10c5a2d5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Charts.vue?vue&type=template&id=10c5a2d5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/charts/Charts.vue?vue&type=template&id=10c5a2d5&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Charts_vue_vue_type_template_id_10c5a2d5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditEmail_vue_vue_type_template_id_b75a4676___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Charts_vue_vue_type_template_id_10c5a2d5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/email/EditEmail.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/email/EditEmail.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/charts/Charts.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/charts/Charts.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./coreui/node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.js */ "./coreui/src/views/charts/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -110,75 +146,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'EditEmailTemplate',
-  data: function data() {
-    return {
-      template: {
-        name: '',
-        subject: '',
-        content: ''
-      },
-      message: '',
-      dismissSecs: 7,
-      dismissCountDown: 0
-    };
-  },
-  methods: {
-    goBack: function goBack() {
-      this.$router.go(-1); // this.$router.replace({path: '/users'})
-    },
-    update: function update() {
-      var self = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/mail/' + self.$route.params.id + '?token=' + localStorage.getItem("api_token"), {
-        _method: 'PUT',
-        name: self.template.name,
-        subject: self.template.subject,
-        content: self.template.content
-      }).then(function (response) {
-        self.message = 'Successfully updated note.';
-        self.showAlert();
-      })["catch"](function (error) {
-        if (error.response.data.message == 'The given data was invalid.') {
-          self.message = '';
-
-          for (var key in error.response.data.errors) {
-            if (error.response.data.errors.hasOwnProperty(key)) {
-              self.message += error.response.data.errors[key][0] + '  ';
-            }
-          }
-
-          self.showAlert();
-        } else {
-          console.log(error);
-          self.$router.push({
-            path: '/login'
-          });
-        }
-      });
-    },
-    showAlert: function showAlert() {
-      this.dismissCountDown = this.dismissSecs;
-    }
-  },
-  mounted: function mounted() {
-    var self = this;
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/mail/' + self.$route.params.id + '/edit?token=' + localStorage.getItem("api_token")).then(function (response) {
-      self.template = response.data.template;
-    })["catch"](function (error) {
-      console.log(error);
-      self.$router.push({
-        path: '/login'
-      });
-    });
-  }
+  name: 'Charts',
+  components: _objectSpread({}, _index_js__WEBPACK_IMPORTED_MODULE_0__)
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/email/EditEmail.vue?vue&type=template&id=b75a4676&":
-/*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/email/EditEmail.vue?vue&type=template&id=b75a4676& ***!
-  \***********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/charts/Charts.vue?vue&type=template&id=10c5a2d5&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/charts/Charts.vue?vue&type=template&id=10c5a2d5& ***!
+  \*********************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -191,107 +168,139 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "CRow",
+    "div",
     [
       _c(
-        "CCol",
-        { attrs: { col: "12", lg: "6" } },
+        "CCardGroup",
+        { staticClass: "card-columns cols-2", attrs: { columns: "" } },
         [
           _c(
             "CCard",
             [
-              _c(
-                "CCardBody",
-                [
-                  _c("h3", [
-                    _vm._v("\n          Edit Email Template\n        ")
-                  ]),
-                  _vm._v(" "),
+              _c("CCardHeader", [
+                _vm._v("\n        Line Chart\n        "),
+                _c("div", { staticClass: "card-header-actions" }, [
                   _c(
-                    "CAlert",
+                    "a",
                     {
+                      staticClass: "card-header-action",
                       attrs: {
-                        show: _vm.dismissCountDown,
-                        color: "primary",
-                        fade: ""
-                      },
-                      on: {
-                        "update:show": function($event) {
-                          _vm.dismissCountDown = $event
-                        }
+                        href: "https://coreui.io/vue/docs/components/charts",
+                        rel: "noreferrer noopener",
+                        target: "_blank"
                       }
                     },
                     [
-                      _vm._v(
-                        "\n          (" +
-                          _vm._s(_vm.dismissCountDown) +
-                          ") " +
-                          _vm._s(_vm.message) +
-                          "\n        "
-                      )
+                      _c("small", { staticClass: "text-muted" }, [
+                        _vm._v("docs")
+                      ])
                     ]
-                  ),
-                  _vm._v(" "),
-                  _c("CInput", {
-                    attrs: { label: "Name", type: "text", placeholder: "Name" },
-                    model: {
-                      value: _vm.template.name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.template, "name", $$v)
-                      },
-                      expression: "template.name"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("CInput", {
-                    attrs: {
-                      label: "Subject",
-                      type: "text",
-                      placeholder: "Subject"
-                    },
-                    model: {
-                      value: _vm.template.subject,
-                      callback: function($$v) {
-                        _vm.$set(_vm.template, "subject", $$v)
-                      },
-                      expression: "template.subject"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("CTextarea", {
-                    attrs: {
-                      textarea: "true",
-                      label: "Content",
-                      rows: 15,
-                      placeholder: "Content.."
-                    },
-                    model: {
-                      value: _vm.template.content,
-                      callback: function($$v) {
-                        _vm.$set(_vm.template, "content", $$v)
-                      },
-                      expression: "template.content"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "CButton",
-                    {
-                      attrs: { color: "primary" },
-                      on: {
-                        click: function($event) {
-                          return _vm.update()
-                        }
-                      }
-                    },
-                    [_vm._v("Save")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CButton",
-                    { attrs: { color: "primary" }, on: { click: _vm.goBack } },
-                    [_vm._v("Back")]
                   )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("CCardBody", [_c("CChartLineExample")], 1)
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "CCard",
+            [
+              _c("CCardHeader", [_vm._v("Bar Chart")]),
+              _vm._v(" "),
+              _c("CCardBody", [_c("CChartBarExample")], 1)
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "CCard",
+            [
+              _c("CCardHeader", [_vm._v("Doughnut Chart")]),
+              _vm._v(" "),
+              _c("CCardBody", [_c("CChartDoughnutExample")], 1)
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "CCard",
+            [
+              _c("CCardHeader", [_vm._v("Radar Chart")]),
+              _vm._v(" "),
+              _c("CCardBody", [_c("CChartRadarExample")], 1)
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "CCard",
+            [
+              _c("CCardHeader", [_vm._v("Pie Chart")]),
+              _vm._v(" "),
+              _c("CCardBody", [_c("CChartPieExample")], 1)
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "CCard",
+            [
+              _c("CCardHeader", [_vm._v("Polar Area Chart")]),
+              _vm._v(" "),
+              _c("CCardBody", [_c("CChartPolarAreaExample")], 1)
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "CCard",
+            [
+              _c("CCardHeader", [_vm._v("Simple line chart")]),
+              _vm._v(" "),
+              _c(
+                "CCardBody",
+                [
+                  _c("CChartLineSimple", {
+                    attrs: { "border-color": "success", labels: "months" }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "CCard",
+            [
+              _c("CCardHeader", [_vm._v("Simple pointed chart")]),
+              _vm._v(" "),
+              _c(
+                "CCardBody",
+                [
+                  _c("CChartLineSimple", {
+                    attrs: { pointed: "", "border-color": "warning" }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "CCard",
+            [
+              _c("CCardHeader", [_vm._v("Simple bar chart")]),
+              _vm._v(" "),
+              _c(
+                "CCardBody",
+                [
+                  _c("CChartBarSimple", {
+                    attrs: { "background-color": "danger" }
+                  })
                 ],
                 1
               )

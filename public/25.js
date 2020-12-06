@@ -1,16 +1,16 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[25],{
 
-/***/ "./coreui/src/views/base/Jumbotrons.vue":
-/*!**********************************************!*\
-  !*** ./coreui/src/views/base/Jumbotrons.vue ***!
-  \**********************************************/
+/***/ "./coreui/src/views/base/Collapses.vue":
+/*!*********************************************!*\
+  !*** ./coreui/src/views/base/Collapses.vue ***!
+  \*********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Jumbotrons_vue_vue_type_template_id_3248f96a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Jumbotrons.vue?vue&type=template&id=3248f96a& */ "./coreui/src/views/base/Jumbotrons.vue?vue&type=template&id=3248f96a&");
-/* harmony import */ var _Jumbotrons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Jumbotrons.vue?vue&type=script&lang=js& */ "./coreui/src/views/base/Jumbotrons.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Collapses_vue_vue_type_template_id_3ecb5892___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Collapses.vue?vue&type=template&id=3ecb5892& */ "./coreui/src/views/base/Collapses.vue?vue&type=template&id=3ecb5892&");
+/* harmony import */ var _Collapses_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Collapses.vue?vue&type=script&lang=js& */ "./coreui/src/views/base/Collapses.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -20,9 +20,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Jumbotrons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Jumbotrons_vue_vue_type_template_id_3248f96a___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Jumbotrons_vue_vue_type_template_id_3248f96a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Collapses_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Collapses_vue_vue_type_template_id_3ecb5892___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Collapses_vue_vue_type_template_id_3ecb5892___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -32,84 +32,52 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "coreui/src/views/base/Jumbotrons.vue"
+component.options.__file = "coreui/src/views/base/Collapses.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./coreui/src/views/base/Jumbotrons.vue?vue&type=script&lang=js&":
-/*!***********************************************************************!*\
-  !*** ./coreui/src/views/base/Jumbotrons.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************/
+/***/ "./coreui/src/views/base/Collapses.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./coreui/src/views/base/Collapses.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Jumbotrons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Jumbotrons.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/base/Jumbotrons.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Jumbotrons_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Collapses_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Collapses.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/base/Collapses.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Collapses_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./coreui/src/views/base/Jumbotrons.vue?vue&type=template&id=3248f96a&":
-/*!*****************************************************************************!*\
-  !*** ./coreui/src/views/base/Jumbotrons.vue?vue&type=template&id=3248f96a& ***!
-  \*****************************************************************************/
+/***/ "./coreui/src/views/base/Collapses.vue?vue&type=template&id=3ecb5892&":
+/*!****************************************************************************!*\
+  !*** ./coreui/src/views/base/Collapses.vue?vue&type=template&id=3ecb5892& ***!
+  \****************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Jumbotrons_vue_vue_type_template_id_3248f96a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Jumbotrons.vue?vue&type=template&id=3248f96a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/base/Jumbotrons.vue?vue&type=template&id=3248f96a&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Jumbotrons_vue_vue_type_template_id_3248f96a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Collapses_vue_vue_type_template_id_3ecb5892___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Collapses.vue?vue&type=template&id=3ecb5892& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/base/Collapses.vue?vue&type=template&id=3ecb5892&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Collapses_vue_vue_type_template_id_3ecb5892___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Jumbotrons_vue_vue_type_template_id_3248f96a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Collapses_vue_vue_type_template_id_3ecb5892___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/base/Jumbotrons.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/base/Jumbotrons.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/base/Collapses.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/base/Collapses.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -164,15 +132,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Jumbotrons'
+  name: 'Collapses',
+  data: function data() {
+    return {
+      collapse: false,
+      cardCollapse: true,
+      innerCollapse: false,
+      text: "\n        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry\n        richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor\n        brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon\n        tempor, sunt aliqua put a bird on it squid single-origin coffee nulla\n        assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore\n        wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher\n        vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic\n        synth nesciunt you probably haven't heard of them accusamus labore VHS.\n      "
+    };
+  }
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/base/Jumbotrons.vue?vue&type=template&id=3248f96a&":
-/*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/base/Jumbotrons.vue?vue&type=template&id=3248f96a& ***!
-  \***********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/base/Collapses.vue?vue&type=template&id=3ecb5892&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/base/Collapses.vue?vue&type=template&id=3ecb5892& ***!
+  \**********************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -185,69 +161,100 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "CRow",
     [
       _c(
-        "CRow",
+        "CCol",
+        { attrs: { col: "12", md: "6" } },
         [
           _c(
-            "CCol",
+            "CCard",
             [
               _c(
-                "CCard",
+                "CCardHeader",
+                [
+                  _c("CIcon", { attrs: { name: "cil-justify-center" } }),
+                  _vm._v(" "),
+                  _c("strong", [_vm._v(" Bootstrap Collapse ")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-header-actions" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "card-header-action",
+                        attrs: {
+                          href:
+                            "https://coreui.io/vue/docs/components/collapse",
+                          rel: "noreferrer noopener",
+                          target: "_blank"
+                        }
+                      },
+                      [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _vm._v("docs")
+                        ])
+                      ]
+                    )
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "CCardBody",
                 [
                   _c(
-                    "CCardHeader",
-                    [
-                      _c("CIcon", { attrs: { name: "cil-justify-center" } }),
-                      _vm._v(" "),
-                      _c("strong", [_vm._v(" Bootstrap Jumbotron ")]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "card-header-actions" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "card-header-action",
-                            attrs: {
-                              href:
-                                "https://coreui.io/vue/docs/components/jumbotron",
-                              rel: "noreferrer noopener",
-                              target: "_blank"
-                            }
-                          },
-                          [
-                            _c("small", { staticClass: "text-muted" }, [
-                              _vm._v("docs")
-                            ])
-                          ]
-                        )
-                      ])
-                    ],
-                    1
+                    "CButton",
+                    {
+                      attrs: { color: "primary" },
+                      on: {
+                        click: function($event) {
+                          _vm.collapse = !_vm.collapse
+                        }
+                      }
+                    },
+                    [_vm._v("\n          Toggle Collapse\n        ")]
                   ),
                   _vm._v(" "),
                   _c(
-                    "CCardBody",
+                    "CCollapse",
+                    { staticClass: "mt-2", attrs: { show: _vm.collapse } },
                     [
                       _c(
-                        "CJumbotron",
+                        "CCard",
+                        { attrs: { "body-wrapper": "" } },
                         [
-                          _c("h1", { staticClass: "display-3" }, [
-                            _vm._v("Bootstrap 4")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "lead" }, [
-                            _vm._v("Bootstrap 4 Components for Vue.js 2.6+")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v("For more information visit website")
-                          ]),
+                          _c("CCardText", [_vm._v("Collapse contents Here")]),
                           _vm._v(" "),
                           _c(
                             "CButton",
-                            { attrs: { color: "primary", href: "#" } },
-                            [_vm._v("More Info")]
+                            {
+                              attrs: { size: "sm", color: "secondary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.innerCollapse = !_vm.innerCollapse
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Toggle Inner Collapse\n            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "CCollapse",
+                            {
+                              staticClass: "mt-2",
+                              attrs: { show: _vm.innerCollapse }
+                            },
+                            [
+                              _c("CCard", { attrs: { "body-wrapper": "" } }, [
+                                _vm._v("Hello!")
+                              ])
+                            ],
+                            1
                           )
                         ],
                         1
@@ -263,129 +270,27 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "CCol",
+            "CCard",
             [
               _c(
-                "CCard",
-                [
-                  _c(
-                    "CCardHeader",
-                    [
-                      _c("CIcon", { attrs: { name: "cil-justify-center" } }),
-                      _vm._v(" "),
-                      _c("strong", [_vm._v(" Jumbotron ")]),
-                      _vm._v(" "),
-                      _c("small", [_vm._v("with slots")])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCardBody",
-                    [
-                      _c(
-                        "CJumbotron",
-                        { attrs: { header: "Bootstrap 4", lead: "" } },
-                        [
-                          _c("h1", { staticClass: "display-3" }, [
-                            _vm._v("Bootstrap 4")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "lead" }, [
-                            _vm._v(
-                              "\n              This is a simple hero unit, a simple jumbotron-style component for\n              calling extra attention to featured content or information.\n            "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("hr", { staticClass: "my-4" }),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n              It uses utility classes for typography and spacing to space content\n              out within the larger container.\n            "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "CButton",
-                            { attrs: { color: "primary", href: "#" } },
-                            [_vm._v("Do Something")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "CButton",
-                            { attrs: { color: "success", href: "#" } },
-                            [_vm._v("Do Something Else")]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "CRow",
-        [
-          _c(
-            "CCol",
-            [
+                "CCardHeader",
+                {
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.cardCollapse = !_vm.cardCollapse
+                    }
+                  }
+                },
+                [_c("strong", [_vm._v("Collapsible card")])]
+              ),
+              _vm._v(" "),
               _c(
-                "CCard",
+                "CCardBody",
                 [
                   _c(
-                    "CCardHeader",
-                    [
-                      _c("CIcon", { attrs: { name: "cil-justify-center" } }),
-                      _vm._v(" "),
-                      _c("strong", [_vm._v(" Jumbotron ")]),
-                      _vm._v(" "),
-                      _c("small", [_vm._v("colors")])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "CCardBody",
-                    [
-                      _c(
-                        "CJumbotron",
-                        {
-                          attrs: {
-                            color: "info",
-                            "text-color": "white",
-                            "border-color": "dark"
-                          }
-                        },
-                        [
-                          _c("h1", { staticClass: "display-3" }, [
-                            _vm._v("Bootstrap 4")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "lead" }, [
-                            _vm._v(
-                              "\n              This is a simple hero unit, a simple jumbotron-style component for\n              calling extra attention to featured content or information.\n            "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("hr", { staticClass: "my-4" }),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n              It uses utility classes for typography and spacing to space content\n              out within the larger container.\n            "
-                            )
-                          ])
-                        ]
-                      )
-                    ],
+                    "CCollapse",
+                    { staticClass: "mt-2", attrs: { show: _vm.cardCollapse } },
+                    [_c("CCardText", [_vm._v("Collapse contents Here")])],
                     1
                   )
                 ],

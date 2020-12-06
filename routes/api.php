@@ -32,8 +32,17 @@ Route::group(['middleware' => 'api'], function ($router) {
     });
 
     Route::prefix('/cart')->group(function () { 
+      Route::put('/addItem/{id}', 'CartController@addItem')->name('cart.updateItem');
+      Route::put('/removeItem/{id}', 'CartController@removeItem')->name('cart.removeItem');
+
       Route::post('/add/{id}', 'CartController@addToCart')->name('cart.addToCart');
       Route::get('/', 'CartController@index')->name('cart.index');
+    });
+
+    Route::prefix('/order')->group(function () { 
+      Route::post('/{id}', 'OrderController@store')->name('order.create');
+      Route::get('/', 'OrderController@index')->name('order.index');
+      Route::get('/{id}', 'OrderController@show')->name('order.show');
     });
 
     Route::resource('resource/{table}/resource', 'ResourceController');

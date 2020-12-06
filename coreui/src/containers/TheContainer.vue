@@ -2,12 +2,12 @@
   <div class="c-app">
     <TheSidebar/>
     <CWrapper>
-      <TheHeader/>
+      <TheHeader :cart="cart" @updateCart="updateCart"/>
       <div class="c-body">
         <main class="c-main">
           <CContainer fluid>
             <transition name="fade">
-              <router-view></router-view>
+              <router-view @updateCart="updateCart" ></router-view>
             </transition>
           </CContainer>
         </main>
@@ -24,10 +24,20 @@ import TheFooter from './TheFooter'
 
 export default {
   name: 'TheContainer',
+  data: () => {
+    return {
+      cart: 0
+    }
+  },
   components: {
     TheSidebar,
     TheHeader,
     TheFooter
+  },
+  methods: {
+    updateCart: function (value) {
+      this.cart++;
+    }
   }
 }
 </script>
