@@ -27,5 +27,10 @@
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
     },
-    "dependencies": {}
+    "dependencies": {},
+    "engines": {
+      "npm": "6.x",
+      "node": "12.x"
+    }
+  
 }
