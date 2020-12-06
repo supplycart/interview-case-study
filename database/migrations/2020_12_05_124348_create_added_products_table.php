@@ -12,12 +12,21 @@ class CreateAddedProductsTable extends Migration
             $table->id();
             $table->foreignId('product_id')
                 ->constrained('products');
+            $table->unsignedBigInteger('order_id')
+                ->nullable();
             $table->foreignId('product_prices_id')
                 ->constrained('product_prices');
             $table->foreignId('user_id')
                 ->constrained('users');
+            $table->decimal('current_price', 19, 4)
+                ->default(0);
             $table->integer('amount')
                 ->default(1);
+            $table->decimal('total', 19, 4)
+                ->default(0);
+            $table->foreign('order_id')
+                ->references('id')
+                ->on('orders');
             $table->timestamps();
         });
     }

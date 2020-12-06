@@ -2,7 +2,8 @@ import productRepository from "../repositories/productRepository";
 
 const state = () => ({
     products: [],
-    search : ""
+    search : "",
+    searchedQuery : ""
 });
 
 // getters
@@ -13,6 +14,9 @@ const getters = {
     search: (state) => {
         return state.search;
     },
+    searchedQuery: (state) => {
+        return state.searchedQuery;
+    },
 };
 
 // mutations
@@ -22,14 +26,22 @@ const mutations = {
     },
     search: (state, payload) => {
         state.search = payload;
-    }
+    },
+    searchedQuery: (state, payload) => {
+        state.searchedQuery = payload;
+    },
 };
 
 const actions = {
     async products(state, payload) {
         const response = await productRepository.all(state.state.search);
         state.commit('products', response.data.data);
-        console.log({response});
+        history.pushState(
+            {},
+            "",
+            "?q=" + state.state.search
+        );
+        state.commit('searchedQuery', state.state.search);
     }
 }
 

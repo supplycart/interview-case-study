@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Order\OrderCreateRequest;
+use App\Http\Resources\OrderResource;
+use App\Http\Resources\PreviousOrderResource;
+use App\Models\AddedProduct;
 use App\Models\Order;
+use App\Models\ProductPrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
@@ -11,7 +15,11 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return Order::paginate(20);
+        return OrderResource::collection(Order::with([
+            'orderedProducts.product'
+        ])->whereHas('orderedProducts', function ($q) {
+            return $q->index(true);
+        })->get());
     }
 
     public function store(OrderCreateRequest $request)
@@ -22,16 +30,20 @@ class OrderController extends Controller
 
         $totalPrices = [];
 
-        // add all ordered products to an order
-        foreach ($request->validated()['products'] as $product) {
-            $totalPrice = $product['amount'] * $product['price'];
+        $prices = ProductPrice::whereIn('id', collect($request->validated()['products'])
+            ->pluck('product_prices_id'))
+            ->get();
 
-            $order->products()->attach(
-                [$product['id'] => array_merge([
-                    'total_price' => $totalPrice
-                ], Arr::only($product, ['amount', 'price']))]);
-
-            array_push($totalPrices, $totalPrice);
+        foreach ($request->validated()['products'] as $addedProduct) {
+            $instance = AddedProduct::find($addedProduct['id']);
+            $price = $prices->firstWhere('id', $addedProduct['product_prices_id'])['price'];
+            $instance->update([
+                'current_price' => $price,
+                'order_id' => $order->id,
+                'amount' => $addedProduct['amount'],
+                'total' => $price * $addedProduct['amount']
+            ]);
+            array_push($totalPrices, $instance->total);
         }
 
         $order->update([

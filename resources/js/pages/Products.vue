@@ -2,9 +2,10 @@
 
     <main class="my-8">
         <div class="container mx-auto px-6">
-            <h3 class="text-gray-700 text-2xl font-medium">Wrist Watch</h3>
+            <h3 class="text-gray-700 text-2xl font-medium">{{ searchedQuery }}</h3>
             <span class="mt-3 text-sm text-gray-500">200+ Products</span>
-            <div v-if="products.length" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+            <div v-if="products.length"
+                 class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
                 <Product v-for="product in products" :product="product" :key="product.id"/>
             </div>
             <div class="flex justify-center">
@@ -31,17 +32,22 @@ import Product from "../components/products/Product";
 export default {
     name: "Products",
     components: {Product},
-    created() {
-        this.$store.dispatch('products/products');
-    },
     computed: {
         products() {
             return this.$store.getters['products/products']
+        },
+        searchedQuery() {
+            return this.$store.getters['products/searchedQuery']
         }
     },
-    watch : {
-        products() {
-            console.log('products', this.products);
+    created() {
+        this.fetchProducts();
+    },
+    methods : {
+        fetchProducts() {
+            const route = this.$router.currentRoute.query;
+            if (route.q !== undefined && route.q !== '') this.$store.commit('products/search', route.q);
+            this.$store.dispatch('products/products');
         }
     }
 }

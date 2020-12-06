@@ -9,15 +9,21 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['total_price'];
+
     const STATUS_TO_PAY = 'TO_PAY';
     const STATUS_TO_RECEIVED = 'TO_RECEIVED';
+
+    protected $casts = [
+        'total_price' => 'float'
+    ];
 
     protected static function boot()
     {
         parent::boot();
         static::creating(function ($model) {
             if (empty($model->status) || is_null($model->status)) {
-
+                $model->status = static::STATUS_TO_PAY;
             }
         });
     }
@@ -27,9 +33,8 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function products()
+    public function orderedProducts()
     {
-        return $this->belongsToMany(Product::class, OrderProduct::class);
+        return $this->hasMany(AddedProduct::class, 'order_id');
     }
-
 }

@@ -5,7 +5,7 @@
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <!-- Logo -->
-                    <div class="flex-shrink-0 flex items-center">
+                    <div @click="$router.push({name : 'products'})" class="flex-shrink-0 flex items-center cursor-pointer">
                         <img
                             src="https://blog.supplycart.my/wp-content/uploads/2019/03/Supplycart_Digital-logomark-w-workmark-PlainLogo_RGB.png"
                             height="100" width="200"/>
@@ -13,14 +13,15 @@
 
                     <!-- Navigation Links -->
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <!--                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">-->
-                        <!--                            {{ __('Dashboard') }}-->
-                        <!--                        </x-nav-link>-->
+                        <navigation-link @click="$router.push({name : 'previousOrders'})" route-name="previousOrders">
+                            My Orders
+                        </navigation-link>
                     </div>
                 </div>
 
                 <div class="flex w-1/2 mt-2 rounded border-grey-light border" style="max-height: 40px">
-                    <input v-model="search" @keyup.enter="searchProducts" class="w-full rounded ml-1" type="text" placeholder="Search...">
+                    <input v-model="search" @keyup.enter="searchProducts" class="w-full rounded ml-1" type="text"
+                           placeholder="Search...">
                     <button @click="searchProducts"
                             class="bg-grey-lightest border-grey border-l shadow hover:bg-grey-lightest">
                         <span class="w-auto flex justify-end items-center text-grey p-2 hover:text-grey-darkest">
@@ -128,17 +129,15 @@
 
 <script>
 import CartDrawer from "./CartDrawer";
+import NavigationLink from "../core/NavigationLink";
 
 export default {
     name: "NavigationBar",
-    components: {CartDrawer},
+    components: {NavigationLink, CartDrawer},
     data() {
         return {
             open: false
         }
-    },
-    created() {
-        this.checkUrlHaveQuery();
     },
     computed: {
         search: {
@@ -152,15 +151,14 @@ export default {
     },
     methods: {
         searchProducts() {
-            this.$store.dispatch('products/products');
-        },
-        checkUrlHaveQuery() {
-            const route = this.$router.currentRoute.query;
-            if (route.q !== undefined && route.q !== '') this.$store.commit('products/search', route.q);
+            // since navigation bar is always going to be in every page
+            // we need to redirect to products page when a search is made
+            if (this.$router.currentRoute.name !== 'products') {
+                this.$router.push({name: 'products'});
+            }
             this.$store.dispatch('products/products');
         }
-    },
-
+    }
 }
 </script>
 

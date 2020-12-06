@@ -14,11 +14,6 @@ class Product extends Model
         'user_id', 'title', 'description', 'stock'
     ];
 
-    public function orders()
-    {
-        return $this->belongsToMany(Order::class, OrderProduct::class);
-    }
-
     public function prices()
     {
         return $this->hasMany(ProductPrice::class, 'product_id');

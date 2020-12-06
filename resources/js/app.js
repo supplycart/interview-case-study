@@ -8,16 +8,20 @@ import Vuex from 'vuex';
 
 import Vue from 'vue/dist/vue';
 import products from "./vuex-modules/products";
+import cart from "./vuex-modules/cart";
+import notification from "./vuex-modules/notification";
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+import previousOrder from "./vuex-modules/previousOrder";
 
 // window.Vue = Vue;
 window.Vue = require('vue');
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// [VueRouter, Vuex].forEach((x) => Vue.use(x));
-
 Vue.use(VueRouter);
 Vue.use(Vuex);
+Vue.use(VueToast);
 
 Vue.component('default-transition', {
     template : '\  <transition\n' +
@@ -67,6 +71,16 @@ Vue.directive('click-outside', {
 
 });
 
+Vue.filter('limitWords', function (value) {
+    if (!value) return '';
+    value = value.toString();
+
+    if (value.length >= 60) {
+        return value.substring(0, 60) + '...';
+    }
+    return value;
+});
+
 const router = new VueRouter({
     mode: 'history',
     routes,
@@ -76,7 +90,10 @@ const router = new VueRouter({
 
 const store = new Vuex.Store({
     modules: {
-        products
+        products,
+        cart,
+        notification,
+        previousOrder
     }
 });
 

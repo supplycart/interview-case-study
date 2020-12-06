@@ -10,11 +10,12 @@ class ProductPrice extends Model
     use HasFactory;
 
     protected $fillable = [
-      'price', 'is_default'
+        'price', 'is_default'
     ];
 
     protected $casts = [
-      'is_default' => 'boolean'
+        'is_default' => 'boolean',
+        'price' => 'float'
     ];
 
     public function countries()

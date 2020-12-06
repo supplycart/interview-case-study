@@ -15,8 +15,8 @@ class OrderCreateRequest extends FormRequest
     {
         return [
             'products' => ['required'],
-            'products.*.id' => ['required', 'exists:products,id'],
-            'products.*.price_id' => ['required', 'exists:product_prices,id'],
+            'products.*.product_id' => ['required', 'exists:products,id'],
+            'products.*.product_prices_id' => ['required', 'exists:product_prices,id'],
             'products.*.amount' => ['required', 'integer'],
         ];
     }
