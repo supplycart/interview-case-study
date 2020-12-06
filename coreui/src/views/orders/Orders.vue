@@ -26,7 +26,7 @@
               </template>
               <template #no_of_items="{item}">
                 <td>
-                  <strong>{{item.products.length}}</strong>
+                  <strong>{{ totalCount(item) }}</strong>
                 </td>
               </template>
               <template #created_at="{item}">
@@ -149,6 +149,11 @@ export default {
     orderLink (id) {
       return `order/${id.toString()}`
     },
+    totalCount(item){
+      let total = 0;
+      item.products.forEach(i => total = total + i.pivot.amount );
+      return total;
+    }
   },
   mounted: function(){
     this.getNotes();

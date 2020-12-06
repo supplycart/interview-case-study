@@ -250,6 +250,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     orderLink: function orderLink(id) {
       return "order/".concat(id.toString());
+    },
+    totalCount: function totalCount(item) {
+      var total = 0;
+      item.products.forEach(function (i) {
+        return total = total + i.pivot.amount;
+      });
+      return total;
     }
   },
   mounted: function mounted() {
@@ -394,7 +401,7 @@ var render = function() {
                               return [
                                 _c("td", [
                                   _c("strong", [
-                                    _vm._v(_vm._s(item.products.length))
+                                    _vm._v(_vm._s(_vm.totalCount(item)))
                                   ])
                                 ])
                               ]
