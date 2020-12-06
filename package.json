@@ -28,7 +28,13 @@
         "vue": "^2.6.12",
         "vue-template-compiler": "^2.6.12"
     },
-    "dependencies": {},
+    "dependencies": {
+        "@coreui/icons": "^1.0.1",
+        "@coreui/vue": "^3.1.4",
+        "@coreui/vue-chartjs": "^1.0.6",
+        "vue-router": "^3.4.9",
+        "vuex": "^3.6.0"
+    },
     "engines": {
         "npm": "7.x",
         "node": "15.x"

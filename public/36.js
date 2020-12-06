@@ -1,1 +1,369 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[36],{475:function(e,t,a){"use strict";a.r(t);var r={name:"CreateBreadFieldCard",props:{columnName:String,visibleName:String,getData:Boolean,options:Array},data:function(){return{type:"text",relationTable:"",relationColumn:"",browse:null,read:null,edit:null,add:null}},computed:{},methods:{selectCheckbox:function(e){switch(e){case"browse":1==this.browse?this.browse=!1:this.browse=!0;break;case"read":1==this.read?this.read=!1:this.read=!0;break;case"edit":1==this.edit?this.edit=!1:this.edit=!0;break;case"add":1==this.add?this.add=!1:this.add=!0}},getDataFunction:function(){var e={columnName:this.columnName,visibleName:this.visibleName,type:this.type,relationTable:this.relationTable,relationColumn:this.relationColumn,browse:this.browse,read:this.read,edit:this.edit,add:this.add};this.$emit("sendData",e)}},watch:{getData:function(){!0===this.getData&&this.getDataFunction()}}},o=a(0),s=Object(o.a)(r,(function(){var e=this,t=e.$createElement,a=e._self._c||t;return"id"!=e.columnName?a("CCard",[a("CCardHeader",[a("h5",[e._v(e._s(e.columnName))])]),e._v(" "),a("CCardBody",[a("CInput",{attrs:{label:"Visible name",type:"text",placeholder:"Visible name",required:""},model:{value:e.visibleName,callback:function(t){e.visibleName=t},expression:"visibleName"}}),e._v(" "),a("CSelect",{attrs:{label:"Field type",options:e.options,value:e.type},on:{"update:value":function(t){e.type=t}}}),e._v(" "),a("CInput",{attrs:{label:"Optional relation table name",type:"text",placeholder:"Optional relation table name"},model:{value:e.relationTable,callback:function(t){e.relationTable=t},expression:"relationTable"}}),e._v(" "),a("CInput",{attrs:{label:"Optional column name in relation table - to print",type:"text",placeholder:"Optional column name in relation table - to print"},model:{value:e.relationColumn,callback:function(t){e.relationColumn=t},expression:"relationColumn"}}),e._v(" "),a("CInputCheckbox",{staticClass:"mb-2",attrs:{label:"Browse",value:"true",checked:!1},on:{"update:checked":function(t){return e.selectCheckbox("browse")}},model:{value:e.browse,callback:function(t){e.browse=t},expression:"browse"}}),e._v(" "),a("CInputCheckbox",{staticClass:"mb-2",attrs:{label:"Read",value:"true",checked:!1},on:{"update:checked":function(t){return e.selectCheckbox("read")}},model:{value:e.read,callback:function(t){e.read=t},expression:"read"}}),e._v(" "),a("CInputCheckbox",{staticClass:"mb-2",attrs:{label:"Edit",value:"true",checked:!1},on:{"update:checked":function(t){return e.selectCheckbox("edit")}},model:{value:e.edit,callback:function(t){e.edit=t},expression:"edit"}}),e._v(" "),a("CInputCheckbox",{staticClass:"mb-2",attrs:{label:"Add",value:"true",checked:!1},on:{"update:checked":function(t){return e.selectCheckbox("add")}},model:{value:e.add,callback:function(t){e.add=t},expression:"add"}})],1)],1):e._e()}),[],!1,null,null,null).exports,n=a(2),i=a.n(n),l={name:"CreateBread",components:{CreateBreadFieldCard:s},data:function(){return{message:"",dismissSecs:7,dismissCountDown:0,showDismissibleAlert:!1,tableNameInDatabase:"",marker:!0,bread:{name:"",pagination:5,read:!0,edit:!0,add:!0,delete:!0},formFields:[],receiveFormFields:[],options:[],getData:!1,rolesArray:[],roles:[]}},methods:{goBack:function(){this.$router.go(-1)},checkRoleCheckbox:function(e){1==this.rolesArray[e]?this.rolesArray[e]=!1:this.rolesArray[e]=!0},choiceTableInDatabase:function(){var e=this;i.a.post("/api/bread?token="+localStorage.getItem("api_token"),{marker:"selectModel",model:e.tableNameInDatabase}).then((function(t){if("lackcolumns"==t.data.status)e.message="Table not detected, or there is no columns in table",e.showAlert(),e.tableNameInDatabase="",e.receiveFormFields=[];else{e.marker=!1,e.formFields=t.data.columns,e.options=t.data.options,e.roles=t.data.roles,e.rolesArray=[];for(var a=0;a<e.roles.length;a++)e.rolesArray[e.roles[a]]=!0}})).catch((function(t){console.log(t),e.$router.push({path:"login"})}))},storeFirstStep:function(){this.getData=!0},createPostDataForStore:function(){for(var e={marker:"createForm",model:this.tableNameInDatabase,name:this.bread.name,pagination:this.bread.pagination,read:this.bread.read,edit:this.bread.edit,add:this.bread.add,delete:this.bread.delete},t=0;t<this.receiveFormFields.length;t++)"id"!=this.receiveFormFields[t].columnName&&(e[this.receiveFormFields[t].columnName+"_name"]=this.receiveFormFields[t].visibleName,e[this.receiveFormFields[t].columnName+"_field_type"]=this.receiveFormFields[t].type,e[this.receiveFormFields[t].columnName+"_relation_table"]=this.receiveFormFields[t].relationTable,e[this.receiveFormFields[t].columnName+"_relation_column"]=this.receiveFormFields[t].relationColumn,e[this.receiveFormFields[t].columnName+"_browse"]=this.receiveFormFields[t].browse,e[this.receiveFormFields[t].columnName+"_read"]=this.receiveFormFields[t].read,e[this.receiveFormFields[t].columnName+"_edit"]=this.receiveFormFields[t].edit,e[this.receiveFormFields[t].columnName+"_add"]=this.receiveFormFields[t].add);for(var a=0;a<this.roles.length;a++)1==this.rolesArray[this.roles[a]]&&(e["_role_"+this.roles[a]]="true");return e},receiveDataFormField:function(e){this.receiveFormFields.push(e),this.receiveFormFields.length==this.formFields.length&&this.store()},store:function(){var e=this,t=e.createPostDataForStore();i.a.post("/api/bread?token="+localStorage.getItem("api_token"),t).then((function(t){e.marker=!1,e.$router.push({path:""+t.data.id})})).catch((function(t){if("The given data was invalid."==t.response.data.message){for(var a in e.message="",t.response.data.errors)t.response.data.errors.hasOwnProperty(a)&&(e.message+=t.response.data.errors[a][0]+"  ");e.showAlert()}else console.log(t),e.$router.push({path:"/login"})}))},countDownChanged:function(e){this.dismissCountDown=e},showAlert:function(){this.dismissCountDown=this.dismissSecs}}},d=Object(o.a)(l,(function(){var e=this,t=e.$createElement,a=e._self._c||t;return a("div",[e.marker?a("CRow",[a("CCol",{attrs:{col:"6",lg:"6"}},[a("CCard",{attrs:{"no-header":""}},[a("CCardBody",[a("h3",[e._v("\n            Create Bread\n          ")]),e._v(" "),a("CAlert",{attrs:{show:e.dismissCountDown,color:"primary",fade:""},on:{"update:show":function(t){e.dismissCountDown=t}}},[e._v("\n            ("+e._s(e.dismissCountDown)+") "+e._s(e.message)+"\n          ")]),e._v(" "),a("div",[a("CInput",{attrs:{label:"Table name in database",type:"text",placeholder:"Table name in database"},model:{value:e.tableNameInDatabase,callback:function(t){e.tableNameInDatabase=t},expression:"tableNameInDatabase"}}),e._v(" "),a("CButton",{attrs:{color:"primary"},on:{click:function(t){return e.choiceTableInDatabase()}}},[e._v("Select")]),e._v(" "),a("CButton",{attrs:{color:"primary"},on:{click:e.goBack}},[e._v("Back")])],1)],1)],1)],1)],1):a("CRow",[a("CCol",{attrs:{col:"6",lg:"6"}},[a("CCard",{attrs:{"no-header":""}},[a("CCardBody",[a("h3",[e._v("\n              Create Bread\n            ")]),e._v(" "),a("CAlert",{attrs:{show:e.dismissCountDown,color:"primary",fade:""},on:{"update:show":function(t){e.dismissCountDown=t}}},[e._v("\n              ("+e._s(e.dismissCountDown)+") "+e._s(e.message)+"\n            ")]),e._v(" "),a("CInput",{attrs:{label:"Form name",type:"text",placeholder:"Form name",required:""},model:{value:e.bread.name,callback:function(t){e.$set(e.bread,"name",t)},expression:"bread.name"}}),e._v(" "),a("CInput",{attrs:{label:"Records on one page of table",type:"number",placeholder:"Records on one page of table",required:""},model:{value:e.bread.pagination,callback:function(t){e.$set(e.bread,"pagination",t)},expression:"bread.pagination"}}),e._v(" "),a("CInputCheckbox",{attrs:{label:"Enable Show button in table",value:"true",checked:!0},model:{value:e.bread.read,callback:function(t){e.$set(e.bread,"read",t)},expression:"bread.read"}}),e._v(" "),a("CInputCheckbox",{attrs:{label:"Enable Edit button in table",value:"true",checked:!0},model:{value:e.bread.edit,callback:function(t){e.$set(e.bread,"edit",t)},expression:"bread.edit"}}),e._v(" "),a("CInputCheckbox",{attrs:{label:"Enable Add button in table",value:"true",checked:!0},model:{value:e.bread.add,callback:function(t){e.$set(e.bread,"add",t)},expression:"bread.add"}}),e._v(" "),a("CInputCheckbox",{staticClass:"mb-2",attrs:{label:"Enable Delete button in table",value:"true",checked:!0},model:{value:e.bread.delete,callback:function(t){e.$set(e.bread,"delete",t)},expression:"bread.delete"}})],1)],1)],1),e._v(" "),a("CCol",{attrs:{col:"6",lg:"6"}},[a("CCard",{attrs:{"no-header":""}},[a("CCardBody",[a("h4",[e._v("Assign to roles:")]),e._v(" "),e._l(e.roles,(function(t){return a("CInputCheckbox",{key:t,attrs:{label:t,value:"true",checked:!0},on:{"update:checked":function(a){return e.checkRoleCheckbox(t)}}})}))],2)],1)],1),e._v(" "),a("CCol",{attrs:{col:"6",lg:"6"}},[a("CCard",{attrs:{"no-header":""}},[a("CCardBody",[e._l(e.formFields,(function(t){return a("CreateBreadFieldCard",{key:t.id,attrs:{getData:e.getData,options:e.options,columnName:t,visibleName:t},on:{sendData:e.receiveDataFormField}})})),e._v(" "),a("CButton",{staticClass:"mt-2",attrs:{color:"primary"},on:{click:function(t){return e.storeFirstStep()}}},[e._v("Create")]),e._v(" "),a("CButton",{staticClass:"mt-2",attrs:{color:"primary"},on:{click:function(t){e.marker=!0}}},[e._v("Back")])],2)],1)],1)],1)],1)}),[],!1,null,null,null);t.default=d.exports}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[36],{
+
+/***/ "./coreui/src/views/base/Tooltips.vue":
+/*!********************************************!*\
+  !*** ./coreui/src/views/base/Tooltips.vue ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Tooltips_vue_vue_type_template_id_dfc43b58___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Tooltips.vue?vue&type=template&id=dfc43b58& */ "./coreui/src/views/base/Tooltips.vue?vue&type=template&id=dfc43b58&");
+/* harmony import */ var _Tooltips_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Tooltips.vue?vue&type=script&lang=js& */ "./coreui/src/views/base/Tooltips.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Tooltips_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Tooltips_vue_vue_type_template_id_dfc43b58___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Tooltips_vue_vue_type_template_id_dfc43b58___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "coreui/src/views/base/Tooltips.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./coreui/src/views/base/Tooltips.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./coreui/src/views/base/Tooltips.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltips_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Tooltips.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/base/Tooltips.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltips_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./coreui/src/views/base/Tooltips.vue?vue&type=template&id=dfc43b58&":
+/*!***************************************************************************!*\
+  !*** ./coreui/src/views/base/Tooltips.vue?vue&type=template&id=dfc43b58& ***!
+  \***************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltips_vue_vue_type_template_id_dfc43b58___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Tooltips.vue?vue&type=template&id=dfc43b58& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/base/Tooltips.vue?vue&type=template&id=dfc43b58&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltips_vue_vue_type_template_id_dfc43b58___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltips_vue_vue_type_template_id_dfc43b58___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/base/Tooltips.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/base/Tooltips.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Tooltips',
+  data: function data() {
+    return {
+      placements: ['top-start', 'top', 'top-end', 'bottom-start', 'bottom', 'bottom-end', 'right-start', 'right', 'right-end', 'left-start', 'left', 'left-end']
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/base/Tooltips.vue?vue&type=template&id=dfc43b58&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/base/Tooltips.vue?vue&type=template&id=dfc43b58& ***!
+  \*********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "CCard",
+        [
+          _c(
+            "CCardHeader",
+            [
+              _c("CIcon", { attrs: { name: "cil-justify-center" } }),
+              _vm._v(" "),
+              _c("strong", [_vm._v(" Bootstrap Tooltips ")]),
+              _vm._v(" "),
+              _c("small", [
+                _c("code", [_vm._v("v-c-tooltip")]),
+                _vm._v(" directive")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-header-actions" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "card-header-action",
+                    attrs: {
+                      href: "https://coreui.io/vue/docs/directives/tooltip",
+                      rel: "noreferrer noopener",
+                      target: "_blank"
+                    }
+                  },
+                  [_c("small", { staticClass: "text-muted" }, [_vm._v("docs")])]
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "CCardBody",
+            [
+              _c(
+                "CRow",
+                [
+                  _c("CCol", { attrs: { col: "6" } }, [
+                    _c(
+                      "div",
+                      { staticClass: "text-center my-3" },
+                      [
+                        _c(
+                          "CButton",
+                          {
+                            directives: [
+                              {
+                                name: "c-tooltip",
+                                rawName: "v-c-tooltip.hover.click",
+                                value: "I am a tooltip!",
+                                expression: "'I am a tooltip!'",
+                                modifiers: { hover: true, click: true }
+                              }
+                            ],
+                            attrs: { color: "secondary" }
+                          },
+                          [_vm._v("\n              Hover Me\n            ")]
+                        )
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("CCol", { attrs: { col: "6" } }, [
+                    _c(
+                      "div",
+                      { staticClass: "text-center my-3" },
+                      [
+                        _c(
+                          "CButton",
+                          {
+                            directives: [
+                              {
+                                name: "c-tooltip",
+                                rawName: "v-c-tooltip",
+                                value: {
+                                  content: "I start open!",
+                                  active: true
+                                },
+                                expression:
+                                  "{content: 'I start open!', active:true }"
+                              }
+                            ],
+                            attrs: { color: "secondary" }
+                          },
+                          [_vm._v("\n              Hover me\n            ")]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "CCard",
+        [
+          _c(
+            "CCardHeader",
+            [
+              _c("CIcon", { attrs: { name: "cil-justify-center" } }),
+              _vm._v(" "),
+              _c("strong", [_vm._v(" Tooltips ")]),
+              _vm._v(" "),
+              _c("small", [_vm._v("placement")])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("CCardBody", [
+            _c(
+              "div",
+              { staticClass: "my-3" },
+              [
+                _c(
+                  "CRow",
+                  _vm._l(_vm.placements, function(placement) {
+                    return _c(
+                      "CCol",
+                      {
+                        key: placement,
+                        staticClass: "py-4 text-center",
+                        attrs: { md: "4" }
+                      },
+                      [
+                        _c(
+                          "CButton",
+                          {
+                            directives: [
+                              {
+                                name: "c-tooltip",
+                                rawName: "v-c-tooltip.hover",
+                                value: {
+                                  content: "Placement " + placement,
+                                  placement: placement
+                                },
+                                expression:
+                                  "{\n                content: `Placement ${placement}`,\n                placement\n              }",
+                                modifiers: { hover: true }
+                              }
+                            ],
+                            attrs: { color: "primary" }
+                          },
+                          [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(placement) +
+                                "\n            "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  1
+                )
+              ],
+              1
+            )
+          ])
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ })
+
+}]);

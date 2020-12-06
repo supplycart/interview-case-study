@@ -1,1 +1,762 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[63],{506:function(i,t,o){"use strict";o.r(t);var a={name:"Modals",data:function(){return{myModal:!1,largeModal:!1,smallModal:!1,primaryModal:!1,successModal:!1,warningModal:!1,dangerModal:!1,infoModal:!1,darkModal:!1}}},n=o(0),e=Object(n.a)(a,(function(){var i=this,t=i.$createElement,o=i._self._c||t;return o("div",{staticClass:"wrapper"},[o("div",[o("CRow",[o("CCol",{attrs:{col:"12"}},[o("CCard",[o("CCardHeader",[o("CIcon",{attrs:{name:"cil-justify-center"}}),i._v(" Bootstrap Modals\n            "),o("div",{staticClass:"card-header-actions"},[o("a",{staticClass:"card-header-action",attrs:{href:"https://coreui.io/vue/docs/components/modal",rel:"noreferrer noopener",target:"_blank"}},[o("small",{staticClass:"text-muted"},[i._v("docs")])])])],1),i._v(" "),o("CCardBody",[o("CButton",{staticClass:"mr-1",attrs:{color:"secondary"},on:{click:function(t){i.myModal=!0}}},[i._v("\n              Launch demo modal\n            ")]),i._v(" "),o("CButton",{staticClass:"mr-1",attrs:{color:"secondary"},on:{click:function(t){i.largeModal=!0}}},[i._v("\n              Launch large modal\n            ")]),i._v(" "),o("CButton",{staticClass:"mr-1",attrs:{color:"secondary"},on:{click:function(t){i.smallModal=!0}}},[i._v("\n              Launch small modal\n            ")]),i._v(" "),o("hr"),i._v(" "),o("CButton",{staticClass:"mr-1",attrs:{color:"primary"},on:{click:function(t){i.primaryModal=!0}}},[i._v("\n              Launch primary modal\n            ")]),i._v(" "),o("CButton",{staticClass:"mr-1",attrs:{color:"success"},on:{click:function(t){i.successModal=!0}}},[i._v("\n              Launch success modal\n            ")]),i._v(" "),o("CButton",{staticClass:"mr-1",attrs:{color:"warning"},on:{click:function(t){i.warningModal=!0}}},[i._v("\n              Launch warning modal\n            ")]),i._v(" "),o("CButton",{staticClass:"mr-1",attrs:{color:"danger"},on:{click:function(t){i.dangerModal=!0}}},[i._v("\n              Launch danger modal\n            ")]),i._v(" "),o("CButton",{staticClass:"mr-1",attrs:{color:"info"},on:{click:function(t){i.infoModal=!0}}},[i._v("\n              Launch info modal\n            ")]),i._v(" "),o("CButton",{staticClass:"mr-1",attrs:{color:"dark"},on:{click:function(t){i.darkModal=!0}}},[i._v("\n              Launch dark modal\n            ")])],1)],1)],1)],1)],1),i._v(" "),o("CModal",{attrs:{title:"Modal title",show:i.myModal},on:{"update:show":function(t){i.myModal=t}}},[i._v("\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  ")]),i._v(" "),o("CModal",{attrs:{title:"Modal title",size:"lg",show:i.largeModal},on:{"update:show":function(t){i.largeModal=t}}},[i._v("\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  ")]),i._v(" "),o("CModal",{attrs:{title:"Modal title",size:"sm",show:i.smallModal},on:{"update:show":function(t){i.smallModal=t}}},[i._v("\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  ")]),i._v(" "),o("CModal",{attrs:{title:"Modal title",show:i.primaryModal,color:"primary"},on:{"update:show":function(t){i.primaryModal=t}}},[i._v("\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  ")]),i._v(" "),o("CModal",{attrs:{title:"Modal title",color:"success",show:i.successModal},on:{"update:show":function(t){i.successModal=t}}},[i._v("\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  ")]),i._v(" "),o("CModal",{attrs:{title:"Modal title",color:"warning",show:i.warningModal},on:{"update:show":function(t){i.warningModal=t}}},[i._v("\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  ")]),i._v(" "),o("CModal",{attrs:{title:"Modal title",color:"danger",show:i.dangerModal},on:{"update:show":function(t){i.dangerModal=t}}},[i._v("\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  ")]),i._v(" "),o("CModal",{attrs:{title:"Modal title",color:"info",show:i.infoModal},on:{"update:show":function(t){i.infoModal=t}}},[i._v("\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  ")]),i._v(" "),o("CModal",{attrs:{show:i.darkModal,"no-close-on-backdrop":!0,centered:!0,title:"Modal title 2",size:"lg",color:"dark"},on:{"update:show":function(t){i.darkModal=t}},scopedSlots:i._u([{key:"header",fn:function(){return[o("h6",{staticClass:"modal-title"},[i._v("Custom smaller modal title")]),i._v(" "),o("CButtonClose",{staticClass:"text-white",on:{click:function(t){i.darkModal=!1}}})]},proxy:!0},{key:"footer",fn:function(){return[o("CButton",{attrs:{color:"danger"},on:{click:function(t){i.darkModal=!1}}},[i._v("Discard")]),i._v(" "),o("CButton",{attrs:{color:"success"},on:{click:function(t){i.darkModal=!1}}},[i._v("Accept")])]},proxy:!0}])},[i._v("\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n    ")])],1)}),[],!1,null,null,null);t.default=e.exports}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[63],{
+
+/***/ "./coreui/src/views/notifications/Modals.vue":
+/*!***************************************************!*\
+  !*** ./coreui/src/views/notifications/Modals.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Modals_vue_vue_type_template_id_0a0afad2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Modals.vue?vue&type=template&id=0a0afad2& */ "./coreui/src/views/notifications/Modals.vue?vue&type=template&id=0a0afad2&");
+/* harmony import */ var _Modals_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Modals.vue?vue&type=script&lang=js& */ "./coreui/src/views/notifications/Modals.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Modals_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Modals_vue_vue_type_template_id_0a0afad2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Modals_vue_vue_type_template_id_0a0afad2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "coreui/src/views/notifications/Modals.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./coreui/src/views/notifications/Modals.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./coreui/src/views/notifications/Modals.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Modals_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Modals.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/notifications/Modals.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Modals_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./coreui/src/views/notifications/Modals.vue?vue&type=template&id=0a0afad2&":
+/*!**********************************************************************************!*\
+  !*** ./coreui/src/views/notifications/Modals.vue?vue&type=template&id=0a0afad2& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modals_vue_vue_type_template_id_0a0afad2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Modals.vue?vue&type=template&id=0a0afad2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/notifications/Modals.vue?vue&type=template&id=0a0afad2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modals_vue_vue_type_template_id_0a0afad2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modals_vue_vue_type_template_id_0a0afad2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/notifications/Modals.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/notifications/Modals.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Modals',
+  data: function data() {
+    return {
+      myModal: false,
+      largeModal: false,
+      smallModal: false,
+      primaryModal: false,
+      successModal: false,
+      warningModal: false,
+      dangerModal: false,
+      infoModal: false,
+      darkModal: false
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./coreui/src/views/notifications/Modals.vue?vue&type=template&id=0a0afad2&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./coreui/src/views/notifications/Modals.vue?vue&type=template&id=0a0afad2& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "wrapper" },
+    [
+      _c(
+        "div",
+        [
+          _c(
+            "CRow",
+            [
+              _c(
+                "CCol",
+                { attrs: { col: "12" } },
+                [
+                  _c(
+                    "CCard",
+                    [
+                      _c(
+                        "CCardHeader",
+                        [
+                          _c("CIcon", {
+                            attrs: { name: "cil-justify-center" }
+                          }),
+                          _vm._v(" Bootstrap Modals\n            "),
+                          _c("div", { staticClass: "card-header-actions" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "card-header-action",
+                                attrs: {
+                                  href:
+                                    "https://coreui.io/vue/docs/components/modal",
+                                  rel: "noreferrer noopener",
+                                  target: "_blank"
+                                }
+                              },
+                              [
+                                _c("small", { staticClass: "text-muted" }, [
+                                  _vm._v("docs")
+                                ])
+                              ]
+                            )
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "CCardBody",
+                        [
+                          _c(
+                            "CButton",
+                            {
+                              staticClass: "mr-1",
+                              attrs: { color: "secondary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.myModal = true
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Launch demo modal\n            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "CButton",
+                            {
+                              staticClass: "mr-1",
+                              attrs: { color: "secondary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.largeModal = true
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Launch large modal\n            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "CButton",
+                            {
+                              staticClass: "mr-1",
+                              attrs: { color: "secondary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.smallModal = true
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Launch small modal\n            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("hr"),
+                          _vm._v(" "),
+                          _c(
+                            "CButton",
+                            {
+                              staticClass: "mr-1",
+                              attrs: { color: "primary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.primaryModal = true
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Launch primary modal\n            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "CButton",
+                            {
+                              staticClass: "mr-1",
+                              attrs: { color: "success" },
+                              on: {
+                                click: function($event) {
+                                  _vm.successModal = true
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Launch success modal\n            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "CButton",
+                            {
+                              staticClass: "mr-1",
+                              attrs: { color: "warning" },
+                              on: {
+                                click: function($event) {
+                                  _vm.warningModal = true
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Launch warning modal\n            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "CButton",
+                            {
+                              staticClass: "mr-1",
+                              attrs: { color: "danger" },
+                              on: {
+                                click: function($event) {
+                                  _vm.dangerModal = true
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Launch danger modal\n            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "CButton",
+                            {
+                              staticClass: "mr-1",
+                              attrs: { color: "info" },
+                              on: {
+                                click: function($event) {
+                                  _vm.infoModal = true
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Launch info modal\n            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "CButton",
+                            {
+                              staticClass: "mr-1",
+                              attrs: { color: "dark" },
+                              on: {
+                                click: function($event) {
+                                  _vm.darkModal = true
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n              Launch dark modal\n            "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "CModal",
+        {
+          attrs: { title: "Modal title", show: _vm.myModal },
+          on: {
+            "update:show": function($event) {
+              _vm.myModal = $event
+            }
+          }
+        },
+        [
+          _vm._v(
+            "\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "CModal",
+        {
+          attrs: { title: "Modal title", size: "lg", show: _vm.largeModal },
+          on: {
+            "update:show": function($event) {
+              _vm.largeModal = $event
+            }
+          }
+        },
+        [
+          _vm._v(
+            "\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "CModal",
+        {
+          attrs: { title: "Modal title", size: "sm", show: _vm.smallModal },
+          on: {
+            "update:show": function($event) {
+              _vm.smallModal = $event
+            }
+          }
+        },
+        [
+          _vm._v(
+            "\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "CModal",
+        {
+          attrs: {
+            title: "Modal title",
+            show: _vm.primaryModal,
+            color: "primary"
+          },
+          on: {
+            "update:show": function($event) {
+              _vm.primaryModal = $event
+            }
+          }
+        },
+        [
+          _vm._v(
+            "\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "CModal",
+        {
+          attrs: {
+            title: "Modal title",
+            color: "success",
+            show: _vm.successModal
+          },
+          on: {
+            "update:show": function($event) {
+              _vm.successModal = $event
+            }
+          }
+        },
+        [
+          _vm._v(
+            "\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "CModal",
+        {
+          attrs: {
+            title: "Modal title",
+            color: "warning",
+            show: _vm.warningModal
+          },
+          on: {
+            "update:show": function($event) {
+              _vm.warningModal = $event
+            }
+          }
+        },
+        [
+          _vm._v(
+            "\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "CModal",
+        {
+          attrs: {
+            title: "Modal title",
+            color: "danger",
+            show: _vm.dangerModal
+          },
+          on: {
+            "update:show": function($event) {
+              _vm.dangerModal = $event
+            }
+          }
+        },
+        [
+          _vm._v(
+            "\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "CModal",
+        {
+          attrs: { title: "Modal title", color: "info", show: _vm.infoModal },
+          on: {
+            "update:show": function($event) {
+              _vm.infoModal = $event
+            }
+          }
+        },
+        [
+          _vm._v(
+            "\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n  "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "CModal",
+        {
+          attrs: {
+            show: _vm.darkModal,
+            "no-close-on-backdrop": true,
+            centered: true,
+            title: "Modal title 2",
+            size: "lg",
+            color: "dark"
+          },
+          on: {
+            "update:show": function($event) {
+              _vm.darkModal = $event
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "header",
+              fn: function() {
+                return [
+                  _c("h6", { staticClass: "modal-title" }, [
+                    _vm._v("Custom smaller modal title")
+                  ]),
+                  _vm._v(" "),
+                  _c("CButtonClose", {
+                    staticClass: "text-white",
+                    on: {
+                      click: function($event) {
+                        _vm.darkModal = false
+                      }
+                    }
+                  })
+                ]
+              },
+              proxy: true
+            },
+            {
+              key: "footer",
+              fn: function() {
+                return [
+                  _c(
+                    "CButton",
+                    {
+                      attrs: { color: "danger" },
+                      on: {
+                        click: function($event) {
+                          _vm.darkModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Discard")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "CButton",
+                    {
+                      attrs: { color: "success" },
+                      on: {
+                        click: function($event) {
+                          _vm.darkModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Accept")]
+                  )
+                ]
+              },
+              proxy: true
+            }
+          ])
+        },
+        [
+          _vm._v(
+            "\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n    "
+          )
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ })
+
+}]);
