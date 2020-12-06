@@ -766,12 +766,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -818,7 +812,9 @@ __webpack_require__.r(__webpack_exports__);
         console.log(items);
         return items;
       })["catch"](function (error) {
-        console.log(error);
+        self.$router.push({
+          path: '/login'
+        });
       });
     },
     addItem: function addItem(id) {
@@ -1464,11 +1460,9 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("CMenu"),
-      _vm._v(" "),
       _c(
         "CHeaderNav",
-        { staticClass: "mr-4" },
+        { staticClass: "mr-4 ml-auto" },
         [
           _c(
             "CHeaderNavItem",
@@ -1573,15 +1567,54 @@ var render = function() {
           ])
         },
         _vm._l(_vm.cItems, function(item) {
-          return _c("div", { key: item.id, staticClass: "flex" }, [
-            _c("div", { staticClass: "flex-1" }, [
-              _vm._v("\n        " + _vm._s(item.name) + " \n      ")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex-1" }, [
-              _vm._v("\n        " + _vm._s(item.price.amount) + "\n      ")
-            ])
-          ])
+          return _c(
+            "div",
+            { key: item.id },
+            [
+              _vm._v(
+                "\n      \n        " +
+                  _vm._s(item.name) +
+                  " \n              \n      "
+              ),
+              _c(
+                "CButton",
+                {
+                  staticClass: "m-2 ml-auto",
+                  attrs: { size: "sm", color: "secondary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.removeItem(item.pivot.id)
+                    }
+                  }
+                },
+                [_vm._v("\n        -\n      ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "CBadge",
+                {
+                  staticClass: "mx-2",
+                  attrs: { color: "light", shape: "pill" }
+                },
+                [_vm._v("\n        " + _vm._s(item.pivot.amount) + "\n      ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "CButton",
+                {
+                  staticClass: "m-2",
+                  attrs: { size: "sm", color: "secondary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.addItem(item.pivot.id)
+                    }
+                  }
+                },
+                [_vm._v("\n        +\n      ")]
+              )
+            ],
+            1
+          )
         }),
         0
       )

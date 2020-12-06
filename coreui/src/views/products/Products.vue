@@ -4,13 +4,13 @@
       <transition name="slide">
       <CCard>
         <CCardBody>
-            <CAlert
-              :show.sync="dismissCountDown"
-              color="primary"
-              fade
-            >
-              ({{dismissCountDown}}) {{ message }}
-            </CAlert>
+          <CAlert
+            :show.sync="dismissCountDown"
+            color="primary"
+            fade
+          >
+            ({{dismissCountDown}}) {{ message }}
+          </CAlert>
             <h3>Products</h3>
             <CDataTable
               hover
@@ -21,6 +21,7 @@
               table-filter
               sorter
               pagination
+              :loading="loading"
             >
               <template #category="{item}">
                 <td>
@@ -34,7 +35,37 @@
               </template>
               <template #price="{item}">
                 <td>
-                  <strong>{{ item.price.amount.toFixed(2) }}</strong>
+                  <strong>RM {{ item.price.amount.toFixed(2) }}</strong>
+                </td>
+              </template>
+              <template #created_at-filter="{item}">
+                <td>
+
+                </td>     
+              </template>
+              <template #updated_at-filter="{item}">
+                <td>
+
+                </td>     
+              </template>
+              <template #price-filter="{item}">
+                <td>
+
+                </td>     
+              </template>
+              <template #action-filter="{item}">
+                <td>
+
+                </td>     
+              </template>
+              <template #created_at="{item}">
+                <td>
+                  <strong>{{ formatDate(item.created_at) }}</strong>
+                </td>
+              </template>
+              <template #updated_at="{item}">
+                <td>
+                  <strong>{{ formatDate(item.updated_at) }}</strong>
                 </td>
               </template>
               <template #show="{item}">
@@ -77,7 +108,8 @@ export default {
       showMessage: false,
       dismissSecs: 7,
       dismissCountDown: 0,
-      showDismissibleAlert: false
+      showDismissibleAlert: false,
+      loading: false
     }
   },
   computed: {
@@ -86,7 +118,7 @@ export default {
         return { 
           ...item, 
           category: item.categories[0].name, 
-          brand: item.brands[0].name 
+          brand: item.brands[0].name,
         }
       })
     },
@@ -137,6 +169,7 @@ export default {
     },
     getNotes (){
       let self = this;
+      self.loading = true;
       axios.get(  '/api/products?token=' + localStorage.getItem("api_token") )
       .then(function (response) {
         self.items = response.data;
@@ -145,7 +178,12 @@ export default {
         console.log(error);
         // self.$router.push({ path: '/login' });
       });
+      self.loading = false;
     },
+    formatDate(date) {
+      let d = new Date(date);
+      return d;
+    }
   },
   mounted: function(){
     this.getNotes();

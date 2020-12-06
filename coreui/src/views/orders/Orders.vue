@@ -29,14 +29,14 @@
                   <strong>{{item.products.length}}</strong>
                 </td>
               </template>
-              <template #show="{item}">
+              <template #created_at="{item}">
                 <td>
-                  <CButton color="primary" @click="showNote( item.id )">Show</CButton>
+                  <strong>{{ new Date(item.created_at) }}</strong>
                 </td>
               </template>
-              <template #edit="{item}">
+              <template #updated_at="{item}">
                 <td>
-                  <CButton color="primary" @click="editNote( item.id )">Edit</CButton>
+                  <strong>{{ new Date(item.updated_at) }}</strong>
                 </td>
               </template>
               <template #action="{item}">

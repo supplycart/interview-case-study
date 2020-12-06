@@ -99,6 +99,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'User',
@@ -110,7 +113,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      order: []
+      order: [],
+      totalPrice: 0
     };
   },
   methods: {
@@ -122,10 +126,13 @@ __webpack_require__.r(__webpack_exports__);
     var self = this;
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/order/' + self.$route.params.id + '?token=' + localStorage.getItem("api_token")).then(function (response) {
       self.order = response.data;
+      self.order.products.forEach(function (i) {
+        return self.totalPrice = self.totalPrice + i.price.amount * i.pivot.amount;
+      });
     })["catch"](function (error) {
       console.log(error);
       self.$router.push({
-        path: '/login'
+        path: '/pages/404'
       });
     });
   }
@@ -163,7 +170,7 @@ var render = function() {
                 "CCardBody",
                 [
                   _c("h3", [
-                    _vm._v("Order id:  " + _vm._s(_vm.$route.params.id))
+                    _vm._v("Order ID:  " + _vm._s(_vm.$route.params.id))
                   ]),
                   _vm._v(" "),
                   _c("br"),
@@ -173,14 +180,30 @@ var render = function() {
                   _c(
                     "ul",
                     _vm._l(_vm.order.products, function(item) {
-                      return _c("li", { key: item.id }, [
+                      return _c("li", { key: item.id, staticClass: "row" }, [
                         _vm._v(
-                          _vm._s(item.name) + " x " + _vm._s(item.pivot.amount)
-                        )
+                          "- " +
+                            _vm._s(item.name) +
+                            " x " +
+                            _vm._s(item.pivot.amount) +
+                            " "
+                        ),
+                        _c("div", { staticClass: "ml-auto mr-4" }, [
+                          _vm._v("- RM " + _vm._s(item.price.amount.toFixed(2)))
+                        ])
                       ])
                     }),
                     0
                   ),
+                  _vm._v(" "),
+                  _c("h4", { staticClass: "row mx-2" }, [
+                    _vm._v("Total price: "),
+                    _c("div", { staticClass: "ml-auto" }, [
+                      _vm._v("RM" + _vm._s(_vm.totalPrice.toFixed(2)))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _c(
                     "CButton",

@@ -401,54 +401,28 @@ var render = function() {
                             }
                           },
                           {
-                            key: "show",
+                            key: "created_at",
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _c(
-                                  "td",
-                                  [
-                                    _c(
-                                      "CButton",
-                                      {
-                                        attrs: { color: "primary" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.showNote(item.id)
-                                          }
-                                        }
-                                      },
-                                      [_vm._v("Show")]
-                                    )
-                                  ],
-                                  1
-                                )
+                                _c("td", [
+                                  _c("strong", [
+                                    _vm._v(_vm._s(new Date(item.created_at)))
+                                  ])
+                                ])
                               ]
                             }
                           },
                           {
-                            key: "edit",
+                            key: "updated_at",
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _c(
-                                  "td",
-                                  [
-                                    _c(
-                                      "CButton",
-                                      {
-                                        attrs: { color: "primary" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.editNote(item.id)
-                                          }
-                                        }
-                                      },
-                                      [_vm._v("Edit")]
-                                    )
-                                  ],
-                                  1
-                                )
+                                _c("td", [
+                                  _c("strong", [
+                                    _vm._v(_vm._s(new Date(item.updated_at)))
+                                  ])
+                                ])
                               ]
                             }
                           },

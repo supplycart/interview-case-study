@@ -14,9 +14,9 @@
       <CIcon name="logo" height="48" alt="Logo"/>
     </CHeaderBrand>
 
-    <CMenu/>
+    <!-- <CMenu/> -->
 
-    <CHeaderNav class="mr-4">
+    <CHeaderNav class="mr-4 ml-auto">
       <CHeaderNavItem class="d-md-down-none mx-2">
         <CButton
           color="warning"
@@ -44,17 +44,11 @@
       :show.sync="warningModal"
       footer
     >
-      <div class="flex" v-for="item in cItems" :key="item.id">
+      <div v-for="item in cItems" :key="item.id">
         
-        <div class="flex-1">
           {{ item.name }} 
-        </div>
-        
-        <div class="flex-1">
-          {{ item.price.amount }}
-        </div>
-        
-        <!-- <CButton
+                
+        <CButton
           size="sm"
           color="secondary"
           class="m-2 ml-auto"
@@ -72,7 +66,7 @@
           @click="addItem(item.pivot.id)"
         >
           +
-        </CButton> -->
+        </CButton>
       </div>
 
       <template #footer>
@@ -139,7 +133,7 @@ export default {
         console.log(items);
         return items;
       }).catch(function (error) {
-        console.log(error);
+        self.$router.push({ path: '/login' });
       });
     },
     addItem: function(id) {

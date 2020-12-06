@@ -61,6 +61,9 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
         $order->products;
+        foreach($order->products as $prod){
+          $prod->price;
+        }
         return response()->json( $order );
     }
 

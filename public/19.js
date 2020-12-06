@@ -166,6 +166,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Notes',
@@ -181,7 +212,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       showMessage: false,
       dismissSecs: 7,
       dismissCountDown: 0,
-      showDismissibleAlert: false
+      showDismissibleAlert: false,
+      loading: false
     };
   },
   computed: {
@@ -244,12 +276,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     getNotes: function getNotes() {
       var self = this;
+      self.loading = true;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/products?token=' + localStorage.getItem("api_token")).then(function (response) {
         self.items = response.data;
         console.log(self.items);
       })["catch"](function (error) {
         console.log(error); // self.$router.push({ path: '/login' });
       });
+      self.loading = false;
+    },
+    formatDate: function formatDate(date) {
+      var d = new Date(date);
+      return d;
     }
   },
   mounted: function mounted() {
@@ -356,11 +394,11 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n            (" +
+                            "\n          (" +
                               _vm._s(_vm.dismissCountDown) +
                               ") " +
                               _vm._s(_vm.message) +
-                              "\n          "
+                              "\n        "
                           )
                         ]
                       ),
@@ -376,7 +414,8 @@ var render = function() {
                           "column-filter": "",
                           "table-filter": "",
                           sorter: "",
-                          pagination: ""
+                          pagination: "",
+                          loading: _vm.loading
                         },
                         scopedSlots: _vm._u([
                           {
@@ -412,7 +451,68 @@ var render = function() {
                               return [
                                 _c("td", [
                                   _c("strong", [
-                                    _vm._v(_vm._s(item.price.amount.toFixed(2)))
+                                    _vm._v(
+                                      "RM " +
+                                        _vm._s(item.price.amount.toFixed(2))
+                                    )
+                                  ])
+                                ])
+                              ]
+                            }
+                          },
+                          {
+                            key: "created_at-filter",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [_c("td")]
+                            }
+                          },
+                          {
+                            key: "updated_at-filter",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [_c("td")]
+                            }
+                          },
+                          {
+                            key: "price-filter",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [_c("td")]
+                            }
+                          },
+                          {
+                            key: "action-filter",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [_c("td")]
+                            }
+                          },
+                          {
+                            key: "created_at",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c("td", [
+                                  _c("strong", [
+                                    _vm._v(
+                                      _vm._s(_vm.formatDate(item.created_at))
+                                    )
+                                  ])
+                                ])
+                              ]
+                            }
+                          },
+                          {
+                            key: "updated_at",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c("td", [
+                                  _c("strong", [
+                                    _vm._v(
+                                      _vm._s(_vm.formatDate(item.updated_at))
+                                    )
                                   ])
                                 ])
                               ]

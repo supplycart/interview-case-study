@@ -1,7 +1,10 @@
 <template>
-  <CContainer class="d-flex content-center min-vh-100">
-    <CRow>
+  <CContainer class="d-flex content-center success min-vh-100">
+    <CRow class="col-lg-12">
       <CCol>
+      <CAlert color="danger" :show="warning" @click="warning=false" closeButton>
+        Invalid credentials.
+      </CAlert>
         <CCardGroup>
           <CCard class="p-4">
             <CCardBody>
@@ -11,7 +14,7 @@
                 <CInput
                   v-model="email"
                   prependHtml="<i class='cui-user'></i>"
-                  placeholder="Username"
+                  placeholder="Email"
                   autocomplete="username email"
                 >
                   <template #prepend-content><CIcon name="cil-user"/></template>
@@ -69,6 +72,7 @@ import axios from "axios";
           password: '',
           showMessage: false,
           message: '',
+          warning: false
         }
       },
       methods: {
@@ -77,10 +81,12 @@ import axios from "axios";
         },
         login() {
           let self = this;
+          self.warning = false;
           axios.post(  '/api/login', {
             email: self.email,
             password: self.password,
           }).then(function (response) {
+            console.log(response);
             self.email = '';
             self.password = '';
             localStorage.setItem("api_token", response.data.access_token);
@@ -89,7 +95,7 @@ import axios from "axios";
           .catch(function (error) {
             self.message = 'Incorrect E-mail or password';
             self.showMessage = true;
-            console.log(error);
+            self.warning = true;
           });
   
         }

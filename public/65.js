@@ -139,6 +139,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Login',
@@ -147,7 +150,8 @@ __webpack_require__.r(__webpack_exports__);
       email: '',
       password: '',
       showMessage: false,
-      message: ''
+      message: '',
+      warning: false
     };
   },
   methods: {
@@ -158,10 +162,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     login: function login() {
       var self = this;
+      self.warning = false;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/login', {
         email: self.email,
         password: self.password
       }).then(function (response) {
+        console.log(response);
         self.email = '';
         self.password = '';
         localStorage.setItem("api_token", response.data.access_token);
@@ -171,7 +177,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         self.message = 'Incorrect E-mail or password';
         self.showMessage = true;
-        console.log(error);
+        self.warning = true;
       });
     }
   }
@@ -196,14 +202,32 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "CContainer",
-    { staticClass: "d-flex content-center min-vh-100" },
+    { staticClass: "d-flex content-center success min-vh-100" },
     [
       _c(
         "CRow",
+        { staticClass: "col-lg-12" },
         [
           _c(
             "CCol",
             [
+              _c(
+                "CAlert",
+                {
+                  attrs: {
+                    color: "danger",
+                    show: _vm.warning,
+                    closeButton: ""
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.warning = false
+                    }
+                  }
+                },
+                [_vm._v("\n      Invalid credentials.\n    ")]
+              ),
+              _vm._v(" "),
               _c(
                 "CCardGroup",
                 [
@@ -235,7 +259,7 @@ var render = function() {
                               _c("CInput", {
                                 attrs: {
                                   prependHtml: "<i class='cui-user'></i>",
-                                  placeholder: "Username",
+                                  placeholder: "Email",
                                   autocomplete: "username email"
                                 },
                                 scopedSlots: _vm._u([
