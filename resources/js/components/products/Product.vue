@@ -9,9 +9,22 @@
         </div>
         <div v-if="product.stock > 0" class="flex">
             <div class="flex custom-number-input h-10 w-6/12 ml-2">
-                <quantity-counter :amount="amount"
-                                  @increment="amount = amount + 1"
-                                  @decrement="amount = amount - 1"/>
+                <!--                <quantity-counter :product="product" @update-amount="updateAmount"/>-->
+                <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                    <button @click="amount--" data-action="decrement"
+                            class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                        <span class="m-auto text-2xl font-thin">−</span>
+                    </button>
+                    <input type="number"
+                           @keyup.enter="addToCart"
+                           v-model.number="amount"
+                           class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none"
+                           name="custom-input-number"/>
+                    <button @click="amount++" data-action="increment"
+                            class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                        <span class="m-auto text-2xl font-thin">+</span>
+                    </button>
+                </div>
             </div>
             <div class="flex ml-5">
                 <button @click="addToCart"
@@ -24,7 +37,7 @@
         <div v-else class="pl-4">
             <span class="font-bold text-red-800">Currently unavailable</span>
         </div>
-        <div  v-if="amountInCart !== 0" class="flex justify-center pt-2">
+        <div v-if="amountInCart !== 0" class="flex justify-center pt-2">
             <span>
                 {{ amountInCart }} in cart
             </span>
@@ -37,6 +50,7 @@
 <script>
 import Spinner from 'vue-simple-spinner'
 import QuantityCounter from "../core/QuantityCounter";
+import {mapGetters} from "vuex";
 
 export default {
     props: {
@@ -44,7 +58,7 @@ export default {
         default: () => {
             return {
                 price: 10,
-                title: 'Test'
+                title: ''
             }
         }
     },
@@ -52,13 +66,21 @@ export default {
         QuantityCounter,
         Spinner
     },
+    watch: {
+        amount(val) {
+            if(this.amount === '') return;
+            if (this.amount <= 0) this.amount = 1;
+        }
+    },
     name: "Product",
     computed: {
-        cart() {
-            return this.$store.getters['cart/cart'];
-        },
+        ...mapGetters(
+            'cart', [
+                'cart'
+            ]
+        ),
         amountInCart() {
-            const item = this.$store.getters['cart/cart'].find(x => x.product.id === this.product.id);
+            const item = this.cart.find(x => x.product.id === this.product.id);
             if (item !== undefined) return item.amount;
             return 0;
         }

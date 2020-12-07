@@ -16,7 +16,8 @@ class AddedProduct extends Model
 
     protected $casts = [
         'current_price' => 'float',
-        'total' => 'integer'
+        'total' => 'integer',
+        'amount' => 'integer',
     ];
 
     public function user()

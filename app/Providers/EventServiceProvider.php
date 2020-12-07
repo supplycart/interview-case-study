@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Events\OrderPlaced;
+use App\Listeners\Order\CachePreviousOrders;
+use App\Listeners\Order\DecreaseOrderStock;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -20,7 +22,8 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         OrderPlaced::class => [
-
+                CachePreviousOrders::class,
+                DecreaseOrderStock::class
         ]
     ];
 

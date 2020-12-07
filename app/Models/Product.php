@@ -19,11 +19,25 @@ class Product extends Model
         return $this->hasMany(ProductPrice::class, 'product_id');
     }
 
-    public function scopeIndex(Builder $query, $search = '')
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function scopeIndex(Builder $query, $search = '', $categoryId = '', $brandId = '')
     {
         return $query->when($search, function ($q) use ($search) {
             return $q->where('title', 'like', "%{$search}%")
                 ->orWhere('description', 'like', "%{$search}%");
+        })->when($categoryId, function ($q) use ($categoryId) {
+            return $q->where('category_id', $categoryId);
+        })->when($brandId, function ($q) use ($brandId) {
+            return $q->where('brand_id', $brandId);
         })->with([
             'prices.countries' => function ($q) {
                 // TODO : check based on users country

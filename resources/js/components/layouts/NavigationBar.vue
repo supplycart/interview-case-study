@@ -5,7 +5,8 @@
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <!-- Logo -->
-                    <div @click="$router.push({name : 'products'})" class="flex-shrink-0 flex items-center cursor-pointer">
+                    <div @click="$router.push({name : 'products'})"
+                         class="flex-shrink-0 flex items-center cursor-pointer">
                         <img
                             src="https://blog.supplycart.my/wp-content/uploads/2019/03/Supplycart_Digital-logomark-w-workmark-PlainLogo_RGB.png"
                             height="100" width="200"/>
@@ -123,8 +124,6 @@
             </div>
         </div>
     </nav>
-
-
 </template>
 
 <script>
@@ -139,6 +138,9 @@ export default {
             open: false
         }
     },
+    created() {
+        this.$store.dispatch('user/fetchUser');
+    },
     computed: {
         search: {
             get() {
@@ -147,6 +149,9 @@ export default {
             set(val) {
                 return this.$store.commit('products/search', val);
             }
+        },
+        user() {
+            return this.$store.getters['user/user'];
         }
     },
     methods: {

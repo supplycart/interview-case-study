@@ -12,7 +12,11 @@ class ProductController extends Controller
     {
         $search = $request->has('q') ? $request->q : "";
 
-        return ProductResource::collection(Product::index($search)->paginate(20));
+        $categoryId = $request->has('category') ? $request->category : '';
+
+        $brandId = $request->has('brand') ? $request->brand : '';
+
+        return ProductResource::collection(Product::index($search, $categoryId, $brandId)->paginate(20));
     }
 
     public function store(Request $request)

@@ -13,6 +13,7 @@ import notification from "./vuex-modules/notification";
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import previousOrder from "./vuex-modules/previousOrder";
+import user from "./vuex-modules/user";
 
 // window.Vue = Vue;
 window.Vue = require('vue');
@@ -92,6 +93,7 @@ const store = new Vuex.Store({
     modules: {
         products,
         cart,
+        user,
         notification,
         previousOrder
     }

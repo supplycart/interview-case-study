@@ -13,6 +13,7 @@ class Order extends Model
 
     const STATUS_TO_PAY = 'TO_PAY';
     const STATUS_TO_RECEIVED = 'TO_RECEIVED';
+    const CACHE_NAME = '_previous_orders';
 
     protected $casts = [
         'total_price' => 'float'

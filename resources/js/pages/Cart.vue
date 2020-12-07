@@ -42,8 +42,7 @@
                     </table-row>
 
                     <table-row>
-                        <quantity-counter :amount="item.amount" @increment="increment(item)"
-                                          @decrement="decrement(item)"/>
+                        <quantity-counter :product="item" @update-amount="updateAmount" />
                     </table-row>
 
                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -104,7 +103,7 @@ export default {
             ]
         ),
         showCheckoutButton() {
-            return this.cart.filter(x => x.selected === true).length;
+            return this.cart.filter(x => x.selected === true).length && this.total > 0;
         }
     },
     data() {
@@ -132,6 +131,9 @@ export default {
         decrement(instance) {
             if (instance.amount <= 1) return;
             instance.amount--;
+            this.$store.commit("cart/updateProductInCart", instance);
+        },
+        updateAmount(instance) {
             this.$store.commit("cart/updateProductInCart", instance);
         },
         deleteItem(itemId) {

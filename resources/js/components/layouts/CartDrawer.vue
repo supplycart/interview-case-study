@@ -59,6 +59,8 @@
 <script>
 
 
+import {mapGetters} from "vuex";
+
 export default {
     name: "CartDrawer",
     data() {
@@ -70,14 +72,13 @@ export default {
         this.$store.dispatch('cart/fetchAddedProducts');
     },
     computed: {
-        cart() {
-            return this.$store.getters['cart/cart']
-        },
+        ...mapGetters(
+            'cart', [
+                'cart', 'total'
+            ]
+        ),
         previewCart() {
             return this.cart.slice(0, 3)
-        },
-        total() {
-            return this.$store.getters['cart/total']
         }
     },
     methods: {
@@ -85,7 +86,7 @@ export default {
             this.isOpen = false;
         },
         totalForEachItem(product) {
-            return (parseFloat(product.price.price) * product.amount).toFixed(2);
+            return (product.price.price * product.amount).toFixed(2);
         },
         redirectToCartPage() {
             if (this.$router.currentRoute.name !== 'cart') {
