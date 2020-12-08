@@ -2546,8 +2546,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 
@@ -23074,9 +23072,11 @@ var render = function() {
           _vm._v(_vm._s(_vm._f("limitWords")(_vm.product.title)))
         ]),
         _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(_vm.product.category.name))]),
-        _vm._v(" "),
         _c("span", [_vm._v(_vm._s(_vm.product.brand.name))]),
+        _vm._v(" "),
+        _c("span", { staticClass: "text-gray-700 text-sm" }, [
+          _vm._v(_vm._s(_vm.product.category.name))
+        ]),
         _vm._v(" "),
         _c("span", { staticClass: "text-black text-xl font-semibold mt-2" }, [
           _vm._v("RM " + _vm._s(_vm.product.price.price.toFixed(2)))
@@ -23203,13 +23203,11 @@ var render = function() {
       _vm._v(" "),
       _vm.amountInCart !== 0
         ? _c("div", { staticClass: "flex justify-center pt-2" }, [
-            _c("span", [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.amountInCart) +
-                  " in cart\n        "
-              )
-            ])
+            _c("span", { staticClass: "font-bold mr-2" }, [
+              _vm._v(_vm._s(_vm.amountInCart))
+            ]),
+            _vm._v(" "),
+            _c("span", [_vm._v("in cart")])
           ])
         : _vm._e()
     ]

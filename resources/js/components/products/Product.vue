@@ -5,8 +5,8 @@
         </div>
         <div class="flex flex-col px-5 py-3">
             <h3 class="text-gray-700 text-lg font-medium">{{ product.title | limitWords }}</h3>
-            <span>{{product.category.name}}</span>
             <span>{{product.brand.name}}</span>
+            <span class="text-gray-700 text-sm">{{product.category.name}}</span>
             <span class="text-black text-xl font-semibold mt-2">RM {{ product.price.price.toFixed(2) }}</span>
         </div>
         <div v-if="product.stock > 0" class="flex">
@@ -39,9 +39,7 @@
             <span class="font-bold text-red-800">Currently unavailable</span>
         </div>
         <div v-if="amountInCart !== 0" class="flex justify-center pt-2">
-            <span>
-                {{ amountInCart }} in cart
-            </span>
+            <span class="font-bold mr-2">{{ amountInCart }}</span> <span>in cart</span>
         </div>
 
     </div>
