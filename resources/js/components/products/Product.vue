@@ -29,10 +29,9 @@
                 </div>
             </div>
             <div class="flex ml-5">
-                <button @click="addToCart"
-                        class="bg-primary text-white bg-green-600 hover:bg-green-500 text-sm py-3 px-4 border border-primary rounded font-bold flex items-center">
+                <primary-button @click="addToCart">
                     Add to cart
-                </button>
+                </primary-button>
             </div>
 
         </div>
@@ -53,6 +52,7 @@
 import Spinner from 'vue-simple-spinner'
 import QuantityCounter from "../core/QuantityCounter";
 import {mapGetters} from "vuex";
+import PrimaryButton from "../core/buttons/PrimaryButton";
 
 export default {
     props: {
@@ -65,6 +65,7 @@ export default {
         }
     },
     components: {
+        PrimaryButton,
         QuantityCounter,
         Spinner
     },

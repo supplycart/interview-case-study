@@ -24,6 +24,11 @@
                         </option>
                     </select>
                 </div>
+                <div class="flex mt-6 ml-3">
+                    <primary-button @click="clearFilter">
+                        Clear filter
+                    </primary-button>
+                </div>
 
             </div>
             <span class="mt-3 text-sm text-gray-500">{{ products.length }} Products</span>
@@ -42,10 +47,11 @@ import Title from "../components/core/Title";
 import categoyRepository from "../repositories/categoyRepository";
 import brandRepository from "../repositories/brandRepository";
 import PrimarySelect from "../components/core/PrimarySelect";
+import PrimaryButton from "../components/core/buttons/PrimaryButton";
 
 export default {
     name: "Products",
-    components: {PrimarySelect, Title, Product},
+    components: {PrimaryButton, PrimarySelect, Title, Product},
     computed: {
         ...mapGetters(
             'products', [
@@ -81,6 +87,10 @@ export default {
         this.fetchProducts();
     },
     methods: {
+        clearFilter() {
+            this.$store.commit('products/brand', '');
+            this.$store.commit('products/category', '');
+        },
         async fetchProducts() {
             const route = this.$router.currentRoute.query;
             this.$store.commit('products/search', route.q !== undefined ? route.q : '');

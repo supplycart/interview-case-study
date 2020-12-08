@@ -27,7 +27,6 @@ const actions = {
         const response = await axios.get('api/user');
         let user = response.data;
         user.verified = response.data.email_verified_at !== null;
-        console.log({user});
         state.commit('user', user);
     }
 }

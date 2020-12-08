@@ -26,26 +26,6 @@ class ProductController extends Controller
             else $brandId = $brandId->id;
         } else $brandId = '';
 
-        return ProductResource::collection(Product::index($search, $categoryId, $brandId)->paginate(20));
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(Product $product)
-    {
-        //
-    }
-
-    public function update(Request $request, Product $product)
-    {
-        //
-    }
-
-    public function destroy(Product $product)
-    {
-        //
+        return ProductResource::collection(Product::index($search, $categoryId, $brandId)->get());
     }
 }

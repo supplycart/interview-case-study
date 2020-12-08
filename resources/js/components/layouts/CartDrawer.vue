@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bg-white">
         <div @mouseleave="isOpen=false" class="h-64 justify-start">
             <div class="relative ">
                 <div class="flex flex-row cursor-pointer truncate p-2 px-4  rounded">
@@ -22,7 +22,7 @@
                 </div>
 
                 <default-transition>
-                    <div v-show="isOpen" class="absolute w-full  rounded-b border-t-0 z-50">
+                    <div v-show="isOpen" class="absolute w-full bg-white rounded-b border-t-0 z-50">
                         <div class="shadow-xl w-64">
                             <div v-for="product in previewCart" :key="product.id"
                                  class="p-2 flex bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-100"
@@ -39,10 +39,10 @@
                                     {{ 'RM' + totalForEachItem(product) }}
                                 </div>
                             </div>
-                            <div class="p-4 justify-center flex">
+                            <div class="p-4 justify-center flex bg-white">
                                 <button @click="redirectToCartPage"
-                                        class="text-base  undefined  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer
-        hover:bg-teal-700 hover:text-teal-100
+                                        class="text-base text-white bg-teal-600 border  undefined  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer
+        hover:bg-teal-700
         text-teal-700n">View cart (RM {{ total }})
                                 </button>
                             </div>

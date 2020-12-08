@@ -7,13 +7,8 @@ use Illuminate\Database\Seeder;
 
 class BrandsTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        Brand::factory()->count(10)->create();
+        Brand::factory()->count(4)->create();
     }
 }
