@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -12,9 +14,17 @@ class ProductController extends Controller
     {
         $search = $request->has('q') ? $request->q : "";
 
-        $categoryId = $request->has('category') ? $request->category : '';
+        if ($request->has('category') && $request->category !== null) {
+            $categoryId = Category::name($request->category)->first();
+            if (!$categoryId instanceof Category) $categoryId = '';
+            else $categoryId = $categoryId->id;
+        } else $categoryId = '';
 
-        $brandId = $request->has('brand') ? $request->brand : '';
+        if ($request->has('brand') && $request->brand !== null) {
+            $brandId = Brand::name($request->brand)->first();
+            if (!$brandId instanceof Brand) $brandId = '';
+            else $brandId = $brandId->id;
+        } else $brandId = '';
 
         return ProductResource::collection(Product::index($search, $categoryId, $brandId)->paginate(20));
     }

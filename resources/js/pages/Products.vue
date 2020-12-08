@@ -76,20 +76,17 @@ export default {
         }
     },
     created() {
-        this.fetchProducts();
         this.$store.dispatch('products/categories');
         this.$store.dispatch('products/brands');
+        this.fetchProducts();
     },
     methods: {
-        fetchProducts() {
+        async fetchProducts() {
             const route = this.$router.currentRoute.query;
-            if (route.q !== undefined && route.q !== '')
-                this.$store.commit('products/search', route.q);
-            if (route.brand !== undefined && route.brand !== '')
-                this.$store.commit('products/brand', route.brand);
-            if (route.category !== undefined && route.category !== '')
-                this.$store.commit('products/category', route.category);
-            this.$store.dispatch('products/products');
+            this.$store.commit('products/search', route.q !== undefined ? route.q : '');
+            this.$store.commit('products/brand', route.hasOwnProperty('brand') ? route.brand : '');
+            this.$store.commit('products/category', route.hasOwnProperty('category') ? route.category : '');
+            await this.$store.dispatch('products/products');
         }
     },
 }

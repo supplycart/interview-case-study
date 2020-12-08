@@ -11,6 +11,7 @@ class ProductPriceCountry extends Model
 
     const MALAYSIA_CODE = 'MY';
     const SINGAPORE_CODE = 'SG';
+    const USA_CODE = 'USA';
 
     protected $fillable = [
         'country_code', 'product_id'
@@ -23,6 +24,6 @@ class ProductPriceCountry extends Model
 
     public static function countriesAvailable()
     {
-        return [static::MALAYSIA_CODE, static::SINGAPORE_CODE];
+        return [static::MALAYSIA_CODE, static::SINGAPORE_CODE, static::USA_CODE];
     }
 }

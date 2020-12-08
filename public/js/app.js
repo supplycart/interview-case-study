@@ -2378,6 +2378,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2388,7 +2412,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      open: false
+      open: false,
+      showDropdown: false,
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
   created: function created() {
@@ -2481,6 +2507,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -2943,12 +2971,20 @@ dayjs.extend(localizedFormat);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_products_Product__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/products/Product */ "./resources/js/components/products/Product.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_core_Title__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/core/Title */ "./resources/js/components/core/Title.vue");
-/* harmony import */ var _repositories_categoyRepository__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../repositories/categoyRepository */ "./resources/js/repositories/categoyRepository.js");
-/* harmony import */ var _repositories_brandRepository__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../repositories/brandRepository */ "./resources/js/repositories/brandRepository.js");
-/* harmony import */ var _components_core_PrimarySelect__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/core/PrimarySelect */ "./resources/js/components/core/PrimarySelect.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_products_Product__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/products/Product */ "./resources/js/components/products/Product.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_core_Title__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/core/Title */ "./resources/js/components/core/Title.vue");
+/* harmony import */ var _repositories_categoyRepository__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../repositories/categoyRepository */ "./resources/js/repositories/categoyRepository.js");
+/* harmony import */ var _repositories_brandRepository__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../repositories/brandRepository */ "./resources/js/repositories/brandRepository.js");
+/* harmony import */ var _components_core_PrimarySelect__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/core/PrimarySelect */ "./resources/js/components/core/PrimarySelect.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3001,11 +3037,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Products",
   components: {
-    PrimarySelect: _components_core_PrimarySelect__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Title: _components_core_Title__WEBPACK_IMPORTED_MODULE_2__["default"],
-    Product: _components_products_Product__WEBPACK_IMPORTED_MODULE_0__["default"]
+    PrimarySelect: _components_core_PrimarySelect__WEBPACK_IMPORTED_MODULE_6__["default"],
+    Title: _components_core_Title__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Product: _components_products_Product__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('products', ['products', 'searchedQuery'])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('user', ['user'])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('products', ['categories', 'brands'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('products', ['products', 'searchedQuery'])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('user', ['user'])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('products', ['categories', 'brands'])), {}, {
     category: {
       get: function get() {
         return this.$store.getters['products/category'];
@@ -3024,17 +3060,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   created: function created() {
-    this.fetchProducts();
     this.$store.dispatch('products/categories');
     this.$store.dispatch('products/brands');
+    this.fetchProducts();
   },
   methods: {
     fetchProducts: function fetchProducts() {
-      var route = this.$router.currentRoute.query;
-      if (route.q !== undefined && route.q !== '') this.$store.commit('products/search', route.q);
-      if (route.brand !== undefined && route.brand !== '') this.$store.commit('products/brand', route.brand);
-      if (route.category !== undefined && route.category !== '') this.$store.commit('products/category', route.category);
-      this.$store.dispatch('products/products');
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var route;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                route = _this.$router.currentRoute.query;
+
+                _this.$store.commit('products/search', route.q !== undefined ? route.q : '');
+
+                _this.$store.commit('products/brand', route.hasOwnProperty('brand') ? route.brand : '');
+
+                _this.$store.commit('products/category', route.hasOwnProperty('category') ? route.category : '');
+
+                _context.next = 6;
+                return _this.$store.dispatch('products/products');
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   }
 });
@@ -22666,7 +22723,136 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "flex" }, [_c("CartDrawer")], 1),
+        _c(
+          "div",
+          { staticClass: "flex" },
+          [
+            _c("CartDrawer"),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "relative ml-2",
+                on: {
+                  mouseenter: function($event) {
+                    _vm.showDropdown = true
+                  },
+                  mouseleave: function($event) {
+                    _vm.showDropdown = false
+                  }
+                }
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "p-1 flex hover:text-blue-500 hover:bg-blue-100  text-gray-700 border-2 border-transparent items-center max-w-xs text-sm rounded-full focus:outline-none",
+                    attrs: {
+                      id: "user-menu",
+                      "aria-label": "User menu",
+                      "aria-haspopup": "true"
+                    }
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-5 h-5",
+                        attrs: { viewBox: "0 0 20 20", fill: "currentColor" }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z",
+                            "clip-rule": "evenodd"
+                          }
+                        })
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("default-transition", [
+                  _vm.showDropdown
+                    ? _c(
+                        "div",
+                        {
+                          staticClass:
+                            "origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg",
+                          on: {
+                            mouseleave: function($event) {
+                              _vm.showDropdown = false
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "rounded-md bg-white shadow-xs" },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "py-1",
+                                  attrs: {
+                                    role: "menu",
+                                    "aria-orientation": "vertical",
+                                    "aria-labelledby": "options-menu"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "form",
+                                    {
+                                      attrs: {
+                                        method: "POST",
+                                        action: "/logout"
+                                      }
+                                    },
+                                    [
+                                      _c("input", {
+                                        attrs: {
+                                          type: "hidden",
+                                          name: "_token"
+                                        },
+                                        domProps: { value: _vm.csrf }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "block w-full text-left px-4 py-2 text-sm leading-5 hover:bg-gray-100\n                                                    hover:text-gray-900 text-color-purple focus:outline-none font-medium focus:bg-gray-100 focus:text-gray-900",
+                                          attrs: {
+                                            type: "submit",
+                                            role: "menuitem"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            Sign out\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    : _vm._e()
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "hidden sm:flex sm:items-center sm:ml-6" }),
         _vm._v(" "),
@@ -22844,10 +23030,14 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "px-5 py-3" }, [
+      _c("div", { staticClass: "flex flex-col px-5 py-3" }, [
         _c("h3", { staticClass: "text-gray-700 text-lg font-medium" }, [
           _vm._v(_vm._s(_vm._f("limitWords")(_vm.product.title)))
         ]),
+        _vm._v(" "),
+        _c("span", [_vm._v(_vm._s(_vm.product.category.name))]),
+        _vm._v(" "),
+        _c("span", [_vm._v(_vm._s(_vm.product.brand.name))]),
         _vm._v(" "),
         _c("span", { staticClass: "text-black text-xl font-semibold mt-2" }, [
           _vm._v("RM " + _vm._s(_vm.product.price.price.toFixed(2)))
@@ -54066,8 +54256,9 @@ var resource = 'products';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   all: function all() {
-    var search = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("api/".concat(resource, "?").concat(search));
+    var queryParam = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    console.log('fetching products');
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("api/".concat(resource, "?").concat(queryParam));
   }
 });
 
@@ -54429,7 +54620,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var state = function state() {
   return {
     products: [],
-    search: "",
+    search: '',
     searchedQuery: "",
     categories: [],
     brands: [],
@@ -54487,25 +54678,23 @@ var mutations = {
   }
 };
 var actions = {
-  products: function products(state, payload) {
+  products: function products(_ref) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var url, response;
+      var commit, getters, state, queryPayload, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              url = "q=".concat(state.state.search, "&category=").concat(state.state.category, "&brand=").concat(state.state.brand);
-              console.log({
-                url: url
-              });
+              commit = _ref.commit, getters = _ref.getters, state = _ref.state;
+              queryPayload = "q=".concat(getters.search, "&category=").concat(getters.category, "&brand=").concat(getters.brand);
               _context.next = 4;
-              return _repositories_productRepository__WEBPACK_IMPORTED_MODULE_1__["default"].all(url);
+              return _repositories_productRepository__WEBPACK_IMPORTED_MODULE_1__["default"].all(queryPayload);
 
             case 4:
               response = _context.sent;
-              state.commit('products', response.data.data);
-              history.pushState({}, "", "?" + url);
-              state.commit('searchedQuery', state.state.search);
+              commit('products', response.data.data);
+              history.pushState({}, "", "?" + queryPayload);
+              commit('searchedQuery', getters.search);
 
             case 8:
             case "end":

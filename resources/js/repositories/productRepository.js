@@ -2,7 +2,8 @@ const resource = 'products'
 import axios from 'axios';
 
 export default {
-    all(search = '') {
-        return axios.get(`api/${resource}?${search}`)
+    all(queryParam = '') {
+        console.log('fetching products');
+        return axios.get(`api/${resource}?${queryParam}`)
     }
 }

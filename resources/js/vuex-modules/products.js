@@ -4,7 +4,7 @@ import categoyRepository from "../repositories/categoyRepository";
 
 const state = () => ({
     products: [],
-    search: "",
+    search: '',
     searchedQuery: "",
     categories: [],
     brands: [],
@@ -63,17 +63,17 @@ const mutations = {
 };
 
 const actions = {
-    async products(state, payload) {
-        const url = `q=${state.state.search}&category=${state.state.category}&brand=${state.state.brand}`;
-        console.log({url});
-        const response = await productRepository.all(url);
-        state.commit('products', response.data.data);
+    async products({commit, getters, state}) {
+        const queryPayload = `q=${getters.search}&category=${getters.category}&brand=${getters.brand}`;
+        const response = await productRepository.all(queryPayload);
+        commit('products', response.data.data);
         history.pushState(
             {},
             "",
-            "?" + url
+            "?" + queryPayload
         );
-        state.commit('searchedQuery', state.state.search);
+
+        commit('searchedQuery', getters.search);
     },
     async categories(state) {
         const response = await categoyRepository.all();

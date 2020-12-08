@@ -34,6 +34,39 @@
                 <!-- CART DRAWER -->
                 <div class="flex">
                     <CartDrawer/>
+
+                    <div @mouseenter="showDropdown = true" @mouseleave="showDropdown = false" class="relative ml-2">
+                        <button
+                            class="p-1 flex hover:text-blue-500 hover:bg-blue-100  text-gray-700 border-2 border-transparent items-center max-w-xs text-sm rounded-full focus:outline-none"
+                            id="user-menu" aria-label="User menu" aria-haspopup="true">
+                            <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                      clip-rule="evenodd">
+                                </path>
+                            </svg>
+                        </button>
+
+                        <default-transition>
+                            <div @mouseleave="showDropdown = false" v-if="showDropdown"
+                                 class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg">
+                                <div class="rounded-md bg-white shadow-xs">
+                                    <div class="py-1" role="menu" aria-orientation="vertical"
+                                         aria-labelledby="options-menu">
+                                        <form method="POST" action="/logout">
+                                            <input type="hidden" name="_token" :value="csrf">
+                                            <button type="submit"
+                                                    class="block w-full text-left px-4 py-2 text-sm leading-5 hover:bg-gray-100
+                                                        hover:text-gray-900 text-color-purple focus:outline-none font-medium focus:bg-gray-100 focus:text-gray-900"
+                                                    role="menuitem">
+                                                Sign out
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </default-transition>
+                    </div>
+
                 </div>
                 <!-- // CART DRAWER -->
 
@@ -110,16 +143,7 @@
                 </div>
 
                 <div class="mt-3 space-y-1">
-                    <!-- Authentication -->
-                    <!--                    <form method="POST" action="{{ route('logout') }}">-->
-                    <!--                                                @csrf-->
 
-                    <!--                                                <x-responsive-nav-link :href="route('logout')"-->
-                    <!--                                                                       onclick="event.preventDefault();-->
-                    <!--                                                                this.closest('form').submit();">-->
-                    <!--                                                    {{ __('Logout') }}-->
-                    <!--                                                </x-responsive-nav-link>-->
-                    <!--                    </form>-->
                 </div>
             </div>
         </div>
@@ -135,7 +159,9 @@ export default {
     components: {NavigationLink, CartDrawer},
     data() {
         return {
-            open: false
+            open: false,
+            showDropdown: false,
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
     },
     created() {
