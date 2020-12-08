@@ -42,8 +42,7 @@ class Product extends Model
             return $q->where('brand_id', $brandId);
         })->with([
             'prices.countries' => function ($q) {
-                // TODO : check based on users country
-                return $q->where('country', 'MY');
+                return $q->where('country', auth()->user()->country_code);
             }, 'category', 'brand'
         ])->whereHas('prices.countries', function ($q) {
             return $q->where('country', 'MY');
