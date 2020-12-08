@@ -2,7 +2,7 @@ window.axios = require('axios');
 
 export const routes = [
     {
-        path : '/products',
+        path : '/',
         name : 'products',
         component: require ("./pages/Products").default
     },

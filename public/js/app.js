@@ -54394,7 +54394,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routes", function() { return routes; });
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 var routes = [{
-  path: '/products',
+  path: '/',
   name: 'products',
   component: __webpack_require__(/*! ./pages/Products */ "./resources/js/pages/Products.vue")["default"]
 }, {

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public const HOME = '/products';
+    public const HOME = '/';
 
     /**
      * The controller namespace for the application.
