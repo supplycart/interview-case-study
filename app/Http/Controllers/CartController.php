@@ -30,12 +30,14 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+      if(count(Auth::user()->cart) > 0){
         $items = Auth::user()->cart->first()->products;
         foreach($items as $item){
           $item->price;
         }
         return response()->json( $items );
+      }
     }
 
     /**

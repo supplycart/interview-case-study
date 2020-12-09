@@ -111,7 +111,8 @@ export default {
     },
     computedCount: function() {
       let count = 0;
-      this.items.forEach(i => count = count + i.pivot.amount);
+      console.log(this.items.length);
+      this.items.length > 0 ? this.items.forEach(i => count = count + i.pivot.amount) : 0;
       return count;
     }
   },
