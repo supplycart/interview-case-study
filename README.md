@@ -29,6 +29,7 @@ You must work on this assignment using:
 5. As user, I want to be able to place order for added products in cart
 6. As user, I want to user my order history
 7. As user, I want to be able to logout
+8. As user, I want to be able to see my activity log e.g. login, logout, add to cart, place order etc
 
 ### Bonus Tasks
 
