@@ -129,7 +129,7 @@ export default {
             this.$store.commit("cart/updateProductInCart", instance);
         },
         decrement(instance) {
-            if (instance.amount <= 1) return;
+            if (instance.amount < 1) return;
             instance.amount--;
             this.$store.commit("cart/updateProductInCart", instance);
         },
@@ -142,10 +142,10 @@ export default {
                 message: 'Item deleted'
             });
         },
-        checkout() {
-            this.$store.dispatch('cart/orderProducts');
-            this.$store.dispatch('cart/fetchAddedProducts');
-            this.$router.push({name : 'previousOrders'});
+        async checkout() {
+            await this.$store.dispatch('cart/orderProducts');
+            await this.$store.dispatch('cart/fetchAddedProducts');
+            await this.$router.push({name : 'previousOrders'});
         }
     }
 }

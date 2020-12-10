@@ -2031,6 +2031,12 @@ __webpack_require__.r(__webpack_exports__);
       quantity: this.product.amount
     };
   },
+  watch: {
+    quantity: function quantity(val) {
+      if (this.quantity === '') return;
+      if (this.quantity <= 0) this.quantity = 1;
+    }
+  },
   name: "QuantityCounter",
   methods: {
     updateAmount: function updateAmount(e) {
@@ -2662,11 +2668,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_core_Title__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/core/Title */ "./resources/js/components/core/Title.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_core_table_TableRow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/core/table/TableRow */ "./resources/js/components/core/table/TableRow.vue");
-/* harmony import */ var _components_core_table_TableHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/core/table/TableHeader */ "./resources/js/components/core/table/TableHeader.vue");
-/* harmony import */ var _components_core_QuantityCounter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/core/QuantityCounter */ "./resources/js/components/core/QuantityCounter.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_core_Title__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/core/Title */ "./resources/js/components/core/Title.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_core_table_TableRow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/core/table/TableRow */ "./resources/js/components/core/table/TableRow.vue");
+/* harmony import */ var _components_core_table_TableHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/core/table/TableHeader */ "./resources/js/components/core/table/TableHeader.vue");
+/* harmony import */ var _components_core_QuantityCounter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/core/QuantityCounter */ "./resources/js/components/core/QuantityCounter.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2769,12 +2783,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Cart",
   components: {
-    QuantityCounter: _components_core_QuantityCounter__WEBPACK_IMPORTED_MODULE_4__["default"],
-    TableHeader: _components_core_table_TableHeader__WEBPACK_IMPORTED_MODULE_3__["default"],
-    TableRow: _components_core_table_TableRow__WEBPACK_IMPORTED_MODULE_2__["default"],
-    Title: _components_core_Title__WEBPACK_IMPORTED_MODULE_0__["default"]
+    QuantityCounter: _components_core_QuantityCounter__WEBPACK_IMPORTED_MODULE_5__["default"],
+    TableHeader: _components_core_table_TableHeader__WEBPACK_IMPORTED_MODULE_4__["default"],
+    TableRow: _components_core_table_TableRow__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Title: _components_core_Title__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('cart', ['cart', 'total'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('cart', ['cart', 'total'])), {}, {
     showCheckoutButton: function showCheckoutButton() {
       return this.cart.filter(function (x) {
         return x.selected === true;
@@ -2803,7 +2817,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.commit("cart/updateProductInCart", instance);
     },
     decrement: function decrement(instance) {
-      if (instance.amount <= 1) return;
+      if (instance.amount < 1) return;
       instance.amount--;
       this.$store.commit("cart/updateProductInCart", instance);
     },
@@ -2817,11 +2831,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     checkout: function checkout() {
-      this.$store.dispatch('cart/orderProducts');
-      this.$store.dispatch('cart/fetchAddedProducts');
-      this.$router.push({
-        name: 'previousOrders'
-      });
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.$store.dispatch('cart/orderProducts');
+
+              case 2:
+                _context.next = 4;
+                return _this.$store.dispatch('cart/fetchAddedProducts');
+
+              case 4:
+                _context.next = 6;
+                return _this.$router.push({
+                  name: 'previousOrders'
+                });
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   }
 });
@@ -54564,7 +54600,7 @@ var actions = {
               _context5.next = 2;
               return _repositories_orderRepository__WEBPACK_IMPORTED_MODULE_3__["default"].store({
                 products: state.state.cart.filter(function (x) {
-                  return x.selected === true;
+                  return x.selected === true && x.amount > 0;
                 }).map(function (x) {
                   return {
                     id: x.id,

@@ -58,7 +58,7 @@ const actions = {
     async orderProducts(state) {
         await orderRepository.store({
             products: state.state.cart
-                .filter(x => x.selected === true)
+                .filter(x => x.selected === true && x.amount > 0)
                 .map(x => {
                     return {
                         id: x.id,

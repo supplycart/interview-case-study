@@ -12,7 +12,7 @@ class GetPreviousOrders
 {
     public static function index()
     {
-        return Cache::remember(auth()->user()->id . Order::CACHE_NAME, 43200, function () {
+        return Cache::remember(Order::getCacheKeyForUser(), 43200, function () {
             return OrderResource::collection(Order::with([
                 'orderedProducts.product'
             ])->whereHas('orderedProducts', function ($q) {

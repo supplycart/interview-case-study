@@ -31,6 +31,12 @@ export default {
             quantity: this.product.amount
         }
     },
+    watch : {
+        quantity(val) {
+            if(this.quantity === '') return;
+            if (this.quantity <= 0) this.quantity = 1;
+        }
+    },
     name: "QuantityCounter",
     methods: {
         updateAmount(e) {

@@ -38,4 +38,9 @@ class Order extends Model
     {
         return $this->hasMany(AddedProduct::class, 'order_id');
     }
+
+    public static function getCacheKeyForUser()
+    {
+        return auth()->user()->id . static::CACHE_NAME;
+    }
 }

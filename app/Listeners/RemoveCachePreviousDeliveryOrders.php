@@ -1,20 +1,14 @@
 <?php
 
-namespace App\Listeners\Order;
+namespace App\Listeners;
 
 use App\Models\Order;
-use App\Services\GetPreviousOrders;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Cache;
 
-class CachePreviousOrders
+class RemoveCachePreviousDeliveryOrders
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
     public function __construct()
     {
         //
@@ -22,6 +16,6 @@ class CachePreviousOrders
 
     public function handle($event)
     {
-        GetPreviousOrders::index();
+        Cache::forget(Order::getCacheKeyForUser());
     }
 }

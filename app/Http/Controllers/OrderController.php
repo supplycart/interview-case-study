@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OrderAboutToBePlaced;
 use App\Events\OrderPlaced;
 use App\Http\Requests\Order\OrderCreateRequest;
 use App\Http\Resources\OrderResource;
@@ -22,6 +23,7 @@ class OrderController extends Controller
 
     public function store(OrderCreateRequest $request)
     {
+        event(new OrderAboutToBePlaced());
         $order = Order::create();
 
         if (!$order instanceof Order) return;
