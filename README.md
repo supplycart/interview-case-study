@@ -29,12 +29,12 @@ You must work on this assignment using:
 5. As user, I want to be able to place order for added products in cart
 6. As user, I want to user my order history
 7. As user, I want to be able to logout
-8. As user, I want to be able to see my activity log e.g. login, logout, add to cart, place order etc
 
 ### Bonus Tasks
 
 1. Verify email after registration
-2. Product attributes and filtering e.g brand, category
-3. Different user can see different price for products
-4. Add unit tests
-5. Deploy app to a server
+2. User activity log e.g. login, logout, add to cart, place order etc
+3. Product attributes and filtering e.g brand, category
+4. Different user can see different price for products
+5. Add unit tests
+6. Deploy app to a server
