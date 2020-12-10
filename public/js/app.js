@@ -54311,6 +54311,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 var resource = 'added-products';
 
+axios__WEBPACK_IMPORTED_MODULE_0___default.a.interceptors.response.use(function (res) {
+  return res;
+}, function (err) {
+  if (err.response.status === 401) {
+    // refresh page if 401 unauthenticated
+    location.reload();
+  }
+
+  throw err;
+});
 /* harmony default export */ __webpack_exports__["default"] = ({
   all: function all() {
     var ordered = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
