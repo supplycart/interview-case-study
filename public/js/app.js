@@ -2035,6 +2035,7 @@ __webpack_require__.r(__webpack_exports__);
     quantity: function quantity(val) {
       if (this.quantity === '') return;
       if (this.quantity <= 0) this.quantity = 1;
+      this.updateProductAmount();
     }
   },
   name: "QuantityCounter",
