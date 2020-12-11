@@ -45,7 +45,7 @@ class Product extends Model
                 return $q->where('country', auth()->user()->country_code);
             }, 'category', 'brand'
         ])->whereHas('prices.countries', function ($q) {
-            return $q->where('country', 'MY');
+            return $q->where('country', auth()->user()->country_code);
         });
     }
 
