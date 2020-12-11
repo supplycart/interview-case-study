@@ -40,13 +40,11 @@ class Product extends Model
             return $q->where('category_id', $categoryId);
         })->when($brandId, function ($q) use ($brandId) {
             return $q->where('brand_id', $brandId);
-        })->with([
-            'prices.countries' => function ($q) {
-                return $q->where('country', auth()->user()->country_code);
-            }, 'category', 'brand'
-        ])->whereHas('prices.countries', function ($q) {
-            return $q->where('country', auth()->user()->country_code);
-        });
+        })->whereHas('prices', function ($q) {
+            return $q->priceCountry();
+        })->with(['prices' => function($q) {
+            return $q->priceCountry();
+        }, 'category', 'brand']);
     }
 
     public function scopeWithAndWhereHas($query, $relation, $constraint)

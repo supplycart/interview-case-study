@@ -16,14 +16,14 @@ class ProductPricesTableSeeder extends Seeder
 
             DB::table('product_prices')->insert([
                 'product_id' => $item,
-                'price' => rand(100, 1000),
+                'price' => 100,
                 'is_default' => true
             ]);
 
             for ($i = 0; $i < 2; $i++) {
                 $id = DB::table('product_prices')->insertGetId([
                     'product_id' => $item,
-                    'price' => 100.00,
+                    'price' => rand(100, 1000),
                     'is_default' => false
                 ]);
 

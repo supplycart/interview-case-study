@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\ProductPrice;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 
@@ -24,19 +25,11 @@ class ProductResource extends JsonResource
         ];
     }
 
-
-    /**
-     * @param Collection $prices
-     */
     private function getPrice($prices)
     {
-        $price = $prices->filter(function($item) {
-            return $item->countries->isNotEmpty();
-        })->filter(function ($item) {
-            return $item['countries']->pluck('country')->contains(auth()->user()['country_code']);
-        })->first();
+        $price = $prices->firstWhere('is_default', false);
 
-        if (!$price) return $prices->where('is_default', true)->first();
+        if (!$price) return $prices->firstWhere('is_default', true);
 
         return $price;
     }
