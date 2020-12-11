@@ -9,6 +9,6 @@ Hi this is my attempt for this assesment. I'm using sanctum to authenticate the 
 4. run npm run dev
 
 ## Live site URL
-http://supply-cart-test.tcmiouxxx7-95m32yj8d4rv.p.runcloud.link
+supply-cart.syazany.com
 
 Thank you very much
