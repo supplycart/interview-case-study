@@ -27,7 +27,7 @@ You must work on this assignment using:
 3. As user, I want to see list of products after login
 4. As user, I want to be able to add product to cart
 5. As user, I want to be able to place order for added products in cart
-6. As user, I want to user my order history
+6. As user, I want to see my order history
 7. As user, I want to be able to logout
 
 ### Bonus Tasks
