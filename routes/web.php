@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::resource('products', 'ProductsController', ['only' => [
     'index'
 ]]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
