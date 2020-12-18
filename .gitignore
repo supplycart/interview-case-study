@@ -1,0 +1,6 @@
+.idea
+.DS_Store
+images/php/app
+.env
+client/.nuxt
+client/node_modules

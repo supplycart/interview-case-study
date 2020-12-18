@@ -1,0 +1,58 @@
+{
+  "name": "vuemmerce",
+  "version": "0.9.5",
+  "description": "Responsive ecommerce template built with Vue.js and Nuxt.js",
+  "author": "Long Nguyen <nguyenchilong90@gmail.com>",
+  "scripts": {
+    "start": "nuxt",
+    "build": "nuxt build",
+    "now-build": "nuxt generate"
+  },
+  "keywords": [
+    "css",
+    "js",
+    "html",
+    "template",
+    "ecommerce",
+    "vuejs",
+    "theme",
+    "responsive",
+    "nuxtjs"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@nuxtjs/axios": "^5.12.4",
+    "@nuxtjs/font-awesome": "^1.0.4",
+    "@nuxtjs/toast": "^3.3.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-runtime": "^6.26.0",
+    "bulma": "^0.9.1",
+    "nuxt": "^2.8.1",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.5",
+    "vue-sweetalert2": "^4.1.1",
+    "vuex": "^3.1.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "~7.12.1",
+    "@vue/cli-plugin-babel": "~4.5.8",
+    "@vue/cli-service": "~4.5.8",
+    "babel-plugin-transform-runtime": "~6.23.0",
+    "node-sass": "^4.13.1",
+    "sass-loader": "~10.0.4",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": "plugin:vue/essential",
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
