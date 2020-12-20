@@ -13,6 +13,25 @@
           <i class="fas fa-bars"></i>
         </button>
       </div>
+      <div v-bind:class="{'hidden': !showMenu, 'flex': showMenu}" class="lg:flex lg:flex-grow items-center">
+        <ul class="flex flex-col lg:flex-row list-none ml-auto">
+          <li class="nav-item">
+            <router-link :to="{ name: 'login' }" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
+              <span class="ml-2">Login</span>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link :to="{ name: 'register' }" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
+              <span class="ml-2">Register</span>
+            </router-link>
+          </li>
+          <!--          <li class="nav-item">-->
+          <!--            <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#pablo">-->
+          <!--              <i class="fa fa-user-pluz text-lg leading-lg text-white opacity-75"/><span class="ml-2">Register</span>-->
+          <!--            </a>-->
+          <!--          </li>-->
+        </ul>
+      </div>
     </div>
   </nav>
 </template>
