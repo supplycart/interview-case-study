@@ -1,0 +1,29 @@
+name: Deploy STAGING SERVER
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the master branch
+  push:
+    branches:
+      - master
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd interview-case-study
+            git pull
+            composer install
+            ../nodevenv/interview-case-study/12/bin/npm run prod
+            echo "new commit $GITHUB_SHA" >> myfile.txt
