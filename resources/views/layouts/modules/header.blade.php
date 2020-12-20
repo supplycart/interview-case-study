@@ -1,76 +1,65 @@
-<!-- start navbar -->
-<div class="md:fixed md:w-full md:top-0 md:z-20 flex flex-row flex-wrap items-center bg-white p-6 border-b border-gray-300">
-    
-    <!-- logo -->
-    <div class="flex-none w-56 flex flex-row items-center">
-      <img src="img/logo.png" class="w-10 flex-none">
-      <strong class="capitalize ml-1 flex-1">Althof Store</strong>
-
-      <button id="sliderBtn" class="flex-none text-right text-gray-900 hidden md:block">
-        <i class="fad fa-list-ul"></i>
-      </button>
+<!--Nav-->
+<nav id="header" class="bg-white w-full z-30 sticky top-0 py-1">
+  <div class="bg-white w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
+    <label for="menu-toggle" class="cursor-pointer md:hidden block">
+      <svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+        <title>menu</title>
+        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+      </svg>
+    </label>
+    <input class="hidden" type="checkbox" id="menu-toggle" />
+    <div class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
+      <nav>
+        <ul class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
+          <li>
+            <a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" 
+              href="{{ route('product') }}">Shop</a>
+          </li>
+          <li>
+            <a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" 
+              href="#">About</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <!-- end logo -->   
-    
-    <!-- navbar content toggle -->
-    <button id="navbarToggle" class="hidden md:block md:fixed right-0 mr-6">
-      <i class="fad fa-chevron-double-down"></i>
-    </button>
-    <!-- end navbar content toggle -->
-
-    <!-- navbar content -->
-    <div id="navbar" class="animated md:hidden md:fixed md:top-0 md:w-full md:left-0 md:mt-16 md:border-t md:border-b md:border-gray-200 md:p-10 md:bg-white flex-1 pl-3 flex flex-row flex-wrap justify-between items-center md:flex-col md:items-center">
-      <!-- left -->
-      <div class="text-gray-600 md:w-full md:flex md:flex-row md:justify-evenly md:pb-10 md:mb-10 md:border-b md:border-gray-200">
-      </div>
-      <!-- end left -->      
-
-      <!-- right -->
-      <div class="flex flex-row-reverse items-center"> 
-
-        <!-- user -->
-        <div class="dropdown relative md:static">
-
-          <button class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center">
-            <div class="w-8 h-8 overflow-hidden rounded-full">
-              <img class="w-full h-full object-cover" src="img/user.svg" >
-            </div> 
-
-            <div class="ml-2 capitalize flex ">
-              <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none">moeSaid</h1>
-              <i class="fad fa-chevron-down ml-2 text-xs leading-none"></i>
-            </div>                        
-          </button>
-
-          <button class="hidden fixed top-0 left-0 z-10 w-full h-full menu-overflow"></button>
-
-          <div class="text-gray-500 menu hidden md:mt-10 md:w-full rounded bg-white shadow-md absolute z-20 right-0 w-40 mt-5 py-2 animated faster">
-
-            <!-- item -->
-            <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out" href="#">
-              <i class="fad fa-user-edit text-xs mr-1"></i> 
-              edit my profile
-            </a>     
-            <!-- end item -->
-
-            <hr>
-
-            <!-- item -->
-            <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out" href="#">
-              <i class="fad fa-user-times text-xs mr-1"></i> 
-              log out
-            </a>     
-            <!-- end item -->
-
-          </div>
-        </div>
-        <!-- end user -->
-
-
-      </div>
-      <!-- end right -->
+    <div class="order-1 md:order-2">
+      <a class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">
+        <svg class="fill-current text-gray-800 mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M5,22h14c1.103,0,2-0.897,2-2V9c0-0.553-0.447-1-1-1h-3V7c0-2.757-2.243-5-5-5S7,4.243,7,7v1H4C3.447,8,3,8.447,3,9v11 C3,21.103,3.897,22,5,22z M9,7c0-1.654,1.346-3,3-3s3,1.346,3,3v1H9V7z M5,10h2v2h2v-2h6v2h2v-2h2l0.002,10H5V10z" />
+        </svg>
+        Althof 
+      </a>
     </div>
-    <!-- end navbar content -->
+    
+    <div class="order-2 md:order-3 flex items-center" id="nav-content">
+      @guest     
+        @if (Route::is('register'))
+          <a href="{{ route('login') }}" class="pl-3 inline-block no-underline hover:text-black">{{ __('Login') }}</a>
+        @else
+          <a href="{{ route('register') }}" class="pl-3 inline-block no-underline hover:text-black">{{ __('Register') }}</a>
+        @endif
+      @else
+        <a class="pl-3 inline-block no-underline hover:text-black" href="{{ route('cartlist') }}">
+          <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M21,7H7.462L5.91,3.586C5.748,3.229,5.392,3,5,3H2v2h2.356L9.09,15.414C9.252,15.771,9.608,16,10,16h8 c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944C21.649,7.169,21.336,7,21,7z M17.341,14h-6.697L8.371,9 h11.112L17.341,14z" />
+            <circle cx="10.5" cy="18.5" r="1.5" />
+            <circle cx="17.5" cy="18.5" r="1.5" />
+          </svg>
+        </a>
+        <a class="inline-block no-underline hover:text-black" href="{{ route('home') }}">
+          <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <circle fill="none" cx="12" cy="7" r="3" />
+            <path d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" />
+          </svg>
+        </a> 
+        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();" 
+          class="pl-3 inline-block no-underline hover:text-black" role="menuitem">Sign out</a>
 
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+          @csrf
+        </form>
+      @endguest         
+    </div>
   </div>
-<!-- end navbar -->
+</nav>
