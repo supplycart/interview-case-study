@@ -5,17 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\RegisterRequest;
-use App\Mail\RegistrationVerification;
-use App\Models\Customer;
 use App\Models\User;
-use Carbon\Carbon;
 use DB;
-use Exception;
-use Firebase\JWT\JWT;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use Laravel\Socialite\Facades\Socialite;
 use Validator;
 
 class AuthController extends Controller
@@ -104,17 +96,6 @@ class AuthController extends Controller
     }
 
 
-    // forgot password API
-    public function forgotPassword(Request $request)
-    {
-        $customer = Customer::where("email", $request->email)->first();
-        if ($customer) {
-            $mail = new RegistrationVerification($customer);
-            Mail::send($mail);
-        }
-
-        return response()->json(["status" => true, "message" => "If your account exist your email will be sent"], 200);
-    }
 
     //logout API
     public function logout()
@@ -127,76 +108,4 @@ class AuthController extends Controller
         return response()->json(["status" => true, 'data' => [], "message" => "successfully logout"]);
     }
 
-
-    //for test purpose only
-    public function redirectToProvider($provider)
-    {
-//        dd(Socialite::driver($provider)->stateless()->redirect());
-
-        return Socialite::driver($provider)->redirect();
-    }
-
-
-    //activate/verify code/link from the verification email after the registration
-    public function activate(Request $request)
-    {
-        DB::beginTransaction();
-        try {
-            $token   = $request->token;
-            $decoded = JWT::decode($token, $this->jwt_key, array('HS256'));
-            if ($decoded->exp > time()) {
-                $customer = Customer::findOrFail($decoded->id);
-                if ($customer->email_verified_at) {
-                    return response()->json(
-                        [
-                            "status"  => false,
-                            "code"    => 422,
-                            "data"    => null,
-                            "message" => "Your email is already verified",
-                        ],
-                        200
-                    );
-                }
-                if ($customer->email == $request->email) {
-                    $customer->email_verified_at = date('Y-m-d H:i:s');
-                    $customer->save();
-                }
-
-                DB::commit();
-
-                return response()->json(
-                    [
-                        "status"  => true,
-                        "code"    => 200,
-                        "data"    => null,
-                        "message" => "Email verification is successfully",
-                    ],
-                    200
-                );
-            } else {
-                return response()->json(
-                    [
-                        "status"  => false,
-                        "code"    => 422,
-                        "data"    => null,
-                        "message" => "Invalid or expired token.",
-                    ],
-                    200
-                );
-            }
-            DB::commit();
-        } catch (Exception $e) {
-            DB::rollback();
-
-            return response()->json(
-                [
-                    "status"  => false,
-                    "data"    => $e->getMessage(),
-                    "error"   => $e->getLine(),
-                    "message" => "Invalid or expired token",
-                ],
-                200
-            );
-        }
-    }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Api;
 
-use App\Models\Customer;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
@@ -32,6 +31,7 @@ class LoginRequest extends FormRequest
 
     public function credentials()
     {
+        $data = [];
         if ($this->email) {
             $data["email"] = $this->email;
         }
