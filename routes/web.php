@@ -14,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.main');
 });
 
 Auth::routes();
+Route::middleware(['auth'])->group(function () {
+    
+    Route::get('home', 'HomeController@index')->name('home');
+    Route::get('product', 'ProductController@index')->name('product');
+    Route::post('cart', 'CartController@addToCart')->name('addToCart');
+    Route::get('cart', 'CartController@listCart')->name('cartlist');
 
-Route::get('/home', 'HomeController@index')->name('home');
+    
+
+});
