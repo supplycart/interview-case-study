@@ -32,4 +32,3 @@ Route::get('user_orders/add_item_to_cart/{product_id}', 'UserOrdersController@ad
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
