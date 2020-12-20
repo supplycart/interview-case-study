@@ -12,16 +12,7 @@ use Validator;
 
 class AuthController extends Controller
 {
-    protected $otp_expired = 2;
-    protected $jwt_key;
 
-
-    public function __construct()
-    {
-        // We set the guard api as default driver
-        $this->jwt_key     = env("APP_KEY");
-        $this->otp_expired = env("OTP_EXPIRY", 3);
-    }
 
     //register api
     public function register(RegisterRequest $request)
@@ -31,8 +22,6 @@ class AuthController extends Controller
         $user              = User::create($input);
         $success['token']  = $user->createToken('Personal Access Token')->accessToken;
         $success['user']   = $user;
-//        $mail              = new RegistrationVerification($user);
-//        Mail::send($mail);
 
         $user->sendEmailVerificationNotification();
 
@@ -48,7 +37,6 @@ class AuthController extends Controller
     //Login api
     public function login(LoginRequest $request)
     {
-        sleep(5);
         $credential = $request->credentials();
         if (auth()->attempt($credential)) {
             $user             = auth()->user();
@@ -94,7 +82,6 @@ class AuthController extends Controller
 
         return response()->json(["status" => true, 'data' => $user, "message" => "Data retrieved"], 200);
     }
-
 
 
     //logout API
