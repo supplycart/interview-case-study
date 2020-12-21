@@ -99,7 +99,10 @@
                   </div>
                   <div class="flex flex-col md:flex-row justify-between items-center text-gray-900">
                     <p class="font-bold text-xl">$ {{ product.price }}</p>
-                    <button @click="addToCart(product.id)"
+                    <button v-if="cart_ids.includes(product.id)">
+                      Added
+                    </button>
+                    <button v-else @click="addToCart(product.id)"
                             class="px-6 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">
                       Add to cart
                     </button>
@@ -139,6 +142,7 @@ export default {
       pagination: {},
       categories: [],
       brands: [],
+      carts: [],
       selectedCategory: [],
       selectedBrand: [],
       filter: {
@@ -148,6 +152,9 @@ export default {
   },
 
   computed: {
+    cart_ids: function () {
+      return this.carts.map(o => o['product_id']);
+    },
     selectAllCategory: {
       get: function () {
         return this.categories ? this.selectedCategory.length == this.categories.length : false;
@@ -186,8 +193,10 @@ export default {
     this.fetchProducts();
     await this.$store.dispatch('products/fetchCategories');
     await this.$store.dispatch('products/fetchBrands');
+    await this.$store.dispatch('carts/fetchCarts');
     this.categories = this.$store.getters['products/categories']
     this.brands = this.$store.getters['products/brands']
+    this.carts = this.$store.getters['carts/carts']
   },
   methods: {
     select: function () {
@@ -222,7 +231,9 @@ export default {
       }
       return str.join("&");
     },
-    addToCart: function (product_id) {
+    addToCart: async function (product_id) {
+      await this.$store.dispatch('carts/addCart', product_id);
+      this.carts = this.$store.getters['carts/carts']
 
       return product_id;
     }

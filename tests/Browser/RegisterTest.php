@@ -3,6 +3,7 @@
 namespace Tests\Browser;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Dusk\Browser;
@@ -16,11 +17,9 @@ class RegisterTest extends DuskTestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testRegister()
     {
-
-       $res =  User::where('email','tester@laravel.com')->delete();
-//       dd($res);
+        $res = User::where('email', 'tester@laravel.com')->delete();
         $this->browse(
             function (Browser $browser) {
                 $browser->visit('/register')
@@ -29,8 +28,32 @@ class RegisterTest extends DuskTestCase
                     ->type('password', 'tester@laravel.com')
                     ->type('password_confirmation', 'tester@laravel.com')
                     ->press('REGISTER')
-                    ->pause(3000)
+                    ->pause(2000)
                     ->assertSee('Please check your email inbox to verify your email address.');
+            }
+        );
+    }
+
+
+    /**
+     * A Dusk test example.
+     *
+     * @return void
+     */
+    public function testLogin()
+    {
+        $user = User::where('email', 'tester@laravel.com')->first();
+        if ($user->markEmailAsVerified()) {
+            event(new Verified($user));
+        }
+        $this->browse(
+            function (Browser $browser) {
+                $browser->visit('/login')
+                    ->type('email', 'tester@laravel.com')
+                    ->type('password', 'tester@laravel.com')
+                    ->press('LOGIN')
+                    ->pause(2000)
+                    ->assertSee('Product');
             }
         );
     }

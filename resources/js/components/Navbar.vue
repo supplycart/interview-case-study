@@ -43,8 +43,8 @@
                   <div class="bg-white rounded-lg shadow-lg py-2 w-48">
                     <a href="#" class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">Orders History</a>
                     <a href="#" class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">Activity Log</a>
-                    <a href="#" class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500" @click.prevent="logout">Sign
-                      out</a>
+                    <a href="#" @click.prevent="logout"
+                       class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500" >Sign out</a>
                   </div>
                 </div>
               </div>

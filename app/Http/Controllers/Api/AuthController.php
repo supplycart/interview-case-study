@@ -23,7 +23,9 @@ class AuthController extends Controller
         $success['token']  = $user->createToken('Personal Access Token')->accessToken;
         $success['user']   = $user;
 
-        $user->sendEmailVerificationNotification();
+        if (env("MAIL_USERNAME")) {
+            $user->sendEmailVerificationNotification();
+        }
 
         return response()->json(
             [
