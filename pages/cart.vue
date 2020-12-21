@@ -90,6 +90,7 @@
                 <a href="#">
                   <button
                     class="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none"
+                    @click="placeOrder"
                   >
                     <svg
                       aria-hidden="true"
@@ -104,7 +105,7 @@
                         d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"
                       />
                     </svg>
-                    <span class="ml-2 mt-5px">Procceed to checkout</span>
+                    <span class="ml-2 mt-5px">Place Order</span>
                   </button>
                 </a>
               </div>
@@ -119,41 +120,54 @@
 <script>
 import CartItem from "@/components/CartItem";
 
+import firebase from "firebase/app";
+import "firebase/database";
+import Cookies from "js-cookie";
+
 export default {
   data: () => ({
+    key: "",
     productsInCart: [
-      {
-        title: "HDD 2TB",
-        imgLink:
-          "https://cdn.shopify.com/s/files/1/1974/9033/products/2_3b4c0257-3347-4f13-92b6-0eda17dd0a40_1024x1024.jpg",
-        price: 108.0,
-        wishlist: false,
-        brand: "Seagate",
-        category: "storage",
-        quantity: 1,
-      },
-      {
-        title: "SSD 256GB",
-        imgLink:
-          "https://www.italiacom.info/ps/img/p/1/4/9/149-large_default.jpg",
-        price: 118.0,
-        wishlist: true,
-        brand: "Kingston",
-        category: "storage",
-        quantity: 1,
-      },
-      {
-        title: "2.5 to 3.5 Bracket",
-        imgLink:
-          "https://cf.shopee.com.my/file/c05a403dedb5df02d271854a278ae857",
-        price: 19.0,
-        wishlist: false,
-        brand: null,
-        category: "adapter",
-        quantity: 1,
-      },
+      // {
+      //   title: "HDD 2TB",
+      //   imgLink:
+      //     "https://cdn.shopify.com/s/files/1/1974/9033/products/2_3b4c0257-3347-4f13-92b6-0eda17dd0a40_1024x1024.jpg",
+      //   price: 108.0,
+      //   wishlist: false,
+      //   brand: "Seagate",
+      //   category: "storage",
+      //   quantity: 1,
+      // },
     ],
   }),
+  methods: {
+    placeOrder() {
+      var email = Cookies.get("email");
+
+      console.log("upload cart to order history");
+      console.log(JSON.stringify(this.productsInCart));
+
+      firebase
+        .database()
+        .ref("users/" + email + "/history")
+        .push({
+          date: Date.now(),
+          total: this.total,
+          products: this.productsInCart,
+        })
+        .then((data) => {
+          console.log(data.key);
+          this.key = data.key;
+        });
+
+      this.productsInCart = [];
+
+      firebase
+        .database()
+        .ref("users/" + email + "/cart")
+        .remove();
+    },
+  },
   computed: {
     total: function () {
       if (!this.productsInCart) {
@@ -170,6 +184,39 @@ export default {
   },
   components: {
     CartItem,
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start();
+
+      var email = Cookies.get("email");
+
+      console.log("firebase fetch once");
+
+      var i = 0;
+      firebase
+        .database()
+        .ref("users/" + email + "/cart")
+        .once("value")
+        .then((data) => {
+          const cart = [];
+          const obj = data.val();
+          for (let key in obj) {
+            this.productsInCart.push({
+              title: obj[key].title,
+              imgLink: obj[key].imgLink,
+              quantity: obj[key].quantity,
+              price: obj[key].price,
+              quantity: 1,
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      setTimeout(() => this.$nuxt.$loading.finish(), 500);
+    });
   },
 };
 </script>

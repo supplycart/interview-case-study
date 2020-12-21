@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="bg-gray-800">
+    <nav class="bg-gray-50 dark:bg-gray-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center">
@@ -17,35 +17,18 @@
               <div class="ml-10 flex items-baseline space-x-4">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <NuxtLink
-                  class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  class="bg-gray-300 dark:bg-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium"
                   to="/home"
                 >
                   Home
                 </NuxtLink>
 
-                <a
-                  href="#"
-                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >Team</a
+                <!-- <NuxtLink
+                  class="text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  to="/todos"
                 >
-
-                <a
-                  href="#"
-                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >Projects</a
-                >
-
-                <a
-                  href="#"
-                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >Calendar</a
-                >
-
-                <a
-                  href="#"
-                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >Reports</a
-                >
+                  Todos
+                </NuxtLink> -->
               </div>
             </div>
           </div>
@@ -53,7 +36,7 @@
             <div class="ml-4 flex items-center md:ml-6">
               <NuxtLink to="/cart">
                 <button
-                  class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  class="bg-gray-50 dark:bg-gray-800 p-1 rounded-full text-gray-400 hover:text-gray-600 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 >
                   <span class="sr-only">View notifications</span>
                   <!-- Heroicon name: shopping-cart -->
@@ -133,12 +116,12 @@
                         Order History
                       </NuxtLink>
 
-                      <NuxtLink
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
-                        to="/login"
+                      <button
+                        @click="logout"
+                        class="text-left block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
                       >
                         Sign out
-                      </NuxtLink>
+                      </button>
                     </div>
                     <div class="pt-1 text-center">
                       <div class="flex justify-center align-middle mt-4">
@@ -198,7 +181,9 @@
                         </svg>
                         <br />
                       </div>
-                      <span class="text-sx text-white dark:text-gray-200">Welcome to the dark side</span>
+                      <span class="text-xs text-white dark:text-gray-200">
+                        Welcome to the dark side
+                      </span>
                     </div>
                   </div>
                 </transition>
@@ -208,7 +193,7 @@
           <div class="-mr-2 flex md:hidden">
             <!-- Mobile menu button -->
             <button
-              class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              class="dark:bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 dark:focus:ring-white"
               @click="mobileMenuIsOpen = !mobileMenuIsOpen"
             >
               <span class="sr-only">Open main menu</span>
@@ -268,37 +253,20 @@
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
           <NuxtLink
-            class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+            class="bg-gray-300 dark:bg-gray-900 dark:text-white block px-3 py-2 rounded-md text-base font-medium"
             to="/home"
           >
             Home
           </NuxtLink>
 
-          <a
-            href="#"
-            class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >Team</a
+          <!-- <NuxtLink
+            class="text-gray-700 dark:text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            to="/todos"
           >
-
-          <a
-            href="#"
-            class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >Projects</a
-          >
-
-          <a
-            href="#"
-            class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >Calendar</a
-          >
-
-          <a
-            href="#"
-            class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >Reports</a
-          >
+            Todos
+          </NuxtLink> -->
         </div>
-        <div class="pt-4 pb-3 border-t border-gray-700">
+        <div class="pt-4 border-t border-gray-700">
           <div class="flex items-center px-5">
             <div class="flex-shrink-0">
               <img
@@ -308,15 +276,11 @@
               />
             </div>
             <div class="ml-3">
-              <div class="text-base font-medium leading-none text-white">
-                Tom Cook
-              </div>
-              <div class="text-sm font-medium leading-none text-gray-400">
-                tom@example.com
-              </div>
+              <div class="text-base font-medium leading-none text-white"></div>
+              <div class="text-sm font-medium leading-none text-gray-400"></div>
             </div>
             <button
-              class="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              class="ml-auto dark:bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
             >
               <NuxtLink to="/cart">
                 <span class="sr-only">View notifications</span>
@@ -341,18 +305,82 @@
           </div>
           <div class="mt-3 px-2 space-y-1">
             <NuxtLink
-              class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700"
               to="/order-history"
             >
               Order History
             </NuxtLink>
 
-            <NuxtLink
-              class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
-              to="/login"
+            <button
+              @click="logout"
+              class="text-left block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700"
             >
               Sign out
-            </NuxtLink>
+            </button>
+          </div>
+          <div class="pt-1">
+            <div class="pt-1 text-center">
+              <div class="flex justify-center align-middle">
+                <!-- Heroicon name: moon -->
+                <svg
+                  class="h-6 w-6 dark:text-gray-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
+                </svg>
+                <!-- toggle button -->
+                <div
+                  class="flex justify-center items-center mx-3"
+                  @click="toggleDarkMode"
+                >
+                  <div
+                    class="relative rounded-full w-12 h-6 transition duration-200 ease-linear"
+                    :class="[toggle ? 'bg-green-400' : 'bg-gray-400']"
+                  >
+                    <label
+                      for="toggle"
+                      class="absolute left-0 bg-white border-2 mb-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer"
+                      :class="[
+                        toggle
+                          ? 'translate-x-full border-green-400'
+                          : 'translate-x-0 border-gray-400',
+                      ]"
+                    ></label>
+                    <input
+                      type="checkbox"
+                      class="appearance-none w-full h-full active:outline-none focus:outline-none"
+                    />
+                  </div>
+                </div>
+                <!-- Heroicon name: sun -->
+                <svg
+                  class="h-6 w-6 dark:text-gray-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                  />
+                </svg>
+                <br />
+              </div>
+              <span class="text-xs text-white dark:text-gray-200">
+                Welcome to the dark side
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -363,13 +391,23 @@
 
 <script>
 import ClickOutside from "vue-click-outside";
+import { mapMutations } from "vuex";
+
+import firebase from "firebase/app";
+import "firebase/auth";
 
 export default {
   data: () => ({
     menuIsOpen: false,
     mobileMenuIsOpen: true,
-    toggle: true,
+    toggle: false,
   }),
+
+  computed: {
+    todos() {
+      return this.$store.state.isDark;
+    },
+  },
   methods: {
     hideMenu() {
       this.menuIsOpen = false;
@@ -378,12 +416,26 @@ export default {
       this.toggle = !this.toggle;
       this.$parent.isDark = !this.$parent.isDark;
     },
+    ...mapMutations({
+      toggle: "darkMode/toggleDark",
+    }),
+    logout() {
+      console.log("logout");
+
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push("/login");
+        });
+    },
   },
   mounted() {
     // prevent click outside event with popupItem.
     this.popupItem = this.$el;
   },
   // do not forget this section
+  // to close opened menu when click outside of menu
   directives: {
     ClickOutside,
   },

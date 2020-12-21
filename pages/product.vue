@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <NavBarTwo />
+      <NavBar />
       <div class="py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
           <div class="flex flex-col md:flex-row -mx-4">
@@ -12,7 +12,15 @@
                     v-show="image === 1"
                     class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4 flex items-center justify-center"
                   >
-                    <span class="text-5xl">1</span>
+                    <div
+                      class="h-full w-full bg-contain bg-center"
+                      :style="{
+                        backgroundImage:
+                          'url(' +
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-LKeg-nUxA-HzxwFtOFKm1GjRrmLRWuo0DQ&usqp=CAU' +
+                          ')',
+                      }"
+                    ></div>
                   </div>
 
                   <div
@@ -45,9 +53,9 @@
                         :class="{
                           'ring-2 ring-indigo-300 ring-inset': image === i,
                         }"
-                        class="focus:outline-none w-full rounded-lg h-16 md:h-24 bg-gray-100 flex items-center justify-center"
+                        class="focus:outline-none w-full rounded-lg h-16 md:h-24 bg-gray-300 flex items-center justify-center"
                       >
-                        <span class="text-2xl"></span>
+                        <span class="text-2xl">{{ i }}</span>
                       </button>
                     </div>
                   </template>
@@ -132,7 +140,7 @@
 
 
 <script>
-import NavBarTwo from "@/components/NavBarTwo";
+import NavBar from "@/components/NavBar";
 
 export default {
   data: () => ({
