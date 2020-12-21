@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::post('logout', 'AuthController@logout');
+Route::get('categories', 'CategoryController@index');
+Route::get('brands', 'BrandController@index');
+Route::get('products', 'ProductController@index');
 
 Route::middleware('auth:sanctum')->get(
     '/user',
