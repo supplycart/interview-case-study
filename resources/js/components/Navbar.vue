@@ -15,21 +15,46 @@
       </div>
       <div v-bind:class="{'hidden': !showMenu, 'flex': showMenu}" class="lg:flex lg:flex-grow items-center">
         <ul class="flex flex-col lg:flex-row list-none ml-auto">
-          <li class="nav-item">
-            <router-link :to="{ name: 'login' }" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
-              <span class="ml-2">Login</span>
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link :to="{ name: 'register' }" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
-              <span class="ml-2">Register</span>
-            </router-link>
-          </li>
-          <!--          <li class="nav-item">-->
-          <!--            <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#pablo">-->
-          <!--              <i class="fa fa-user-pluz text-lg leading-lg text-white opacity-75"/><span class="ml-2">Register</span>-->
-          <!--            </a>-->
-          <!--          </li>-->
+          <template v-if="user">
+
+            <li class="nav-item">
+              <router-link :to="{ name: 'login' }" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
+                <span class="ml-2">Cart</span>
+              </router-link>
+            </li>
+
+            <div class="flex">
+              <div class="relative">
+                <button
+                    class="rounded-full overflow-hidden border-2 border-purple-500 w-10 h-10 flex justify-center items-center | hover:border-white focus:outline-none focus:border-white"
+                    @click="isOpen1 = true"
+                >
+                  <img src="https://i.pravatar.cc/150?u=1" alt="User's avatar">
+                </button>
+
+                <div v-if="isOpen1" class="fixed inset-0 w-full h-screen z-20 bg-black opacity-25" @click="isOpen1 = false"></div>
+                <div v-if="isOpen1" class="absolute z-30 right-0 mt-2" :class="{'hidden': !isOpen1}">
+                  <div class="bg-white rounded-lg shadow-lg py-2 w-48">
+                    <a href="#" class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">Orders History</a>
+                    <a href="#" class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">Activity Log</a>
+                    <a href="#" class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500" @click.prevent="logout">Sign out</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+          <template v-else>
+            <li class="nav-item">
+              <router-link :to="{ name: 'login' }" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
+                <span class="ml-2">Login</span>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link :to="{ name: 'register' }" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
+                <span class="ml-2">Register</span>
+              </router-link>
+            </li>
+          </template>
         </ul>
       </div>
     </div>
@@ -37,13 +62,21 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   name: "indigo-navbar",
   data() {
     return {
-      showMenu: true
+      showMenu: true,
+      isOpen1: false,
     }
   },
+
+  computed: mapGetters({
+    user: 'auth/user'
+  }),
+
   methods: {
     toggleNavbar: function () {
       this.showMenu = !this.showMenu;

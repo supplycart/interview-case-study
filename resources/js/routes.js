@@ -4,11 +4,9 @@ function page(path) {
 }
 
 
-const routes = [
+export default  [
     {path: '/', name: 'welcome', component: page('Home.vue')},
     {path: '/login', name: 'login', component: page('auth/Login.vue')},
     {path: '/register', name: 'register', component: page('auth/Register.vue')},
+    {path: '/products', name: 'products', component: page('Product.vue')},
 ]
-
-
-export default routes
