@@ -14,15 +14,13 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'password'      => 'required',
-            'email'         => 'required',
+            'password' => 'required',
+            'email'    => 'required',
         ];
     }
 
     public function messages()
     {
-
-
         return [
             'name.required' => 'Name field is required.',
 //            'email.unique' => 'Name field is required.',

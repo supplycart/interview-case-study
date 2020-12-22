@@ -99,7 +99,7 @@
                   </div>
                   <div class="flex flex-col md:flex-row justify-between items-center text-gray-900">
                     <p class="font-bold text-xl">$ {{ product.price }}</p>
-                    <button v-if="carts.map(o => o['product_id']).includes(product.id)">
+                    <button v-if="carts?carts.map(o => o['product_id']).includes(product.id):false">
                       Added
                     </button>
                     <button v-else @click="addToCart(product.id)"

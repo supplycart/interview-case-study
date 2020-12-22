@@ -40,6 +40,7 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $credential = $request->credentials();
+        $success    = [];
         if (auth()->attempt($credential)) {
             $user             = auth()->user();
             $token            = $user->createToken('LoginToken');

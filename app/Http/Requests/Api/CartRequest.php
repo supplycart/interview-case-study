@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests\Api;
 
-use App\Models\Cart;
 use App\Models\OutletProduct;
 use App\Models\ProductStock;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class CartRequest extends FormRequest
 {

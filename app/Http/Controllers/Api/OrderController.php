@@ -57,9 +57,9 @@ class OrderController extends Controller
 
             DB::commit();
         } catch (Exception $e) {
-            return response()->json(["status" => false, 'data' => $e, "message" => "Data retrieved"], 200);
-
             DB::rollback();
+
+            return response()->json(["status" => false, 'data' => $e, "message" => "Data retrieved"], 200);
         }
 
         return response()->json(["status" => true, 'data' => $grand_total, "message" => "Data retrieved"], 200);
