@@ -40,4 +40,15 @@ class CartController extends Controller
         return response()->json(["status" => true, 'data' => $carts, "message" => "Data retrieved"], 200);
     }
 
+    public function sync()
+    {
+        foreach (request()->all() as $cart) {
+            Cart::query()->updateOrCreate(['product_id' => $cart['product_id'], 'user_id' => auth()->user()->id], ['qty' => $cart['qty']]);
+        }
+
+        $carts = Cart::query()->where('user_id', auth()->user()->id)->get();
+
+        return response()->json(["status" => true, 'data' => $carts, "message" => "Data retrieved"], 200);
+    }
+
 }

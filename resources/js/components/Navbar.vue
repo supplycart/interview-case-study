@@ -97,7 +97,7 @@
                           Continue Shopping
                         </button>
                         <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
-                                type="button" style="transition: all .15s ease" v-on:click="toggleModal()">
+                                type="button" style="transition: all .15s ease" v-on:click="checkout">
                           Checkout
                         </button>
                       </div>
@@ -171,6 +171,11 @@ export default {
       this.showMenu = !this.showMenu;
     },
     toggleModal: function () {
+
+      let carts = this.carts.map(cart => {
+        return {product_id: cart.product_id, qty: cart.qty}
+      });
+      this.$store.dispatch('carts/syncCart', carts)
       this.showModal = !this.showModal;
     },
     async logout() {
@@ -179,6 +184,18 @@ export default {
 
       // Redirect to login.
       this.$router.push({name: 'login'})
+    },
+    async checkout() {
+      this.showModal = !this.showModal;
+      // checkout the cart.
+      let carts = this.carts.map(cart => {
+        return {product_id: cart.product_id, qty: cart.qty}
+      });
+      await this.$store.dispatch('carts/syncCart', carts)
+      await this.$store.dispatch('carts/checkout', carts)
+
+      // Redirect to login.
+      this.$router.push({name: 'orders'})
     }
   }
 }

@@ -31,7 +31,22 @@ export const actions = {
             commit('SAVE_CARTS', {data: data})
         } catch (e) {
             console.log(e)
-            // commit(types.FETCH_USER_FAILURE)
+        }
+    },
+    async checkout({commit}, carts) {
+        try {
+            const {data} = await axios.post('/api/orders', carts)
+            commit('SAVE_CARTS', {data: data})
+        } catch (e) {
+            console.log(e)
+        }
+    },
+    async syncCart({commit}, carts) {
+        try {
+            const {data} = await axios.post('/api/carts/sync', carts)
+            commit('SAVE_CARTS', {data: data})
+        } catch (e) {
+            console.log(e)
         }
     },
     async addCart({commit}, itemId) {
@@ -40,7 +55,6 @@ export const actions = {
             commit('SAVE_CARTS', {data: data})
         } catch (e) {
             console.log(e)
-            // commit(types.FETCH_USER_FAILURE)
         }
     },
 }

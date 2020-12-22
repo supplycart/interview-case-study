@@ -4,9 +4,10 @@ function page(path) {
 }
 
 
-export default  [
+export default [
     {path: '/', name: 'welcome', component: page('Home.vue')},
     {path: '/login', name: 'login', component: page('auth/Login.vue')},
     {path: '/register', name: 'register', component: page('auth/Register.vue')},
     {path: '/products', name: 'products', component: page('Product.vue')},
+    {path: '/orders', name: 'orders', component: page('Order.vue')},
 ]

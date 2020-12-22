@@ -29,12 +29,16 @@ Route::group(
         Route::get('brands', 'BrandController@index');
         Route::get('products', 'ProductController@index');
 
-        Route::resource('carts', 'CartController');
+        Route::post('carts/sync', 'CartController@sync');
+        Route::apiResource('carts', 'CartController')->except(['show']);
+        Route::apiResource('orders', 'OrderController')->except(['destroy']);
+
+        Route::get(
+            '/user',
+            function (Request $request) {
+                return $request->user();
+            }
+        )->middleware('verified');
     }
 );
-Route::middleware('auth:sanctum')->get(
-    '/user',
-    function (Request $request) {
-        return $request->user();
-    }
-)->middleware('verified');
+
