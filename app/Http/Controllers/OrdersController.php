@@ -24,19 +24,20 @@ class OrdersController extends Controller
         return $orders;
     }
 
-    public function store(Request $request) {
+    public function store(Request $request) {                
         $user_id = 1;              
-        $user_order_ids = $request->user_order_ids;
+        $user_order_ids = $request['selected'];
         
         if (count($user_order_ids) > 0) {           
             $order = Order::create([
-                'is_fulfilled' => false,
+                'is_fulfilled' => true,
                 'user_id' => $user_id,                
             ]);            
 
             foreach($user_order_ids as $user_order_id) {
                 $user_order = UserOrder::find($user_order_id);
                 $user_order->order_id = $order->id;
+                $user_order->fulfilled = true;
                 $user_order->save();
             }            
             return ('Order placed');

@@ -25,9 +25,10 @@ Route::resource('orders', 'OrdersController', ['only' => [
     'store'
 ]]);
 
+Route::get('cart', 'CartController@index');
 Route::get('orders/view_order_history', 'OrdersController@viewOrderHistory');
 
-Route::get('user_orders/add_item_to_cart/{product_id}', 'UserOrdersController@addItemToCart');
+Route::post('user_orders', 'UserOrdersController@store');
 // Route::post('orders/place_order', 'OrdersController@placeOrder');
 
 Auth::routes();
