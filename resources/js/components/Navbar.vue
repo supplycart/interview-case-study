@@ -23,9 +23,89 @@
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link :to="{ name: 'login' }" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
-                <span class="ml-2">Cart (0)</span>
-              </router-link>
+              <div>
+                <button
+                    class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    type="button" style="transition: all .15s ease" v-on:click="toggleModal()">
+                  <span class="ml-2">Cart (<span id="cart_count">{{ carts ? carts.length : 0 }}</span>)</span>
+
+                </button>
+                <div v-if="showModal"
+                     class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+                  <div class="relative w-auto my-6 mx-auto max-w-6xl w-12/12 md:w-8/12 lg:w-5/12">
+                    <!--content-->
+                    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                      <!--header-->
+                      <div class="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
+                        <h3 class="text-3xl font-semibold">
+                          Carts
+                        </h3>
+                        <button
+                            class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                            v-on:click="toggleModal()">
+              <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                ×
+              </span>
+                        </button>
+                      </div>
+                      <!--body-->
+                      <div class="relative p-6 flex-auto">
+                        <div class="flex mt-6 mb-5">
+                          <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product</h3>
+                          <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Quantity</h3>
+                          <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
+                          <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
+                        </div>
+
+                        <div v-for="({qty,product},i ) in carts" :key="product.id">
+
+                          <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+                            <div class="flex w-2/5"> <!-- product -->
+                              <div class="w-20">
+                                <img class="h-24" :src="product.image" alt="">
+                              </div>
+                              <div class="flex flex-col justify-between ml-4 flex-grow">
+                                <span class="font-bold text-sm">{{ product.name }}</span>
+                                <span class="text-red-500 text-xs">{{ product.brand.name }}</span>
+                                <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs" @click="carts.splice(i, 1)">Remove</a>
+                              </div>
+                            </div>
+                            <div class="flex justify-center w-1/5 ">
+                              <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512" @click="carts[i].qty -= 1" :disabled="carts[i].qty <= 1">
+                                <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
+                              </svg>
+
+                              <input class="mx-2 border text-center w-8" type="text" v-model="carts[i].qty">
+
+                              <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512" @click="carts[i].qty += 1">
+                                <path
+                                    d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
+                              </svg>
+                            </div>
+                            <span class="text-center w-1/5 font-semibold text-sm">${{ product.price }}</span>
+                            <span class="text-center w-1/5 font-semibold text-sm">${{ qty * product.price }}</span>
+                          </div>
+                        </div>
+
+
+                      </div>
+                      <!--footer-->
+                      <div class="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
+                        <button
+                            class="text-red-500 bg-transparent border border-solid border-red-500 hover:bg-red-500 hover:text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1"
+                            type="button" style="transition: all .15s ease" v-on:click="toggleModal()">
+                          Continue Shopping
+                        </button>
+                        <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                                type="button" style="transition: all .15s ease" v-on:click="toggleModal()">
+                          Checkout
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div v-if="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+              </div>
             </li>
 
             <div class="flex">
@@ -44,7 +124,7 @@
                     <a href="#" class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">Orders History</a>
                     <a href="#" class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">Activity Log</a>
                     <a href="#" @click.prevent="logout"
-                       class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500" >Sign out</a>
+                       class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">Sign out</a>
                   </div>
                 </div>
               </div>
@@ -76,17 +156,22 @@ export default {
   data() {
     return {
       showMenu: true,
+      showModal: false,
       isOpen1: false,
     }
   },
 
   computed: mapGetters({
-    user: 'auth/user'
+    user: 'auth/user',
+    carts: 'carts/carts',
   }),
 
   methods: {
     toggleNavbar: function () {
       this.showMenu = !this.showMenu;
+    },
+    toggleModal: function () {
+      this.showModal = !this.showModal;
     },
     async logout() {
       // Log out the user.

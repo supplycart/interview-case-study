@@ -99,7 +99,7 @@
                   </div>
                   <div class="flex flex-col md:flex-row justify-between items-center text-gray-900">
                     <p class="font-bold text-xl">$ {{ product.price }}</p>
-                    <button v-if="cart_ids.includes(product.id)">
+                    <button v-if="carts.map(o => o['product_id']).includes(product.id)">
                       Added
                     </button>
                     <button v-else @click="addToCart(product.id)"
@@ -124,6 +124,7 @@
 <script>
 import Pagination from "../components/Pagination";
 import axios from "axios";
+import {mapGetters} from "vuex";
 
 export default {
   components: {pagination: Pagination},
@@ -142,7 +143,6 @@ export default {
       pagination: {},
       categories: [],
       brands: [],
-      carts: [],
       selectedCategory: [],
       selectedBrand: [],
       filter: {
@@ -152,9 +152,9 @@ export default {
   },
 
   computed: {
-    cart_ids: function () {
-      return this.carts.map(o => o['product_id']);
-    },
+    ...mapGetters({
+      carts: 'carts/carts',
+    }),
     selectAllCategory: {
       get: function () {
         return this.categories ? this.selectedCategory.length == this.categories.length : false;
@@ -196,7 +196,7 @@ export default {
     await this.$store.dispatch('carts/fetchCarts');
     this.categories = this.$store.getters['products/categories']
     this.brands = this.$store.getters['products/brands']
-    this.carts = this.$store.getters['carts/carts']
+    // this.carts = this.$store.getters['carts/carts']
   },
   methods: {
     select: function () {
@@ -233,8 +233,7 @@ export default {
     },
     addToCart: async function (product_id) {
       await this.$store.dispatch('carts/addCart', product_id);
-      this.carts = this.$store.getters['carts/carts']
-
+      // this.carts = this.$store.getters['carts/carts']
       return product_id;
     }
   }

@@ -16,7 +16,7 @@ class CartController extends Controller
 
     public function index()
     {
-        $carts = Cart::query()->where('user_id', auth()->user()->id)->get();
+        $carts = Cart::query()->with('product.brand')->where('user_id', auth()->user()->id)->get();
 
         return response()->json(
             [
@@ -35,7 +35,7 @@ class CartController extends Controller
         $cart->qty = $request->quantity ?? $cart->qty + 1;
         $cart->save();
 
-        $carts = Cart::query()->where('user_id', auth()->user()->id)->get();
+        $carts = Cart::query()->with('product.brand')->where('user_id', auth()->user()->id)->get();
 
         return response()->json(["status" => true, 'data' => $carts, "message" => "Data retrieved"], 200);
     }
