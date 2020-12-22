@@ -21,7 +21,7 @@ For Supplycart Front End/ Back End Software Developer Application Assessment
 - PHP 7.3 or above
 - Nodejs 12 or above
 - NPM 6 or above
-- Brainware(Human)
+- Brainware(Compatible with All Human Race)
 
 ## Installation
 
@@ -31,15 +31,20 @@ For Supplycart Front End/ Back End Software Developer Application Assessment
 2. Install Composer Dependencies
 
    ```composer install```
-3. Install NPM Dependencies
+3. copy `.env.example` to `.env` then setup the config(db,email,etc)
+
+4. Migrate the tables
+
+   ```php artisan migrate```
+5. Seed the demo data (optional)
+
+   ```php artisan db:seed```
+6. Install NPM Dependencies
 
    ```npm install```
-3. copy `.env.example` to `.env` then setup it
-4. run `npm run dev` or `npm run prod` or `npm run watch`
+7. run `npm run dev` or `npm run prod` or `npm run watch`
 
 ## [DEMO LINK][1]
-
-
 
 [1]: https://gj.lc
 
