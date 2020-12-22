@@ -28,6 +28,7 @@ Route::group(
         Route::get('categories', 'CategoryController@index');
         Route::get('brands', 'BrandController@index');
         Route::get('products', 'ProductController@index');
+        Route::get('activities', 'ActivityController@index');
 
         Route::post('carts/sync', 'CartController@sync');
         Route::apiResource('carts', 'CartController')->except(['show']);

@@ -121,8 +121,12 @@
                 <div v-if="isOpen1" class="fixed inset-0 w-full h-screen z-20 bg-black opacity-25" @click="isOpen1 = false"></div>
                 <div v-if="isOpen1" class="absolute z-30 right-0 mt-2" :class="{'hidden': !isOpen1}">
                   <div class="bg-white rounded-lg shadow-lg py-2 w-48">
-                    <a href="#" class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">Orders History</a>
-                    <a href="#" class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">Activity Log</a>
+                    <router-link :to="{ name: 'orders' }" class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">Orders
+                      History
+                    </router-link>
+                    <router-link :to="{ name: 'activity' }" class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">
+                      Activity Log
+                    </router-link>
                     <a href="#" @click.prevent="logout"
                        class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">Sign out</a>
                   </div>

@@ -16,10 +16,16 @@ class ProductController extends Controller
     {
         $products = Product::query()->with(['brand', 'category']);
 
+        $isFilter = false;
         foreach ($request->data() as $column => $values) {
             if (!empty($values)) {
                 $products->whereIn($column, $values);
+                $isFilter = true;
             }
+        }
+
+        if ($isFilter) {
+            activity()->withProperties(['user_agent' => $request->header('User-Agent')])->log('Search product with filter');
         }
 
         $products = $products->paginate(6);

@@ -4,12 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CheckoutRequest;
-use App\Http\Requests\Api\ProductFilterRequest;
 use App\Http\Resources\OrdersCollection;
-use App\Http\Resources\ProductsCollection;
 use App\Models\Cart;
 use App\Models\Order;
-use App\Models\Product;
 use DB;
 use Exception;
 use Validator;
@@ -56,6 +53,7 @@ class OrderController extends Controller
                 $cart->product->save();
                 $cart->delete();
             }
+            activity()->withProperties(['user_agent' => $request->header('User-Agent')])->log('place a new order');
 
             DB::commit();
         } catch (Exception $e) {

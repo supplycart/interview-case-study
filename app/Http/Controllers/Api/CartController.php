@@ -4,10 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CartRequest;
-use App\Http\Requests\Api\ProductFilterRequest;
-use App\Http\Resources\ProductsCollection;
 use App\Models\Cart;
-use App\Models\Product;
 use DB;
 use Validator;
 
@@ -34,6 +31,8 @@ class CartController extends Controller
         $cart      = Cart::query()->firstOrNew($data);
         $cart->qty = $request->quantity ?? $cart->qty + 1;
         $cart->save();
+
+        activity()->withProperties(['user_agent' => $request->header('User-Agent')])->log('add a product to cart');
 
         $carts = Cart::query()->with('product.brand')->where('user_id', auth()->user()->id)->get();
 
