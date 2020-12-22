@@ -21,4 +21,11 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    public function getPriceAttribute($price)
+    {
+        $level = auth()->user()->level;
+
+        return round($price - ($level * 10 / 100 * $price));
+    }
+
 }

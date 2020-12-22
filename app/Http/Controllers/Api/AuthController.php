@@ -87,6 +87,25 @@ class AuthController extends Controller
         return response()->json(["status" => true, 'data' => $user, "message" => "Data retrieved"], 200);
     }
 
+    // user detail api
+    public function upgrade()
+    {
+        $user        = Auth::user();
+        $user->level = $user->level > 9 ? 9 : $user->level + 1;
+        $user->save();
+
+        return response()->json(
+            [
+                "status"  => true,
+                'data'    => $user,
+                "message" => $user->level >= 9
+                    ? 'You are on the max level, your product price is cheapest ('.$user->level.'0% Discount)'
+                    : 'Upgraded to '.$user->level.'. Now, you get cheaper price ('.$user->level.'0% Discount)',
+            ],
+            200
+        );
+    }
+
 
     //logout API
     public function logout()

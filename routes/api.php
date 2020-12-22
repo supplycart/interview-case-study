@@ -25,6 +25,7 @@ Route::group(
     ],
     function () {
         Route::post('logout', 'AuthController@logout');
+        Route::post('upgrade', 'AuthController@upgrade');
         Route::get('categories', 'CategoryController@index');
         Route::get('brands', 'BrandController@index');
         Route::get('products', 'ProductController@index');

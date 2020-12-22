@@ -127,6 +127,8 @@
                     <router-link :to="{ name: 'activity' }" class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">
                       Activity Log
                     </router-link>
+                    <a href="#" @click.prevent="upgrade"
+                       class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">Upgrade Level({{ user.level }})</a>
                     <a href="#" @click.prevent="logout"
                        class="block text-purple-600 font-semibold px-4 py-2 | hover:text-white hover:bg-purple-500">Sign out</a>
                   </div>
@@ -154,6 +156,7 @@
 
 <script>
 import {mapGetters} from 'vuex'
+import axios from "axios";
 
 export default {
   name: "indigo-navbar",
@@ -188,6 +191,17 @@ export default {
 
       // Redirect to login.
       this.$router.push({name: 'login'})
+    },
+    async upgrade() {
+      // Log out the user.
+
+      axios.post('/api/upgrade').then(response => {
+        alert(response.data.message);
+        this.user.level = this.user.level < 9 ? this.user.level + 1 : 9;
+
+      })
+          .catch(error => console.log(error))
+
     },
     async checkout() {
       this.showModal = !this.showModal;
