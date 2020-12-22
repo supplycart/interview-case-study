@@ -9,3 +9,7 @@
 - Git pull or git clone
 - npm install
 - npm run dev
+
+### Also available on
+
+[supply-cart-by-azman.herokuapp.com](https://supply-cart-by-azman.herokuapp.com/)
