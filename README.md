@@ -9,6 +9,7 @@
 - Git pull or git clone
 - npm install
 - npm run dev
+- open localhost [localhost:3000](http://localhost:3000/)
 
 ### Also available on
 
