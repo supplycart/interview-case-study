@@ -46,16 +46,17 @@ class AuthController extends Controller
             $success['token'] = $token->accessToken;
             $success['token'] = $token->plainTextToken;
             $success['user']  = $user;
-//            if (isset($credential["email"]) && !$user->email_verified_at) {
-//                return response()->json(
-//                    [
-//                        "status"  => false,
-//                        'message' => 'Please verify your email address first or login using your mobile phone',
-//                    ],
-//                    200
-//                );
-//            }
-//            activity()->withProperties(['user_agent' => $request->header('User-Agent')])->log('login');
+            if (!$user->email_verified_at) {
+                return response()->json(
+                    [
+                        "status"  => false,
+                        "errors"  => true,
+                        'message' => 'Please verify your email address first',
+                    ],
+                    400
+                );
+            }
+            activity()->withProperties(['user_agent' => $request->header('User-Agent')])->log('login');
 
             return response()->json(
                 [
@@ -90,6 +91,8 @@ class AuthController extends Controller
     public function logout()
     {
         // Get user who requested the logout
+        activity()->withProperties(['user_agent' => request()->header('User-Agent')])->log('logout');
+
         $user = request()->user();
         // Revoke current user token
         $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
