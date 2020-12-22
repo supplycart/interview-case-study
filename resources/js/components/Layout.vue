@@ -1,9 +1,10 @@
 <template>
   <div class="main-layout">
-    <navbar />
+    <navbar/>
     <div class="container mx-auto p-8">
-      <child />
+      <child/>
     </div>
+
   </div>
 </template>
 

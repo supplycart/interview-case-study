@@ -1,12 +1,13 @@
 <template>
-  <div >
+  <div>
     <div class="mx-auto max-w-md">
       <card title="Login">
         <form @submit.prevent="login" @keydown="form.onKeydown($event)">
           <!-- Email -->
           <div class="mb-3">
             <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" placeholder="E-Mail" class="border w-full p-3" type="email" name="email">
+              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" placeholder="E-Mail" class="border w-full p-3" type="email"
+                     name="email">
               <has-error :form="form" field="email"/>
             </div>
           </div>
@@ -14,7 +15,8 @@
           <!-- Password -->
           <div class="mb-6">
             <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="border w-full p-3" type="password" name="password" placeholder="**************">
+              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="border w-full p-3" type="password" name="password"
+                     placeholder="**************">
               <has-error :form="form" field="password"/>
             </div>
           </div>
@@ -27,9 +29,9 @@
                 Remember Me
               </checkbox>
 
-<!--              <router-link :to="{ name: 'password.request' }" class="small ml-auto my-auto">-->
-<!--                Forgot Password-->
-<!--              </router-link>-->
+              <!--              <router-link :to="{ name: 'password.request' }" class="small ml-auto my-auto">-->
+              <!--                Forgot Password-->
+              <!--              </router-link>-->
             </div>
           </div>
 
@@ -45,6 +47,7 @@
         </form>
       </card>
     </div>
+    <flash-message :type="flash.type" :message="flash.message"></flash-message>
   </div>
 </template>
 
@@ -66,25 +69,55 @@ export default {
       email: '',
       password: ''
     }),
+    flash: {
+      type: 'success',
+      message: null,
+    },
     remember: false
   }),
+  mounted() {
+    Bus.$on('flash-message', (message) => {
+      this.message = message;
 
+      setTimeout(() => {
+        this.message = null;
+      }, 5000);
+    });
+  },
+  created() {
+
+
+  },
   methods: {
     async login() {
       // Submit the form.
-      const {data} = await this.form.post('/api/login')
 
-      // Save the token.
-      this.$store.dispatch('auth/saveToken', {
-        token: data.token,
-        remember: this.remember
-      })
+      try {
+        const {status, data, message} = await this.form.post('/api/login')
 
-      // Fetch the user.
-      await this.$store.dispatch('auth/fetchUser')
+        if (!status) {
+          this.flash.type = 'error';
+          this.flash.message = message;
+        }
+        // Save the token.
+        this.$store.dispatch('auth/saveToken', {
+          token: data.token,
+          remember: this.remember
+        })
 
-      // Redirect home.
-      this.redirect()
+        // Fetch the user.
+        await this.$store.dispatch('auth/fetchUser')
+
+        // Redirect home.
+        this.redirect()
+      } catch (e) {
+        console.log(e.response, 'yaskur');
+        this.flash.type = 'error';
+        this.flash.message = e.response.data.message;
+
+      }
+
+
     },
 
     redirect() {
