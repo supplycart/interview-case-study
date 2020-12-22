@@ -1,5 +1,7 @@
 <template>
-  <div class="rounded-sm shadow-md bg-white p-4 m-1 mb-4">
+  <div
+    class="rounded-sm shadow-md bg-white dark:bg-gray-800 p-4 m-1 mb-4 dark:text-gray-200"
+  >
     <div class="flex justify-between mb-4">
       <p class="font-bold text-lg">{{ order.date }}</p>
       <p class="text-lg font-bold">RM {{ order.total.toFixed(2) }}</p>
@@ -12,10 +14,10 @@
           :style="{ backgroundImage: 'url(' + product.imgLink + ')' }"
         />
         <div class="col-span-3">
-          <p class="text-gray-800">{{ product.title }}</p>
-          <p class="text-xs text-gray-700">{{ product.brand }}</p>
+          <p class="text-gray-800 dark:text-gray-200">{{ product.title }}</p>
+          <p class="text-xs text-gray-700">x {{ product.quantity }}</p>
         </div>
-        <div class="text-right text-gray-500">
+        <div class="text-right text-gray-500 dark:text-gray-400">
           {{ "RM" + product.price.toFixed(2) }}
         </div>
       </div>

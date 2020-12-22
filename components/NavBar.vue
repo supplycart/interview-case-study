@@ -36,9 +36,15 @@
             <div class="ml-4 flex items-center md:ml-6">
               <NuxtLink to="/cart">
                 <button
-                  class="bg-gray-50 dark:bg-gray-800 p-1 rounded-full text-gray-400 hover:text-gray-600 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  class="relative bg-gray-50 dark:bg-gray-800 p-1 rounded-full text-gray-400 hover:text-gray-600 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 >
                   <span class="sr-only">View notifications</span>
+                  <!-- cart item total, dot notification -->
+                  <!-- <div
+                    class="absolute text-xs rounded-full -mt-1 -mr-2 px-1 font-bold top-0 right-0 bg-red-700 text-white"
+                  >
+                    3
+                  </div> -->
                   <!-- Heroicon name: shopping-cart -->
                   <svg
                     class="h-6 w-6"
@@ -103,7 +109,7 @@
                   > -->
                   <div
                     v-show="menuIsOpen"
-                    class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-900 dark:text-gray-300 ring-1 ring-black ring-opacity-5 divide-y divide-gray-100"
+                    class="z-10 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-900 dark:text-gray-300 ring-1 ring-black ring-opacity-5 divide-y divide-gray-100"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="options-menu"
@@ -147,13 +153,13 @@
                         >
                           <div
                             class="relative rounded-full w-12 h-6 transition duration-200 ease-linear"
-                            :class="[toggle ? 'bg-green-400' : 'bg-gray-400']"
+                            :class="[isDark ? 'bg-green-400' : 'bg-gray-400']"
                           >
                             <label
                               for="toggle"
                               class="absolute left-0 bg-white border-2 mb-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer"
                               :class="[
-                                toggle
+                                isDark
                                   ? 'translate-x-full border-green-400'
                                   : 'translate-x-0 border-gray-400',
                               ]"
@@ -343,13 +349,13 @@
                 >
                   <div
                     class="relative rounded-full w-12 h-6 transition duration-200 ease-linear"
-                    :class="[toggle ? 'bg-green-400' : 'bg-gray-400']"
+                    :class="[isDark ? 'bg-green-400' : 'bg-gray-400']"
                   >
                     <label
                       for="toggle"
                       class="absolute left-0 bg-white border-2 mb-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer"
                       :class="[
-                        toggle
+                        isDark
                           ? 'translate-x-full border-green-400'
                           : 'translate-x-0 border-gray-400',
                       ]"
@@ -400,25 +406,24 @@ export default {
   data: () => ({
     menuIsOpen: false,
     mobileMenuIsOpen: true,
-    toggle: false,
   }),
-
   computed: {
-    todos() {
-      return this.$store.state.isDark;
+    isDark() {
+      return this.$store.state.darkMode.isDark;
     },
   },
   methods: {
     hideMenu() {
       this.menuIsOpen = false;
     },
-    toggleDarkMode() {
-      this.toggle = !this.toggle;
-      this.$parent.isDark = !this.$parent.isDark;
+    toggleDarkMode(e) {
+      this.$store.commit("darkMode/toggleDark");
+
+      console.log(
+        "this.$store.state.darkMode.isDark: " +
+          this.$store.state.darkMode.isDark
+      );
     },
-    ...mapMutations({
-      toggle: "darkMode/toggleDark",
-    }),
     logout() {
       console.log("logout");
 

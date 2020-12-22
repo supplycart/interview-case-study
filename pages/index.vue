@@ -43,13 +43,13 @@
             <h1
               class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl"
             >
-              <span class="block xl:inline">Make your business</span>
+              <span class="block xl:inline">Buy anything anywhere</span>
               <span class="block text-indigo-600 xl:inline">Go online</span>
             </h1>
             <p
               class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
             >
-              Make your business go online easier with our system. Everything
+              Buy anything anywhere online easier with our system. Everything
               become easy with everything automated. With more users online,
               means more potential customers.
             </p>
@@ -89,45 +89,7 @@
 
 <script>
 export default {};
-// window.onNuxtReady(() => {
-//   window.$nuxt.$router.push("/home");
-// });
 </script>
 
 <style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>

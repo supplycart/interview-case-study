@@ -86,16 +86,24 @@ export default {
   }),
   methods: {
     async pressed() {
-      try {
-        const user = firebase
-          .auth()
-          .createUserWithEmailAndPassword(this.email, this.password);
+      const user = firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then((data) => {
+          console.log("User created successfully with payload-", data);
+          this.$router.push({
+            name: "login",
+            params: {
+              mesej: "sign up successful, you can now login",
+            },
+          });
+        })
+        .catch((error) => {
+          this.error = error;
+          console.log(error);
+        });
 
-        console.log(user);
-        this.$router.replace({ name: "login" });
-      } catch (err) {
-        console.log(err);
-      }
+      console.log(user);
     },
   },
 };

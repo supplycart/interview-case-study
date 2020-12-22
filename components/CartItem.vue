@@ -50,7 +50,9 @@ export default {
   props: ["product"],
   methods: {
     removeItem(id) {
-      this.$parent.productsInCart.splice(0, 1);
+      // this.$props.product.splice(0, 1);
+
+      // this.$parent.productsInCart.splice(id, 1);
 
       console.log(id);
 

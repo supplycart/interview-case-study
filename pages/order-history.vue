@@ -1,24 +1,28 @@
 <template>
-  <div class="bg-gray-200 dark:bg-gray-800 min-h-screen pb-1">
-    <NavBar />
+  <div :class="{ dark: isDark }">
+    <div class="bg-gray-200 dark:bg-gray-900 min-h-screen pb-1">
+      <NavBar />
 
-    <!-- component -->
-    <!-- This is an example component -->
-    <div class="container mx-auto px-4">
-      <div class="flex flex-wrap justify-center">
-        <div class="w-full lg:w-6/12 px-4">
-          <h2 class="text-4xl font-semibold text-black mt-4">Order History</h2>
+      <!-- component -->
+      <!-- This is an example component -->
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-center">
+          <div class="w-full lg:w-6/12 px-4">
+            <h2 class="text-4xl font-semibold mt-4 text-black dark:text-white">
+              Order History
+            </h2>
+          </div>
         </div>
-      </div>
-      <div class="flex flex-col justify-center md:w-1/2 mx-auto my-8">
-        <OrderHistoryItem
-          v-for="order in orderHistory"
-          :key="order.id"
-          :order="order"
-        />
-        <div
-          class="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 xl:grid-cols-6 gap-4"
-        ></div>
+        <div class="flex flex-col-reverse justify-center md:w-1/2 mx-auto my-8">
+          <OrderHistoryItem
+            v-for="order in orderHistory"
+            :key="order.id"
+            :order="order"
+          />
+          <div
+            class="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 xl:grid-cols-6 gap-4"
+          ></div>
+        </div>
       </div>
     </div>
   </div>
@@ -27,6 +31,7 @@
 <script>
 import OrderHistoryItem from "@/components/OrderHistoryItem";
 
+import { getUserFromCookie } from "@/helpers";
 import firebase from "firebase/app";
 import "firebase/database";
 import Cookies from "js-cookie";
@@ -47,19 +52,29 @@ export default {
       //       brand: "Sony",
       //       category: "console",
       //     },
-      //     {
-      //       title: "WH-1000XM4 Wireless Noise Cancelling",
-      //       imgLink:
-      //         "https://www.sony.com.my/image/5d02da5df552836db894cead8a68f5f3",
-      //       price: 1299.0,
-      //       wishlist: false,
-      //       brand: "Sony",
-      //       category: "headphone",
-      //     },
       //   ],
       // },
     ],
   }),
+  computed: {
+    isDark() {
+      return this.$store.state.darkMode.isDark;
+    },
+    asyncData({ req, redirect }) {
+      if (process.server) {
+        const user = getUserFromCookie(req);
+        console.log(user);
+        if (!user) {
+          redirect("/login");
+        }
+      } else {
+        let user = firebase.auth().currentUser;
+        if (!user) {
+          redirect("/login");
+        }
+      }
+    },
+  },
   components: {
     OrderHistoryItem,
   },
