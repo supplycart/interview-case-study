@@ -78,7 +78,7 @@
       </div>
       <div class="w-full lg:w-9/12 flex-0 p-5 bg-white shadow-lg rounded-b-lg">
         Products
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div v-for="product in products" :key="product.id">
             <div class="container mx-auto max-w-sm w-full p-4 ">
               <div class="card flex flex-col justify-center p-10 bg-white rounded-lg shadow-2xl">
