@@ -27,6 +27,7 @@
         "@fortawesome/fontawesome-free": "^5.15.1",
         "@tailwindcss/postcss7-compat": "^2.0.2",
         "autoprefixer": "^9.8.6",
+        "dayjs": "^1.9.7",
         "js-cookie": "^2.2.1",
         "postcss": "^7.0.35",
         "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",

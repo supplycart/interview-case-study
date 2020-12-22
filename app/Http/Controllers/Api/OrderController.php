@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CheckoutRequest;
 use App\Http\Requests\Api\ProductFilterRequest;
+use App\Http\Resources\OrdersCollection;
 use App\Http\Resources\ProductsCollection;
 use App\Models\Cart;
 use App\Models\Order;
@@ -18,14 +19,10 @@ class OrderController extends Controller
 
     public function index()
     {
-        $carts = Order::query()->with('product.brand')->where('user_id', auth()->user()->id)->get();
+        $carts = Order::query()->with('orderProducts.product.brand')->where('user_id', auth()->user()->id)->paginate(5);
 
         return response()->json(
-            [
-                "status"  => true,
-                "data"    => $carts,
-                "message" => "success",
-            ]
+            new OrdersCollection($carts)
         );
     }
 
