@@ -4,6 +4,7 @@
 
 @section('content')
 <!-- component -->
+
 <div class="w-full container mx-auto flex flex-wrap items-center justify-between px-6 mt-0 py-3">
   <div class="w-full flex justify-center my-6">    
     <div class="flex-1">

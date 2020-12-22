@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('cart', 'CartController@listCart')->name('cartlist');
     Route::post('/cart/update', 'CartController@updateCart')->name('updateCart');
     Route::post('/checkout', 'CartController@processCheckout')->name('checkProcess');
+    Route::get('/checkout/{invoice}', 'CartController@checkoutFinish')->name('finishProcess');
 
     
 
