@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Product;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Brand\Brand;
 
 class Product extends JsonResource
 {
@@ -14,6 +15,13 @@ class Product extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'quantity' => $this->quantity,
+            'price' => $this->price,
+            'picture' => $this->picture,
+            'brand' => Brand::make($this->brand)
+        ];
     }
 }

@@ -23,4 +23,15 @@ class Product extends Model
         'quantity' => 0,
         'picture' => '',
     ];
+    /**
+     * Get the Brand associated with the product.
+     */
+    public function brand()
+    {
+        return $this->hasOne(
+            Brand::class,
+            'id',
+            'brand_id'
+        );
+    }
 }
