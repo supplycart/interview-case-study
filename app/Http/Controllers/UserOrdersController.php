@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\UserOrder;
+use Auth;
 
 class UserOrdersController extends Controller
 {
@@ -14,7 +15,7 @@ class UserOrdersController extends Controller
     } 
     
     public function store(Request $request) {        
-        $userId = 1;        
+        $userId = Auth::user()->id;        
         // grab logged in user 
         $userOrder = UserOrder::where([
             ['user_id', '=', 1],

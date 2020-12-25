@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\UserOrderService;
 use App\UserOrder;
+use Auth;
 
 class CartController extends Controller
 {
@@ -25,7 +26,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $userId = 1;
+        $userId = Auth::user()->id; 
       
         $pendingOrders = UserOrderService::getPendingOrderDetails($userId);      
         $pendingOrdersCount = count($pendingOrders);

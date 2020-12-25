@@ -7,12 +7,13 @@ use App\Product;
 use App\Order;
 use App\UserOrder;
 use App\Services\UserOrderService;
+use Auth;
 
 class OrdersController extends Controller
 {
     public function index()
     {               
-        $userId = 1; 
+        $userId = Auth::user()->id;        
         $userOrders = UserOrderService::getUserOrdersWithOrdersByUserId($userId);        
         $orders = Order::where([
             ['user_id', '=', $userId],                             
@@ -36,7 +37,7 @@ class OrdersController extends Controller
     }      
     
     public function store(Request $request) {                
-        $user_id = 1;              
+        $user_id = Auth::user()->id;              
         $user_order_ids = $request['selected'];
         
         if (count($user_order_ids) > 0) {           
