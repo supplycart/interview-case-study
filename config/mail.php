@@ -32,6 +32,7 @@ return [
     |            "postmark", "log", "array"
     |
     */
+    'from' => ['address' => 'myname@gmail.com', 'name' => 'myname'],
 
     'mailers' => [
         'smtp' => [
