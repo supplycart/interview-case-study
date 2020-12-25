@@ -26,7 +26,8 @@ Route::resource('orders', 'OrdersController', ['only' => [
     'index',
 ]])->middleware(['auth']);;
 
-Route::get('cart', 'CartController@index')->middleware(['auth']);;
+Route::get('search', 'ProductsController@search')->middleware(['auth']);
+Route::get('cart', 'CartController@index')->middleware(['auth']);
 // Route::get('orders/view_order_history', 'OrdersController@viewOrderHistory');
 
 Route::post('user_orders', 'UserOrdersController@store')->middleware(['auth']);;
