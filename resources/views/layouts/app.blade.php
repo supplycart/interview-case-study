@@ -41,7 +41,7 @@
                                     {{ Auth::user()->name }}
                                 </a> --}}
 
-                               
+                                <a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ route('orders.index') }}">View orders</a>                                              
                             <a class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
@@ -49,7 +49,7 @@
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
-                            </form>                                                         
+                            </form>                  
                             @endguest                                             
                         </div>
                     </div>

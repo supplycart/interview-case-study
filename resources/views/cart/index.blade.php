@@ -2,7 +2,10 @@
 
 @section('content')
 <div class="p-5">
-  <div class="flex h-64">
+    <div class="w-full text-gray-700 md:text-center text-2xl font-semibold">
+        View Cart
+    </div>
+     <div class="flex h-64">
       <div class="relative ">
           <div class="flex flex-row cursor-pointer truncate p-2 px-4  rounded">
               <div></div>

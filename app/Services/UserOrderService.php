@@ -7,6 +7,15 @@ use App\Product;
 
 class UserOrderService
 {
+    public static function getUserOrdersWithOrdersByUserId($userId) {
+      
+      
+      return $userOrders = UserOrder::where([
+        ['user_id', '=', $userId], 
+        ['product_id', '>', 0],                  
+      ])->get();      
+    }
+
     public static function getTotalPrice($userOrders)
     {
         $totalPrice = 0;

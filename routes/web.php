@@ -22,11 +22,12 @@ Route::resource('products', 'ProductsController', ['only' => [
 ]]);
 
 Route::resource('orders', 'OrdersController', ['only' => [
-    'store'
+    'store',
+    'index',
 ]]);
 
 Route::get('cart', 'CartController@index');
-Route::get('orders/view_order_history', 'OrdersController@viewOrderHistory');
+// Route::get('orders/view_order_history', 'OrdersController@viewOrderHistory');
 
 Route::post('user_orders', 'UserOrdersController@store');
 // Route::post('orders/place_order', 'OrdersController@placeOrder');
