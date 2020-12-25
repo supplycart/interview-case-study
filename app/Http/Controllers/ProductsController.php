@@ -24,7 +24,8 @@ class ProductsController extends Controller
             'pendingOrdersCount' => $pendingOrdersCount,
         ];
 
-        
+        activity()                                        
+            ->log('view all products');
 
         // return $products[0];
         return view('products.index')->with($data);

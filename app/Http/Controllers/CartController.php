@@ -27,6 +27,8 @@ class CartController extends Controller
     public function index()
     {
         $userId = Auth::user()->id; 
+        activity()            
+            ->log('view cart');
       
         $pendingOrders = UserOrderService::getPendingOrderDetails($userId);      
         $pendingOrdersCount = count($pendingOrders);

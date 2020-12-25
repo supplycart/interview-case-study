@@ -32,7 +32,10 @@ class OrdersController extends Controller
             
             $order->orderDetails = $tmp;
         }       
-                             
+         
+        activity()                               
+            ->log('view orders');
+
         return view('orders.index')->with('orders',$orders);
     }      
     
@@ -51,9 +54,16 @@ class OrdersController extends Controller
                 $user_order->order_id = $order->id;
                 $user_order->is_fulfilled = true;
                 $user_order->save();
-            }            
+            }   
+            
+            activity()                
+                ->performedOn($order)                
+                ->log('place order');
+
             return redirect()->route('products.index');
         } else {
+            activity()                                             
+                ->log('Error occured. Unable to view order');
             return redirect()->back();  
         }              
     }    

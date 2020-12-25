@@ -34,6 +34,10 @@ class UserOrdersController extends Controller
         }       
         
         $userOrder->save(); 
+        activity()                
+            ->performedOn($userOrder)                
+            ->log('place item in cart');
+
         return redirect()->back();  
     }
 }
