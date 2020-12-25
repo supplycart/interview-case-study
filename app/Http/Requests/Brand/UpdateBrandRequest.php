@@ -25,6 +25,7 @@ class UpdateBrandRequest extends FormRequest
     {
         return [
             'name' => 'unique:products|max:255',
+            'description' => 'nullable',
         ];
     }
 }

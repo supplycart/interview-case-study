@@ -25,6 +25,7 @@ class StoreBrandRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:brands|max:255',
+            'description' => 'nullable',
         ];
     }
 }
