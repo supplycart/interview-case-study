@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\v1\api\ProductController;
+use App\Http\Controllers\v1\api\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,4 @@ use App\Http\Controllers\v1\api\ProductController;
 // });
 
 Route::apiResource('products', ProductController::class);
+Route::apiResource('brands', BrandController::class);
