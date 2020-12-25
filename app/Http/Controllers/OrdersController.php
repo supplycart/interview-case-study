@@ -27,6 +27,7 @@ class OrdersController extends Controller
             $tmp->map(function ($val, $key) {
                 $product = Product::find($val->product_id);
                 $val['productName'] = $product->name;
+                $val['price'] = $product->getCurrentPrice();                
                 return $val;
             });
             

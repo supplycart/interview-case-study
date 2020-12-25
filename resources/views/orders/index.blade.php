@@ -25,6 +25,7 @@
           @foreach($order->orderDetails as $detail)
               <div class="ml-20 flex">
                 <div class="text-xs text-gray-600 mr-4"><span class="font-semibold">Product Name:</span> {{ $detail->productName }}</div>
+                <div class="text-xs text-gray-600 mr-4"><span class="font-semibold">Price:</span> ${{ $detail->price }}</div>
                 <div class="text-xs text-gray-600"><span class="font-semibold">Quantity:</span> {{ $detail->quantity }}</div>
               </div>
           @endforeach               

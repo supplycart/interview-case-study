@@ -22,7 +22,7 @@ class UserOrderService
       
         foreach($userOrders as $userOrder) {
           $product = Product::find($userOrder->product_id);
-          $price = $product->cost * $userOrder->quantity;
+          $price = $product->getCurrentPrice() * $userOrder->quantity;
           $totalPrice += $price;
         }
 
@@ -37,7 +37,7 @@ class UserOrderService
 
         foreach($pendingOrders as $pendingOrder) {
           $product = Product::find($pendingOrder->product_id);
-          $pendingOrder->productPrice = $product->cost;
+          $pendingOrder->productPrice = $product->getCurrentPrice();
           $pendingOrder->productName = $product->name;
         }
 

@@ -69,7 +69,7 @@
                                         </div>
                                         <div class="px-5 py-3">
                                             <h3 class="text-gray-700 uppercase">{{ $product->name }}</h3>
-                                            <span class="text-gray-500 mt-2">$123</span>
+                                            <span class="text-gray-500 mt-2">${{ $product->getCurrentPrice() }}</span>
                                         </div>
                                         <input type="hidden" name="productId" value={{ $product->id }} />                                        
                                     </div>
