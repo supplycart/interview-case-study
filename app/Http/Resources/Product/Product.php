@@ -21,7 +21,7 @@ class Product extends JsonResource
             'quantity' => $this->quantity,
             'price' => $this->price,
             'picture' => $this->picture,
-            'brand' => Brand::make($this->brand)
+            'brand' => Brand::make($this->whenLoaded('brand'))
         ];
     }
 }

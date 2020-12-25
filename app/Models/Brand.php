@@ -22,4 +22,13 @@ class Brand extends Model
     protected $attributes = [
         'description' => '-'
     ];
+    /**
+     * Get the Products associated with the brand.
+     */
+    public function products()
+    {
+        return $this->hasMany(
+            Product::class
+        );
+    }
 }
