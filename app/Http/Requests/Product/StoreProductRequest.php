@@ -25,7 +25,10 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:products|max:255',
-            'price' => 'required',
+            'price' => 'required|numeric',
+            'quantity' => 'numeric',
+            'picture' => 'nullable',
+            'brand_id' => 'required|exists:brands,id'
         ];
     }
 }

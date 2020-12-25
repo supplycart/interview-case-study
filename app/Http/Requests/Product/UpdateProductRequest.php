@@ -25,7 +25,10 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'name' => 'unique:products|max:255',
-            'price' => 'required',
+            'price' => 'numeric',
+            'quantity' => 'numeric',
+            'picture' => 'nullable',
+            'brand_id' => 'exists:brands,id'
         ];
     }
 }
