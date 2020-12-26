@@ -4,6 +4,7 @@ namespace App\Http\Resources\Product;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Brand\Brand;
+use App\Http\Resources\Category\Category;
 
 class Product extends JsonResource
 {
@@ -21,7 +22,8 @@ class Product extends JsonResource
             'quantity' => $this->quantity,
             'price' => $this->price,
             'picture' => $this->picture,
-            'brand' => Brand::make($this->whenLoaded('brand'))
+            'brand' => Brand::make($this->whenLoaded('brand')),
+            'categories' => Category::collection($this->whenLoaded('categories'))
         ];
     }
 }

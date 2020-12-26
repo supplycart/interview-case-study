@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return ProductResource::collection(Product::with('brand')->paginate());
+        return ProductResource::collection(Product::with(['brand', 'categories'])->paginate());
     }
 
     /**
