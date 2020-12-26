@@ -13,13 +13,13 @@ class ProductsSeeder extends Seeder
     {
         DB::table('products')->insert([
             [
-                'name' => 'Turkish Angora Plushy',            
+                'name' => 'Classic Watch',            
                 'cost' => 50.00,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],            
             [
-                'name' => 'Siamese Cat Plushy',            
+                'name' => 'Bracelet',            
                 'cost' => 40.00,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),

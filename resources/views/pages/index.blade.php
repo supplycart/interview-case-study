@@ -22,10 +22,10 @@
               <div class="pr-12">
                 <h1 class="text-white font-semibold text-5xl">
                   Welcome to Supply Cart.
-                </h1>
-                <p class="mt-4 text-lg text-gray-300">
-                  Please log in to view list of products available for purchase.
-                </p>
+                </h1>                
+                <button onclick="window.location='{{ url("products") }}'" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                  View Products
+              </button>
               </div>
             </div>
           </div>
