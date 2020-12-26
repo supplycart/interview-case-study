@@ -2,6 +2,8 @@ I used laragon to run this laravel project
 
 All basic features and bonus tasks should be completed
 
+Deployed on heroku: http://salty-plains-65750.herokuapp.com/
+
 **Initial setup**
 - Create development db locally which matches database name on .env
 - Create a test database locally with the name supply-cart-test
