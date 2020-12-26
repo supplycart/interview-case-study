@@ -18,7 +18,7 @@ class ProductCategoriesSeeder extends Seeder
         $category_1 = Category::first();
         $category_2 = Category::orderby('id', 'desc')->first();
         
-        DB::table('Product_Categories')->insert([
+        DB::table('product_categories')->insert([
             [
                 'product_id' => $product_1->id,
                 'category_id' => $category_1->id,                       
