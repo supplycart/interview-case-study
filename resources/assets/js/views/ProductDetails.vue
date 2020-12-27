@@ -1,44 +1,47 @@
 <template>
     <layout>
         <div>
-            <button class="mx-6 my-4 focus:outline-none" @click="$router.go(-1)">
-                &larr; Back
-            </button>
-            <div class="flex justify-center">
-                <div class="w-10/12 shadow-lg p-4 bg-green-50">
-                    <div class="grid grid-cols-3">
-                        <div>
-                            <img style="width:380px;height:380px" :src="`/storage/product/${product.image}`">
-                        </div>
-                        <div class="col-span-2 p-4">
-                            <p class="text-3xl font-bold">{{ product.name }}</p>
-                            <p class="text-xl my-2 text-yellow-600">RM {{ product.price }}</p>
-                            <table class="text-gray-500">
-                                <tbody>
-                                    <tr>
-                                        <td class="w-28 py-2">Category</td>
-                                        <td class="py-2">{{ product.category }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-28 py-2">Brand</td>
-                                        <td class="py-2">{{ product.brand }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-28 py-2 block">Description</td>
-                                        <td class="py-2">{{ product.description}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="mt-7">
-                                <div class="flex">
-                                    <p class="w-28">Quantity:</p> 
-                                    <button class="bg-white w-8 border border-gray-300 focus:outline-none" @click="reduceQuantity">-</button>
-                                    <input class="bg-white w-10 px-2 py-1 border border-gray-300" :value="quantity" @input="updateQuantity" />
-                                    <button class="bg-white w-8 border border-gray-300 focus:outline-none" @click="addQuantity">+</button>
-                                    <p class="ml-3 text-gray-500">{{ product.stock }} pieces available</p>
-                                </div>
-                                <div class="mt-8 flex justify-end">
-                                    <button class="bg-green-600 py-2 px-10 border border-gray-300 text-white" @click="addToCart">Add To Cart</button>
+            <loader v-if="loading"></loader>
+            <div v-if="product.length !== 0 && !loading">
+                <button class="mx-6 my-4 focus:outline-none" @click="$router.go(-1)">
+                    &larr; Back
+                </button>
+                <div class="flex justify-center">
+                    <div class="w-10/12 shadow-lg p-4 bg-green-50">
+                        <div class="grid grid-cols-3">
+                            <div>
+                                <img style="width:380px;height:380px" :src="`/storage/product/${product.image}`">
+                            </div>
+                            <div class="col-span-2 p-4">
+                                <p class="text-3xl font-bold">{{ product.name }}</p>
+                                <p class="text-xl my-2 text-yellow-600">RM {{ product.price }}</p>
+                                <table class="text-gray-500">
+                                    <tbody>
+                                        <tr>
+                                            <td class="w-28 py-2">Category</td>
+                                            <td class="py-2">{{ product.category }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w-28 py-2">Brand</td>
+                                            <td class="py-2">{{ product.brand }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w-28 py-2 block">Description</td>
+                                            <td class="py-2">{{ product.description}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="mt-7">
+                                    <div class="flex">
+                                        <p class="w-28">Quantity:</p> 
+                                        <button class="bg-white w-8 border border-gray-300 focus:outline-none" @click="reduceQuantity">-</button>
+                                        <input class="bg-white w-10 px-2 py-1 border border-gray-300" :value="quantity" @input="updateQuantity" />
+                                        <button class="bg-white w-8 border border-gray-300 focus:outline-none" @click="addQuantity">+</button>
+                                        <p class="ml-3 text-gray-500">{{ product.stock }} pieces available</p>
+                                    </div>
+                                    <div class="mt-8 flex justify-end">
+                                        <button class="bg-green-600 py-2 px-10 border border-gray-300 text-white" @click="addToCart">Add To Cart</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -55,6 +58,7 @@
             return {
                 product: [],
                 quantity: 1,
+                loading: true,
                 message: ''
             }
         },
@@ -68,7 +72,6 @@
 
             await axios.get("/api/categories/" + this.product.category_id)
             .then(response => {
-                console.log("category: ", response.data)
                 this.product = {
                     ...this.product,
                     category: response.data.category.name
@@ -82,6 +85,7 @@
                     ...this.product,
                     brand: response.data.brand.name
                 }
+                this.loading = false;
             })
             .catch(error => console.log(error))
         },

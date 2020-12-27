@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class BrandController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class BrandController extends Controller
     public function index()
     {
         return response()->json([
-            "data" => Brand::all(),
+            "brands" => Brand::all(),
         ]);
     }
 

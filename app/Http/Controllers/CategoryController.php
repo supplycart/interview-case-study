@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategoryController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class CategoryController extends Controller
     public function index()
     {
         return response()->json([
-            "data" => Category::all(),
+            "categories" => Category::all(),
         ]);
     }
 

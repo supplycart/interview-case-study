@@ -1,10 +1,8 @@
 <template>
     <layout>
         <div class="w-full">
-            <div class="h-96 flex justify-center" v-if="loading">
-                <div id="loader" class="m-6" ></div>
-            </div>
-            <div id="content" v-if="cartItem.length !== 0 && !loading">
+            <loader v-if="loading"></loader>
+            <div v-if="cartItem.length !== 0 && !loading">
                 <button class="mx-6 my-4 focus:outline-none" @click="$router.go(-1)">
                     &larr; Back
                 </button>
@@ -14,15 +12,15 @@
                         <table class="w-full table-fixed">
                             <tr v-for="(item, index) in cartItem" :key="item.id" class="border-green-200 border-b-2">
                                 <td class="py-4 pl-4 w-28">
-                                    <img style="width:80px;height:80px" :src="`/storage/product/${item.image}`">
+                                    <img class="w-20 h-20 cursor-pointer" :src="`/storage/product/${item.image}`" @click="viewProduct(item.id)" />
                                 </td> 
-                                <td class="w-1/2">{{ item.name }}</td>
+                                <td class="w-1/2 cursor-pointer" @click="viewProduct(item.id)">{{ item.name }}</td>
                                 <td class="pl-4" style="width:12.5%">RM {{ item.price }}</td>
                                 <td class="text-center p-1" style="width:15%">
                                     <div class="flex">
-                                    <button class="bg-white w-10 px-2 border border-gray-300 focus:outline-none" @click="reduceQuantity(index)">-</button>
-                                    <input class="bg-white w-10 px-2 py-1 border border-gray-300" :value="item.quantity" @input="updateQuantity($event, index)" />
-                                    <button class="bg-white w-10 px-2 border border-gray-300 focus:outline-none" @click="addQuantity(index)">+</button>
+                                        <button class="bg-white w-10 px-2 border border-gray-300 focus:outline-none" @click="reduceQuantity(index)">-</button>
+                                        <input class="bg-white w-10 px-2 py-1 border border-gray-300" :value="item.quantity" @input="updateQuantity($event, index)" />
+                                        <button class="bg-white w-10 px-2 border border-gray-300 focus:outline-none" @click="addQuantity(index)">+</button>
                                     </div>
                                 </td>
                                 <td class="p-4">RM {{ (item.price * item.quantity).toFixed(2) }}</td>
@@ -38,11 +36,11 @@
                     <button class="bg-green-600 py-2 px-10 text-white" @click="checkout">Checkout</button>
                 </div>
             </div>
-            <div v-if="cartItem.length === 0 && !loading" id="content" class="flex justify-center mt-8"> 
+            <div v-if="cartItem.length === 0 && !loading" class="flex justify-center mt-8"> 
                 <div class="w-2/5 flex flex-col justify-center">
                     <img class="h-3/4 w-1/2 self-center" src="https://cdn.dribbble.com/users/204955/screenshots/4930541/emptycart.png?compress=1&resize=400x300" alt="">
                     <p class="text-4xl text-center mb-8">Your cart is empty</p>
-                    <button class="bg-green-600 py-2 px-10 text-white w-1/2 self-center" @click="$router.push({ path: `/products` })">Add Order Now</button>
+                    <button class="bg-green-600 py-2 px-10 text-white w-1/2 self-center" @click="$router.push({ path: '/products' })">Add Order Now</button>
                 </div>
             </div>
             <div id="snackbar">{{ message }}</div>
@@ -86,6 +84,9 @@
             .catch(error => console.log(error))            
         },
         methods: {
+            viewProduct(id) {
+                router.push({ path: `/products/${id}` })
+            },
             updateQuantity(event, index) {
                 event.preventDefault()
 
@@ -177,27 +178,6 @@
     }
 </script>
 <style scoped>
-    #loader {
-        border: 16px solid #f3f3f3;
-        border-radius: 50%;
-        border-top: 16px solid #3498db;
-        width: 80px;
-        height: 80px;
-        position: absolute;
-        -webkit-animation: spin 2s linear infinite; /* Safari */
-        animation: spin 2s linear infinite;
-    }
-
-    @-webkit-keyframes spin {
-        0% { -webkit-transform: rotate(0deg); }
-        100% { -webkit-transform: rotate(360deg); }
-    }
-
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
     #snackbar {
         visibility: hidden;
         min-width: 250px;

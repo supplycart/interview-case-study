@@ -1,5 +1,15 @@
 router.addRoutes([
     {
+        path: '/login',
+        name: 'login',
+        component: require('./views/Login.vue')
+    },
+    // {
+    //     path: '/register',
+    //     name: 'register',
+    //     component: require('./views/Register.vue')
+    // },
+    {
         path: '/products',
         name: 'products',
         component: require('./views/ProductList.vue')
@@ -15,6 +25,11 @@ router.addRoutes([
         component: require('./views/ShoppingCart.vue')
     },
     {
-        path: '/', redirect: '/product'
+        path: '/orders',
+        name: 'orders',
+        component: require('./views/OrderHistory.vue')
+    },
+    {
+        path: '/', redirect: '/products'
     },
 ])
