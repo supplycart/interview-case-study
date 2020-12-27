@@ -4,10 +4,11 @@ namespace App\Http\Controllers\v1\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Brand;
 use App\Http\Resources\Brand\Brand as BrandResource;
 use App\Http\Requests\Brand\StoreBrandRequest;
 use App\Http\Requests\Brand\UpdateBrandRequest;
-use App\Models\Brand;
+
 
 class BrandController extends Controller
 {
