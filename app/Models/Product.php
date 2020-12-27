@@ -24,6 +24,12 @@ class Product extends Model
         'picture' => '',
     ];
     /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['categories', 'brand'];
+    /**
      * Get the Brand associated with the product.
      */
     public function brand()

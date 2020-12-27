@@ -28,7 +28,8 @@ class UpdateProductRequest extends FormRequest
             'price' => 'numeric',
             'quantity' => 'numeric',
             'picture' => 'nullable',
-            'brand_id' => 'exists:brands,id'
+            'brand_id' => 'exists:brands,id',
+            'categories' => 'array|exists:categories,id'
         ];
     }
 }

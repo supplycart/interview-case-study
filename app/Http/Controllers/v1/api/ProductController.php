@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\v1\api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Arr;
 use App\Http\Resources\Product\Product as ProductResource;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
@@ -18,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return ProductResource::collection(Product::with(['brand', 'categories'])->paginate());
+        return ProductResource::collection(Product::paginate());
     }
 
     /**
@@ -30,10 +31,14 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $validated_data = $request->validated();
+        $categories = Arr::get($validated_data, 'categories', []);
+
         $product = Product::create($validated_data);
+        $product->categories()->attach(
+            $categories
+        );
 
-        return new ProductResource($product);
-
+        return new ProductResource($product->load(['categories', 'brand']));
     }
 
     /**
@@ -44,7 +49,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return new ProductResource($product->load(['brand', 'categories']));
+        return new ProductResource($product);
     }
 
     /**
@@ -57,9 +62,16 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         $validated_data = $request->validated();
-        $product->update($validated_data);
+        $categories = Arr::get($validated_data, 'categories', []);
 
-        return new ProductResource($product);
+        $product->update($validated_data);
+        $product->categories()->sync(
+            $categories
+        );
+
+        $updated_product = $product->refresh();
+
+        return new ProductResource($updated_product);
     }
 
     /**
