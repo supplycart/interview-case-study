@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\ProductController;
+use App\Http\Controllers\Web\CartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,5 +23,6 @@ Route::get('/admin', function () {
 })->middleware(['auth'])->name('admin');
 
 Route::get('/app', [ProductController::class, 'index'])->middleware(['auth'])->name('app');
+Route::get('/cart', [CartController::class, 'index'])->middleware(['auth'])->name('cart');
 
 require __DIR__.'/auth.php';

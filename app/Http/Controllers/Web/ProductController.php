@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = ProductResource::collection(Product::paginate(12));
-        return view('app', [
+        return view('app.product-list', [
             'products' => $products
         ]);
     }
