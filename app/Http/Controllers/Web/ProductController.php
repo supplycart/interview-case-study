@@ -51,9 +51,11 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $product = new ProductResource($product);
+        return view('app.product-detail', [
+            'product' => $product
+        ]);
     }
-
     /**
      * Show the form for editing the specified resource.
      *

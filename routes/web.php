@@ -23,6 +23,7 @@ Route::get('/admin', function () {
 })->middleware(['auth'])->name('admin');
 
 Route::get('/app', [ProductController::class, 'index'])->middleware(['auth'])->name('app');
+Route::get('/app/product/{product}', [ProductController::class, 'show'])->middleware(['auth'])->name('product-detail');
 Route::get('/cart', [CartController::class, 'index'])->middleware(['auth'])->name('cart');
 
 require __DIR__.'/auth.php';
