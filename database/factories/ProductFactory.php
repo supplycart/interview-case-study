@@ -26,7 +26,7 @@ class ProductFactory extends Factory
             'name' => $this->faker->name,
             'quantity' => $this->faker->numberBetween(1, 11),
             'price' => $this->faker->randomFloat(2, 10, 30),
-            'picture' => $this->faker->image(null, 360, 360, 'tables', true),
+            'picture' => $this->faker->imageUrl(360, 360),
             'brand_id' => Brand::factory()->create()
         ];
     }

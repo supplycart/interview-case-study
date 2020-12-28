@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Http\Resources\Product\Product as ProductResource;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,8 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $products = ProductResource::collection(Product::paginate(12));
         return view('app', [
-            'products' => Product::paginate(5)
+            'products' => $products
         ]);
     }
 
