@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Web\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,8 +21,6 @@ Route::get('/admin', function () {
     return view('admin');
 })->middleware(['auth'])->name('admin');
 
-Route::get('/app', function () {
-    return view('app');
-})->middleware(['auth'])->name('app');
+Route::get('/app', [ProductController::class, 'index'])->middleware(['auth'])->name('app');
 
 require __DIR__.'/auth.php';
