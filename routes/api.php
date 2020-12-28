@@ -21,6 +21,6 @@ use App\Http\Controllers\v1\api\CategoryController;
 //     return $request->user();
 // });
 
-Route::apiResource('products', ProductController::class);
-Route::apiResource('brands', BrandController::class);
-Route::apiResource('categories', CategoryController::class);
+// Route::apiResource('products', ProductController::class);
+// Route::apiResource('brands', BrandController::class);
+// Route::apiResource('categories', CategoryController::class);
