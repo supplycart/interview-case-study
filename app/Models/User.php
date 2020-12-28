@@ -49,4 +49,13 @@ class User extends Authenticatable
     {
         return $this->hasOne(Cart::class);
     }
+
+    public function is_admin()
+    {
+        if ($this->is_admin == 1) {
+            return true;
+        }
+
+        return false;
+    }
 }
