@@ -8,7 +8,7 @@
                         <img class="hidden lg:block h-8 w-auto object-cover" src="https://www.supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png" alt="Workflow">
                     </div>
                 </div>
-                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div v-if="token" class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     <button v-on:click="$router.push({ path: '/cart' })" class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                         <span class="sr-only">View cart</span>
                         <svg class="h-6 w-6 fill-current text-white-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
@@ -37,38 +37,43 @@
     </nav>
 </template>
 <script>
-import OnClickOutside from "./OnClickOutside.vue";
+    import OnClickOutside from "./OnClickOutside.vue";
+    import { mapState } from 'vuex'
 
-export default {
-    name: "Dropdown",
-    components: {
-        OnClickOutside
-    },
-    data() {
-        return {
-            open: false
-        };
-    },
-    methods: {
-        handleClickOutside() {
-            if (this.open) {
-                this.open = false;
+    export default {
+        name: "Dropdown",
+        components: {
+            OnClickOutside
+        },
+        data() {
+            return {
+                open: false
             }
         },
-        logout() {
-            axios.post("/api/auth/logout", {}, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.token}`
+        computed: mapState({
+        token: state => state.token,
+        }),
+        methods: {
+            handleClickOutside() {
+                if (this.open) {
+                    this.open = false
                 }
-            })
-            .then(() => {
-                localStorage.token = ''
-                router.push({ path: '/login'})
-            })
-            .catch(error => {
-                console.log(error)
-            })
+            },
+            logout() {
+                axios.post("/api/auth/logout", {}, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.token}`
+                    }
+                })
+                .then(async () => {
+                    localStorage.token = ''
+                    await this.$store.dispatch('logout')
+                    router.push({ path: '/login'})
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+            }
         }
     }
-};
 </script>

@@ -357,7 +357,9 @@ const store = new Vuex.Store({
                 }
             })
         },
-        
+        logout({ commit }) {
+            commit(type.UPDATE_TOKEN)
+        },
     }
 })
 
