@@ -48955,7 +48955,6 @@ var store = new __WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */].Store({
     mutations: (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_3__mutation_types__["j" /* UPDATE_TOKEN */], function (state, payload) {
         state.token = '';
     }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_3__mutation_types__["b" /* AUTHENTICATION_SUCCESS */], function (state, payload) {
-        console.log("login:", payload.token);
         state.token = payload.token;
         state.login_fail = false;
     }), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_3__mutation_types__["a" /* AUTHENTICATION_FAIL */], function (state) {
@@ -49255,7 +49254,6 @@ var store = new __WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */].Store({
                                                                 }());
 
                                                                 Promise.all(requests).then(function () {
-                                                                    console.log("cart", carts);
                                                                     commit(__WEBPACK_IMPORTED_MODULE_3__mutation_types__["e" /* SAVE_CART */], { carts: carts, totalPrice: totalPrice });
                                                                     resolve();
                                                                 });

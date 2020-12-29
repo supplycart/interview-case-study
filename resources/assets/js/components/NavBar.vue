@@ -51,7 +51,7 @@
             }
         },
         computed: mapState({
-        token: state => state.token,
+            token: state => state.token,
         }),
         methods: {
             handleClickOutside() {

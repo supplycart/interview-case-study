@@ -23,7 +23,6 @@ const store = new Vuex.Store({
             state.token = ''
         },
         [type.AUTHENTICATION_SUCCESS](state, payload) {
-            console.log("login:", payload.token)
             state.token = payload.token
             state.login_fail = false
         },
@@ -190,7 +189,6 @@ const store = new Vuex.Store({
                         })
                     
                         Promise.all(requests).then(() => {
-                            console.log("cart", carts)
                             commit(type.SAVE_CART, {carts: carts, totalPrice: totalPrice})
                             resolve()
                         });
