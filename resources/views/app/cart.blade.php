@@ -1,19 +1,29 @@
 @extends('layouts.app')
 @section('content')
-@if (session('cart_success'))
-  <!--Header Alert-->
-  <div class="alert-banner w-full fixed top-0">
-      <input type="checkbox" class="hidden" id="banneralert">
-
-      <label class="close cursor-pointer flex items-center justify-between w-full p-2 bg-green-500 shadow text-white" title="close" for="banneralert">
-      {{ session('cart_success') }}
-
-      <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-          <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-      </svg>
-      </label>
-  </div>
-  @endif
+@if (session('cart_add_success'))
+<!--Header Alert-->
+<div class="alert-banner w-full fixed top-0">
+    <input type="checkbox" class="hidden" id="banneralert">
+    <label class="close cursor-pointer flex items-center justify-between w-full p-2 bg-green-500 shadow text-white" title="close" for="banneralert">
+    {{ session('cart_add_success') }}
+    <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+    </svg>
+    </label>
+</div>
+@endif
+@if (session('cart_remove_success'))
+<!--Header Alert-->
+<div class="alert-banner w-full fixed top-0">
+    <input type="checkbox" class="hidden" id="banneralert">
+    <label class="close cursor-pointer flex items-center justify-between w-full p-2 bg-green-500 shadow text-white" title="close" for="banneralert">
+    {{ session('cart_remove_success') }}
+    <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+    </svg>
+    </label>
+</div>
+@endif
 <div class="flex justify-center my-6">
   <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
     <div class="flex-1">

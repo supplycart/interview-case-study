@@ -62,4 +62,16 @@ class Product extends Model
     {
         return $this->belongsToMany(Order::class)->withTimestamps();;
     }
+
+    /**
+     * Get the product's price based on user's membership
+     *
+     * @param  int  $price
+     * @return int
+     */
+    public function getPriceAttribute($price)
+    {
+
+        return $price;
+    }
 }

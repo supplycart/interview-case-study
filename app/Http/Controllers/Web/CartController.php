@@ -35,7 +35,7 @@ class CartController extends Controller
         $cart->products()->attach($product, ['product_quantity' => $requested_quantity]);
 
         return redirect(route('cart'))->with(
-            'cart_success',
+            'cart_add_success',
             'Succesfully added to cart'
         );
     }
@@ -51,6 +51,9 @@ class CartController extends Controller
         $cart = Auth::user()->cart;
         $cart->products()->detach($product);
 
-        return back();
+        return back()->with(
+            'cart_remove_success',
+            'Succesfully removed item(s) from cart'
+        );;
     }
 }
