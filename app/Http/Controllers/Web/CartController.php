@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Http\Resources\Product\Product as ProductResource;
+use App\Http\Resources\CartProduct\CartProduct as CartProductResource;
 class CartController extends Controller
 {
     /**
@@ -17,7 +17,7 @@ class CartController extends Controller
     public function index()
     {
         $cart = Auth::user()->cart;
-        $products = ProductResource::collection($cart->products);
+        $products = CartProductResource::collection($cart->products);
         return view('app.cart', ['cart_products' => $products]);
     }
 

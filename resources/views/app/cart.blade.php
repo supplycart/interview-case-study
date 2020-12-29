@@ -61,7 +61,7 @@
             <td class="justify-center md:justify-end md:flex mt-6">
               <div class="w-20 h-10">
                 <div class="relative flex flex-row w-full h-8">
-                <input type="number" value=""
+                <input type="number" value="{{ $product->pivot->product_quantity }}"
                   class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
                 </div>
               </div>

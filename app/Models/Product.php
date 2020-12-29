@@ -52,7 +52,7 @@ class Product extends Model
      */
     public function carts()
     {
-        return $this->belongsToMany(Cart::class)->withTimestamps();;
+        return $this->belongsToMany(Cart::class)->withTimestamps()->withPivot('product_quantity');
     }
 
     /**
@@ -60,7 +60,7 @@ class Product extends Model
      */
     public function orders()
     {
-        return $this->belongsToMany(Order::class)->withTimestamps();;
+        return $this->belongsToMany(Order::class)->withTimestamps();
     }
 
     /**
