@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\CartProduct\CartProduct as CartProductResource;
 class CartController extends Controller
 {
@@ -41,6 +42,27 @@ class CartController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Product $product)
+    {
+        $cart_id = Auth::user()->cart->id;
+        $product_id = $product->id;
+        $updated = DB::table('cart_product')
+                ->where('cart_id', '=', $cart_id)
+                ->where('product_id', '=', $product_id)
+                ->update(['product_quantity' => $request->product_quantity]);
+
+        return back()->with(
+            'cart_update_success',
+            'Succesfully updated item quantity'
+        );
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \Illuminate\Http\Product  $product
@@ -54,6 +76,6 @@ class CartController extends Controller
         return back()->with(
             'cart_remove_success',
             'Succesfully removed item(s) from cart'
-        );;
+        );
     }
 }

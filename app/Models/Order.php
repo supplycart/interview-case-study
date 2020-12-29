@@ -20,6 +20,14 @@ class Order extends Model
      */
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withTimestamps();;
+        return $this->belongsToMany(Product::class)->withTimestamps();
+    }
+
+    /**
+     * The user that belong to the order.
+     */
+    public function user()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

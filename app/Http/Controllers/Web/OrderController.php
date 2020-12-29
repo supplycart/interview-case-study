@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Web;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -36,7 +38,13 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        $cart = $user->cart;
+        $order = new Order([
+            'user_id' => $user->id
+        ]);
+
+        dd($user, $order, $cart->products);
     }
 
     /**

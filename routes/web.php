@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\ProductController;
 use App\Http\Controllers\Web\CartController;
+use App\Http\Controllers\Web\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,8 +25,10 @@ Route::get('/admin', function () {
 
 Route::get('/app', [ProductController::class, 'index'])->middleware(['auth'])->name('app');
 Route::get('/app/product/{product}', [ProductController::class, 'show'])->middleware(['auth'])->name('product-detail');
+Route::get('/cart', [CartController::class, 'index'])->middleware(['auth'])->name('cart');
+Route::put('/cart/{product}', [CartController::class, 'update'])->middleware(['auth'])->name('update-cart-quantity');
 Route::post('/app/product/{product}/cart', [CartController::class, 'store'])->middleware(['auth'])->name('add-product-to-cart');
 Route::delete('/app/product/{product}/cart/remove', [CartController::class, 'destroy'])->middleware(['auth'])->name('remove-product-from-cart');
-Route::get('/cart', [CartController::class, 'index'])->middleware(['auth'])->name('cart');
+Route::post('/orders', [OrderController::class, 'store'])->middleware(['auth'])->name('store-orders');
 
 require __DIR__.'/auth.php';
