@@ -25,7 +25,7 @@
 </div>
 @endif
 <div class="flex justify-center my-6">
-  <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
+  <div class="flex flex-col w-full p-8 text-gray-800 bg-white pin-r pin-y md:w-4/5 lg:w-4/5">
     <div class="flex-1">
       <table class="w-full text-sm lg:text-base" cellspacing="0">
         <thead>
@@ -73,14 +73,13 @@
             </td>
             <td class="text-right">
               <span class="text-sm lg:text-base font-medium">
-                ${{ $product->price }}
+                ${{ $product->price * $product->pivot->product_quantity }}
               </span>
             </td>
           </tr>
           @endforeach
         </tbody>
       </table>
-      <hr class="pb-6">
       <div class="my-4 mt-6">
         <div class="lg:px-2 lg:w">
           <div class="p-4">

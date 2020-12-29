@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = ProductResource::collection(Product::paginate(12));
+        $products = Product::paginate(12);
         return view('app.product-list', [
             'products' => $products
         ]);
@@ -51,7 +51,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product = new ProductResource($product);
         return view('app.product-detail', [
             'product' => $product
         ]);

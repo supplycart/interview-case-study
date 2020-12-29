@@ -17,8 +17,8 @@ class CartController extends Controller
     public function index()
     {
         $cart = Auth::user()->cart;
-        $products = CartProductResource::collection($cart->products);
-        return view('app.cart', ['cart_products' => $products]);
+        $products = $cart->products;
+        return view('app.cart', ['cart_products' => $cart->products]);
     }
 
     /**
@@ -31,7 +31,7 @@ class CartController extends Controller
     public function store(Request $request, Product $product)
     {
         $cart = Auth::user()->cart;
-        $requested_quantity = isset($request->quantity) ? $request->quantity : 1;
+        $requested_quantity = isset($request->product_quantity) ? $request->product_quantity : 1;
         $cart->products()->attach($product, ['product_quantity' => $requested_quantity]);
 
         return redirect(route('cart'))->with(

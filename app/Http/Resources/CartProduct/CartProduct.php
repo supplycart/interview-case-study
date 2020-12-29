@@ -17,10 +17,11 @@ class CartProduct extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'product_quantity' => $this->whenPivotLoaded('cart_product', function () {
-                return $this->pivot->product_quantity;
-            }),
+            // 'product_quantity' => $this->whenPivotLoaded('cart_product', function () {
+            //     return $this->pivot->product_quantity;
+            // }),
             'price' => $this->price,
+            'total_price' => $this->price,
             'picture' => $this->picture,
             'brand' => Brand::make($this->whenLoaded('brand')),
         ];
