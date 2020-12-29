@@ -39,3 +39,5 @@ This case study is designed for candidates to showcase their skills and coding s
 5. run `npm install`
 
 6. run `npm run watch`
+
+7. run `php artisan serve`
