@@ -48,113 +48,40 @@
     </layout>
 </template>
 <script>
+    import { mapState } from 'vuex'
     export default {
         data() {
             return {
-                cartItem: [],
-                totalPrice: 0,
                 loading: true,
                 message: ''
             }
         },
         async mounted() {
-            await axios.get("/api/cart")
-            .then(response => {
-                if (response.data.carts.length === 0) {
-                    this.loading = false;
-                }
-                response.data.carts.forEach( async (e) => {
-                    let product = await axios.get("/api/products/" + e.product_id)
-
-                    let item = {
-                        id: e.product_id,
-                        name: product.data.product.name,
-                        price: product.data.product.price.toFixed(2),
-                        stock: product.data.product.stock,
-                        image: product.data.product.image,
-                        quantity: e.quantity
-                    }
-                    this.cartItem.push(item)
-                    this.totalPrice = this.totalPrice + item.price * item.quantity
-
-                    this.loading = false;
-                })
-                
-            })
-            .catch(error => console.log(error))            
+            await this.$store.dispatch('fetchCart').then(() => {
+                this.loading = false
+            })          
         },
+        computed: mapState({
+            cartItem: state => state.carts,
+            totalPrice: state => state.totalPrice,
+        }),
         methods: {
             viewProduct(id) {
                 router.push({ path: `/products/${id}` })
             },
-            updateQuantity(event, index) {
+            async updateQuantity(event, index) {
                 event.preventDefault()
-
                 let quantity = parseInt(event.target.value)
-
-                this.totalPrice = this.totalPrice - this.cartItem[index].price * this.cartItem[index].quantity
-                
-                if (quantity === 0) {
-                    this.deleteCartItem(this.cartItem[index].id)
-                    this.cartItem.splice(index, 1)
-                } else {
-                    let product = {
-                        ...this.cartItem[index],
-                        quantity: quantity >=  this.cartItem[index].stock ? this.cartItem[index].stock : quantity
-                    }
-                    this.$set(this.cartItem, index, product)
-                    this.totalPrice = this.totalPrice + this.cartItem[index].price * this.cartItem[index].quantity
-                    
-                    this.updateCartDB(index)
-                }
+                await this.$store.dispatch('updateCartQuantity', {index, quantity})
             },
-            addQuantity(index) {
-                let product = {
-                    ...this.cartItem[index],
-                    quantity: this.cartItem[index].quantity >=  this.cartItem[index].stock ? this.cartItem[index].stock : this.cartItem[index].quantity + 1
-                }
-                this.$set(this.cartItem, index, product)
-                this.totalPrice = this.totalPrice + parseInt(this.cartItem[index].price)
-                
-                this.updateCartDB(index)
+            async addQuantity(index) {
+                await this.$store.dispatch('addCartQuantity', {index: index})
             },
-            reduceQuantity(index) {
-                let quantity = this.cartItem[index].quantity;
-                if (quantity === 1) {
-                    this.totalPrice = this.totalPrice - parseInt(this.cartItem[index].price)
-                    this.deleteCartItem(this.cartItem[index].id)
-                    this.cartItem.splice(index, 1)
-                    
-                } else {
-                    quantity = quantity - 1
-                    let product = {
-                        ...this.cartItem[index],
-                        quantity
-                    }
-                    this.totalPrice = this.totalPrice - parseInt(this.cartItem[index].price)
-                    this.$set(this.cartItem, index, product)
-
-                    this.updateCartDB(index)
-                }
+            async reduceQuantity(index) {
+                await this.$store.dispatch('reduceCartQuantity', {index: index})
             },
-            clearCart() {
-                axios.delete("/api/cart")
-                .catch(error => console.log(error))
-                this.cartItem = []
-            },
-            async updateCartDB(index) {
-                await axios.put("/api/cart/" + this.cartItem[index].id, {quantity: this.cartItem[index].quantity} )
-                .then(response => {
-                    console.log(response.data.message)
-                })
-                .catch(error => console.log(error))
-            },
-            async deleteCartItem(id) {
-                await axios.delete("/api/cart/" + id)
-                .then(response => {
-                    console.log(response.data.message)
-                })
-                .catch(error => console.log(error))
+            async clearCart() {
+                await this.$store.dispatch('clearCart');
             },
             checkout() {
                 let request = {
@@ -162,7 +89,11 @@
                     totalPrice: this.totalPrice,
                 }
 
-                axios.post('/api/orders', request)
+                axios.post('/api/auth/orders', request, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.token}`
+                    }
+                })
                 .then(response => {
                     this.clearCart();
                     this.message = response.data.message

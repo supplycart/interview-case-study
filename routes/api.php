@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('api')->namespace('Auth')->prefix('auth')->group(function() {
+Route::middleware('api')->prefix('auth')->group(function() {
     Route::resource( 'products', 'ProductController');
     Route::resource( 'brands', 'BrandController');
     Route::resource( 'categories', 'CategoryController');
@@ -27,14 +27,22 @@ Route::middleware('api')->namespace('Auth')->prefix('auth')->group(function() {
     ]]);
     Route::delete('/cart', 'CartController@deleteCart');
     Route::delete('/cart/{id}', 'CartController@delete');
-});
 
-Route::namespace('Auth')->prefix('auth')->group(function() {
-    Route::middleware('api')->group(function() {
+    Route::namespace('Auth')->group(function() {
         Route::post('login', 'AuthController@login');
         Route::post('logout', 'AuthController@logout');
         Route::post('refresh', 'AuthController@refresh');
         Route::post('me', 'AuthController@me');
+        Route::post('register', 'AuthController@register');
     });
-    Route::post('register', 'AuthController@register');
 });
+
+// Route::namespace('Auth')->prefix('auth')->group(function() {
+//     Route::middleware('api')->group(function() {
+//         Route::post('login', 'AuthController@login');
+//         Route::post('logout', 'AuthController@logout');
+//         Route::post('refresh', 'AuthController@refresh');
+//         Route::post('me', 'AuthController@me');
+//     });
+//     Route::post('register', 'AuthController@register');
+// });

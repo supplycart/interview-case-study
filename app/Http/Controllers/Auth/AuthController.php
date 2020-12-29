@@ -23,7 +23,7 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         if (!$token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['message' => 'Invalid email/password'], 401);
         }
         return $this->respondWithToken($token);
     }
@@ -31,15 +31,9 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $user = new User();
-        if (!empty($request->get('name'))) {
-            $user->name = $request->get('name');
-        }
-        if (!empty($request->get('email'))) {
-            $user->email = $request->get('email');
-        }
-        if (!empty($request->get('password'))) {
-            $user->password = bcrypt($request->get('password'));
-        }
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = bcrypt($request->get('password'));
         
         $user->save();
 

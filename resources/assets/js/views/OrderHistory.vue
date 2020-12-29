@@ -1,6 +1,6 @@
 <template>
     <layout>
-        <div class="w-full">
+        <div class="w-full bg-gray-100">
             <loader v-if="loading"></loader>
             <div v-if="orders.length !== 0 && !loading">
                 <button class="mx-6 my-4 focus:outline-none" @click="$router.go(-1)">
@@ -49,25 +49,10 @@
                 loading: true
             }
         },
-        mounted() {
-            axios.get("/api/orders")
-            .then(response => {
-                console.log("response", response.data)
-                response.data.results.forEach( async (e) => {
-
-                    let order = {
-                        id: e.order.id,
-                        created_at: new Date(e.order.created_at).toLocaleString(),
-                        total_cost: e.order.total_cost,
-                        products: e.products
-                    }
-                    this.orders.push(order)
-
-                    this.loading = false;
-                })
-                this.orders.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-            })
-            .catch(error => console.log(error))
+        async mounted() {
+            await this.$store.dispatch('fetchOrders')
+            this.orders = this.$store.state.orders
+            this.loading = false
         },
         methods: {
             viewDetails(id) {

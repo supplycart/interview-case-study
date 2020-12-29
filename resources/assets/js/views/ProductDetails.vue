@@ -10,7 +10,7 @@
                     <div class="w-10/12 shadow-lg p-4 bg-green-50">
                         <div class="grid grid-cols-3">
                             <div>
-                                <img style="width:380px;height:380px" :src="`/storage/product/${product.image}`">
+                                <img style="width:380px;height:380px" :src="product.image">
                             </div>
                             <div class="col-span-2 p-4">
                                 <p class="text-3xl font-bold">{{ product.name }}</p>
@@ -64,13 +64,21 @@
         },
         async mounted() {
             let id = this.$route.params.id
-            await axios.get("/api/products/" + id)
+            await axios.get("/api/auth/products/" + id, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            })
             .then(response => {
                 this.product = response.data.product
             })
             .catch(error => console.log(error))
 
-            await axios.get("/api/categories/" + this.product.category_id)
+            await axios.get("/api/auth/categories/" + this.product.category_id, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            })
             .then(response => {
                 this.product = {
                     ...this.product,
@@ -79,7 +87,11 @@
             })
             .catch(error => console.log(error))
 
-            await axios.get("/api/brands/" + this.product.brand_id)
+            await axios.get("/api/auth/brands/" + this.product.brand_id, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.token}`
+                }
+            })
             .then(response => {
                 this.product = {
                     ...this.product,
@@ -103,7 +115,11 @@
                 this.quantity = this.quantity === 1 ? 1 : this.quantity - 1
             },
             addToCart() {
-                axios.post("/api/cart", {id: this.product.id, quantity: this.quantity} )
+                axios.post("/api/auth/cart", {id: this.product.id, quantity: this.quantity}, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.token}`
+                    }
+                })
                 .then(response => {
                     this.message = response.data.message
                     let x = document.getElementById("snackbar")

@@ -12,24 +12,11 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:api');
     }
     
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        // $products = Product::when($request->query('name'), function($query) use ($request) {
-        //         return $query->where('name', 'like', '%'.$request->query('name').'%');
-        //     })
-        //     ->when($request->query('description'), function($query) use ($request) {
-        //         return $query->where('description', 'like','%'.$request->query('description').'%');
-        //     })
-        //     ->get();
-        
         return response()->json([
             'products' => Product::all()
         ],200);
@@ -38,8 +25,9 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-
-        if (!$product) {
+        
+        if (!$product) 
+        {
             return response()->json([
                 'error' => 404,
                 'message' => 'Not Found'

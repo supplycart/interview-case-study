@@ -1,7 +1,8 @@
 <template>
     <layout>
         <div class="flex justify-center pt-4">
-            <div class="w-4/5 flex">
+            <loader v-if="loading"></loader>
+            <div v-else class="w-4/5 flex">
                 <div class="w-1/5 mt-2.5 pr-6">
                     <div class="divide-y divide-gray-400">
                         <div class="mb-2 text-xl font-bold">SEARCH FILTER</div>
@@ -19,7 +20,7 @@
                             <div class="hover:text-blue-500 cursor-pointer" @click="resetFilter('brand')">
                                 All Brands ( {{ products.length }} )
                             </div>
-                            <div class="hover:text-blue-500 cursor-pointer" v-for="brand in filteredBrand" :key="brand.id" @click="setFilter('brand', brand.id)">
+                            <div class="hover:text-blue-500 cursor-pointer" v-for="brand in filteredBrands" :key="brand.id" @click="setFilter('brand', brand.id)">
                                 {{ brand.name }} ( {{ brand.quantity }} )
                             </div>
                         </div>
@@ -30,7 +31,7 @@
                         <div class="shadow-lg border-2 border-gray-100 bg-white" v-for="product in filteredProduct" :key="product.name" @click="$router.push({ path: `/products/${product.id}` })">
                             <div class='img-thumbnail' style='height: 300px'>
                                 <div class="h-3/5 overflow-hidden">
-                                    <img class='img-responsive object-contain mx-auto' :src="`/storage/product/${product.image}`" />
+                                    <img class='img-responsive object-contain mx-auto' :src="product.image" />
                                 </div>
                                 <div class="text-sm overflow-hidden p-2.5 h-1/4">
                                     <strong>{{ product.name }}</strong>
@@ -49,6 +50,8 @@
     </layout>
 </template>
 <script>
+    import { mapActions, mapState } from 'vuex'
+
     export default {
         data() {
             return {
@@ -59,59 +62,26 @@
                     brand: 0
                 },
                 brands: [],
-                filteredBrand: [],
+                filteredBrands: [],
                 categories: [],
-                filteredCategory: []
+                filteredCategory: [],
+                loading: true
             }
         },
         async mounted() {
-            await axios.get("/api/products")
-            .then(response => {
-                this.products = response.data.products
-                this.filteredProduct = response.data.products
-            })
-            .catch(error => console.log(error))
+            await this.$store.dispatch('fetchProducts')
+            this.products = this.$store.state.products
+            this.filteredProduct = this.products
 
-            await axios.get("/api/categories")
-            .then(response => {
-                response.data.categories.forEach((e) => {
-                    let category = {
-                        ...e,
-                        quantity: 0
-                    }
-                    this.categories.push(category)
-                })
-                
-                this.products.forEach((e) => {
-                    let index = this.categories.findIndex(el => el.id === e.category_id)
-                    this.categories[index] = {
-                        ...this.categories[index],
-                        quantity: this.categories[index].quantity + 1
-                    }
-                })
-                this.filteredCategory = this.categories
-            })
-            .catch(error => console.log(error))
+            await this.$store.dispatch('fetchCategories');
+            this.categories = this.$store.state.categories
+            this.filteredCategory = this.categories
 
-            await axios.get("/api/brands")
-            .then(response => {
-                response.data.brands.forEach((e) => {
-                    let brand = {
-                        ...e,
-                        quantity: 0
-                    }
-                    this.brands.push(brand)
-                })
-                this.products.forEach((e) => {
-                    let index = this.brands.findIndex(el => el.id === e.brand_id)
-                    this.brands[index] = {
-                        ...this.brands[index],
-                        quantity: this.brands[index].quantity + 1
-                    }
-                })
-                this.filteredBrand = this.brands
-            })
-            .catch(error => console.log(error))
+            await this.$store.dispatch('fetchBrands');
+            this.brands = this.$store.state.brands
+            this.filteredBrands = this.brands
+
+            this.loading = false
         },
         methods: {
             viewDetails(id) {
@@ -145,17 +115,14 @@
             updateProductList() {
                 this.filteredProduct = this.products
                 this.filteredCategory = this.categories
-                this.filteredBrand = this.brands
+                this.filteredBrands = this.brands
 
                 this.filteredProduct = this.products.filter((e) => {
                     if (this.filter.category === 0 && this.filter.brand === 0) {
-                        console.log(0)
                         return true
                     } else if (this.filter.category === 0 && this.filter.brand !== 0) {
-                        console.log(1)
                         return e.brand_id === this.filter.brand
                     } else if (this.filter.category !== 0 && this.filter.brand === 0) {
-                        console.log(2)
                         return e.category_id === this.filter.category
                     } else if (this.filter.category !== 0 && this.filter.brand !== 0){
                         return e.category_id === this.filter.category && e.brand_id === this.filter.brand
@@ -172,7 +139,7 @@
                 this.brands.forEach((e) => {
                     let index = this.filteredProduct.findIndex(el => el.brand_id === e.id)
                     if (index < 0) {
-                        this.filteredBrand = this.filteredBrand.filter((el) => el.id !== e.id)
+                        this.filteredBrands = this.filteredBrands.filter((el) => el.id !== e.id)
                     }
                 })
             }

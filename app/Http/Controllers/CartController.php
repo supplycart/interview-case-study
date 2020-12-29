@@ -9,21 +9,20 @@ use Illuminate\Support\Collection;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Order;
-use App\Models\User;
 
 class CartController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:api');
     }
     
     public function index() 
     {
         $carts = Cart::where('user_id', Auth::user()->id)->get();
-        // $carts = Cart::where('user_id',1)->get();
 
-        if (!$carts) {
+        if (!$carts) 
+        {
             return response()->json([
                 'error' => 404,
                 'message' => 'Not Found'
@@ -43,7 +42,6 @@ class CartController extends Controller
         {
             $cart = new Cart();
             $cart->user_id = Auth::user()->id;
-            // $cart->user_id = 1;
             $cart->product_id = $request->id;
             $cart->quantity = $request->quantity;
         } 
@@ -56,14 +54,13 @@ class CartController extends Controller
 
         return response()->json([
             'cart' => $cart,
-            'message' => 'Update Cart Successfully!'
+            'message' => 'Store Cart Successfully!'
         ], 200);
     }
 
     public function update(Request $request, $id)
     {
-        $cart = Cart::updateOrCreate(['user_id' => Auth::user()->id, 'product_id' => $request->id], ['quantity' => $request->quantity]);
-        // $cart = Cart::updateOrCreate(['user_id' => 1, 'product_id' => $id], ['quantity' => $request->quantity]);
+        $cart = Cart::updateOrCreate(['user_id' => Auth::user()->id, 'product_id' => $id], ['quantity' => $request->quantity]);
 
         return response()->json([
             'cart' => $cart,
@@ -71,20 +68,20 @@ class CartController extends Controller
         ], 200);
     }
 
+    //handle clear cart
     public function deleteCart()
     {
         Cart::where('user_id', Auth::user()->id)->delete();
-        // Cart::where('user_id', 1)->delete();
         return response()->json(['message' => 'Delete Successfully!', 200]);
     }
 
+    //remove single cart item
     public function delete($id)
     {
-        $cart = Cart::where('user_id', Auth::user()->id)->where('product_id', $id)->get();
+        $cart = Cart::where('user_id', Auth::user()->id)->where('product_id', $id);
 
-        // $cart = Cart::where('user_id', 1)->where('product_id', $id);
-
-        if (!$cart) {
+        if (!$cart) 
+        {
             return response()->json([
                 'error' => 404,
                 'message' => 'Not Found'
