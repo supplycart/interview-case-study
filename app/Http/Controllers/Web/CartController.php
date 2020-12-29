@@ -31,9 +31,15 @@ class CartController extends Controller
      */
     public function store(Request $request, Product $product)
     {
-        $cart = Auth::user()->cart;
         $requested_quantity = isset($request->product_quantity) ? $request->product_quantity : 1;
-        $cart->products()->attach($product, ['product_quantity' => $requested_quantity]);
+        $cart = Auth::user()->cart;
+        $cart_id = Auth::user()->cart->id;
+        $product_id = $product->id;
+        $updated = DB::table('cart_product')
+                ->updateOrInsert(
+                    ['cart_id' => $cart_id, 'product_id' => $product_id],
+                    ['product_quantity' => $requested_quantity]
+                );
 
         return redirect(route('cart'))->with(
             'cart_add_success',

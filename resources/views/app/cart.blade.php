@@ -23,6 +23,7 @@
     </svg>
     </label>
 </div>
+@endif
 @if (session('cart_update_success'))
 <!--Header Alert-->
 <div class="alert-banner w-full fixed top-0">
@@ -35,14 +36,13 @@
     </label>
 </div>
 @endif
-@endif
 <div class="flex justify-center my-6">
   <div class="flex flex-col w-full p-8 text-gray-800 bg-white pin-r pin-y md:w-4/5 lg:w-4/5">
     <div class="flex-1">
       <table class="w-full text-sm lg:text-base" cellspacing="0">
         <thead>
           <tr class="h-12 uppercase">
-            <th class="hidden md:table-cell"></th>
+            <th class="md:table-cell"></th>
             <th class="text-center">Product</th>
             <th class="lg:text-right text-left pl-5 lg:pl-0">
               <span class="lg:hidden" title="Quantity">Qtd</span>
@@ -55,13 +55,13 @@
         <tbody>
           @foreach ($cart_products as $product)
           <tr>
-            <td class="hidden pb-4 md:table-cell">
+            <td class="pb-4 md:table-cell">
               <img src="{{ $product->picture }}" class="w-20 rounded" alt="Thumbnail">
             </td>
             <td class="text-center">
               <a href={{ route('product-detail', ['product' => $product->id])}}>
-                <p class="mb-2 md:ml-4">{{ $product->name }}</p>
-                <form action="{{ route('remove-product-from-cart', ['product' => $product->id]) }}" method="POST">
+              <p class="mb-2 md:ml-4">{{ $product->name }}</p>
+                <form id="remove-product" action="{{ route('remove-product-from-cart', ['product' => $product->id]) }}" method="POST">
                   @method('DELETE')
                   @csrf
                   <button type="submit" class="text-red-500 md:ml-4">
@@ -71,21 +71,19 @@
               </a>
             </td>
             <td class="md:justify-end md:flex mt-2 pb-2">
-              <form action={{ route('update-cart-quantity', [
-                  'product' => $product->id
-                ])}} method="POST">
+              <form id="update-product" action="{{ route('update-cart-quantity', ['product' => $product->id])}}" method="POST">
                 @method('PUT')
                 @csrf
-              <select name="product_quantity" class="rounded-xl border border-hidden pl-4 pr-8 h-14">
+              <select name="product_quantity" onChange="this.form.submit()" class="rounded-xl border border-hidden pl-4 pr-8 h-14">
                   @for ($i = 1; $i < $product->quantity + 1; $i++)
                   @if ($i == $product->pivot->product_quantity)
                   <option selected="{{ $i }}" value="{{ $i }}" > {{ $i }} </option>
                   @else
-                  <option value="{{ $i }}" onClick="this.form.submit({{ $i }})"> {{ $i }} </option>
+                  <option value="{{ $i }}"> {{ $i }} </option>
                   @endif
                   @endfor
               </select>
-              <form>
+              </form>
             </td>
             <td class="hidden text-right md:table-cell">
               <span class="text-sm lg:text-base font-medium">
