@@ -36,7 +36,7 @@
                                 <div class="text-sm overflow-hidden p-2.5 h-1/4">
                                     <strong>{{ product.name }}</strong>
                                 </div>
-                                <div class="row p-2" style='border-top:1px solid #d9d9d9'>
+                                <div class="p-2" style='border-top:1px solid #d9d9d9'>
                                     <div class='flex justify-end'>
                                         <strong>RM {{ product.price }}</strong>
                                     </div>

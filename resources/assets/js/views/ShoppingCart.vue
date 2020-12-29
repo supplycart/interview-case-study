@@ -12,7 +12,7 @@
                         <table class="w-full table-fixed">
                             <tr v-for="(item, index) in cartItem" :key="item.id" class="border-green-200 border-b-2">
                                 <td class="py-4 pl-4 w-28">
-                                    <img class="w-20 h-20 cursor-pointer" :src="`/storage/product/${item.image}`" @click="viewProduct(item.id)" />
+                                    <img class="w-20 h-20 cursor-pointer" :src="item.image" @click="viewProduct(item.id)" />
                                 </td> 
                                 <td class="w-1/2 cursor-pointer" @click="viewProduct(item.id)">{{ item.name }}</td>
                                 <td class="pl-4" style="width:12.5%">RM {{ item.price }}</td>

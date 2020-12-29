@@ -14,7 +14,7 @@
                             <table class="table-fixed w-full">
                                 <tr class="border-t-2 border-b-2 border-gray-100" v-for="(product, index) in order.products" :key="index">
                                     <td class="w-1/6 p-2">
-                                        <img class="w-20 h-20 cursor-pointer" :src="`/storage/product/${product.image}`" @click="viewDetails(product.id)" />
+                                        <img class="w-20 h-20 cursor-pointer" :src="product.image" @click="viewDetails(product.id)" />
                                     </td> 
                                     <td class="w-2/3 cursor-pointer p-2" @click="viewDetails(product.id)">
                                         <div>{{ product.name }}</div>
@@ -31,10 +31,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row" v-if="orders.length === 0 && !loading">
-                <div class="w-2/5 flex flex-col justify-center">
-                    <img class="h-3/4 w-1/2 self-center" src="https://www.keyboor.com/images/no-records.svg" alt="">
-                    <p class="text-4xl text-center mb-8">No Order Record</p>
+            <div class="flex flex-col items-center" v-if="orders.length === 0 && !loading">
+                <div class="mt-10 w-2/5 flex flex-col justify-center">
+                    <img class="h-3/4 mb-4 w-1/2 self-center" src="https://www.keyboor.com/images/no-records.svg" alt="">
                     <button class="bg-green-600 py-2 px-10 text-white w-1/2 self-center" @click="$router.push({ path: '/products' })">Make Order Now</button>
                 </div>
             </div>

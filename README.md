@@ -4,23 +4,17 @@
 
 # Supplycart Interview Case Study
 
-This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned. 
+This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. 
 
-### Instructions
 
-- Fork this repo to your github account
-- Complete the tasks given
-- Once completed, create a PR to this repository
-- Lastly, add some guidance or instruction on how to run your code
+### Specification
 
-### Requirements
-
-You must work on this assignment using:
- - Vue (optional for BE dev)
+ - Vue
  - TailwindCSS
- - Laravel (optional for FE dev)
+ - Laravel
 
-### Tasks
+
+### Completed Tasks
 
 1. As guest, I want to be able to register an account
 2. As guest, I want to be able to login using registered account
@@ -29,12 +23,19 @@ You must work on this assignment using:
 5. As user, I want to be able to place order for added products in cart
 6. As user, I want to see my order history
 7. As user, I want to be able to logout
+8. Product attributes and filtering e.g brand, category
 
-### Bonus Tasks
 
-1. Verify email after registration
-2. User activity log e.g. login, logout, add to cart, place order etc
-3. Product attributes and filtering e.g brand, category
-4. Different user can see different price for products
-5. Add unit tests
-6. Deploy app to a server
+### Installation
+
+1. run `composer install`
+
+2. setup `.env`
+
+3. run `php artisan migrate`
+
+4. run `php artisan db:seed`
+
+5. run `npm install`
+
+6. run `npm run watch`
