@@ -16,4 +16,12 @@ class Cart extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the products that belongs to the cart.
+     */
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)->withTimestamps();;
+    }
 }

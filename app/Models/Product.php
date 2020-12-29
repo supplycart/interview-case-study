@@ -48,10 +48,18 @@ class Product extends Model
     }
 
     /**
+     * Get the carts that belongs to the product.
+     */
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class)->withTimestamps();;
+    }
+
+    /**
      * The orders that belong to the product.
      */
     public function orders()
     {
-        return $this->belongsToMany(Order::class);
+        return $this->belongsToMany(Order::class)->withTimestamps();;
     }
 }

@@ -53,7 +53,7 @@
                 @if (Route::has('login'))
                     <div>
                         @auth
-                            <a href="{{ url('/app') }}" class="inline-block text-blue-500 text-3xl no-underline hover:text-indigo-800 hover:text-underline text-center h-10 p-4 md:h-auto md:p-4">Dashboard</a>
+                            <a href="{{ url('/app') }}" class="inline-block text-blue-500 text-3xl no-underline hover:text-indigo-800 hover:text-underline text-center h-10 p-4 md:h-auto md:p-4">App</a>
                         @else
                             <a href="{{ route('login') }}" class="inline-block text-blue-500 text-3xl no-underline hover:text-indigo-800 hover:text-underline text-center h-10 p-4 md:h-auto md:p-4">Login</a>
 
