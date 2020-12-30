@@ -30,15 +30,15 @@ Route::group(
     ],
     function ()
     {
-        Route::get('/', [ProductController::class, 'index'])->middleware(['auth'])->name('app');
-        Route::get('/product/{product}', [ProductController::class, 'show'])->middleware(['auth'])->name('product-detail');
-        Route::get('/cart', [CartController::class, 'index'])->middleware(['auth'])->name('cart');
-        Route::post('/cart/{product}', [CartController::class, 'store'])->middleware(['auth'])->name('add-product-to-cart');
-        Route::delete('/cart/{product}', [CartController::class, 'destroy'])->middleware(['auth'])->name('remove-product-from-cart');
-        Route::put('/cart/{product}', [CartController::class, 'update'])->middleware(['auth'])->name('update-cart-quantity');
-        Route::post('/orders', [OrderController::class, 'store'])->middleware(['auth'])->name('store-orders');
-        Route::get('/orders', [OrderController::class, 'index'])->middleware(['auth'])->name('orders');
-        Route::get('/orders/{order}', [OrderController::class, 'show'])->middleware(['auth'])->name('orders-detail');
+        Route::get('/', [ProductController::class, 'index'])->name('app');
+        Route::get('/product/{product}', [ProductController::class, 'show'])->name('product-detail');
+        Route::get('/cart', [CartController::class, 'index'])->name('cart');
+        Route::post('/cart/{product}', [CartController::class, 'store'])->name('add-product-to-cart');
+        Route::delete('/cart/{product}', [CartController::class, 'destroy'])->name('remove-product-from-cart');
+        Route::put('/cart/{product}', [CartController::class, 'update'])->name('update-cart-quantity');
+        Route::post('/orders', [OrderController::class, 'store'])->name('store-orders');
+        Route::get('/orders', [OrderController::class, 'index'])->name('orders');
+        Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders-detail');
     }
 );
 
