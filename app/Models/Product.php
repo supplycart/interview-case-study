@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -71,7 +72,7 @@ class Product extends Model
      */
     public function getPriceAttribute($price)
     {
-
-        return $price;
+        $user = Auth::user();
+        return ($price * $user->member->discount);
     }
 }

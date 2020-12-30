@@ -49,6 +49,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Cart::class);
     }
+    /**
+     * Get the member associated with the user.
+     */
+    public function member()
+    {
+        return $this->belongsTo(Member::class);
+    }
+
 
     public function is_admin()
     {
