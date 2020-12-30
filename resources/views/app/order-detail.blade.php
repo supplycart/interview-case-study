@@ -58,6 +58,30 @@
           @endforeach
         </tbody>
       </table>
+      <hr class="pb-6 mb-6">
+      <div class="flex-1">
+        <div class="p-4 bg-gray-100 rounded-full">
+          <h1 class="ml-2 font-bold uppercase">Order Details</h1>
+        </div>
+        <div class="p-4">
+            <div class="flex justify-between border-b">
+              <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                Order Total
+              </div>
+              <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                ${{ $order_total }}
+              </div>
+            </div>
+            <div class="flex justify-between border-b">
+              <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                Status
+              </div>
+              <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-green-500">
+                Placed
+              </div>
+            </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

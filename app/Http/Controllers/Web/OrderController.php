@@ -94,7 +94,14 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('app.order-detail', ['order_products' => $order->products]);
+        $order_total = DB::table('order_product')
+                            ->where('order_id', '=', $order->id)
+                            ->sum('total_order_price');
+        return view('app.order-detail', [
+            'order_products' => $order->products,
+            'order_total' => $order_total
+            ]
+        );
     }
 
     /**
