@@ -46,12 +46,12 @@
             </td>
             <td class="hidden text-center md:table-cell">
               <span class="text-sm lg:text-base font-medium">
-                ${{ $product->pivot->order_price }}
+                ${{ round($product->pivot->order_price, 2) }}
               </span>
             </td>
             <td class="text-center">
               <span class="text-sm lg:text-base font-medium">
-                ${{ $product->pivot->total_order_price }}
+                ${{ round($product->pivot->total_order_price, 2) }}
               </span>
             </td>
           </tr>

@@ -88,12 +88,12 @@
             </td>
             <td class="text-center">
               <span class="text-sm lg:text-base font-medium">
-                ${{ $product->price }}
+                ${{ round($product->price, 2) }}
               </span>
             </td>
             <td class="text-center">
               <span class="text-sm lg:text-base font-medium">
-                ${{ $product->price * $product->pivot->product_quantity }}
+                ${{ round($product->price * $product->pivot->product_quantity, 2) }}
               </span>
             </td>
           </tr>

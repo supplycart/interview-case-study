@@ -26,7 +26,7 @@
                 <div class="px-5 py-3">
                     <a href={{ route('product-detail', ['product' => $product->id])}}>
                         <h3 class="text-gray-700 uppercase">{{ $product->name }}</h3>
-                        <span class="text-gray-500 mt-2">${{ $product->price }}</span>
+                        <span class="text-gray-500 mt-2">${{ round($product->price,2) }}</span>
                         <div class="grid grid-cols-3 gap-1 text-sm items-center">
                             @foreach ($product->categories as $category)
                             <div class="bg-gray-500 text-green-100 px-3 py-2 rounded">{{ $category->name }}</div>

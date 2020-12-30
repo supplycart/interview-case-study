@@ -11,7 +11,7 @@
           <div>
             <div class="rounded-lg bg-gray-100 flex py-2 px-3">
               <span class="text-indigo-400 mr-1 mt-1">$</span>
-              <span class="font-bold text-indigo-600 text-3xl">{{ $product->price }}</span>
+              <span class="font-bold text-indigo-600 text-3xl">{{ round($product->price,2) }}</span>
             </div>
           </div>
         </div>
