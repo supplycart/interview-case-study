@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 use App\Http\Resources\CartProduct\CartProduct as CartProductResource;
 class CartController extends Controller
 {
@@ -33,6 +34,11 @@ class CartController extends Controller
      */
     public function store(Request $request, Product $product)
     {
+        if ($product->quantity < 1) {
+            throw ValidationException::withMessages([
+                'product_quantity' => 'Unable to add to cart, there is not enough stock'
+            ]);
+        }
         $requested_quantity = isset($request->product_quantity) ? $request->product_quantity : 1;
         $cart = Auth::user()->cart;
         $cart_id = Auth::user()->cart->id;

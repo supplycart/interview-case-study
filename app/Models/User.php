@@ -43,6 +43,15 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'member_id' => 1, // normal member
+    ];
+
+    /**
      * Get the cart associated with the user.
      */
     public function cart()

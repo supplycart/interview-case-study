@@ -24,6 +24,7 @@
         <div class="flex">
           <div class="flex py-4 space-x-4">
             <div class="relative">
+              @if($product->quantity > 0)
               <form method="POST" action="{{ route('add-product-to-cart', ['product' => $product->id]) }}">
                 @csrf
                 <div class="text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold">Qty</div>
@@ -37,6 +38,9 @@
                 Add to Cart
               </button>
             </form>
+            @else
+            <p> Out of stock :( </p>
+            @endif
           </div>
         </div>
       </div>

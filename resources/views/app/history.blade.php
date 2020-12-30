@@ -19,7 +19,7 @@
                         Metadata
                     </th>
                     <th
-                        class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                        class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 text-center tracking-wider">
                         Created At
                     </th>
 
@@ -49,9 +49,8 @@
                             </div>
                         </div>
                     </td>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
+                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm text-center leading-5">
                         {{ \Carbon\Carbon::parse($history->created_at)->format('Y-M-d H:i') }}</td>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
                     </td>
                 </tr>
                 @endforeach

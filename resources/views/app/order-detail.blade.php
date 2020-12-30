@@ -18,14 +18,14 @@
       <table class="w-full text-sm lg:text-base" cellspacing="0">
         <thead>
           <tr class="h-12 uppercase">
-            <th class="md:table-cell"></th>
+            <th class="text-center md:table-cell"></th>
             <th class="text-center">Product</th>
-            <th class="lg:text-right text-left pl-5 lg:pl-0">
+            <th class="text-center  pl-5 lg:pl-0">
               <span class="lg:hidden" title="Quantity">Qtd</span>
-              <span class="hidden lg:inline">Quantity</span>
+              <span class="text-center hidden lg:inline">Quantity</span>
             </th>
-            <th class="hidden text-right md:table-cell">Unit price</th>
-            <th class="text-right">Total price</th>
+            <th class="text-center hidden md:table-cell">Unit price</th>
+            <th class="text-center">Total price</th>
           </tr>
         </thead>
         <tbody>
@@ -39,17 +39,17 @@
               <p class="mb-2 md:ml-4">{{ $product->name }}</p>
               </a>
             </td>
-            <td class="hidden text-right md:table-cell">
+            <td class="hidden text-center md:table-cell">
                 <span class="text-sm lg:text-base font-medium">
                     {{ $product->pivot->order_quantity }}
                 </span>
             </td>
-            <td class="hidden text-right md:table-cell">
+            <td class="hidden text-center md:table-cell">
               <span class="text-sm lg:text-base font-medium">
                 ${{ $product->pivot->order_price }}
               </span>
             </td>
-            <td class="text-right">
+            <td class="text-center">
               <span class="text-sm lg:text-base font-medium">
                 ${{ $product->pivot->total_order_price }}
               </span>

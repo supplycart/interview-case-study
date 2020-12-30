@@ -45,12 +45,12 @@
           <tr class="h-12 uppercase">
             <th class="md:table-cell"></th>
             <th class="text-center">Product</th>
-            <th class="lg:text-right text-left pl-5 lg:pl-0">
+            <th class="text-center pl-5 lg:pl-0">
               <span class="lg:hidden" title="Quantity">Qtd</span>
-              <span class="hidden lg:inline">Quantity</span>
+              <span class="text-center hidden lg:inline">Quantity</span>
             </th>
-            <th class="hidden text-right md:table-cell">Unit price</th>
-            <th class="text-right">Total price</th>
+            <th class="hidden text-center md:table-cell">Unit price</th>
+            <th class="text-center">Total price</th>
           </tr>
         </thead>
         <tbody>
@@ -71,7 +71,7 @@
                 </form>
               </a>
             </td>
-            <td class="md:justify-end md:flex mt-2 pb-2">
+            <td class="text-center mt-2 pb-2">
               <form id="update-product" action="{{ route('update-cart-quantity', ['product' => $product->id])}}" method="POST">
                 @method('PUT')
                 @csrf
@@ -86,12 +86,12 @@
               </select>
               </form>
             </td>
-            <td class="hidden text-right md:table-cell">
+            <td class="text-center">
               <span class="text-sm lg:text-base font-medium">
                 ${{ $product->price }}
               </span>
             </td>
-            <td class="text-right">
+            <td class="text-center">
               <span class="text-sm lg:text-base font-medium">
                 ${{ $product->price * $product->pivot->product_quantity }}
               </span>
