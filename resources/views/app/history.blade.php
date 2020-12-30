@@ -55,9 +55,10 @@
                     </td>
                 </tr>
                 @endforeach
-                {{ $histories->links() }}
             </tbody>
         </table>
+        <br>
+        {{ $histories->links() }}
         @else
         <p class="flex justify-center w-full px-10 py-3 mt-6 font-medium uppercase"> You have no history yet </p>
         @endif
