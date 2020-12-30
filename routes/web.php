@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\ProductController;
 use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\OrderController;
+use App\Http\Controllers\Web\HistoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +40,7 @@ Route::group(
         Route::post('/orders', [OrderController::class, 'store'])->name('store-orders');
         Route::get('/orders', [OrderController::class, 'index'])->name('orders');
         Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders-detail');
+        Route::get('/history', [HistoryController::class, 'index'])->name('history');
     }
 );
 

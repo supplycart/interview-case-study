@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Events\OrderPlaced;
 use App\Models\Order;
 use App\Models\Cart;
 use Illuminate\Http\Request;
@@ -70,6 +71,7 @@ class OrderController extends Controller
             });
         });
 
+        OrderPlaced::dispatch($order);
         return redirect(route('orders-detail', ['order' => $order->id]))->with(
             'order_add_success',
             'Successfully placed order'

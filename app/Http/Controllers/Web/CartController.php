@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Events\CartAdded;
+use App\Events\CartRemoved;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -44,7 +46,7 @@ class CartController extends Controller
                         'updated_at' => now(),
                     ]
                 );
-
+        CartAdded::dispatch($product);
         return redirect(route('cart'))->with(
             'cart_add_success',
             'Succesfully added to cart'
@@ -87,7 +89,7 @@ class CartController extends Controller
     {
         $cart = Auth::user()->cart;
         $cart->products()->detach($product);
-
+        CartRemoved::dispatch($product);
         return back()->with(
             'cart_remove_success',
             'Succesfully removed item(s) from cart'

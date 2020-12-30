@@ -62,6 +62,7 @@
                         <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{ route('app') }}">Home</a>
                         <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{ route('cart') }}">Cart</a>
                         <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{ route('orders') }}">Orders</a>
+                        <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{ route('history') }}">History</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" type="submit">

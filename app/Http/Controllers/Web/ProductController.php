@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Events\ProductViewed;
 use App\Http\Resources\Product\Product as ProductResource;
 use Illuminate\Http\Request;
 
@@ -38,6 +39,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        ProductViewed::dispatch($product);
         return view('app.product-detail', [
             'product' => $product
         ]);
