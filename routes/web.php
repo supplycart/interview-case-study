@@ -23,14 +23,24 @@ Route::get('/admin', function () {
     return view('admin');
 })->middleware(['auth'])->name('admin');
 
-Route::get('/app', [ProductController::class, 'index'])->middleware(['auth'])->name('app');
-Route::get('/app/product/{product}', [ProductController::class, 'show'])->middleware(['auth'])->name('product-detail');
-Route::get('/cart', [CartController::class, 'index'])->middleware(['auth'])->name('cart');
-Route::post('/cart/{product}', [CartController::class, 'store'])->middleware(['auth'])->name('add-product-to-cart');
-Route::delete('/cart/{product}', [CartController::class, 'destroy'])->middleware(['auth'])->name('remove-product-from-cart');
-Route::put('/cart/{product}', [CartController::class, 'update'])->middleware(['auth'])->name('update-cart-quantity');
-Route::post('/orders', [OrderController::class, 'store'])->middleware(['auth'])->name('store-orders');
-Route::get('/orders', [OrderController::class, 'index'])->middleware(['auth'])->name('orders');
-Route::get('/orders/{order}', [OrderController::class, 'show'])->middleware(['auth'])->name('orders-detail');
+Route::group(
+    [
+        'prefix' => 'app',
+        'middleware' => ['auth']
+    ],
+    function ()
+    {
+        Route::get('/', [ProductController::class, 'index'])->middleware(['auth'])->name('app');
+        Route::get('/product/{product}', [ProductController::class, 'show'])->middleware(['auth'])->name('product-detail');
+        Route::get('/cart', [CartController::class, 'index'])->middleware(['auth'])->name('cart');
+        Route::post('/cart/{product}', [CartController::class, 'store'])->middleware(['auth'])->name('add-product-to-cart');
+        Route::delete('/cart/{product}', [CartController::class, 'destroy'])->middleware(['auth'])->name('remove-product-from-cart');
+        Route::put('/cart/{product}', [CartController::class, 'update'])->middleware(['auth'])->name('update-cart-quantity');
+        Route::post('/orders', [OrderController::class, 'store'])->middleware(['auth'])->name('store-orders');
+        Route::get('/orders', [OrderController::class, 'index'])->middleware(['auth'])->name('orders');
+        Route::get('/orders/{order}', [OrderController::class, 'show'])->middleware(['auth'])->name('orders-detail');
+    }
+);
+
 
 require __DIR__.'/auth.php';
