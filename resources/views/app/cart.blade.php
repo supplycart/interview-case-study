@@ -39,6 +39,7 @@
 <div class="flex justify-center my-6">
   <div class="flex flex-col w-full p-8 text-gray-800 bg-white pin-r pin-y md:w-4/5 lg:w-4/5">
     <div class="flex-1">
+      @if (count($cart_products) > 0)
       <table class="w-full text-sm lg:text-base" cellspacing="0">
         <thead>
           <tr class="h-12 uppercase">
@@ -102,7 +103,9 @@
       <div class="my-4 mt-6">
         <div class="lg:px-2 lg:w">
           <div class="p-4">
-            @if (count($cart_products) > 0)
+            @error('product_quantity')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <form action={{ route('store-orders') }} method="POST">
               @csrf
               <button class="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none">

@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -17,7 +20,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $orders = Order::where('user_id', '=', $user->id)->paginate(10);
+        return view('app.order-list', ['orders' => $orders]);
     }
 
     /**
@@ -40,11 +45,45 @@ class OrderController extends Controller
     {
         $user = Auth::user();
         $cart = $user->cart;
+        $cart_products = $cart->products;
         $order = new Order([
             'user_id' => $user->id
         ]);
 
-        dd($user, $order, $cart->products);
+        if ($cart_products->isEmpty()) {
+            throw ValidationException::withMessages([
+                'error' => 'Unable to place order, cart is empty'
+            ]);
+        }
+
+        DB::transaction(function() use($order, $cart_products, $cart) {
+            $order->save();
+            $cart_products->each(function ($item, $key) use($order, $cart) {
+                if ($item->pivot->product_quantity > $item->quantity) {
+                    throw ValidationException::withMessages([
+                        'product_quantity' => 'Unable to place order, there is not enough stock'
+                    ]);
+                }
+                $order->products()->attach($item, [
+                    'order_quantity' => $item->pivot->product_quantity,
+                    'order_price' => $item->price,
+                    'total_order_price' => ($item->price * $item->pivot->product_quantity)
+                ]);
+
+                $product_remainder = $item->quantity - $item->pivot->product_quantity;
+
+                DB::table('products')
+                    ->where('id', '=', $item->id)
+                    ->update(['quantity' => $product_remainder]);
+
+                $cart->products()->detach($item);
+            });
+        });
+
+        return redirect(route('orders-detail', ['order' => $order->id]))->with(
+            'order_add_success',
+            'Successfully placed order'
+        );
     }
 
     /**
@@ -55,7 +94,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('app.order-detail', ['order_products' => $order->products]);
     }
 
     /**

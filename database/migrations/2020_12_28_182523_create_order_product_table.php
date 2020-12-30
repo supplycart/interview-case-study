@@ -18,6 +18,7 @@ class CreateOrderProductTable extends Migration
             $table->foreignId('product_id')->constrained('products');
             $table->smallInteger('order_quantity');
             $table->double('order_price', 10, 2);
+            $table->double('total_order_price', 15, 2);
             $table->timestamps();
         });
     }

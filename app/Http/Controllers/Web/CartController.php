@@ -38,7 +38,11 @@ class CartController extends Controller
         $updated = DB::table('cart_product')
                 ->updateOrInsert(
                     ['cart_id' => $cart_id, 'product_id' => $product_id],
-                    ['product_quantity' => $requested_quantity]
+                    [
+                        'product_quantity' => $requested_quantity,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]
                 );
 
         return redirect(route('cart'))->with(
@@ -60,7 +64,12 @@ class CartController extends Controller
         $updated = DB::table('cart_product')
                 ->where('cart_id', '=', $cart_id)
                 ->where('product_id', '=', $product_id)
-                ->update(['product_quantity' => $request->product_quantity]);
+                ->update(
+                    [
+                        'product_quantity' => $request->product_quantity,
+                        'updated_at' => now(),
+                    ]
+                );
 
         return back()->with(
             'cart_update_success',

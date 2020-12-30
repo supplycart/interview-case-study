@@ -27,57 +27,61 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
     <script src={{ asset('js/app.js') }} defer></script>
 </head>
-<div class="flex flex-col h-screen justify-between">
-    <header>
-        @if (session('registration_success'))
-        <!--Header Alert-->
-        <div class="alert-banner w-full fixed top-0">
-            <input type="checkbox" class="hidden" id="banneralert">
+<body class="mb-auto">
+    <div class="flex flex-col justify-between">
+        <header>
+            @if (session('registration_success'))
+            <!--Header Alert-->
+            <div class="alert-banner w-full fixed top-0">
+                <input type="checkbox" class="hidden" id="banneralert">
 
-            <label class="close cursor-pointer flex items-center justify-between w-full p-2 bg-green-500 shadow text-white" title="close" for="banneralert">
-            {{ session('registration_success') }}
+                <label class="close cursor-pointer flex items-center justify-between w-full p-2 bg-green-500 shadow text-white" title="close" for="banneralert">
+                {{ session('registration_success') }}
 
-            <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-                <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-            </svg>
-            </label>
-        </div>
-        @endif
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex items-center justify-between">
-                <div class="hidden w-full text-gray-600 md:flex md:items-center">
-                </div>
-
-                <div class="w-auto text-gray-700 md:text-center text-2xl font-semibold">
-                    <a href="{{ url('app') }}">
-                        <x-application-logo/> SupplyTruck
-                    </a>
-                </div>
-                <div class="flex items-center justify-end w-full">
-                </div>
+                <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                    <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                </svg>
+                </label>
             </div>
-            <nav :class="isOpen ? '' : 'hidden'" class="sm:flex sm:justify-center sm:items-center mt-4">
-                <div class="flex flex-col sm:flex-row">
-                    <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{ route('app') }}">Home</a>
-                    <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{ route('cart') }}">Cart</a>
-                    <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Orders</a>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" type="submit">
-                            Logout
-                        </button>
-                </form>
+            @endif
+            <div class="container mx-auto px-6 py-3">
+                <div class="flex items-center justify-between">
+                    <div class="hidden w-full text-gray-600 md:flex md:items-center">
+                    </div>
 
+                    <div class="w-auto text-gray-700 md:text-center text-2xl font-semibold">
+                        <a href="{{ url('app') }}">
+                            <x-application-logo/> SupplyTruck
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-end w-full">
+                    </div>
                 </div>
-            </nav>
-        </div>
-    </header>
-        @yield('content')
-    <footer class="bg-gray-200">
-        <div class="mx-auto px-6 py-6 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-gray-500 hover:text-gray-400">SupplyTruck</a>
-            <p class="py-2 text-gray-500 sm:py-0">All rights reserved</p>
-        </div>
-    </footer>
-</div>
+                <nav :class="isOpen ? '' : 'hidden'" class="sm:flex sm:justify-center sm:items-center mt-4">
+                    <div class="flex flex-col sm:flex-row">
+                        <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{ route('app') }}">Home</a>
+                        <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{ route('cart') }}">Cart</a>
+                        <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{ route('orders') }}">Orders</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" type="submit">
+                                Logout
+                            </button>
+                    </form>
+
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main class="flex-gwo">
+            @yield('content')
+        </main>
+        {{-- <footer class="bg-gray-200 mb-auto">
+            <div class="mx-auto px-6 py-6 flex justify-between items-center">
+                <a href="#" class="text-xl font-bold text-gray-500 hover:text-gray-400">SupplyTruck</a>
+                <p class="py-2 text-gray-500 sm:py-0">All rights reserved</p>
+            </div>
+        </footer> --}}
+    </div>
+</body>
 </html>
