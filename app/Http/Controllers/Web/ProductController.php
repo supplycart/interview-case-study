@@ -12,13 +12,21 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(12);
+        $products = Product::query();
+
+        $q = $request->query('q');
+
+        if ($q) {
+            $products = $products->where('name', 'like', '%' . $q . '%');
+        }
+
         return view('app.product-list', [
-            'products' => $products
+            'products' => $products->paginate(12)
         ]);
     }
 
