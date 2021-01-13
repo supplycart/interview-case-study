@@ -1,93 +1,50 @@
 <template>
     <div>
-        <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+        <!-- page title + search bar -->
+        <div class="p-6 sm:pl-20 sm:pr-20 bg-white border-b border-gray-200">
             <div>
                 <jet-application-logo class="block h-12 w-auto" />
             </div>
-
             <div class="mt-8 text-2xl">
-                Welcome to your Jetstream application!
+                Products List
             </div>
 
-            <div class="mt-6 text-gray-500">
-                Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
-                to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
-                you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
-                ecosystem to be a breath of fresh air. We hope you love it.
+            <!-- TODO retrieve from database -->
+            <div class="flex mt-6 align-middle items-center">
+                <div class="flex-1">
+                    <p>Showing 9 out of 100 products</p>
+                </div>
+                <div class="flex-none">
+                    <div class="pt-2 relative mx-auto text-gray-600">
+                        <input v-model="search" class="border-2 border-gray-300 bg-white h-10 px-5 pr-5 mr-2 rounded-lg text-sm focus:outline-none" type="search" name="search" placeholder="Search products">
+                        <button type="submit" class="relative right-0 top-0 mt-5 mr-4">
+                            <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                                 viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" width="512px" height="512px">
+                            <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
-            <div class="p-6">
-                <div class="flex items-center">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                    <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="https://laravel.com/docs">Documentation</a></div>
-                </div>
-
-                <div class="ml-12">
-                    <div class="mt-2 text-sm text-gray-500">
-                        Laravel has wonderful documentation covering every aspect of the framework. Whether you're new to the framework or have previous experience, we recommend reading all of the documentation from beginning to end.
-                    </div>
-
-                    <a href="https://laravel.com/docs">
-                        <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
-                                <div>Explore the documentation</div>
-
-                                <div class="ml-1 text-indigo-500">
-                                    <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="p-6 border-t border-gray-200 md:border-t-0 md:border-l">
-                <div class="flex items-center">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="https://laracasts.com">Laracasts</a></div>
-                </div>
-
-                <div class="ml-12">
-                    <div class="mt-2 text-sm text-gray-500">
-                        Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-                    </div>
-
-                    <a href="https://laracasts.com">
-                        <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
-                                <div>Start watching Laracasts</div>
-
-                                <div class="ml-1 text-indigo-500">
-                                    <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="p-6 border-t border-gray-200">
-                <div class="flex items-center">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="https://tailwindcss.com/">Tailwind</a></div>
-                </div>
-
-                <div class="ml-12">
-                    <div class="mt-2 text-sm text-gray-500">
-                        Laravel Jetstream is built with Tailwind, an amazing utility first CSS framework that doesn't get in your way. You'll be amazed how easily you can build and maintain fresh, modern designs with this wonderful framework at your fingertips.
-                    </div>
-                </div>
-            </div>
-
-            <div class="p-6 border-t border-gray-200 md:border-l">
-                <div class="flex items-center">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">Authentication</div>
-                </div>
-
-                <div class="ml-12">
-                    <div class="mt-2 text-sm text-gray-500">
-                        Authentication and registration views are included with Laravel Jetstream, as well as support for user email verification and resetting forgotten passwords. So, you're free to get started what matters most: building your application.
-                    </div>
-                </div>
+        <!-- 'filtered' product list -->
+        <div id="productList" class="grid grid-cols-1 md:grid-cols-3 w-full bg-gray-200 bg-opacity-25" style="width: 100%">
+            <div v-for="product in filteredProductList">
+                <product-post>
+                    <template v-slot:productName>
+                        {{ product.name }}
+                    </template>
+                    <template v-slot:productDescription>
+                        {{ product.description }}
+                    </template>
+                    <template v-slot:productDiscount>
+                        {{ product.discount }}
+                    </template>
+                    <template v-slot:productAvailableStock>
+                        {{ product.availableStock }}
+                    </template>
+                </product-post>
             </div>
         </div>
     </div>
@@ -95,10 +52,41 @@
 
 <script>
     import JetApplicationLogo from '@/Jetstream/ApplicationLogo'
+    import Button from "@/Jetstream/Button";
+    import ProductPost from "@/Pages/ProductPost";
 
     export default {
         components: {
+            ProductPost,
+            Button,
             JetApplicationLogo,
+        },
+
+        data() {
+            return {
+                search: '',
+                //test data
+                productsList: [
+                    { id:1, name:'Balloon', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                        discount:'25% off', availableStock:'3' },
+                    { id:2, name:'Riser', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ',
+                        discount:'25% off', availableStock:'10' },
+                    { id:3, name:'Comb', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                        discount:'10% off', availableStock:'1' },
+                    { id:4, name:'Blower', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                        discount:'0% off', availableStock:'0' },
+                    { id:5, name:'Orange', description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                        discount:'50% off', availableStock:'6' },
+                ],
+            }
+        },
+
+        computed: {
+            filteredProductList() {
+                return this.productsList.filter(product => {
+                    return product.name.toLowerCase().includes(this.search.toLowerCase())
+                });
+            }
         },
     }
 </script>

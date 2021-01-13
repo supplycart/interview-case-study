@@ -1,5 +1,5 @@
 <template>
-    <img class="flex flex-shrink w-1/3 content-center mt-2 p-2 mx-auto justify-center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
+    <img class="flex flex-shrink-0 content-center p-2 justify-center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
 
 <!--    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">-->
 <!--      <path d="M11.395 44.428C4.557 40.198 0 32.632 0 24 0 10.745 10.745 0 24 0a23.891 23.891 0 0113.997 4.502c-.2 17.907-11.097 33.245-26.602 39.926z" fill="#6875F5"/>-->

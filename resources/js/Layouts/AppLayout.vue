@@ -21,6 +21,7 @@
                                     Dashboard
                                 </jet-nav-link>
                             </div>
+
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -78,6 +79,9 @@
                                     </template>
                                 </jet-dropdown>
                             </div>
+
+                            <!-- Cart -->
+                            <cart></cart>
 
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
@@ -240,9 +244,13 @@
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
+    import Button from "@/Jetstream/Button";
+    import Cart from "@/Pages/Cart";
 
     export default {
         components: {
+            Cart,
+            Button,
             JetApplicationMark,
             JetBanner,
             JetDropdown,
@@ -269,6 +277,6 @@
             logout() {
                 this.$inertia.post(route('logout'));
             },
-        }
+        },
     }
 </script>
