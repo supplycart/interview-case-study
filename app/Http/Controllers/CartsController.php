@@ -18,16 +18,13 @@ class CartsController extends Controller
         $product = Product::find($id);
 
         if(!$product) {
-
             abort(404);
-
         }
 
         $cart = session()->get('cart');
 
         // if cart is empty then this the first product
         if(!$cart) {
-
             $cart = [
                 $id => [
                     "id" => $product->id,
@@ -39,7 +36,6 @@ class CartsController extends Controller
             ];
 
             session()->put('cart', $cart);
-
             return response()->json(['status' => 1, 'message' => 'Product added to cart successfully!']);
         }
 
@@ -47,9 +43,7 @@ class CartsController extends Controller
         if(isset($cart[$id])) {
 
             $cart[$id]['quantity']++;
-
             session()->put('cart', $cart);
-
             return response()->json(['status' => 1, 'message' => 'Product added to cart successfully!']);
 
         }
@@ -64,7 +58,6 @@ class CartsController extends Controller
         ];
 
         session()->put('cart', $cart);
-
         return response()->json(['status' => 1, 'message' => 'Product added to cart successfully!']);
     }
 
@@ -88,9 +81,7 @@ class CartsController extends Controller
             $cart = session()->get('cart');
 
             if(isset($cart[$request->id])) {
-
                 unset($cart[$request->id]);
-
                 session()->put('cart', $cart);
             }
 
