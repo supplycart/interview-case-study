@@ -13,45 +13,30 @@ class ProductsSeeder extends Seeder
     {
         DB::table('products')->insert([
             'name' => 'Samsung Galaxy S9',
-            'description' => 'A brand new, sealed Lilac Purple Verizon Global Unlocked Galaxy S9 by Samsung. This is an upgrade. Clean ESN and activation ready.',
-            'photo' => 'https://i.ebayimg.com/00/s/ODY0WDgwMA==/z/9S4AAOSwMZRanqb7/$_35.JPG?set_id=89040003C1',
-            'price' => 698.88
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Apple iPhone X',
-            'description' => 'GSM & CDMA FACTORY UNLOCKED! WORKS WORLDWIDE! FACTORY UNLOCKED. iPhone x 64gb. iPhone 8 64gb. iPhone 8 64gb. iPhone X with iOS 11.',
-            'photo' => 'https://i.ebayimg.com/00/s/MTYwMFg5OTU=/z/9UAAAOSwFyhaFXZJ/$_35.JPG?set_id=89040003C1',
-            'price' => 983.00
-        ]);
-
-        DB::table('products')->insert([
-            'name' => 'Google Pixel 2 XL',
-            'description' => 'New condition
-• No returns, but backed by eBay Money back guarantee',
-            'photo' => 'https://i.ebayimg.com/00/s/MTYwMFg4MzA=/z/G2YAAOSwUJlZ4yQd/$_35.JPG?set_id=89040003C1',
-            'price' => 675.00
+            'description' => 'The Samsung Galaxy S9 features a 5.8" display, 12MP back camera, 8MP front camera, and a 3000mAh battery capacity. It also comes with Octa Core CPU and runs on Android.',
+            'photo' => 'https://p.ipricegroup.com/uploaded_29326edc09f06d172651deb0f2ce2ded.jpg',
+            'price' => 1260.00
         ]);
 
         DB::table('products')->insert([
             'name' => 'LG V10 H900',
-            'description' => 'NETWORK Technology GSM. Protection Corning Gorilla Glass 4. MISC Colors Space Black, Luxe White, Modern Beige, Ocean Blue, Opal Blue. SAR EU 0.59 W/kg (head).',
-            'photo' => 'https://i.ebayimg.com/00/s/NjQxWDQyNA==/z/VDoAAOSwgk1XF2oo/$_35.JPG?set_id=89040003C1',
-            'price' => 159.99
+            'description' => 'The LG V10 features a 5.7" display, 16MP back camera, 5MP front camera, and a 3000mAh battery capacity. It also comes with Hexa Core CPU and runs on Android.',
+            'photo' => 'https://p.ipricegroup.com/uploaded_29326edc09f06d172651deb0f2ce2ded.jpg',
+            'price' => 620.00
         ]);
 
         DB::table('products')->insert([
-            'name' => 'Huawei Elate',
-            'description' => 'Cricket Wireless - Huawei Elate. New Sealed Huawei Elate Smartphone.',
-            'photo' => 'https://ssli.ebayimg.com/images/g/aJ0AAOSw7zlaldY2/s-l640.jpg',
-            'price' => 68.00
+            'name' => 'HUAWEI Mate 40 Pro',
+            'description' => 'The Huawei Mate 40 Pro features a 6.76" display, 50MP back camera, 13MP front camera, and a 4400mAh battery capacity.',
+            'photo' => 'https://p.ipricegroup.com/uploaded_2dbbc559e55a743b84fba3abeb87d63f.jpg',
+            'price' => 4299.00
         ]);
 
         DB::table('products')->insert([
             'name' => 'HTC One M10',
             'description' => 'The device is in good cosmetic condition and will show minor scratches and/or scuff marks.',
-            'photo' => 'https://i.ebayimg.com/images/g/u-kAAOSw9p9aXNyf/s-l500.jpg',
-            'price' => 129.99
+            'photo' => 'https://p.ipricegroup.com/uploaded_7048abf98fa315a499343730edda2b10.jpg',
+            'price' => 750.00
         ]);
     }
 }
