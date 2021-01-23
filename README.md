@@ -25,7 +25,7 @@ If tables are create using Laravel migration, run:
 
 ### `php artisan migrate`
 
-Make sure yo have database **td_qa** created first.
+Make sure you have database **shopping** created first.
 
 ### Tasks completed
 
