@@ -73,7 +73,7 @@
                                             <img src="{{ $product->photo }}" width="500" height="300">
                                             <div class="caption">
                                                 <h4>{{ $product->name }}</h4>
-                                                <p>{{ str_limit(strtolower($product->description), 50) }}</p>
+                                                <p>{{ str_limit($product->description, 100) }}</p>
                                                 <p><strong>Price: </strong> MYR{{ $product->price }}</p>
                                                 <button id="add-to-cart" class="btn btn-primary btn-block add-cart"
                                                         data-product-id="{{ $product->id }}"
