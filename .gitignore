@@ -1,5 +1,3 @@
-\load_modules
-\vendor
-api/.env
-laravel-tailwind/load_modules
-laravel-tailwind/vendor
+.env
+/vendor
+/node_modules
