@@ -8,7 +8,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import App from './components/views/App.vue'
+import App from './components/views/App'
 import Home from './components/views/Home'
 import Login from './components/views/Login'
 import Register from './components/views/Register'
@@ -124,7 +124,6 @@ router.beforeEach((to, from, next) => {
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
