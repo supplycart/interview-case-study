@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -18,11 +18,8 @@ const mix = require('laravel-mix');
 //         //
 //     ]);
 
-
-mix.js('resources/js/app.js', 'public/js')
+mix.js("resources/js/app.js", "public/js")
     .vue()
-    .js('resources/assets/js/app.js', 'public/js')
-    .js('resources/assets/js/bootstrap.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .js("resources/assets/js/app.js", "public/js")
+    .js("resources/assets/js/bootstrap.js", "public/js")
+    .postCss("resources/css/app.css", "public/css", [require("tailwindcss")]);
