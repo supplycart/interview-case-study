@@ -11,7 +11,7 @@ class ProductsTableSeeder extends Seeder
     {
         $products = [
             [
-                'name' => "MEN'S BETTER THAN NAKED & JACKET",
+                'name' => "MEN'S JACKET",
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua consequat.',
                 'units' => 21,
@@ -21,7 +21,7 @@ class ProductsTableSeeder extends Seeder
                 'updated_at' => null,
             ],
             [
-                'name' => "WOMEN'S BETTER THAN NAKED™ JACKET",
+                'name' => "WOMEN'S JACKET",
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua consequat.',
                 'units' => 400,
