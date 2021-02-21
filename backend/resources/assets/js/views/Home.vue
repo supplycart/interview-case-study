@@ -6,33 +6,45 @@
             <h2 class="title">Welcome to the bigStore</h2>
         </div>
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div
-                            class="col-md-4 product-box"
-                            v-for="(product, index) in products"
-                            :key="index"
-                        >
-                            <router-link
-                                :to="{ path: '/products/' + product.id }"
+            <div class="grid sm:grid-cols-1 gap-4 place-items-center md:grid-cols-2">
+                <div v-for="(product, index) in products" :key="index">
+                    <router-link :to="{ path: '/products/' + product.id }">
+                        <main class="place-items-center">
+                            <section
+                                class="flex flex-col md:flex-row gap-11 py-10 px-5 bg-white rounded-md shadow-lg"
                             >
-                                <img :src="product.image" :alt="product.name" />
-                                <h5>
-                                    <span v-html="product.name"></span>
-                                    <span
-                                        class="small-text text-muted float-right"
-                                        >$ {{ product.price }}</span
-                                    >
-                                </h5>
-                                <button
-                                    class="col-md-4 btn btn-sm btn-primary float-right"
+                                <div
+                                    class="text-indigo-500 flex flex-col justify-between"
                                 >
-                                    Buy Now
-                                </button>
-                            </router-link>
-                        </div>
-                    </div>
+                                    <img
+                                        :src="product.image"
+                                        :alt="product.name"
+                                    />
+                                </div>
+                                <div class="text-indigo-500">
+                                    <h3
+                                        class="uppercase text-black text-2xl font-medium"
+                                    >
+                                        <span v-html="product.name"></span>
+                                    </h3>
+                                    <h3 class="text-2xl font-semibold mb-7">
+                                        $ {{ product.price }}
+                                    </h3>
+                                    <small class="text-black">
+                                        {{ product.description }}
+                                    </small>
+                                    <div class="flex gap-0.5 mt-4">
+                                        <button
+                                            id="addToCartButton"
+                                            class="bg-indigo-600 hover:bg-indigo-500 focus:outline-none transition text-white uppercase px-8 py-3"
+                                        >
+                                            buy now
+                                        </button>
+                                    </div>
+                                </div>
+                            </section>
+                        </main>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -55,22 +67,22 @@ export default {
 </script>
 
 <style scoped>
-    .small-text {
-        font-size: 14px;
-    }
-    .product-box {
-        border: 1px solid #cccccc;
-        padding: 10px 15px;
-    }
-    .hero-section {
-        height: 30vh;
-        background: #ababab;
-        align-items: center;
-        margin-bottom: 20px;
-        margin-top: -20px;
-    }
-    .title {
-        font-size: 60px;
-        color: #ffffff;
-    }
-    </style>
+.small-text {
+    font-size: 14px;
+}
+.product-box {
+    border: 1px solid #cccccc;
+    padding: 10px 15px;
+}
+.hero-section {
+    height: 30vh;
+    background: #ababab;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: -20px;
+}
+.title {
+    font-size: 60px;
+    color: #ffffff;
+}
+</style>

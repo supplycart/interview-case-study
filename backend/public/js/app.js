@@ -2786,6 +2786,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -41912,58 +41924,103 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c(
+      _c(
+        "div",
+        {
+          staticClass:
+            "grid sm:grid-cols-1 gap-4 place-items-center md:grid-cols-2"
+        },
+        _vm._l(_vm.products, function(product, index) {
+          return _c(
             "div",
-            { staticClass: "row" },
-            _vm._l(_vm.products, function(product, index) {
-              return _c(
-                "div",
-                { key: index, staticClass: "col-md-4 product-box" },
+            { key: index },
+            [
+              _c(
+                "router-link",
+                { attrs: { to: { path: "/products/" + product.id } } },
                 [
-                  _c(
-                    "router-link",
-                    { attrs: { to: { path: "/products/" + product.id } } },
-                    [
-                      _c("img", {
-                        attrs: { src: product.image, alt: product.name }
-                      }),
-                      _vm._v(" "),
-                      _c("h5", [
-                        _c("span", {
-                          domProps: { innerHTML: _vm._s(product.name) }
-                        }),
-                        _vm._v(" "),
+                  _c("main", { staticClass: "place-items-center" }, [
+                    _c(
+                      "section",
+                      {
+                        staticClass:
+                          "flex flex-col md:flex-row gap-11 py-10 px-5 bg-white rounded-md shadow-lg"
+                      },
+                      [
                         _c(
-                          "span",
-                          { staticClass: "small-text text-muted float-right" },
-                          [_vm._v("$ " + _vm._s(product.price))]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass:
-                            "col-md-4 btn btn-sm btn-primary float-right"
-                        },
-                        [
-                          _vm._v(
-                            "\n                                Buy Now\n                            "
-                          )
-                        ]
-                      )
-                    ]
-                  )
-                ],
-                1
+                          "div",
+                          {
+                            staticClass:
+                              "text-indigo-500 flex flex-col justify-between"
+                          },
+                          [
+                            _c("img", {
+                              attrs: { src: product.image, alt: product.name }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text-indigo-500" }, [
+                          _c(
+                            "h3",
+                            {
+                              staticClass:
+                                "uppercase text-black text-2xl font-medium"
+                            },
+                            [
+                              _c("span", {
+                                domProps: { innerHTML: _vm._s(product.name) }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "h3",
+                            { staticClass: "text-2xl font-semibold mb-7" },
+                            [
+                              _vm._v(
+                                "\n                                    $ " +
+                                  _vm._s(product.price) +
+                                  "\n                                "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("small", { staticClass: "text-black" }, [
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(product.description) +
+                                "\n                                "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "flex gap-0.5 mt-4" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "bg-indigo-600 hover:bg-indigo-500 focus:outline-none transition text-white uppercase px-8 py-3",
+                                attrs: { id: "addToCartButton" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        buy now\n                                    "
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+                ]
               )
-            }),
-            0
+            ],
+            1
           )
-        ])
-      ])
+        }),
+        0
+      )
     ])
   ])
 }
