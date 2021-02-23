@@ -1,39 +1,59 @@
 <template>
     <div>
-        <div
-            class="container-fluid hero-section d-flex align-content-center justify-content-center flex-wrap ml-auto"
-        >
-            <h2 class="title">Admin Dashboard</h2>
+        <div class="container">
+            <h2 class="text-2xl">Admin Dashboard</h2>
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <ul style="list-style-type: none">
-                        <li class="active">
-                            <button class="btn" @click="setComponent('main')">
-                                Dashboard
-                            </button>
-                        </li>
-                        <li>
-                            <button class="btn" @click="setComponent('orders')">
-                                Orders
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                class="btn"
-                                @click="setComponent('products')"
-                            >
-                                Products
-                            </button>
-                        </li>
-                        <li>
-                            <button class="btn" @click="setComponent('users')">
-                                Users
-                            </button>
-                        </li>
-                    </ul>
-                </div>
+                <nav class="bg-white pt-2 mb-8 mt-4">
+                    <div class="-mb-px flex">
+                        <a
+                            class="no-underline border-b-2 uppercase tracking-wide font-bold text-xs py-3 mr-8"
+                            v-bind:class="{
+                                selected: isActive === 'main',
+                                'border-transparent': isActive !== 'main',
+                            }"
+                            href="#"
+                            @click="setComponent('main')"
+                        >
+                            Dashboard
+                        </a>
+                        <a
+                            class="no-underline border-b-2 uppercase tracking-wide font-bold text-xs py-3 mr-8"
+                            v-bind:class="{
+                                selected: isActive === 'orders',
+                                'border-transparent': isActive !== 'orders',
+                            }"
+                            href="#"
+                            @click="setComponent('orders')"
+                        >
+                            Orders
+                        </a>
+                        <a
+                            class="no-underline border-b-2 uppercase tracking-wide font-bold text-xs py-3 mr-8"
+                            v-bind:class="{
+                                selected: isActive === 'products',
+                                'border-transparent': isActive !== 'products',
+                            }"
+                            href="#"
+                            @click="setComponent('products')"
+                        >
+                            Products
+                        </a>
+                        <a
+                            class="no-underline text-grey-dark border-b-2 uppercase tracking-wide font-bold text-xs py-3"
+                            v-bind:class="{
+                                selected: isActive === 'users',
+                                'border-transparent': isActive !== 'users',
+                            }"
+                            href="#"
+                            @click="setComponent('users')"
+                        >
+                            Users
+                        </a>
+                    </div>
+                </nav>
+
                 <div class="col-md-9">
                     <component :is="activeComponent"></component>
                 </div>
@@ -53,6 +73,10 @@ export default {
         return {
             user: null,
             activeComponent: null,
+            isActive: 'main',
+            attachFile(event) {
+                this.attachment = event.target.files[0];
+            },
         };
     },
     components: {
@@ -70,6 +94,9 @@ export default {
     },
     methods: {
         setComponent(value) {
+            if (value) {
+                this.isActive = value;
+            }
             switch (value) {
                 case "users":
                     this.activeComponent = Users;
@@ -103,15 +130,8 @@ export default {
 </script>
 
 <style scoped>
-.hero-section {
-    height: 20vh;
-    background: #ababab;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-top: -20px;
-}
-.title {
-    font-size: 60px;
-    color: #ffffff;
+a.selected {
+    color: #059669;
+    border-bottom-color: #059669;
 }
 </style>

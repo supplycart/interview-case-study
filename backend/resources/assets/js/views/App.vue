@@ -2,41 +2,37 @@
     <div>
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <router-link :to="{ name: 'home' }" class="navbar-brand"
-                    >Big Store</router-link
-                >
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div
-                    class="collapse navbar-collapse"
-                    id="navbarSupportedContent"
-                >
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto"></ul>
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <router-link
-                            :to="{ name: 'login' }"
-                            class="nav-link"
+                <div class="relative bg-white">
+                    <div
+                        class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10"
+                    >
+                        <div class="flex justify-start lg:w-0 lg:flex-1">
+                            <router-link
+                                :to="{ name: 'home' }"
+                                class="navbar-brand"
+                                ><img
+                                    class="h-8 w-auto sm:h-10"
+                                    src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Circle-icons-trends.svg"
+                                    alt=""
+                            /></router-link>
+                            <span class="px-8 text-3xl font-semibold">Outdoor Gear Store</span>
+                        </div>
+                        <div
+                            class="hidden md:flex items-center justify-end md:flex-1 lg:w-0"
                             v-if="!isLoggedIn"
-                            >Login</router-link
                         >
-                        <router-link
-                            :to="{ name: 'register' }"
-                            class="nav-link"
-                            v-if="!isLoggedIn"
-                            >Register</router-link
-                        >
-                        <span v-if="isLoggedIn">
+                            <router-link
+                                :to="{ name: 'login' }"
+                                class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
+                                >Login</router-link
+                            >
+                            <router-link
+                                :to="{ name: 'register' }"
+                                class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700"
+                                >Register</router-link
+                            >
+                        </div>
+                        <div v-if="isLoggedIn">
                             <router-link
                                 :to="{ name: 'userboard' }"
                                 class="nav-link"
@@ -51,11 +47,16 @@
                             >
                                 Hi, {{ name }}</router-link
                             >
-                        </span>
-                        <li class="nav-link" v-if="isLoggedIn" @click="logout">
-                            Logout
-                        </li>
-                    </ul>
+
+                            <span
+                                class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700"
+                                v-if="isLoggedIn"
+                                @click="logout"
+                            >
+                                Logout
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>

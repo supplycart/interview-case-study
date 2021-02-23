@@ -1,29 +1,49 @@
 <template>
-    <div>
-        <table class="table table-responsive table-striped">
-            <thead>
+    <div class="flex flex-col max-w-full overflow-x-hidden shadow-md">
+        <table class="overflow-x-auto w-full bg-white">
+            <thead class="bg-blue-100 border-b border-gray-300">
                 <tr>
-                    <td></td>
-                    <td>Product</td>
-                    <td>Units</td>
-                    <td>Price</td>
-                    <td>Description</td>
+                    <th class="p-4 text-left text-sm font-medium text-gray-500">
+                        Id
+                    </th>
+                    <th class="p-4 text-left text-sm font-medium text-gray-500">
+                        Product
+                    </th>
+                    <th class="p-4 text-left text-sm font-medium text-gray-500">
+                        Units
+                    </th>
+                    <th class="p-4 text-left text-sm font-medium text-gray-500">
+                        Price
+                    </th>
+                    <th class="p-4 text-left text-sm font-medium text-gray-500">
+                        Description
+                    </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-gray-600 text-sm divide-y divide-gray-300">
                 <tr
                     v-for="(product, index) in products"
                     :key="index"
                     @dblclick="editingItem = product"
                 >
-                    <td>{{ index + 1 }}</td>
-                    <td v-html="product.name"></td>
-                    <td v-model="product.units">{{ product.units }}</td>
-                    <td v-model="product.price">{{ product.price }}</td>
-                    <td v-model="product.price">{{ product.description }}</td>
+                    <td class="p-4 whitespace-nowrap">{{ index + 1 }}</td>
+                    <td
+                        class="p-4 whitespace-nowrap"
+                        v-html="product.name"
+                    ></td>
+                    <td class="p-4 whitespace-nowrap" v-model="product.units">
+                        {{ product.units }}
+                    </td>
+                    <td class="p-4 whitespace-nowrap" v-model="product.price">
+                        {{ product.price }}
+                    </td>
+                    <td class="p-4 whitespace-nowrap" v-model="product.price">
+                        {{ product.description }}
+                    </td>
                 </tr>
             </tbody>
         </table>
+
         <modal
             @close="endEditing"
             :product="editingItem"
@@ -35,7 +55,10 @@
             v-show="addingProduct != null"
         ></modal>
         <br />
-        <button class="btn btn-primary" @click="newProduct">
+        <button
+            class="bg-green-100 text-green-800 text-xs font-semibold px-4 py-2 border-0"
+            @click="newProduct"
+        >
             Add New Product
         </button>
     </div>

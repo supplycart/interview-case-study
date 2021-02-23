@@ -1,26 +1,37 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <img :src="product.image" :alt="product.name" />
-                <h3 class="title" v-html="product.name"></h3>
-                <p class="text-muted">{{ product.description }}</p>
-                <h4>
-                    <span class="small-text text-muted float-left"
-                        >$ {{ product.price }}</span
-                    >
-                    <span class="small-text float-right"
-                        >Available Quantity: {{ product.units }}</span
-                    >
-                </h4>
-                <br />
-                <hr />
-                <router-link
-                    :to="{ path: '/checkout?pid=' + product.id }"
-                    class="col-md-4 btn btn-sm btn-primary float-right"
-                    >Buy Now</router-link
-                >
-            </div>
+        <div class="grid">
+            <section
+                class="flex flex-col flex-grow md:flex-row gap-11 py-10 px-5 bg-white rounded-md shadow-lg"
+            >
+                <div class="text-green-500 flex flex-col justify-between">
+                    <img :src="product.image" :alt="product.name" />
+                </div>
+                <div class="text-green-500">
+                    <h3
+                        class="uppercase text-black text-2xl font-medium"
+                        v-html="product.name"
+                    ></h3>
+                    <h3 class="text-2xl font-semibold mb-7">
+                        $ {{ product.price }}
+                    </h3>
+                    <div class="pb-5">
+                        <small class="text-black">{{
+                            product.description
+                        }}</small>
+                    </div>
+                    <div class="pb-5">
+                        <small>Available Quantity: {{ product.units }}</small>
+                    </div>
+                    <div class="flex gap-0.5 mt-4">
+                        <router-link
+                            :to="{ path: '/checkout?pid=' + product.id }"
+                            class="bg-green-600 hover:bg-green-500 focus:outline-none transition text-white uppercase px-8 py-3 rounded"
+                            >Buy Now</router-link
+                        >
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </template>
@@ -38,12 +49,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-.small-text {
-    font-size: 18px;
-}
-.title {
-    font-size: 36px;
-}
-</style>
