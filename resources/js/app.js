@@ -8,15 +8,15 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import App from './components/views/App'
-import Home from './components/views/Home'
-import Login from './components/views/Login'
-import Register from './components/views/Register'
-import SingleProduct from './components/views/SingleProduct'
-import Checkout from './components/views/Checkout'
-import Confirmation from './components/views/Confirmation'
-import UserBoard from './components/views/UserBoard'
-import Admin from './components/views/Admin'
+import App from './components/views/App.vue'
+import Home from './components/views/Home.vue'
+import Login from './components/views/Login.vue'
+import Register from './components/views/Register.vue'
+import Checkout from './components/views/Confirmation.vue'
+import Confirmation from './components/views/Confirmation.vue'
+import UserBoard from './components/views/UserBoard.vue'
+import Admin from './components/views/Admin.vue'
+import Cart from './components/views/Cart.vue'
 
 require('./bootstrap');
 
@@ -46,11 +46,7 @@ const router = new VueRouter({
             name: 'register',
             component: Register
         },
-        {
-            path: '/products/:id',
-            name: 'single-products',
-            component: SingleProduct
-        },
+
         {
             path: '/confirmation',
             name: 'confirmation',
@@ -60,6 +56,12 @@ const router = new VueRouter({
             path: '/checkout',
             name: 'checkout',
             component: Checkout,
+            props: (route) => ({ pid: route.query.pid })
+        },
+        {
+            path: '/cart',
+            name: 'cart',
+            component: Cart,
             props: (route) => ({ pid: route.query.pid })
         },
         {

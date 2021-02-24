@@ -1,29 +1,47 @@
 <template>
-        <div>
-            <div class="container-fluid hero-section d-flex align-content-center justify-content-center flex-wrap ml-auto">
-                <h2 class="title">Welcome to the bigStore</h2>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-4 product-box" v-for="(product,index) in products" @key="index">
-                                <router-link :to="{ path: '/products/'+product.id}">
-                                    <img :src="product.image" :alt="product.name">
-                                    <h5><span v-html="product.name"></span>
-                                        <span class="small-text text-muted float-right">$ {{product.price}}</span>
-                                    </h5>
-                                    <button class="col-md-4 btn btn-sm btn-primary float-right">Buy Now</button>
-                                </router-link>
-                            </div>
-                        </div>
-                    </div>
+    <div>
+        <div
+            class="flex items-center justify-center text-white-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl bg-gray-300 p-5"
+        >
+            <h2 class="text-2xl uppercase text-gray-900 font-bold text-center">
+                Welcome to the Ambition
+            </h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div
+                    class="max-w-sm rounded overflow-hidden shadow-lg m-4 p-3"
+                    v-for="(product, index) in products"
+                    @key="index"
+                >
+                    <!-- <router-link :to="{ path: '/products/' + product.id }"> -->
+                        <img
+                            class="w-full"
+                            :src="product.image"
+                            :alt="product.name"
+                        />
+                        <h5>
+                            <span
+                                class="font-bold text-xl mb-2"
+                                v-html="product.name"
+                            ></span>
+                            <span class="text-lg text-gray-400 p-2 float-right"
+                                >$ {{ product.price }}</span
+                            >
+                        </h5>
+                        <button
+                            class="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 mt-4 float-center rounded-full"
+                        >
+                           <router-link :to="{ path: '/cart?pid='+product.id }">Add to cart</router-link>
+                        </button>
+                    <!-- </router-link> -->
                 </div>
             </div>
         </div>
-    </template>
+    </div>
+</template>
 
-    <script>
+ <script>
         export default {
             data(){
                 return {
@@ -32,10 +50,14 @@
             },
             mounted(){
                 axios.get("api/products/").then(response => this.products = response.data)      
-            }
+            }, 
+            beforeMount(){
+            let url = `/api/products/${this.$route.params.id}`
+            axios.get(url).then(response => this.product = response.data)      
+        }
         }
     </script>
-       <style scoped>
+<style scoped>
     .small-text {
         font-size: 14px;
     }
@@ -54,4 +76,4 @@
         font-size: 60px;
         color: #ffffff;
     }
-    </style>
+</style>

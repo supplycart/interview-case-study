@@ -1,13 +1,12 @@
 <template>
-        <div class="row">
-            <div class="col-md-4 product-box d-flex align-content-center justify-content-center flex-wrap big-text">
+        <div class="grid grid-cols-3 gap-2">
+            <div class="bg-white m-2 p-3 rounded">
                 <a href='/admin/orders'>Orders ({{orders.length}})</a>
             </div>
-            <hr>
-            <div class="col-md-4 product-box d-flex align-content-center justify-content-center flex-wrap big-text">
+            <div class="bg-white m-2 p-3 rounded">
                 <a href='/admin/products'>Products ({{products.length}})</a>
             </div>
-            <div class="col-md-4 product-box d-flex align-content-center justify-content-center flex-wrap big-text">
+            <div class="bg-white m-2 p-3 rounded">
                 <a href='/admin/users'>Users ({{users.length}})</a>
             </div>
         </div>

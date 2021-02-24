@@ -1,33 +1,40 @@
  <template>
         <div>
-            <table class="table table-responsive table-striped">
-                <thead>
+            <table class="min-w-full divide-y divide-gray-100 shadow-sm border-gray-200 border">
+                <thead class="bg-gray-50">
                     <tr>
-                        <td></td>
-                        <td>Product</td>
-                        <td>Quantity</td>
-                        <td>Cost</td>
-                        <td>Delivery Address</td>
-                        <td>is Delivered?</td>
-                        <td>Action</td>
+                        <th scope="col"
+                        class="px-3 py-2 font-semibold text-left bg-gray-100 border-b"></th>
+                        <th scope="col"
+                        class="px-3 py-2 font-semibold text-left bg-gray-100 border-b">Product</th>
+                        <th scope="col"
+                        class="px-3 py-2 font-semibold text-left bg-gray-100 border-b">Quantity</th>
+                        <th scope="col"
+                        class="px-3 py-2 font-semibold text-left bg-gray-100 border-b">Cost</th>
+                        <th scope="col"
+                        class="px-3 py-2 font-semibold text-left bg-gray-100 border-b">Delivery Address</th>
+                        <th scope="col"
+                        class="px-3 py-2 font-semibold text-left bg-gray-100 border-b">is Delivered?</th>
+                        <th scope="col"
+                        class="px-3 py-2 font-semibold text-left bg-gray-100 border-b">Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="bg-white divide-y divide-gray-100">
                     <tr v-for="(order,index) in orders" @key="index">
-                        <td>{{index+1}}</td>
-                        <td v-html="order.product.name"></td>
-                        <td>{{order.quantity}}</td>
-                        <td>{{order.quantity * order.product.price}}</td>
-                        <td>{{order.address}}</td>
-                        <td>{{order.is_delivered == 1? "Yes" : "No"}}</td>
-                        <td v-if="order.is_delivered == 0"><button class="btn btn-success" @click="deliver(index)">Deliver</button></td>
+                        <td class="px-3 py-2 whitespace-no-wrap">{{index+1}}</td>
+                        <td class="px-3 py-2 whitespace-no-wrap" v-html="order.product.name"></td>
+                        <td class="px-3 py-2 whitespace-no-wrap">{{order.quantity}}</td>
+                        <td class="px-3 py-2 whitespace-no-wrap">{{order.quantity * order.product.price}}</td>
+                        <td class="px-3 py-2 whitespace-no-wrap">{{order.address}}</td>
+                        <td class="px-3 py-2 whitespace-no-wrap">{{order.is_delivered == 1? "Yes" : "No"}}</td>
+                        <td class="px-3 py-2 whitespace-no-wrap" v-if="order.is_delivered == 0"><button class="btn btn-success" @click="deliver(index)">Deliver</button></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </template>
 
-    <script>
+     <script>
     export default {
         data() {
             return {

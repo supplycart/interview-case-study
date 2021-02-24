@@ -1,16 +1,16 @@
   <template>
         <div>
-            <div class="container-fluid hero-section d-flex align-content-center justify-content-center flex-wrap ml-auto">
-                <h2 class="title">Admin Dashboard</h2>
+            <div class="flex items-center justify-center text-white-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl bg-gray-300 p-5">
+                <h2 class="my-4 text-3xl md:text-5xl font-bold leading-tight">Admin Dashboard</h2>
             </div>
-            <div class="container">
+            <div class="container mx-auto px-4">
                 <div class="row">
                     <div class="col-md-3">
-                        <ul style="list-style-type:none">
-                            <li class="active"><button class="btn" @click="setComponent('main')">Dashboard</button></li>
-                            <li><button class="btn" @click="setComponent('orders')">Orders</button></li>
-                            <li><button class="btn" @click="setComponent('products')">Products</button></li>
-                            <li><button class="btn" @click="setComponent('users')">Users</button></li>
+                        <ul style="list-style-type:none" class="p-2">
+                            <li class="active"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-1 rounded-full" @click="setComponent('main')">Dashboard</button></li>
+                            <li><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-1 rounded-full" @click="setComponent('orders')">Orders</button></li>
+                            <li><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-1 rounded-full" @click="setComponent('products')">Products</button></li>
+                            <li><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-1 rounded-full" @click="setComponent('users')">Users</button></li>
                         </ul>
                     </div>
                     <div class="col-md-9">

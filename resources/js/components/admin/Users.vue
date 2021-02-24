@@ -1,22 +1,27 @@
 <template>
         <div>
-            <table class="table table-responsive table-striped">
+            <table class="min-w-full divide-y divide-gray-100 shadow-sm border-gray-200 border">
                 <thead>
                     <tr>
-                        <td></td>
-                        <td>Name</td>
-                        <td>Email</td>
-                        <td>Joined</td>
-                        <td>Total Orders</td>
+                        <th scope="col"
+                        class="px-3 py-2 font-semibold text-left bg-gray-100 border-b"></th>
+                        <th scope="col"
+                        class="px-3 py-2 font-semibold text-left bg-gray-100 border-b">Name</th>
+                        <th scope="col"
+                        class="px-3 py-2 font-semibold text-left bg-gray-100 border-b">Email</th>
+                        <th scope="col"
+                        class="px-3 py-2 font-semibold text-left bg-gray-100 border-b">Joined</th>
+                        <th scope="col"
+                        class="px-3 py-2 font-semibold text-left bg-gray-100 border-b">Total Orders</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="bg-white divide-y divide-gray-100">
                     <tr v-for="(user,index) in users" @key="index">
-                        <td>{{index+1}}</td>
-                        <td>{{user.name}}</td>
-                        <td>{{user.email}}</td>
-                        <td>{{user.created_at}}</td>
-                        <td>{{user.orders.length}}</td>
+                        <td class="px-3 py-2 whitespace-no-wrap">{{index+1}}</td>
+                        <td class="px-3 py-2 whitespace-no-wrap">{{user.name}}</td>
+                        <td class="px-3 py-2 whitespace-no-wrap">{{user.email}}</td>
+                        <td class="px-3 py-2 whitespace-no-wrap">{{user.created_at}}</td>
+                        <td class="px-3 py-2 whitespace-no-wrap">{{user.orders.length}}</td>
                     </tr>
                 </tbody>
             </table>

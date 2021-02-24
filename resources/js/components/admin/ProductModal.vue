@@ -77,7 +77,7 @@
         transform: scale(1.1);
     }
     </style>
-      <script>
+     <script>
     export default {
         props: ['product'],
         data() {

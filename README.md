@@ -4,31 +4,35 @@
 
 # Supplycart Interview Case Study
 
-This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned. 
+This case study is coded by Lotfi Anwar Arif using all 3 of the technologies although i am applying for the backend position i decided to also learn more about VueJs and Tailwindcss while i was working on this project. I was not able to finish all the tasks in time and in the quality i intended them to be in but i learned 2 of these technologies quickly in order to manipulate them for my own self-improvement.
 
-### Instructions
+### Instructions for installation
 
-- Fork this repo to your github account
-- Complete the tasks given
-- Once completed, create a PR to this repository
-- Lastly, add some guidance or instruction on how to run your code
+These are the commands that are needed in order to run the project safely.
+
+```
+php artisan migrate --seed
+composer install
+npm install
+npm run dev
+```
 
 ### Requirements
 
 You must work on this assignment using:
- - Vue (optional for BE dev)
- - TailwindCSS
- - Laravel (optional for FE dev)
+- Vue(optional for BE dev)
+- TailwindCSS
+- Laravel (optional for FE dev)
 
 ### Tasks
 
-1. As guest, I want to be able to register an account
-2. As guest, I want to be able to login using registered account
-3. As user, I want to see list of products after login
-4. As user, I want to be able to add product to cart
-5. As user, I want to be able to place order for added products in cart
-6. As user, I want to see my order history
-7. As user, I want to be able to logout
+1. As guest, I want to be able to register an account (DONE)
+2. As guest, I want to be able to login using registered account (DONE)
+3. As user, I want to see list of products after login (DONE)
+4. As user, I want to be able to add product to cart (WORKING)
+5. As user, I want to be able to place order for added products in cart(WORKING)
+6. As user, I want to see my order history (WORKING)
+7. As user, I want to be able to logout (DONE)
 
 ### Bonus Tasks
 
