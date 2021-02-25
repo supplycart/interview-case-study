@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import Modal from "./ProductModel";
+import Modal from "./ProductModal";
 
 export default {
     data() {

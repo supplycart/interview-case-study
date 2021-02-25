@@ -1,8 +1,11 @@
 <template>
     <div class="container">
-        <div
-            class="flex justify-center py-12 px-4 sm:px-6 lg:px-8"
-        >
+        <alert
+            @close="closeAlert"
+            :message="alertMessage"
+            v-show="showAlert"
+        ></alert>
+        <div class="flex justify-center py-12 px-4 sm:px-6 lg:px-8">
             <div class="max-w-md w-full space-y-8">
                 <div>
                     <img
@@ -56,7 +59,7 @@
                                 v-model="password"
                                 required
                                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm mb-4"
-                                placeholder="Password"
+                                placeholder="Password (At least 6 characters)"
                             />
                         </div>
                         <div>
@@ -107,6 +110,8 @@
 </template>
 
 <script>
+import Alert from "./Alert";
+
 export default {
     props: ["nextUrl"],
     data() {
@@ -115,24 +120,38 @@ export default {
             email: "",
             password: "",
             password_confirmation: "",
+            showAlert: false,
+            alertMessage: null
         };
     },
+    components: { Alert },
     methods: {
+        closeAlert(message) {
+            this.showAlert = false;
+        },
         handleSubmit(e) {
             e.preventDefault();
-            console.log(this.password);
-            console.log(this.password_confirmation);
 
             if (this.password.length < 6) {
-                return alert("Password must be more than 6 characters");
+                // return alert("Password must be more than 6 characters");
+                this.alertMessage = {
+                    error: "Password must be 6 characters or more.",
+                    description:
+                        "Please check you password and try again."
+                };
+                this.showAlert = true;
             } else {
                 if (
                     this.password !== this.password_confirmation ||
                     this.password.length <= 0
                 ) {
-                    this.password = "";
                     this.password_confirmation = "";
-                    return alert("Passwords do not match");
+                    this.alertMessage = {
+                    error: "Passwords do not match.",
+                    description:
+                        "Please check you confirmation password and try again."
+                };
+                this.showAlert = true;
                 }
             }
             let name = this.name;
@@ -141,7 +160,7 @@ export default {
             let c_password = this.password_confirmation;
             axios
                 .post("api/register", { name, email, password, c_password })
-                .then((response) => {
+                .then(response => {
                     let data = response.data;
                     localStorage.setItem(
                         "bigStore.user",
@@ -154,7 +173,7 @@ export default {
                         this.$router.push(nextUrl != null ? nextUrl : "/");
                     }
                 });
-        },
-    },
+        }
+    }
 };
 </script>

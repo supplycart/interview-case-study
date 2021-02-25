@@ -1,8 +1,11 @@
 <template>
     <div class="container">
-        <div
-            class="flex justify-center py-12 px-4 sm:px-6 lg:px-8"
-        >
+        <alert
+            @close="closeAlert"
+            :message="alertMessage"
+            v-show="showAlert"
+        ></alert>
+        <div class="flex justify-center py-12 px-4 sm:px-6 lg:px-8">
             <div class="max-w-md w-full space-y-8">
                 <div>
                     <img
@@ -83,14 +86,22 @@
 </template>
 
 <script>
+import Alert from "./Alert";
+
 export default {
     data() {
         return {
             email: "",
-            password: ""
+            password: "",
+            showAlert: false,
+            alertMessage: null
         };
     },
+    components: { Alert },
     methods: {
+        closeAlert(message) {
+            this.showAlert = false;
+        },
         handleSubmit(e) {
             e.preventDefault();
             if (this.password.length > 0) {
@@ -123,17 +134,16 @@ export default {
                             }
                         }
                     })
-                    .catch(function(error) {
+                    .catch(error => {
                         if (error.response) {
                             if (error.response.status === 401) {
-                                return alert(
-                                    "Unathorized user. Please check you login credentials and try again."
-                                );
+                                this.alertMessage = {
+                                    error: "Unathorized User.",
+                                    description:
+                                        "Please check you login credentials and try again."
+                                };
+                                this.showAlert = true;
                             }
-                            // Request made and server responded
-                            console.log(error.response.data);
-                            console.log(error.response.status);
-                            console.log(error.response.headers);
                         } else if (error.request) {
                             // The request was made but no response was received
                             console.log(error.request);

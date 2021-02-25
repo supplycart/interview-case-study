@@ -77,7 +77,7 @@ export default {
     data() {
         return {
             user: null,
-            orders: [],
+            orders: []
         };
     },
     beforeMount() {
@@ -87,9 +87,9 @@ export default {
         axios.defaults.headers.common["Authorization"] =
             "Bearer " + localStorage.getItem("bigStore.jwt");
 
-        axios
-            .get(`api/users/${this.user.id}/orders`)
-            .then((response) => (this.orders = response.data));
-    },
+        axios.get(`api/users/${this.user.id}/orders`).then(response => {
+            this.orders = response.data;
+        });
+    }
 };
 </script>

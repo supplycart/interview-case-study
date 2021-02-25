@@ -15,7 +15,9 @@
                                     src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Circle-icons-trends.svg"
                                     alt=""
                             /></router-link>
-                            <span class="px-8 text-3xl font-semibold">Outdoor Gear Store</span>
+                            <span class="px-8 text-3xl font-semibold"
+                                >Outdoor Gear Store</span
+                            >
                         </div>
                         <div
                             class="hidden md:flex items-center justify-end md:flex-1 lg:w-0"
@@ -32,21 +34,32 @@
                                 >Register</router-link
                             >
                         </div>
-                        <div v-if="isLoggedIn">
+                        <div class="flex" v-if="isLoggedIn">
                             <router-link
                                 :to="{ name: 'userboard' }"
-                                class="nav-link"
+                                class="nav-link mt-2"
                                 v-if="user_type == 0"
                             >
                                 Hi, {{ name }}</router-link
                             >
                             <router-link
                                 :to="{ name: 'admin' }"
-                                class="nav-link"
+                                class="nav-link mt-4"
                                 v-if="user_type == 1"
                             >
                                 Hi, {{ name }}</router-link
                             >
+
+                            <router-link
+                                :to="{ name: 'cart' }"
+                                class="nav-link"
+                                v-if="user_type == 0"
+                            >
+                                <img
+                                    class="ml-8 mt-2 h-6 w-8 "
+                                    src="/icons/shopping-cart.png"
+                                    alt=""
+                            /></router-link>
 
                             <span
                                 class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700"
@@ -72,7 +85,7 @@ export default {
         return {
             name: null,
             user_type: 0,
-            isLoggedIn: localStorage.getItem("bigStore.jwt") != null,
+            isLoggedIn: localStorage.getItem("bigStore.jwt") != null
         };
     },
     mounted() {
@@ -95,7 +108,7 @@ export default {
             localStorage.removeItem("bigStore.user");
             this.change();
             this.$router.push("/");
-        },
-    },
+        }
+    }
 };
 </script>
