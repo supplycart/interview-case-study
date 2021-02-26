@@ -1,37 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="row pb-3">
-                <div class="form-group col-10">
-                    <input type="text" class="form-control input-sm" placeholder="Search" autocomplete="search">
-                </div>
-
-                <div class="form-group col-2">
-                    <select class="form-select">
-                        <option selected>Category</option>
-                        <option value="1">Food</option>
-                        <option value="2">Drink</option>
-                    </select>
-                </div>
-            </div>
-
-            @foreach ($items as $item)
-            <div class="card mb-3">
-                <div class="row card-body">
-                    <img src="/storage/{{ $item["image"] }}" class="w-50">
-                    <div class="w-50">
-                        <p class="h4 fw-bold">{{ $item["name"] }}</p>
-                        <p class="">{{ $item["desc"] }}</p>
-                        <p class="h5 fw-bold position-absolute bottom-0 mb-3">${{ number_format($item["price"], 2, ".", "") }}</p>
-                        <button class="btn btn-success position-absolute bottom-0 end-0 mb-3 me-3 text-white">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
+    <button
+        onclick="location='/cart'" class="fixed-bottom mb-3 ms-3 p-0 w-12 h-12 bg-red-600 rounded-full hover:bg-red-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+        <svg class="w-75 h-75 mx-auto mt-1" fill="#FFFFFF" viewBox="0 0 20 20">
+            <path
+                d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+        </svg>
+    </button>
+    <div id="app">
+        <home-body></home-body>
     </div>
-</div>
 @endsection

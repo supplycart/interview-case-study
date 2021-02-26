@@ -1,12 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Item;
 use Intervention\Image\Facades\Image;
 
 class ItemController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function create()
     {
         return view('item');
@@ -21,18 +27,18 @@ class ItemController extends Controller
             'image' => ['required', 'image'],
         ]);
 
-        $imagePath = request("image")->store("uploads", "public");
+        $imagePath = request('image')->store('uploads', 'public');
 
-        $image = Image::make(public_path("storage/{$imagePath}"))->fit(600, 400);
+        $image = Image::make(public_path("storage/$imagePath"))->fit(600, 400);
         $image->save();
 
         Item::create([
-            'name' => $data["name"],
-            'desc' => $data["desc"],
-            'price' => $data["price"],
+            'name' => $data['name'],
+            'desc' => $data['desc'],
+            'price' => $data['price'],
             'image' => $imagePath,
         ]);
 
-        return redirect("/");
+        return redirect('/');
     }
 }

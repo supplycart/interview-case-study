@@ -73,7 +73,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Add Item
                                 </button>
-                                <button type="button" onclick="javascript:location='/'" class="btn btn-default">
+                                <button type="button" onclick="location='/'" class="btn btn-default">
                                     Go Back
                                 </button>
                             </div>
