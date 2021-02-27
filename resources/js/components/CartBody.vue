@@ -30,10 +30,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="pt-3" v-if="items.length > 0">
+                    <p class="h5 fw-bold">
+                        Total: ${{ parseFloat(total).toFixed(2) }}
+                    </p>
+                    <button class="btn btn-primary text-white col-2" @click="placeOrder">
+                        Place Order
+                    </button>
+                </div>
+                <div class="d-flex justify-content-center" v-if="items.length === 0">
+                    <p class="h5 pt-4 text-black-50">
+                        Nothing to show here
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 </template>
+
 
 <script>
 export default {
@@ -68,6 +82,23 @@ export default {
             });
             this.loadItems();
         },
+        placeOrder: function () {
+            const data = {'items': this.items};
+            axios.post(`/order`, data).then((response) => {
+                // console.log('Order placed');
+                alert('Order placed');
+                this.loadItems();
+            }).catch((error) => {
+                console.log(error.response);
+            });
+        }
     },
+    computed: {
+        total: function () {
+            let temp = 0;
+            this.items.forEach((e) => temp += e.price * e.quantity);
+            return temp;
+        }
+    }
 };
 </script>
