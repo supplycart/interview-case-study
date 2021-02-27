@@ -1,40 +1,68 @@
-<p align="center">
-    <img align="center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
-</p>
+# CartZada - Cart system
 
-# Supplycart Interview Case Study
+[![Version on Laravel](https://img.shields.io/badge/Laravel-v8.29-green?style=flat-square)](https://laravel.com/docs/7.*)
+[![Version on PHP](https://img.shields.io/badge/php-v7.4.10-blue?style=flat-square)](http://php.net/)
 
-This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned. 
+## Dependencies
 
-### Instructions
+* mysql >= 8.0
+* php >= 7.4
+* [Composer](https://getcomposer.org/)
+* [NodeJS](https://nodejs.org/en/)
 
-- Fork this repo to your github account
-- Complete the tasks given
-- Once completed, create a PR to this repository
-- Lastly, add some guidance or instruction on how to run your code
+Install the dependencies by running
+```
+composer install
+```
 
-### Requirements
+Install the node modules by running
+```
+npm install
+npm run dev
+```
 
-You must work on this assignment using:
- - Vue (optional for BE dev)
- - TailwindCSS
- - Laravel (optional for FE dev)
+## Usage
 
-### Tasks
+Make a copy file `.env.example` in the root folder with name `.env` and change all require credentials. Example:
 
-1. As guest, I want to be able to register an account
-2. As guest, I want to be able to login using registered account
-3. As user, I want to see list of products after login
-4. As user, I want to be able to add product to cart
-5. As user, I want to be able to place order for added products in cart
-6. As user, I want to see my order history
-7. As user, I want to be able to logout
+```
+...
+# URL for website
+APP_URL=http://localhost
+...
 
-### Bonus Tasks
+...
+# connection
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
+...
+```
 
-1. Verify email after registration
-2. User activity log e.g. login, logout, add to cart, place order etc
-3. Product attributes and filtering e.g brand, category
-4. Different user can see different price for products
-5. Add unit tests
-6. Deploy app to a server
+Run command before start
+
+```
+php artisan key:generate
+php artisan migrate
+```
+
+Seeder products
+
+```$xslt
+php artisan db:seed --class=ProductSeeder
+```
+
+## Development server
+
+Run `php artisan serve` for a easy development server. Navigate to `http://localhost:8000/`. The app will automatically reload if you change any of the source files.
+  
+Happy coding~...
+Good.
+
+## Security
+
+If you discover any security related issues, please email instead of using the issue tracker.
+
