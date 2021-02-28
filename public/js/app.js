@@ -5135,7 +5135,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var temp = [];
       this.items.forEach(function (value) {
-        if (value['name'].toString().includes(_this2.search.trim())) temp.push(value);
+        if (value['name'].toString().toUpperCase().includes(_this2.search.trim().toUpperCase())) temp.push(value);
       });
       return temp;
     }

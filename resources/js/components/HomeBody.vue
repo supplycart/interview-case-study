@@ -60,7 +60,7 @@ export default {
         getItems: function () {
             const temp = [];
             this.items.forEach((value) => {
-                if (value['name'].toString().includes(this.search.trim()))
+                if (value['name'].toString().toUpperCase().includes(this.search.trim().toUpperCase()))
                     temp.push(value);
             });
             return temp;
