@@ -3,17 +3,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="row pb-3">
-                    <div class="form-group col-10">
+                    <div class="form-group">
                         <input v-model="search" type="text" class="form-control input-sm" placeholder="Search"
                                autocomplete="search">
-                    </div>
-
-                    <div class="form-group col-2">
-                        <select class="form-select">
-                            <option selected>Category</option>
-                            <option value="1">Food</option>
-                            <option value="2">Drink</option>
-                        </select>
                     </div>
                 </div>
 
