@@ -2,12 +2,19 @@
 
 use App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
+use Intervention\Image\Facades\Image;
 
 Auth::routes([
     'reset' => false,
     'verify' => false,
 ]);
+
+Route::get('storage/{filename}', function ($filename) {
+    return Image::make(storage_path('app/uploads/' . $filename))->response();
+});
 
 Route::group(['middleware' => 'auth'], function () {
     Route::view('/', 'home');

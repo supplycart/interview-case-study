@@ -27,9 +27,10 @@ class ItemController extends Controller
             'image' => ['required', 'image'],
         ]);
 
-        $imagePath = request('image')->store('uploads', 'public');
+        request('image')->store('uploads');
 
-        $image = Image::make(public_path("storage/$imagePath"))->fit(600, 400);
+        $imagePath = request('image')->hashName();
+        $image = Image::make(storage_path("/app/uploads/$imagePath"))->fit(600, 400);
         $image->save();
 
         Item::create([
