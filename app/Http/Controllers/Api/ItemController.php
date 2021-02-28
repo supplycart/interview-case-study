@@ -29,7 +29,7 @@ class ItemController extends Controller
 
         $imagePath = request('image')->store('uploads', 'public');
 
-        $image = Image::make(public_path("storage/uploads/$imagePath"))->fit(600, 400);
+        $image = Image::make(public_path("storage/$imagePath"))->fit(600, 400);
         $image->save();
 
         Item::create([
