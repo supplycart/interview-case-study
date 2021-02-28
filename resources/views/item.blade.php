@@ -4,8 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-
-            <p class="h3 fw-bold pb-2">Add Item</p>
+            <p class="h3 fw-bold pb-2">
+                Add Dummy Item
+            </p>
 
             <div class="card">
                 <div class="card-body">
@@ -70,11 +71,8 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary text-white">
                                     Add Item
-                                </button>
-                                <button type="button" onclick="location='/'" class="btn btn-default">
-                                    Go Back
                                 </button>
                             </div>
                         </div>

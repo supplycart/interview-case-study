@@ -4984,7 +4984,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5015,7 +5014,9 @@ __webpack_require__.r(__webpack_exports__);
       this.loadItems();
     },
     removeItem: function removeItem(id) {
-      axios["delete"]("/cart/".concat(id)).then(function (response) {// console.log(`item ${id} removed`);
+      axios["delete"]("/cart/".concat(id)).then(function (response) {
+        // console.log(`item ${id} removed`);
+        alert('Item removed');
       })["catch"](function (error) {
         console.log(error.response);
       });
@@ -5023,6 +5024,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     placeOrder: function placeOrder() {
       var _this2 = this;
+
+      if (!confirm('Confirm place order?')) {
+        return;
+      }
 
       var data = {
         'items': this.items
@@ -5125,7 +5130,8 @@ __webpack_require__.r(__webpack_exports__);
         'item_id': id
       };
       axios.post("/cart", data).then(function (response) {
-        console.log('item added');
+        // console.log('item added');
+        alert('Item added to cart');
       })["catch"](function (error) {
         console.log(error.response.data);
       });

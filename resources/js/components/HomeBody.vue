@@ -57,7 +57,8 @@ export default {
         addToCart: function (id) {
             const data = {'item_id': id};
             axios.post(`/cart`, data).then((response) => {
-                console.log('item added');
+                // console.log('item added');
+                alert('Item added to cart');
             }).catch((error) => {
                 console.log(error.response.data);
             });

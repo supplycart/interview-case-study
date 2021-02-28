@@ -48,7 +48,6 @@
     </div>
 </template>
 
-
 <script>
 export default {
     data: () => ({
@@ -77,12 +76,16 @@ export default {
         removeItem: function (id) {
             axios.delete(`/cart/${id}`).then((response) => {
                 // console.log(`item ${id} removed`);
+                alert('Item removed');
             }).catch((error) => {
                 console.log(error.response);
             });
             this.loadItems();
         },
         placeOrder: function () {
+            if (!confirm('Confirm place order?')) {
+                return;
+            }
             const data = {'items': this.items};
             axios.post(`/order`, data).then((response) => {
                 // console.log('Order placed');

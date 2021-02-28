@@ -15,10 +15,26 @@ class OrderController extends Controller
 
     public function index()
     {
-        return auth()->user()->orders()
+        $orders = auth()->user()->orders()->paginate(1);
+        $orderId = $orders[0]->id ?? null;
+
+        if ($orderId == null) {
+            abort(404);
+        }
+
+        $items = auth()->user()->orders()
             ->join('item_order', 'orders.id', '=', 'item_order.order_id')
             ->join('items', 'items.id', '=', 'item_order.item_id')
+            ->where('orders.id', '=', $orderId)
             ->get();
+
+        $total = 0;
+
+        foreach ($items as $item) {
+            $total += $item->price * $item->quantity;
+        }
+
+        return view('order', compact('orders', 'items', 'total'));
     }
 
     public function store()
