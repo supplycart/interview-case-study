@@ -23,3 +23,6 @@
 ### Installation
 1. Clone the project
 2. Run artisan with `php artisan serve` via [Composer](https://laravel.com/docs/8.x/installation#installation-via-composer).
+
+### Limitation
+- Heroku overrides uploaded files and sqlite database upon restarts.
