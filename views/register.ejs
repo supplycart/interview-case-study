@@ -16,8 +16,10 @@
                 <h2 class="text-center text-red-600 font-bold mb-2">Password different</h2>
             <% } else if (exist) { %> 
                 <h2 class="text-center text-red-600 font-bold mb-2">User already exist</h2>
+            <% } else if (success) { %> 
+                <h2 class="text-center text-green-600 font-bold mb-2">Registered successfully. Go to Log in page</h2>
             <% } else { %> 
-                <h2 class="text-center text-white font-bold mb-2">Wrong username or password. Try again</h2>
+                <h2 class="text-center text-white font-bold mb-2">I</h2>
             <% } %>
 
             <form class="w-96" action="/register" method="post">
@@ -37,9 +39,14 @@
                     <input class="border-2" type="password" name="retypePassword" value="">
                   </div>
         
-                <div class="">
+                <div class="p-2 grid grid-cols-2">
                   <button class="bg-black text-white p-2 rounded-lg ml-2 px-10" type="submit" name="register">Register</button>
+                  <% if (success) { %>
+                    <button class="bg-black text-white p-2 rounded-lg ml-2 px-10" type="submit" name="register">Go to Log in</button>
+                    <% } %>
                 </div>
+
+                
         
             </form>
         </div>
