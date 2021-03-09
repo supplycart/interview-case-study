@@ -1,0 +1,34 @@
+{
+  "name": "interview-case-study",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">\r     <img align=\"center\" src=\"https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png\">\r </p>",
+  "main": "app.js",
+  "dependencies": {
+    "autoprefixer": "^10.2.5",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "postcss": "^8.1.0",
+    "postcss-cli": "^8.3.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^2.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "yarn build:css && nodemon app.js",
+    "build:css": "postcss public/css/tailwind.css -o public/css/styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HafizuddinSharif/interview-case-study.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HafizuddinSharif/interview-case-study/issues"
+  },
+  "homepage": "https://github.com/HafizuddinSharif/interview-case-study#readme"
+}
