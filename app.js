@@ -1,19 +1,33 @@
 require('dotenv').config;
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const _ = require('lodash');
-const { forEach } = require('lodash');
+const passport = require('passport')
+const flash = require('express-flash')
+const session = require('express-session')
+
+const initializePassport = require('./passport-config')
+initializePassport(
+    passport, 
+    name => users.find(user => user.name == name)
+);
 
 const app = express();
 
 app.set('view engine', 'ejs')
+app.use(express.urlencoded({extended: false}))
+app.use(flash())
 
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(session({
+    secret: "random",
+    resave: false,
+    saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(express.static(__dirname + "/public"))
-
 app.use("/public", express.static('public'))
 
 // GLOBAL VARIABLE
@@ -26,7 +40,7 @@ var exist = 0
 var diffPass = 0
 
 // GET requests
-app.get('/', function(req, res) {
+app.get('/', checkNotAuthenticated, function(req, res) {
 
     let obj = {
         tried: tried,
@@ -35,7 +49,7 @@ app.get('/', function(req, res) {
     res.render("log-in", obj)
 })
 
-app.get('/register', function(req, res) {
+app.get('/register', checkNotAuthenticated,  function(req, res) {
 
     let obj = {
         diffPass: diffPass,
@@ -45,30 +59,40 @@ app.get('/register', function(req, res) {
     res.render("register", obj)
 })
 
-app.get('/homepage/:username', function(req, res) {
+app.get('/homepage', checkAuthenticated, function(req, res) {
 
     let obj = {
-        username: `${req.params.username}`,
+        username: `${req.user.name}`,
     }
     res.render("homepage", obj)
 })
 
+// =============================================================================
 // POST requests
-app.post('/log-in', function(req, res) {
+// =============================================================================
 
-    const givenCredentials = {
-        name: req.body.name,
-        password: req.body.password
-    }
+app.post('/log-in', passport.authenticate('local', {
+    successRedirect: `/homepage`,
+    failureRedirect: `/`,
+    failureFlash: true
 
-    if (checkUser(givenCredentials)) {
-        tried = 0
-        res.redirect(`/homepage/${givenCredentials.name}`);
-    } else {
-        tried = 1
-        res.redirect('/')
-    }
-})
+})) 
+
+// {
+
+//     const givenCredentials = {
+//         name: req.body.name,
+//         password: req.body.password
+//     }
+
+//     if (checkUser(givenCredentials)) {
+//         tried = 0
+//         res.redirect(`/homepage/${givenCredentials.name}`);
+//     } else {
+//         tried = 1
+//         res.redirect('/')
+//     }
+// })
 
 app.post('/register', function(req, res) {
 
@@ -95,8 +119,13 @@ app.post('/register', function(req, res) {
 
         users.push(givenCredentials)
         console.log(users)
-        res.redirect(`homepage/${givenName}`)
+        res.redirect(`homepage`)
     }
+})
+
+app.post('/logout', function(req, res) {
+    req.logOut()
+    res.redirect('/')
 })
 
 app.listen(3000, function () {
@@ -132,4 +161,20 @@ function checkUserExist(userCredentials) {
     })
 
     return found
+}
+
+function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    }
+
+    res.redirect('/')
+}
+
+function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return res.redirect(`/homepage`)
+    }
+
+    next()
 }
