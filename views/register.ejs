@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+</head>
+<body>
+    <div class="flex items-center justify-center h-screen">
+
+        <div>
+
+            <% if (diffPass) { %>
+                <h2 class="text-center text-red-600 font-bold mb-2">Password different</h2>
+            <% } else if (exist) { %> 
+                <h2 class="text-center text-red-600 font-bold mb-2">User already exist</h2>
+            <% } else { %> 
+                <h2 class="text-center text-white font-bold mb-2">Wrong username or password. Try again</h2>
+            <% } %>
+
+            <form class="w-96" action="/register" method="post">
+
+                <div class="p-2 grid grid-cols-2">
+                  <label for="name">Username</label>
+                  <input class="border-2" type="text" name="name" value="">
+                </div>
+        
+                <div class="p-2 grid grid-cols-2">
+                  <label for="password">Password</label>
+                  <input class="border-2" type="password" name="password" value="">
+                </div>
+
+                <div class="p-2 grid grid-cols-2">
+                    <label for="password">Retype Password</label>
+                    <input class="border-2" type="password" name="retypePassword" value="">
+                  </div>
+        
+                <div class="">
+                  <button class="bg-black text-white p-2 rounded-lg ml-2 px-10" type="submit" name="register">Register</button>
+                </div>
+        
+            </form>
+        </div>
+        
+
+    </div>
+    
+</body>
+</html>
