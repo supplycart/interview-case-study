@@ -11,8 +11,8 @@
     <div class="flex items-center justify-center h-screen">
 
         <div>
-            <% if (tried) { %>
-                <h2 class="text-center text-red-600 font-bold mb-2">Wrong username or password. Try again</h2>
+            <% if (messages.error) { %>
+                <h2 class="text-center text-red-600 font-bold mb-2"><%= messages.error %></h2>
             <% } else { %> 
                 <h2 class="text-center text-white font-bold mb-2">Wrong username or password. Try again</h2>
             <% } %>
