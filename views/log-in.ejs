@@ -8,6 +8,37 @@
     <title>Log In</title>
 </head>
 <body>
-    <p class="text-3xl text-black">Hello Whuttt</p>
+    <div class="flex items-center justify-center h-screen">
+
+        <div>
+            <% if (tried) { %>
+                <h2 class="text-center text-red-600 font-bold mb-2">Wrong username or password. Try again</h2>
+            <% } else { %> 
+                <h2 class="text-center text-white font-bold mb-2">Wrong username or password. Try again</h2>
+            <% } %>
+
+            <form class="w-96" action="/log-in" method="post">
+
+                <div class="p-2 grid grid-cols-2">
+                  <label for="name">Username</label>
+                  <input class="border-2" type="text" name="name" value="">
+                </div>
+        
+                <div class="p-2 grid grid-cols-2">
+                  <label for="password">Password</label>
+                  <input class="border-2" type="password" name="password" value="">
+                </div>
+        
+                <div class="">
+                  <button class="bg-black text-white p-2 rounded-lg ml-2 px-10" type="submit" name="log-in">Log in</button>
+                </div>
+        
+            </form>
+            <a class="text-blue-400 text-sm underline ml-2" href="/register">Not a user? Register here!</a>
+        </div>
+        
+
+    </div>
+    
 </body>
 </html>
