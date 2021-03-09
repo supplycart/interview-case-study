@@ -20,7 +20,7 @@ app.use(express.urlencoded({extended: false}))
 app.use(flash())
 
 app.use(session({
-    secret: "random",
+    secret: "SECRET",
     resave: false,
     saveUninitialized: false
 }))
@@ -38,12 +38,14 @@ var users = [
 var tried = 0
 var exist = 0
 var diffPass = 0
+var success = 0
 
 // GET requests
 app.get('/', checkNotAuthenticated, function(req, res) {
 
     let obj = {
         tried: tried,
+        success: success
     }
 
     res.render("log-in", obj)
@@ -53,7 +55,8 @@ app.get('/register', checkNotAuthenticated,  function(req, res) {
 
     let obj = {
         diffPass: diffPass,
-        exist: exist
+        exist: exist,
+        success: success
     }
 
     res.render("register", obj)
@@ -78,22 +81,6 @@ app.post('/log-in', passport.authenticate('local', {
 
 })) 
 
-// {
-
-//     const givenCredentials = {
-//         name: req.body.name,
-//         password: req.body.password
-//     }
-
-//     if (checkUser(givenCredentials)) {
-//         tried = 0
-//         res.redirect(`/homepage/${givenCredentials.name}`);
-//     } else {
-//         tried = 1
-//         res.redirect('/')
-//     }
-// })
-
 app.post('/register', function(req, res) {
 
     const givenName = req.body.name
@@ -113,13 +100,14 @@ app.post('/register', function(req, res) {
         diffPass = 1
         exist = 0
         res.redirect('/register')
+    } else if (success) {
+        res.redirect('/')
     } else {
         diffPass = 0
         exist = 0
-
         users.push(givenCredentials)
-        console.log(users)
-        res.redirect(`homepage`)
+        success = 1
+        res.redirect(`/register`)
     }
 })
 
