@@ -3,7 +3,7 @@ npm run start\
 It will run on localhost:3000
 
 ## LINK
-You can also see it on the web:\n
+You can also see it on the web:\
 https://shopping-cart-supplycart.herokuapp.com/
 
 ## NOTES
