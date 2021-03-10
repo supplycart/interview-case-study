@@ -2,7 +2,6 @@ require('dotenv').config;
 
 const express = require('express');
 const ejs = require('ejs');
-const _ = require('lodash');
 const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
