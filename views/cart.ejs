@@ -30,18 +30,13 @@
                             <input type="hidden" name="id" value=<%= cart.id %>></input>
                             <h3 class="text-green-600 mx-4"><%= cart.price %></h3>
                         </div>
-                        <% if (null) { %>
-                        <button class="mr-4" type="submit" disabled>In cart</button>
-                        <% } else { %>
-                        <button class="mr-4" type="submit">Remove</button>
-                        <% } %>
-                        
+                        <button class="mr-4 px-2 rounded-lg bg-red-600 text-white" type="submit">Remove</button>
                     </form>
                 </div>
             <% }) %>
 
-            <form class="" action="/checkout" method="post">
-                <button class="text-green-600" type="submit" name="confirm">Checkout</button>
+            <form class="flex flex-row-reverse mr-4" action="/checkout" method="post">
+                <button class="mr-4 p-4 rounded-lg text-lg bg-green-600 text-white" type="submit" name="confirm">Place order</button>
             </form>
             
         <% } %>

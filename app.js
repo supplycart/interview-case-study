@@ -111,8 +111,6 @@ app.get('/history', checkAuthenticated, function(req, res) {
 
     const history = userBoughtItems(req.user.name)
 
-    console.log(history)
-
     let obj = {
         history: history
     }
