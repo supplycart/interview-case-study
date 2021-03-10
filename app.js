@@ -30,23 +30,40 @@ app.use(passport.session())
 app.use(express.static(__dirname + "/public"))
 app.use("/public", express.static('public'))
 
+// =============================================================================
 // GLOBAL VARIABLE
+// =============================================================================
 
 var users = [
     {name: "admin", password: "admin"}
 ]
+
+var products = [
+    {id: 1, name: "Transforming chair", price: "RM450.00", cart:false},
+    {id: 2, name: "Bottle", price: "RM10.00", cart:false},
+    {id: 3, name: "Used cap", price: "RM0.10", cart:false},
+    {id: 4, name: "Broken TV", price: "RM20.00", cart:false},
+
+]
+
+var cart = []
+
 var tried = 0
 var exist = 0
 var diffPass = 0
 var success = 0
 
+// =============================================================================
 // GET requests
+// =============================================================================
+
 app.get('/', checkNotAuthenticated, function(req, res) {
 
     let obj = {
         tried: tried,
-        success: success
     }
+
+    success = 0
 
     res.render("log-in", obj)
 })
@@ -66,6 +83,7 @@ app.get('/homepage', checkAuthenticated, function(req, res) {
 
     let obj = {
         username: `${req.user.name}`,
+        products: products
     }
     res.render("homepage", obj)
 })
@@ -112,9 +130,29 @@ app.post('/register', function(req, res) {
 })
 
 app.post('/logout', function(req, res) {
+
+    cart = []
+    
     req.logOut()
     res.redirect('/')
 })
+
+app.post('/addToCart', function(req, res) {
+
+    const givenId = req.body.id
+    console.log(givenId)
+    const product = haveProduct(givenId)
+
+    if (product) {
+        cart.push(product)
+    }
+
+    res.redirect("/homepage")
+})
+
+// =============================================================================
+// Others
+// =============================================================================
 
 app.listen(3000, function () {
     console.log("Server started on port 3000")
@@ -165,4 +203,22 @@ function checkNotAuthenticated(req, res, next) {
     }
 
     next()
+}
+
+// To check if the chosen product is already in cart
+function haveProduct(productId) {
+
+    let found = false
+
+    products.forEach( product => {
+        if (product.id == productId) {
+            product.cart = true
+            console.log("Found product:" + product.name)
+            found = product
+            return
+        }
+    })
+
+    return found
+
 }

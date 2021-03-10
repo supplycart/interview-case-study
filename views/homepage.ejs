@@ -8,11 +8,33 @@
     <title>Homepage</title>
 </head>
 <body>
-    <p>Welcome <%= username %>!</p>
+    <!-- NAVBAR -->
+    <%- include('navbar'); %>
+    <!-- NAVBAR -->
 
-    <form action="/logout" method="post">
-        <button type="submit" >LOG OUT</button>
-    </form>
+    <div class="ml-4">
+        <h2 class="text-3xl mt-4">Welcome <%= username %>!</h2>
+
+        <% products.forEach( product => { %>
+            <div class="border-2 border-black rounded-md mx-6 my-6 flex justify-between p-4">
+                <form class="flex justify-between w-full" action="/addToCart" method="post">
+                    <div>
+                        <label class="font-bold m-4" name="id" ><%= product.name %></label>
+                        <input type="hidden" name="id" value=<%= product.id %>><input>
+                        <h3 class="text-green-600 mx-4"><%= product.price %></h3>
+                    </div>
+                    <% if (product.cart) { %>
+                    <button class="mr-4" type="submit" disabled>In cart</button>
+                    <% } else { %>
+                    <button class="mr-4" type="submit">Add to Cart</button>
+                    <% } %>
+                    
+                </form>
+                
+            </div>
+        <% }) %>
+    </div>
+    
         
 </body>
 </html>
