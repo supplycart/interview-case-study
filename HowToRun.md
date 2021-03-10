@@ -9,3 +9,7 @@ https://shopping-cart-supplycart.herokuapp.com/
 ## NOTES
 I already created a user that you can use since I do not have any database connected\
 username: admin, password: admin
+
+## STACK USED
+Express JS\
+Tailwind CSS
