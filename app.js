@@ -48,7 +48,9 @@ var products = [
 
 var cart = []
 
-var bought = []
+var bought = [
+    {user: 'admin', items: []}
+]
 
 var tried = 0
 var exist = 0
@@ -102,7 +104,20 @@ app.get('/cart', checkAuthenticated, function(req, res) {
 app.get('/checkout', checkAuthenticated, function(req, res) {
 
     res.render("checkout")
-    
+
+})
+
+app.get('/history', checkAuthenticated, function(req, res) {
+
+    const history = userBoughtItems(req.user.name)
+
+    console.log(history)
+
+    let obj = {
+        history: history
+    }
+
+    res.render('history', obj)
 })
 
 // =============================================================================
@@ -141,6 +156,10 @@ app.post('/register', function(req, res) {
         diffPass = 0
         exist = 0
         users.push(givenCredentials)
+        bought.push({
+            user: givenCredentials.name,
+            items: []
+        })
         success = 1
         res.redirect(`/register`)
     }
@@ -158,7 +177,6 @@ app.post('/logout', function(req, res) {
 app.post('/addToCart', function(req, res) {
 
     const givenId = req.body.id
-    console.log(givenId)
     const product = haveProduct(givenId)
 
     if (product) {
@@ -193,13 +211,13 @@ app.post('/checkout', function(req, res) {
 
     products.forEach( product => product.cart = false )
 
-    bought.push({
-        user: `${req.user.name}`,
-        items: checkout,
+    bought.forEach( data => {
+        if (data.user == req.user.name) {
+            data.items = data.items.concat(checkout)
+        }
     })
 
     cart = []
-    console.log(bought)
 
     res.redirect('/checkout')
 })
@@ -267,6 +285,22 @@ function haveProduct(productId) {
     products.forEach( product => {
         if (product.id == productId) {
             found = product
+            return
+        }
+    })
+
+    return found
+
+}
+
+// To find the items bought by a certain user
+function userBoughtItems(user) {
+
+    let found = false
+
+    bought.forEach( data => {
+        if (data.user == user) {
+            found = data.items
             return
         }
     })

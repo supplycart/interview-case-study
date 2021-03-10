@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Orders</title>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <%- include('navbar'); %>
+    <!-- NAVBAR -->
+
+    <div class="ml-4">
+        
+
+        <% if (history == null || history <= 0) { %>
+            <div class="flex items-center justify-center h-screen">
+                <h2 class="text-3xl mt-4">Your order is EMPTY</h2>
+            </div>
+        <% } else { %>
+            <h2 class="text-3xl mt-4">Your order is on its way</h2>
+            <% history.forEach( cart => { %>
+                <div class="border-2 border-black rounded-md mx-6 my-6 flex justify-between p-4">
+                    <div>
+                        <label class="font-bold m-4" name="id" ><%= cart.name %></label>
+                        <input type="hidden" name="id" value=<%= cart.id %>></input>
+                        <h3 class="text-green-600 mx-4"><%= cart.price %></h3>
+                    </div>
+                </div>
+            <% }) %>
+            
+        <% } %>
+        
+    </div>
+    
+</body>
+</html>
