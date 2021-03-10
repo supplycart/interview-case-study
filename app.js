@@ -99,6 +99,12 @@ app.get('/cart', checkAuthenticated, function(req, res) {
     res.render("cart", obj)
 })
 
+app.get('/checkout', checkAuthenticated, function(req, res) {
+
+    res.render("checkout")
+    
+})
+
 // =============================================================================
 // POST requests
 // =============================================================================
@@ -195,7 +201,7 @@ app.post('/checkout', function(req, res) {
     cart = []
     console.log(bought)
 
-    res.redirect('/cart')
+    res.redirect('/checkout')
 })
 
 // =============================================================================
