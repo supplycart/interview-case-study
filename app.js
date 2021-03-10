@@ -48,6 +48,8 @@ var products = [
 
 var cart = []
 
+var bought = []
+
 var tried = 0
 var exist = 0
 var diffPass = 0
@@ -86,6 +88,15 @@ app.get('/homepage', checkAuthenticated, function(req, res) {
         products: products
     }
     res.render("homepage", obj)
+})
+
+app.get('/cart', checkAuthenticated, function(req, res) {
+
+    let obj = {
+        carts: cart
+    }
+
+    res.render("cart", obj)
 })
 
 // =============================================================================
@@ -132,7 +143,8 @@ app.post('/register', function(req, res) {
 app.post('/logout', function(req, res) {
 
     cart = []
-    
+    products.forEach( product => product.cart = false )
+
     req.logOut()
     res.redirect('/')
 })
@@ -144,10 +156,46 @@ app.post('/addToCart', function(req, res) {
     const product = haveProduct(givenId)
 
     if (product) {
+        products[product.id-1].cart = true
         cart.push(product)
     }
 
     res.redirect("/homepage")
+})
+
+app.post('/removeFromCart', function(req, res) {
+
+    const givenId = req.body.id
+    const product = haveProduct(givenId)
+
+    if (product) {
+        products[product.id-1].cart = false
+        let idx = cart.indexOf(product)
+        cart.splice(idx, 1)
+    }
+
+    res.redirect("/cart")
+})
+
+app.post('/checkout', function(req, res) {
+
+    checkout = []
+
+    cart.forEach( items => {
+        checkout.push(items)
+    })
+
+    products.forEach( product => product.cart = false )
+
+    bought.push({
+        user: `${req.user.name}`,
+        items: checkout,
+    })
+
+    cart = []
+    console.log(bought)
+
+    res.redirect('/cart')
 })
 
 // =============================================================================
@@ -212,8 +260,6 @@ function haveProduct(productId) {
 
     products.forEach( product => {
         if (product.id == productId) {
-            product.cart = true
-            console.log("Found product:" + product.name)
             found = product
             return
         }
