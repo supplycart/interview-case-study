@@ -10,8 +10,8 @@ This case study is designed for candidates to showcase their skills and coding s
 ### Requirements
 
  - Vue (optional for BE dev)
- - TailwindCSS
- - Laravel (optional for FE dev)
+ - TailwindCSS ----------------------------Installed
+ - Laravel (optional for FE dev)-----------Installed
 
 ### Tasks
 
@@ -23,14 +23,6 @@ This case study is designed for candidates to showcase their skills and coding s
 6. As user, I want to see my order history
 7. As user, I want to be able to logout
 
-### Bonus Tasks
-
-1. Verify email after registration
-2. User activity log e.g. login, logout, add to cart, place order etc
-3. Product attributes and filtering e.g brand, category
-4. Different user can see different price for products
-5. Add unit tests
-6. Deploy app to a server
 
 ### References
 https://github.com/davidgrzyb/tailwind-auth-template
