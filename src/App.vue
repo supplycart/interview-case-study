@@ -1,15 +1,29 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="sdfsdfdf" />
+  <h1>Supplycart Interview Case Study</h1>
+  <User v-if="token" :token="token" />
+  <Guest v-else />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Guest from "./components/Guest";
+import User from "./components/User";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    Guest,
+    User,
+  },
+  data() {
+    return {
+      token: localStorage.getItem("token"),
+    };
+  },
+  methods: {
+    setToken(data) {
+      console.log(data);
+      // this.token = data;
+    },
   },
 };
 </script>

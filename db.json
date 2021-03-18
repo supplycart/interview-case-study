@@ -1,0 +1,43 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Product A",
+      "description": "Product A description"
+    },
+    {
+      "id": "2",
+      "name": "Product B",
+      "description": "Product B description"
+    }
+  ],
+  "carts": [
+  ],
+  "users": [
+    {
+      "email": "sdfsdf@gmail.com",
+      "password": "$2a$10$1cMHBP2bpHsQBAa4nDnKuuAyu7I0Rirj3sdSpYuhG8R81SNxdbE5q",
+      "id": 1
+    },
+    {
+      "email": "yes@yes.com",
+      "password": "$2a$10$8xO1toGz1p0gzUFoGMYM3O6f9eNvpAPokizNQe8tKY/CP4DDQ9JEa",
+      "id": 2
+    },
+    {
+      "email": "no@no.com",
+      "password": "$2a$10$WOUMimaEo6uhO8pax4QBe.DbuiVJXkyjr/oA/57HyIaKzk.LzvdUe",
+      "id": 3
+    },
+    {
+      "email": "sidjfkjsdfj@sijdfisdf.com",
+      "password": "$2a$10$cnFiOQ4mKyDW6A1XGXDuk.Tcu32hTMYQb6APi1CSBnyzF/cMo.N9m",
+      "id": 4
+    },
+    {
+      "email": "ok@ok.com",
+      "password": "$2a$10$89D8iVWQ6tQjseUOE5Jbg.a3C7TBrAWPXLA8q37uVGAIXWXwS/EhK",
+      "id": 5
+    }
+  ]
+}
