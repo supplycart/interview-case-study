@@ -8,8 +8,6 @@
 </template>
 
 <script>
-import jwt_decode from "jwt-decode";
-
 export default {
   name: "Product",
   props: {

@@ -1,6 +1,7 @@
 <template>
   <button @click="logOut">Log Out</button>
-  <button>Cart</button>
+  <router-link to="/cart">Cart</router-link>
+  <router-link to="/history">Order History</router-link>
   <h1>List of products:</h1>
   <Products :products="products" :token="token" @add-cart="addCart" />
 </template>
@@ -64,29 +65,25 @@ export default {
     async addCart(id, price) {
       const updatedProducts = [...this.cart.product, id];
       const updatedPrices = [...this.cart.price, price];
-      const userId = this.cart.id
+      const userId = this.cart.id;
 
-      const res = await fetch(`http://localhost:5000/660/carts/${userId}`, {
+      await fetch(`http://localhost:5000/660/carts/${userId}`, {
         method: "PATCH",
         headers: {
-          "Authorization": "Bearer " + this.token,
+          Authorization: "Bearer " + this.token,
           "Content-type": "application/json",
         },
         body: JSON.stringify({
-          "product": updatedProducts,
-          "price": updatedPrices
+          product: updatedProducts,
+          price: updatedPrices,
         }),
       });
 
       this.cart = {
-        "id": userId,
-        "product": updatedProducts,
-        "price": updatedPrices
-      }
-
-      const data = await res.json();
-      console.log(data);
-      console.log(this.cart);
+        id: userId,
+        product: updatedProducts,
+        price: updatedPrices,
+      };
     },
   },
 };
