@@ -16,13 +16,13 @@ export default {
   },
   data() {
     return {
-      token: localStorage.getItem("token"),
+      token: localStorage.getItem("token")
     };
   },
   methods: {
     setToken(data) {
       console.log(data);
-      // this.token = data;
+      this.token = data;
     },
   },
 };

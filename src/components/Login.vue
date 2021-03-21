@@ -6,12 +6,7 @@
       @click="showForm = !showForm"
     />
     <form v-show="showForm" @submit="onSubmit">
-      <input 
-        v-model="email" 
-        type="email" 
-        placeholder="Email" 
-        required 
-      />
+      <input v-model="email" type="email" placeholder="Email" required />
       <br />
       <input
         v-model="password"

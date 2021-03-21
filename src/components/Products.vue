@@ -1,6 +1,6 @@
 <template>
   <div v-for="product in products" :key="product.id">
-    <Product :product="product" @add-cart="$emit('add-cart', product.id)" />
+    <Product :product="product" :token="token" @add-cart="$emit('add-cart', product.id, product.price)"/>
   </div>
 </template>
 
@@ -17,7 +17,11 @@ export default {
       type: Array,
       required: true,
     },
+    token: {
+      type: String,
+      required: true
+    }
   },
-  emits: ["add-cart"]
+  emits: ["add-cart"],
 };
 </script>

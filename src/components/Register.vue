@@ -6,12 +6,7 @@
       @click="showForm = !showForm"
     />
     <form v-show="showForm" @submit="onSubmit">
-      <input 
-        v-model="email" 
-        type="email" 
-        placeholder="Email" 
-        required 
-      />
+      <input v-model="email" type="email" placeholder="Email" required />
       <br />
       <input
         v-model="password"
@@ -27,6 +22,8 @@
 </template>
 
 <script>
+import jwt_decode from "jwt-decode"; 
+
 export default {
   name: "Register",
   emits: ["register"],
@@ -35,7 +32,7 @@ export default {
       email: "",
       password: "",
       showForm: false,
-      message: ""
+      message: "",
     };
   },
   methods: {
@@ -43,28 +40,42 @@ export default {
       e.preventDefault();
       const newUser = {
         "email": this.email,
-        "password": this.password
-      }
+        "password": this.password,
+      };
 
       const res = await fetch("http://localhost:5000/register", {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(newUser)
+        body: JSON.stringify(newUser),
       });
 
       const data = await res.json();
+      console.log(data);
 
       this.email = "";
       this.password = "";
       if (typeof data == "object") {
-        this.message = "Successfully registered"
+        const userId = jwt_decode(data.accessToken).sub;
+        await fetch("http://localhost:5000/carts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            "product": [],
+            "price": [],
+            "id": userId
+          }),
+        });
+
+        this.message = "Successfully registered";
       } else {
         this.message = data;
       }
     },
-  }
+  },
 };
 </script>
 

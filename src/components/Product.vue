@@ -2,11 +2,14 @@
   <div>
     <h2>{{ product.name }}</h2>
     <p>{{ product.description }}</p>
-    <input value="Add to cart" type="button" @click="$emit('add-cart', product.id)" />
+    <p>Price: RM{{ product.price }}</p>
+    <button @click="$emit('add-cart', product.id, product.price)" >Add to cart</button>
   </div>
 </template>
 
 <script>
+import jwt_decode from "jwt-decode";
+
 export default {
   name: "Product",
   props: {
@@ -14,6 +17,10 @@ export default {
       type: Object,
       required: true,
     },
+    token: {
+      type: String,
+      required: true,
+    }
   },
   emits: ["add-cart"]
 };
