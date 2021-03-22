@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <h3>{{ details.name }}</h3>
+  <div class="mb-3">
+    <h2 class="font-bold text-xl">{{ details.name }}</h2>
     <p>Quantity purchased: {{ details.quantity }}</p>
-    <p>Price: {{ details.price }}</p>
+    <p>Price: RM{{ details.price }}</p>
   </div>
 </template>
 

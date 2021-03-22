@@ -16,9 +16,9 @@ const routes = [
     component: Cart,
   },
   {
-    path: "/history",
+    path: "/orderhistory",
     name: "OrderHistory",
-    component: OrderHistory
+    component: OrderHistory,
   },
 ];
 

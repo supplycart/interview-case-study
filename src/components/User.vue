@@ -1,9 +1,26 @@
 <template>
-  <button @click="logOut">Log Out</button>
-  <router-link to="/cart">Cart</router-link>
-  <router-link to="/history">Order History</router-link>
-  <h1>List of products:</h1>
-  <Products :products="products" :token="token" @add-cart="addCart" />
+  <div class="m-4">
+    <router-link
+      to="/orderhistory"
+      class="mx-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >Order History</router-link
+    >
+    <router-link
+      to="/cart"
+      class="mx-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >Cart</router-link
+    >
+    <button
+      class="mx-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1.5 px-4 border border-blue-500 hover:border-transparent rounded"
+      @click="logOut"
+    >
+      Log Out
+    </button>
+    <h1 class="mx-2 my-2 text-2xl font-bold">List of products:</h1>
+    <div class="flex flex-wrap">
+      <Products :products="products" :token="token" @add-cart="addCart" />
+    </div>
+  </div>
 </template>
 
 <script>

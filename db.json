@@ -11,6 +11,18 @@
       "name": "Product B",
       "description": "Product B description",
       "price": "20"
+    },
+    {
+      "id": "3",
+      "name": "Product C",
+      "description": "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that drew on just one of the four basic modes.",
+      "price": "30"
+    },
+    {
+      "id": "4",
+      "name": "Product D",
+      "description": "Description is the pattern of narrative development that.",
+      "price": "25"
     }
   ],
   "carts": [
@@ -27,10 +39,32 @@
       "userId": "2"
     },
     {
-      "product": [],
-      "price": [],
+      "product": [
+        "2",
+        "1",
+        "2",
+        "2"
+      ],
+      "price": [
+        "20",
+        "10",
+        "20",
+        "20"
+      ],
       "id": "3",
       "userId": "3"
+    },
+    {
+      "product": [
+        "1",
+        "2"
+      ],
+      "price": [
+        "10",
+        "20"
+      ],
+      "id": "4",
+      "userId": "4"
     }
   ],
   "users": [
@@ -48,6 +82,11 @@
       "email": "no@no.com",
       "password": "$2a$10$WOUMimaEo6uhO8pax4QBe.DbuiVJXkyjr/oA/57HyIaKzk.LzvdUe",
       "id": 3
+    },
+    {
+      "email": "phileasmah@gmail.com",
+      "password": "$2a$10$vOrPK6zNqnIDApzYbO2oXeT9Gz9YZdRW989WP/8UK2HNOEGF/fCSq",
+      "id": 4
     }
   ],
   "orderHistory": [
@@ -85,6 +124,55 @@
       ],
       "id": "3",
       "userId": "3"
+    },
+    {
+      "product": [
+        {
+          "1": {
+            "name": "Product A",
+            "quantity": 1,
+            "price": "10"
+          }
+        },
+        {
+          "2": {
+            "name": "Product B",
+            "quantity": 1,
+            "price": "20"
+          },
+          "3": {
+            "name": "Product C",
+            "quantity": 1,
+            "price": "30"
+          }
+        },
+        {
+          "2": {
+            "name": "Product B",
+            "quantity": 1,
+            "price": "20"
+          },
+          "4": {
+            "name": "Product D",
+            "quantity": 1,
+            "price": "25"
+          }
+        },
+        {
+          "1": {
+            "name": "Product A",
+            "quantity": 2,
+            "price": "10"
+          },
+          "2": {
+            "name": "Product B",
+            "quantity": 1,
+            "price": "20"
+          }
+        }
+      ],
+      "id": "4",
+      "userId": "4"
     }
   ]
 }

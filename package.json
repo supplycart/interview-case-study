@@ -9,10 +9,14 @@
     "backend": "json-server --watch db.json -m ./node_modules/json-server-auth --port 5000"
   },
   "dependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "autoprefixer": "^9",
     "core-js": "^3.6.5",
     "json-server": "^0.16.3",
     "json-server-auth": "^2.0.2",
     "jwt-decode": "^3.1.2",
+    "postcss": "^7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
   },
@@ -32,7 +36,8 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^7.7.0",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "vue-cli-plugin-tailwind": "~2.0.6"
   },
   "eslintConfig": {
     "root": true,

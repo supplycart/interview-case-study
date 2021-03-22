@@ -1,28 +1,42 @@
 <template>
-  <div>
+  <div class="max-w-login text-right">
     <input
       type="button"
       :value="showForm ? '< Back' : 'Register'"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-1.5"
       @click="showForm = !showForm"
     />
-    <form v-show="showForm" @submit="onSubmit">
-      <input v-model="email" type="email" placeholder="Email" required />
-      <br />
+    <form v-show="showForm" class="mt-2" @submit="onSubmit">
+      <div class="mb-4 flex flex-row justify-between items-center">
+        <label for="email-input-register">Email</label>
+        <input
+          v-model="email"
+          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+          type="email"
+          required
+        />
+      </div>
+      <div class="flex flex-row justify-between items-center">
+        <label for="email-input-password">Password</label>
+        <input
+          v-model="password"
+          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+          type="password"
+          required
+        />
+      </div>
+      <label class="mx-2">{{ message }}</label>
       <input
-        v-model="password"
-        type="password"
-        placeholder="Password"
-        required
+        type="submit"
+        class="my-3.5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        value="Register"
       />
-      <br />
-      <input type="submit" value="Register" />
     </form>
-    <label>{{ message }}</label>
   </div>
 </template>
 
 <script>
-import jwt_decode from "jwt-decode"; 
+import jwt_decode from "jwt-decode";
 
 export default {
   name: "Register",
@@ -39,8 +53,8 @@ export default {
     async onSubmit(e) {
       e.preventDefault();
       const newUser = {
-        "email": this.email,
-        "password": this.password,
+        email: this.email,
+        password: this.password,
       };
 
       const res = await fetch("http://localhost:5000/register", {
@@ -64,10 +78,10 @@ export default {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            "product": [],
-            "price": [],
-            "id": userId,
-            "userId": userId
+            product: [],
+            price: [],
+            id: userId,
+            userId: userId,
           }),
         });
 
@@ -77,9 +91,9 @@ export default {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            "product": [],
-            "id": userId,
-            "userId": userId
+            product: [],
+            id: userId,
+            userId: userId,
           }),
         });
 

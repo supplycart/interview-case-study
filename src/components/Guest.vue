@@ -1,6 +1,14 @@
 <template>
-  <Register />
-  <Login :token="token" />
+  <div class="flex flex.col m-20">
+    <div class="m-auto">
+      <h1 class="text-2xl font-bold max-w-login">
+        Supplycart Interview Case Study
+      </h1>
+      <Register />
+      <Login />
+    </div>
+  </div>
+  3
 </template>
 
 <script>
@@ -12,12 +20,6 @@ export default {
   components: {
     Register,
     Login,
-  },
-  props: {
-    token: {
-      type: String,
-      default: null,
-    },
   },
 };
 </script>

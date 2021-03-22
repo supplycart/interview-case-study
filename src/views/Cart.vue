@@ -1,13 +1,32 @@
 <template>
-  <div v-if="Object.keys(cartView).length">
+  <div v-if="Object.keys(cartView).length" class="m-4 container mx-auto">
+    <div class="flex justify-between mx-2 mb-3">
+      <h1 class="text-2xl font-bold mb-2">Cart</h1>
+      <router-link
+        to="/"
+        class="float-right bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1.5 px-4 border border-blue-500 hover:border-transparent rounded-full"
+      >
+        &lt; Back
+      </router-link>
+    </div>
     <div v-for="(details, id, index) in cartView" :key="index">
       <CartItem :product="id" :details="details" @remove-cart="removeCart" />
     </div>
-    <button @click="order">Place Order</button>
+    <p class="mb-2 ml-4 font-semibold text-lg">Total: RM{{ total }}</p>
+    <button
+      class="-mt-10 mr-2 float-right bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
+      @click="order"
+    >
+      Place Order
+    </button>
   </div>
-  <div v-else>
-    <p>Your Cart is empty</p>
-    <router-link to="/">Add items now</router-link>
+  <div v-else class="m-4">
+    <h1 class="mx-2 my-2 text-2xl font-bold mb-5">Your Cart is empty</h1>
+    <router-link
+      to="/"
+      class="mx-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >Add items now</router-link
+    >
   </div>
 </template>
 
@@ -26,15 +45,19 @@ export default {
       cart: {},
       products: {},
       cartView: {},
+      total: 0,
     };
   },
   watch: {
     cart() {
       if (Object.keys(this.cart).length) {
+        console.log(this.cart);
         const tmp_products = {};
+        let tmpTotal = 0;
         let productId;
         let productName;
         for (let i = 0; i < this.cart.product.length; i++) {
+          tmpTotal += parseInt(this.cart.price[i]);
           productId = this.cart.product[i];
           if (productId in tmp_products) {
             tmp_products[productId].quantity++;
@@ -51,6 +74,7 @@ export default {
             };
           }
         }
+        this.total = tmpTotal;
         this.cartView = tmp_products;
       } else {
         this.cartView = {};
@@ -59,8 +83,8 @@ export default {
   },
   async created() {
     if (this.token) {
+      this.products = await this.getProducts();
       this.cart = await this.getCart();
-      this.product = await this.getProducts();
     } else {
       this.$router.push("/");
     }

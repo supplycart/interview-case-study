@@ -1,9 +1,6 @@
 <template>
-  <div class="flex p-6">
-    <h1 class="text-xl font-medium text-black">Supplycart Interview Case Study</h1>
-    <User v-if="token" :token="token" />
-    <Guest v-else />
-  </div>
+  <User v-if="token" :token="token" />
+  <Guest v-else />
 </template>
 
 <script>
