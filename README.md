@@ -38,3 +38,6 @@ You must work on this assignment using:
 4. Different user can see different price for products
 5. Add unit tests
 6. Deploy app to a server
+
+
+P/S: If you think there is a better way for us to asses your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
