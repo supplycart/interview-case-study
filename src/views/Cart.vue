@@ -51,7 +51,6 @@ export default {
   watch: {
     cart() {
       if (Object.keys(this.cart).length) {
-        console.log(this.cart);
         const tmp_products = {};
         let tmpTotal = 0;
         let productId;
@@ -81,6 +80,7 @@ export default {
       }
     },
   },
+  // getting list of products and cart 
   async created() {
     if (this.token) {
       this.products = await this.getProducts();
@@ -92,7 +92,7 @@ export default {
   methods: {
     async getCart() {
       const userId = jwt_decode(this.token).sub;
-      const res = await fetch(`http://localhost:5000/600/carts/${userId}`, {
+      const res = await fetch(`http://localhost:5000/carts/${userId}`, {
         method: "GET",
         headers: new Headers({
           Authorization: "Bearer " + this.token,
@@ -107,7 +107,7 @@ export default {
       }
     },
     async getProducts() {
-      const res = await fetch("http://localhost:5000/660/products", {
+      const res = await fetch("http://localhost:5000/products", {
         method: "GET",
         headers: {
           Authorization: "Bearer " + this.token,
@@ -124,7 +124,7 @@ export default {
       updatedPrices.splice(removeIndex, 1);
       const userId = this.cart.id;
 
-      const res = await fetch(`http://localhost:5000/600/carts/${userId}`, {
+      const res = await fetch(`http://localhost:5000/carts/${userId}`, {
         method: "PATCH",
         headers: {
           Authorization: "Bearer " + this.token,
@@ -145,7 +145,7 @@ export default {
     async order() {
       const userId = jwt_decode(this.token).sub;
       const res = await fetch(
-        `http://localhost:5000/600/orderHistory/${userId}`,
+        `http://localhost:5000/orderHistory/${userId}`,
         {
           method: "GET",
           headers: new Headers({
@@ -155,7 +155,7 @@ export default {
       );
       const orderHistory = await res.json();
       orderHistory.product.push(JSON.parse(JSON.stringify(this.cartView)));
-      await fetch(`http://localhost:5000/600/orderHistory/${userId}`, {
+      await fetch(`http://localhost:5000/orderHistory/${userId}`, {
         method: "PATCH",
         headers: {
           Authorization: "Bearer " + this.token,
@@ -165,7 +165,7 @@ export default {
           product: orderHistory.product,
         }),
       });
-      await fetch(`http://localhost:5000/660/carts/${userId}`, {
+      await fetch(`http://localhost:5000/carts/${userId}`, {
         method: "PATCH",
         headers: {
           Authorization: "Bearer " + this.token,
