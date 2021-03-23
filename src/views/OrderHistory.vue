@@ -26,8 +26,9 @@
     <router-link
       to="/"
       class="mx-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >Add items now</router-link
     >
+      Add items now
+    </router-link>
   </div>
 </template>
 
@@ -61,7 +62,7 @@ export default {
     async getOrderHistory() {
       const userId = jwt_decode(this.token).sub;
       const res = await fetch(
-        `http://localhost:5000/600/orderHistory/${userId}`,
+        `http://localhost:5000/orderHistory/${userId}`,
         {
           method: "GET",
           headers: new Headers({
