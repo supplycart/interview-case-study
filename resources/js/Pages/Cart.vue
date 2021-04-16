@@ -18,13 +18,13 @@
               </tr>
             </thead>
 
-            <tbody v-if="cart && cart.items.length > 0">
-              <tr v-for="item in cart.items" :key="item.id">
+            <tbody v-if="cart && items.length > 0">
+              <tr v-for="item in items" :key="item.id">
                 <td class="p-2 text-center">{{ item.product.name }}</td>
                 <td class="p-2 text-center">{{ item.quantity }}</td>
                 <td class="p-2 text-center">{{ item.price }}</td>
                 <td class="p-2 text-center">
-                  {{ item.quantity * item.price }}
+                  {{ parseFloat(item.quantity * item.price).toFixed(2) }}
                 </td>
                 <td class="p-2 text-center">
                   <button
@@ -53,7 +53,7 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
           <div class="flex flex-row content-around items-stretch">
             <div class="flex-grow self-center">
-              <h3 class="text-2xl font-bold">Total&nbsp;{{ getCartTotal }}</h3>
+              <h3 class="text-2xl font-bold">Total&nbsp;{{ total }}</h3>
             </div>
             <div class="self-center">
               <button
@@ -79,11 +79,16 @@ export default {
     BreezeAuthenticatedLayout,
   },
 
+  data() {
+    return {
+      items: [],
+      total: 0,
+    };
+  },
+
   computed: {
     getCartTotal() {
-      return this.cart && this.cart.total > 0
-        ? parseFloat(this.cart.total).toFixed(2)
-        : 0;
+      return parseFloat(this.total).toFixed(2);
     },
   },
 
@@ -93,7 +98,7 @@ export default {
 
   methods: {
     placeOrder(cart) {
-      if (!cart || cart.items.length == 0) {
+      if (this.items.length == 0) {
         this.$swal("Hey!", "There is no item in the cart!", "warning");
       } else {
         axios
@@ -102,7 +107,15 @@ export default {
           })
           .then((res) => {
             if (res.status === 200) {
-              this.$swal("Done!", "Placed Order!", "success");
+              this.clearCart();
+              this.$swal("Done!", "Placed Order!", "success").then((result) => {
+                if (result.isConfirmed) {
+                  console.log(result);
+                  window.location.href = route("order.show", {
+                    id: res.data.id,
+                  });
+                }
+              });
             }
           })
           .catch((err) => {
@@ -120,6 +133,10 @@ export default {
         })
         .then((res) => {
           if (res.status === 200) {
+            this.items = this.items.filter((item) => {
+              return item.id != cart_item_id;
+            });
+            this.calculateTotal();
             this.$swal("Done!", "Removed from cart.", "success");
           }
         })
@@ -127,6 +144,24 @@ export default {
           this.$swal("Oops!", err.message, "error");
         });
     },
+
+    calculateTotal() {
+      var total = 0;
+      this.items.forEach((item) => {
+        total += item.quantity * item.price;
+      });
+      this.total = total;
+    },
+
+    clearCart() {
+      this.total = 0;
+      this.items = [];
+    },
+  },
+
+  mounted() {
+    this.items = this.cart && this.cart.items ? this.cart.items : [];
+    this.total = this.cart && this.cart.total ? this.cart.total : 0;
   },
 };
 </script>

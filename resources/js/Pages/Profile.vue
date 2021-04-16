@@ -27,7 +27,7 @@
                 <span
                   v-if="user.email_verified_at"
                   class="font-bold text-green-500"
-                  >Yes</span
+                  >Yes ({{ formatDate(user.email_verified_at) }})</span
                 >
                 <span v-else class="font-bold text-red-500">No</span>
               </div>
@@ -45,7 +45,7 @@
             <select
               name="rank"
               id="rank"
-              class="sm:rounded-md focus:border-indigo-400"
+              class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
               v-model="rank_id"
               @change="updateRank"
             >
@@ -100,6 +100,10 @@ export default {
         .catch((err) => {
           this.$swal("Oops!", err.message, "error");
         });
+    },
+
+    formatDate(date) {
+      return this.moment(date).format("YYYY-MM-DD HH:MM:SS");
     },
   },
 

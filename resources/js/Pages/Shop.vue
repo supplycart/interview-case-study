@@ -6,7 +6,25 @@
 
     <div class="py-12 px-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="grid sm:grid-cols-5 items-stretch justify-center">
+        <div class="flex justify-between mb-4">
+          <input
+            type="text"
+            v-model="keyword"
+            placeholder="Search..."
+            @keyup="doSearch()"
+            class="w-full mr-2 block border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm col-span-2"
+          />
+          <button
+            class="p-2 sm:rounded-lg shadow-sm bg-indigo-400 text-white"
+            @click="clearKeyword()"
+          >
+            Clear
+          </button>
+        </div>
+        <div
+          v-if="showCategories"
+          class="grid sm:grid-cols-5 items-stretch justify-center"
+        >
           <button
             type="button"
             v-for="category in categories"
@@ -88,7 +106,14 @@ export default {
     return {
       selected_category: 0,
       products: [],
+      keyword: "",
     };
+  },
+
+  computed: {
+    showCategories() {
+      return this.keyword == "";
+    },
   },
 
   methods: {
@@ -109,6 +134,33 @@ export default {
         .catch((err) => {
           this.$swal("Oops!", err.message, "error");
         });
+    },
+
+    doSearch() {
+      if (this.keyword != "") {
+        axios
+          .get(route("shop.search_product"), {
+            params: {
+              keyword: this.keyword,
+            },
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              this.show_categories = false;
+              this.products = res.data;
+            }
+          })
+          .catch((err) => {
+            this.$swal("Oops!", err.message, "error");
+          });
+      } else {
+        this.getProducts(1);
+      }
+    },
+
+    clearKeyword() {
+      this.keyword = "";
+      this.getProducts(1);
     },
 
     addToCart(product_id) {

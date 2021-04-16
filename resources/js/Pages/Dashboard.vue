@@ -33,10 +33,12 @@
                 <tr v-for="order in orders" :key="order.id">
                   <td class="p-2 text-center">{{ order.id }}</td>
                   <td class="p-2 text-center">{{ order.fulfilled }}</td>
-                  <td class="p-2 text-center">{{ order.created_at }}</td>
+                  <td class="p-2 text-center">
+                    {{ formatDate(order.created_at) }}
+                  </td>
                   <td class="p-2 text-center">
                     <inertia-link
-                      class="w-max p-2 mx-2 sm:rounded-lg shadow-sm bg-indigo-400 text-white"
+                      class="w-full block px-2 mx-2 sm:rounded-lg shadow-sm bg-indigo-400 text-white"
                       :href="route('order.show', { id: order.id })"
                     >
                       View
@@ -100,6 +102,12 @@ export default {
   props: {
     orders: Array,
     logs: Array,
+  },
+
+  methods: {
+    formatDate(date) {
+      return this.moment(date).format("YYYY-MM-DD HH:MM:SS");
+    },
   },
 };
 </script>

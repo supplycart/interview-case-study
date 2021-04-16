@@ -18,6 +18,20 @@ class ShopController extends Controller
         ]);
     }
 
+    public function searchProduct(Request $request)
+    {
+        $validated_data = $request->validate([
+            'keyword' => 'required'
+        ]);
+
+        $products = Product::where('name', 'like', "%{$validated_data['keyword']}%")
+            ->whereHas('productPrice')
+            ->with('rankedProductPrice')
+            ->get();
+
+        return response()->json($products);
+    }
+
     public function getProductsByCategory(Request $request)
     {
         $validated_data = $request->validate([

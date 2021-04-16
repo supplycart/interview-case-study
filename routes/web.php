@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::group(['prefix' => 'shop', 'as' => 'shop.'], function () {
         Route::get('/', [ShopController::class, 'index'])->name('index');
         Route::get('products', [ShopController::class, 'getProductsByCategory'])->name('get_product_by_category');
+        Route::get('search', [ShopController::class, 'searchProduct'])->name('search_product');
     });
 
     Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {

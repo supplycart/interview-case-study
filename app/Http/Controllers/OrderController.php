@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserPlacedOrder;
 use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -28,13 +29,23 @@ class OrderController extends Controller
             'cart_id' => $cart->id
         ]);
 
+        event(new UserPlacedOrder($order));
+
         return response()->json($order);
     }
 
     public function show(Order $order)
     {
         return Inertia::render('Order', [
-            'order' => $order
+            'order' => $order->load([
+                'cart' => function ($query) {
+                    $query->with([
+                        'items' => function ($query) {
+                            $query->with('product');
+                        }
+                    ]);
+                }
+            ])
         ]);
     }
 }

@@ -11,7 +11,9 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         return Inertia::render('Product', [
-            'product' => $product
+            'product' => $product->load([
+                'rankedProductPrice',
+            ])
         ]);
     }
 }
