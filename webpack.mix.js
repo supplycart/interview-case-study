@@ -11,14 +11,19 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .browserSync(process.env.APP_URL)
+mix.browserSync(process.env.APP_URL)
+    .js('resources/js/app.js', 'public/js')
+    .sourceMaps()
     .vue()
-    .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
-        require('autoprefixer'),
-    ])
+    .sass('resources/css/app.scss', 'public/css')
+    .options({
+        processCssUrls: false,
+        postCss: [
+            require('postcss-import'),
+            require('tailwindcss'),
+            require('autoprefixer'),
+        ]
+    })
     .webpackConfig(require('./webpack.config'));
 
 if (mix.inProduction()) {

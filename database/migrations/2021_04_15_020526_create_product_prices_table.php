@@ -15,8 +15,8 @@ class CreateProductPricesTable extends Migration
     {
         Schema::create('product_prices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('products')->onUpdate('cascade');
-            $table->foreignId('rank_id')->constrained('ranks')->onUpdate('cascade');
+            $table->foreignId('product_id')->constrained('products');
+            $table->foreignId('rank_id')->constrained('ranks');
             $table->decimal('price');
             $table->timestamps();
         });

@@ -42,6 +42,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function rank()
     {
-        return $this->hasOne(Rank::class);
+        return $this->belongsTo(Rank::class);
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
     }
 }
