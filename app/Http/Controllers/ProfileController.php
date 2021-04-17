@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserModifyRank;
 use App\Models\Rank;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -29,6 +30,8 @@ class ProfileController extends Controller
 
         $user->rank_id = $validated_data['rank_id'];
         $user->save();
+
+        event(new UserModifyRank($user));
 
         return response()->json($user->fresh()->with('rank'));
     }

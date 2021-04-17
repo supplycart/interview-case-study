@@ -5,12 +5,14 @@ namespace App\Providers;
 use App\Events\UserLogin;
 use App\Events\UserLogout;
 use App\Events\UserPlacedOrder;
+use App\Events\UserModifyRank;
 use App\Listeners\LogUserFailedLoginAttempt;
 use App\Listeners\LogUserLogin;
 use App\Listeners\LogUserLogout;
 use App\Listeners\LogUserPlacedOrder;
 use App\Listeners\LogUserRegistered;
 use App\Listeners\LogUserResetPassword;
+use App\Listeners\LogUserModifyRank;
 use App\Listeners\LogUserVerifiedEmail;
 use App\Models\CartItem;
 use App\Models\User;
@@ -53,6 +55,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserPlacedOrder::class => [
             LogUserPlacedOrder::class,
+        ],
+        UserModifyRank::class => [
+            LogUserModifyRank::class,
         ],
     ];
 
