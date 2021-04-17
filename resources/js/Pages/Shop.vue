@@ -23,7 +23,7 @@
         </div>
         <div
           v-if="showCategories"
-          class="grid sm:grid-cols-5 items-stretch justify-center"
+          class="grid grid-cols-2 sm:grid-cols-5 items-stretch justify-center"
         >
           <button
             type="button"

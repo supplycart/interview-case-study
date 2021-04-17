@@ -163,6 +163,9 @@
             </div>
 
             <div class="mt-3 space-y-1">
+              <breeze-responsive-nav-link :href="route('profile.index')">
+                Profile
+              </breeze-responsive-nav-link>
               <breeze-responsive-nav-link
                 :href="route('logout')"
                 method="post"

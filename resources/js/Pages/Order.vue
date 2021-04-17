@@ -54,7 +54,7 @@
                   <td class="p-2 text-center">{{ item.quantity }}</td>
                   <td class="p-2 text-center">{{ item.price }}</td>
                   <td class="p-2 text-center">
-                    {{ item.quantity * item.price }}
+                    {{ parseFloat(item.quantity * item.price).toFixed(2) }}
                   </td>
                 </tr>
               </tbody>
