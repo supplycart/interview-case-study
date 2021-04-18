@@ -10,11 +10,9 @@ use Inertia\Inertia;
 
 class CartController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $user = $request->user();
         $cart = Cart::where([
-            ['user_id', $user->id],
             ['payment_status', 'unpaid'],
         ])->with([
             'items' => function ($query) {
@@ -36,9 +34,7 @@ class CartController extends Controller
 
         $product = Product::whereHas('rankedProductPrice')->with('rankedProductPrice')->findOrFail($validated_data['product_id']);
 
-        $user = $request->user();
         $cart = Cart::firstOrCreate([
-            'user_id' => $user->id,
             'payment_status' => 'unpaid',
         ]);
 
@@ -60,11 +56,9 @@ class CartController extends Controller
             'cart_item_id' => 'required|numeric',
         ]);
 
-        $user = $request->user();
-
-        $item = CartItem::whereHas('cart', function ($query) use ($user) {
-            $query->where('user_id', $user->id);
-        })->where('id', $validated_data['cart_item_id'])->first();
+        $item = CartItem::whereHas('cart')
+            ->where('id', $validated_data['cart_item_id'])
+            ->first();
 
         $item->deleted_at = now();
         $item->save();
