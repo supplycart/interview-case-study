@@ -33,8 +33,10 @@ class CartController extends Controller
         ]);
 
         $product = Product::whereHas('rankedProductPrice')->with('rankedProductPrice')->findOrFail($validated_data['product_id']);
+        $user = $request->user();
 
         $cart = Cart::firstOrCreate([
+            'user_id' => $user->id,
             'payment_status' => 'unpaid',
         ]);
 
