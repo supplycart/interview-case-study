@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\UserScope;
 use Illuminate\Database\Eloquent\Model;
 
 class ActivityLog extends Model
@@ -13,4 +14,9 @@ class ActivityLog extends Model
         'action',
         'remark',
     ];
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new UserScope);
+    }
 }
