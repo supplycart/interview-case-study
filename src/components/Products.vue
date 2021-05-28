@@ -3,14 +3,16 @@
       <div class="container mx-auto">
           <h2 class="text-2xl py-4">This is a list of products</h2>
           <div class="grid grid-cols-3 gap-4">
-            <div class="product-container" v-for="item in items" :key="item.id">
-                <img src="https://via.placeholder.com/300x120" alt="">
-                <div class="font-bold">{{ item.title }}</div>
-                <div class="text-sm font-semibold">{{ item.author }}</div>
-                <div>
-                    <div>{{ item.review }} Star</div>
+            <div class="product-container border-2 shadow-md" v-for="item in items" :key="item.id">
+                <img src="https://via.placeholder.com/750x200" alt="">
+                <div class="p-4 flex flex-col">
+                    <div class="font-bold">{{ item.title }}</div>
+                    <div class="text-sm font-semibold">{{ item.author }}</div>
+                    <div>
+                        <div>{{ item.review }} Star</div>
+                    </div>
+                    <button class="add self-end px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2" @click="addToCart(item)">Add to Cart</button>
                 </div>
-                <button class="add px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2" @click="addToCart(item)">Add to Cart</button>
             </div>
           </div>
       </div>

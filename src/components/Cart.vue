@@ -8,11 +8,13 @@
 				<div v-if="!carts.length">Nothing here...</div>
 				<div v-else>
 					<div class="order-history grid grid-cols-2 gap-4">
-						<div class="ordered-products" v-for="cart in carts" :key="cart.id">
+						<div class="ordered-products border-2" v-for="cart in carts" :key="cart.id">
 							<img src="https://via.placeholder.com/200x120" alt="">
-							<div class="title font-bold">{{ cart.title }}</div>
-							<div class="author text-sm font-semibold">{{ cart.author }}</div>
-							<div class="review text-sm">{{ cart.review }} Star</div>
+							<div class="p-2">
+								<div class="title font-bold">{{ cart.title }}</div>
+								<div class="author text-sm font-semibold">{{ cart.author }}</div>
+								<div class="review text-sm">{{ cart.review }} Star</div>
+							</div>
 						</div>
 					</div>
 					<button class="px-4 mt-4 flex-shrink-0 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2" @click="placeOrder(carts)">Place Order!</button>
