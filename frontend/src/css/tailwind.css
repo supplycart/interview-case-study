@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  button {
+    @apply bg-blue-300;
+    @apply w-28;
+    @apply py-2;
+    @apply rounded-md;
+    @apply transition-all;
+    @apply duration-200;
+    @apply transform;
+    @apply dark-shadow;
+  }
+
+  button:hover {
+    @apply bg-blue-600;
+    @apply text-white;
+  }
+
+  button:active {
+    @apply scale-90;
+    @apply shadow-none;
+  }
+
+  button:focus {
+    @apply outline-none;
+  }
+
+  /* button:active */
+
+  input {
+    @apply outline-none;
+    @apply border-gray-800;
+    @apply border-b;
+    @apply rounded-md;
+    @apply p-1;
+  }
+}
+
+@layer utilities {
+  .dark-shadow {
+    box-shadow: 0 5px 5px rgb(100,100,100);
+  }
+}
