@@ -3,7 +3,7 @@
     <label for="">User ID</label>
     <input type="text" placeholder="User ID" v-model="userid">
     <label for="">Password</label>
-    <input type="password" placeholder="Password" v-model="password">
+    <input type="password" placeholder="********" v-model="password">
     <div v-if="loginError" class=" text-red-700">{{ loginError }}</div>
     <button class="mt-2 w-full" @click="buttonClicked">Login</button>
     <div class="mt-4 text-center w-full">
