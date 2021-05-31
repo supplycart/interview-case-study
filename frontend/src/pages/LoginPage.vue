@@ -1,17 +1,16 @@
 <template>
-  <div class="w-full max-w-md border border-gray-300 bg-blue-50 p-3 rounded-md mt-10">
-    <div class="mb-6 text-lg md:text-xl font-bold text-left w-full">Login to your account</div>
+  <Form title="Login to your account">
     <label for="">User ID</label>
-    <input class="w-full" type="text" placeholder="User ID" v-model="userid">
+    <input type="text" placeholder="User ID" v-model="userid">
     <label for="">Password</label>
-    <input class="w-full" type="password" placeholder="Password" v-model="password">
+    <input type="password" placeholder="Password" v-model="password">
     <div v-if="loginError" class=" text-red-700">{{ loginError }}</div>
     <button class="mt-2 w-full" @click="buttonClicked">Login</button>
     <div class="mt-4 text-center w-full">
       Don't have an account?
       <span @click="registerClicked" class="cursor-pointer underline text-blue-400 select-none">Register</span>
     </div>
-  </div>
+  </Form>
 </template>
 
 <script>
@@ -38,7 +37,7 @@ export default {
       }
     },
     registerClicked: function() {
-      console.log('abc');
+      this.$router.push('/Register');
     }
   }
 };
