@@ -1,6 +1,5 @@
 <template>
   <div class="w-full max-w-md border border-gray-300 bg-blue-50 p-3 rounded-md mt-10">
-    <div class="bg-gradient-to-b from-blue-300 fixed top-0 left-0 h-full w-full -z-10"></div>
     <div class="mb-6 text-lg md:text-xl font-bold text-left w-full">Login to your account</div>
     <label for="">User ID</label>
     <input class="w-full" type="text" placeholder="User ID" v-model="userid">
