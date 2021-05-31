@@ -5,9 +5,13 @@ import Router from 'vue-router'
 import Login from './pages/LoginPage.vue'
 import Register from './pages/RegisterPage.vue'
 
+import FormContainer from './components/FormContainer.vue'
+
 import './css/tailwind.css'
 
 Vue.use(Router)
+
+Vue.component('Form', FormContainer);
 
 const router = new Router({
   routes: [
