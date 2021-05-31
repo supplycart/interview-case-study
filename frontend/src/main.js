@@ -3,6 +3,7 @@ import App from './App.vue'
 import Router from 'vue-router'
 
 import Login from './pages/LoginPage.vue'
+import Register from './pages/RegisterPage.vue'
 
 import './css/tailwind.css'
 
@@ -10,7 +11,8 @@ Vue.use(Router)
 
 const router = new Router({
   routes: [
-    { path: '/', component: Login, meta: { title: 'Login' }  }
+    { path: '/', component: Login, meta: { title: 'Login' }  },
+    { path: '/Register', component: Register, meta: { title: 'Register' }  }
   ],
   mode: 'history'
 })
