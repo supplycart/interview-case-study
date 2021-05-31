@@ -30,7 +30,7 @@
 
   /* button:active */
 
-  input {
+  input, select {
     @apply outline-none;
     @apply border-gray-200;
     @apply border;
@@ -38,6 +38,7 @@
     @apply my-2;
     @apply rounded-md;
     @apply bg-white;
+    @apply w-full;
   }
 }
 
