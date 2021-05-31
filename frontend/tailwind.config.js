@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       zIndex: {
-        '-10': '-10'
+        'back': '-99999999'
       }
     }
   },
