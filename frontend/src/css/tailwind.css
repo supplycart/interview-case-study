@@ -20,7 +20,7 @@
   }
 
   button:active {
-    @apply scale-90;
+    @apply scale-95;
     @apply shadow-none;
   }
 
@@ -32,10 +32,12 @@
 
   input {
     @apply outline-none;
-    @apply border-gray-800;
-    @apply border-b;
+    @apply border-gray-200;
+    @apply border;
+    @apply p-3;
+    @apply my-2;
     @apply rounded-md;
-    @apply p-1;
+    @apply bg-white;
   }
 }
 
