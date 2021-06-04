@@ -28,17 +28,28 @@ export default {
   props: {
   },
   methods: {
-    buttonClicked: function() {
+    buttonClicked: async function() {
       this.loginError = '';
       if (!this.userid || !this.password) {
         this.loginError = 'Please enter your user id and password!';
       } else {
-        console.log(`Send to API, user id: ${this.userid} and pass: ${this.password}`);
+        let login = await this.$axios.post('/Users/Login', {
+          'userID': this.userid,
+          'password': this.password
+        });
+
+        if (login.data) {
+          console.log(login.data['loginkey']);
+        } else {
+          this.loginError = 'User ID or Password is incorrect';
+        }
       }
     },
     registerClicked: function() {
       this.$router.push('/Register');
     }
+  },
+  mounted() {
   }
 };
 </script>
