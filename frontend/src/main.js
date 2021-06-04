@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import Router from 'vue-router'
+import Axios from 'axios'
 
 import Login from './pages/LoginPage.vue'
 import Register from './pages/RegisterPage.vue'
@@ -26,6 +27,11 @@ router.beforeEach((to, from, next) => {
 
   next()
 })
+
+const axios = Axios
+axios.defaults.baseURL = 'https://api.reeqzan.com'
+
+Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false
 
