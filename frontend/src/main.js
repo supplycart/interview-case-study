@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import Router from 'vue-router'
 import Axios from 'axios'
+import Swal from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 import Login from './pages/LoginPage.vue'
 import Register from './pages/RegisterPage.vue'
@@ -11,6 +13,7 @@ import FormContainer from './components/FormContainer.vue'
 import './css/tailwind.css'
 
 Vue.use(Router)
+Vue.use(Swal)
 
 Vue.component('Form', FormContainer);
 
