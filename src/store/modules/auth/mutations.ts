@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { MutationTree } from 'vuex'
 
 import { AuthData } from '@/types'
@@ -17,10 +16,8 @@ export const mutations: MutationTree<State> & Mutations = {
     state.accessToken = data.accessToken
     localStorage.setItem('user', JSON.stringify(data.user))
     localStorage.setItem('accessToken', JSON.stringify(data.accessToken))
-    axios.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`
   },
   [AuthMutationTypes.CLEAR_USER_DATA](state: State) {
-    console.log('hello')
     state.user = null
     state.accessToken = null
     localStorage.removeItem('user')

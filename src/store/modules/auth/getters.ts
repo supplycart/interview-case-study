@@ -11,7 +11,6 @@ export type Getters = {
 
 export const getters: GetterTree<State, RootState> & Getters = {
   loggedIn(state) {
-    console.log(state)
     return !!state.user
   },
 }

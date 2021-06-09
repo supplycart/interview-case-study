@@ -211,6 +211,8 @@ import { useRouter } from 'vue-router'
 
 import { useStore } from '@/store'
 import { AuthActionTypes } from '@/store/modules/auth/action-types'
+import { NotificationActionTypes } from '@/store/modules/notification/action-types'
+import { NotificationType } from '@/types'
 
 export default defineComponent({
   setup() {
@@ -218,11 +220,11 @@ export default defineComponent({
     const email = ref('')
     const password = ref('')
     const passwordConfirmation = ref('')
-    const vuex = useStore()
+    const store = useStore()
     const router = useRouter()
 
     const register = () => {
-      vuex
+      store
         .dispatch(AuthActionTypes.REGISTER, {
           name: name.value,
           email: email.value,
@@ -231,6 +233,13 @@ export default defineComponent({
         })
         .then(() => {
           router.push({ name: 'Home' })
+        })
+        .catch((error) => {
+          store.dispatch(NotificationActionTypes.NOTIFY, {
+            title: error.response.statusText,
+            subtitle: error.response.data.message,
+            type: NotificationType.ERROR,
+          })
         })
     }
 

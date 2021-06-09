@@ -17,16 +17,24 @@ import {
   NotificationStore,
   State as NotificationState,
 } from '@/store/modules/notification'
+// eslint-disable-next-line import/no-cycle
+import {
+  store as product,
+  ProductStore,
+  State as ProductState,
+} from '@/store/modules/products'
 
 import createPersistedState from 'vuex-persistedstate'
 
 export type RootState = {
   notification: NotificationState
   auth: AuthState
+  product: ProductState
 }
 
 export type Store = AuthStore<Pick<RootState, 'auth'>> &
-  NotificationStore<Pick<RootState, 'notification'>>
+  NotificationStore<Pick<RootState, 'notification'>> &
+  ProductStore<Pick<RootState, 'product'>>
 
 // Plug in logger when in development environment
 const debug = 'production'
@@ -41,6 +49,7 @@ export const store = createStore({
   modules: {
     auth,
     notification,
+    product,
   },
 })
 

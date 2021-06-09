@@ -11,5 +11,6 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'), // eslint-disable-line global-require
+    require('@tailwindcss/aspect-ratio'), // eslint-disable-line global-require
   ],
-};
+}

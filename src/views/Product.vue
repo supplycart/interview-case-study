@@ -138,11 +138,31 @@
         </transition>
       </Menu>
     </div>
+
+    <div class="px-4 py-6 sm:px-6">
+      <h1 class="text-4xl font-bold text-gray-800">Our Products</h1>
+
+      <div class="mt-6">
+        <ul class="grid grid-cols-4 gap-x-8 gap-y-12 h-96">
+          <li v-for="product in products" :key="product.id">
+            <div class="rounded-lg aspect-w-1 aspect-h-1">
+              <img
+                class="object-cover shadow-lg rounded-lg"
+                src="https://images.unsplash.com/photo-1584302179602-e4c3d3fd629d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              />
+            </div>
+
+            <p class="mt-4 text-lg font-medium">Gold Liberte Design Rings</p>
+            <p class="mt-2 text-xl font-semibold text-indigo-600">RM 30.00</p>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import {
   Menu, //
   MenuButton,
@@ -153,6 +173,8 @@ import {
 import { UserIcon } from '@heroicons/vue/outline'
 import { useStore } from '@/store'
 import { AuthActionTypes } from '@/store/modules/auth/action-types'
+import { ProductActionTypes } from '@/store/modules/products/action-types'
+import { Product } from '@/types'
 
 export default defineComponent({
   components: {
@@ -165,12 +187,15 @@ export default defineComponent({
   },
   setup() {
     const store = useStore()
+    const products = ref([])
     const loggedIn = computed(() => store.getters.loggedIn)
     const logout = () => {
       store.dispatch(AuthActionTypes.LOGOUT)
     }
 
-    return { loggedIn, logout }
+    products.value = store.dispatch(ProductActionTypes.GET_PRODUCTS)
+
+    return { loggedIn, logout, products }
   },
 })
 </script>

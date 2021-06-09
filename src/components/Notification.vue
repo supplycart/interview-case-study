@@ -41,21 +41,23 @@
             <div class="flex items-start">
               <div class="flex-shrink-0">
                 <CheckCircleIcon
+                  v-if="type === 'success'"
                   class="h-6 w-6 text-green-400"
+                  aria-hidden="true"
+                />
+                <ExclamationCircleIcon
+                  v-if="type === 'error'"
+                  class="w-6 h-6 text-red-400"
                   aria-hidden="true"
                 />
               </div>
               <div class="ml-3 w-0 flex-1 pt-0.5">
-                <p class="text-sm font-medium text-gray-900">
-                  Successfully saved!
-                </p>
-                <p class="mt-1 text-sm text-gray-500">
-                  Anyone with a link can now view this file.
-                </p>
+                <p v-text="title" class="text-sm font-medium text-gray-900" />
+                <p v-text="subtitle" class="mt-1 text-sm text-gray-500" />
               </div>
               <div class="ml-4 flex-shrink-0 flex">
                 <button
-                  @click="show = false"
+                  @click="close"
                   class="
                     bg-white
                     rounded-md
@@ -82,21 +84,34 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import { CheckCircleIcon } from '@heroicons/vue/outline'
+import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/vue/outline'
 import { XIcon } from '@heroicons/vue/solid'
 import { useStore } from '@/store'
+import { NotificationActionTypes } from '@/store/modules/notification/action-types'
 
 export default defineComponent({
   components: {
     CheckCircleIcon,
+    ExclamationCircleIcon,
     XIcon,
   },
   setup(): Record<string, unknown> {
     const store = useStore()
+    const title = computed(() => store.getters.getNotification?.title)
+    const subtitle = computed(() => store.getters.getNotification?.subtitle)
+    const type = computed(() => store.getters.getNotification?.type)
     const show = computed(() => store.getters.hasNotification)
 
+    const close = () => {
+      store.dispatch(NotificationActionTypes.DISMISS)
+    }
+
     return {
+      title,
+      subtitle,
+      type,
       show,
+      close,
     }
   },
 })

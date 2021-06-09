@@ -1,7 +1,7 @@
 import { ActionContext, ActionTree } from 'vuex'
 
 // eslint-disable-next-line import/no-cycle
-import { RootState } from '@/store'
+import { RootState, store } from '@/store'
 
 import { NotificationType, Notification } from '@/types'
 import { State } from './state'
@@ -12,7 +12,7 @@ import { NotificationActionTypes } from './action-types'
 type AugmentedActionContext = {
   commit<K extends keyof Mutations>(
     key: K,
-    payload: Parameters<Mutations[K]>[1]
+    payload?: Parameters<Mutations[K]>[1]
   ): ReturnType<Mutations[K]>
 } & Omit<ActionContext<State, RootState>, 'commit'>
 
@@ -21,6 +21,7 @@ export interface Actions {
     { commit }: AugmentedActionContext,
     { title, subtitle, type }: Notification
   ): void
+  [NotificationActionTypes.DISMISS]({ commit }: AugmentedActionContext): void
 }
 
 export const actions: ActionTree<State, RootState> & Actions = {
@@ -33,5 +34,12 @@ export const actions: ActionTree<State, RootState> & Actions = {
       subtitle,
       type,
     })
+
+    setTimeout(() => {
+      store.dispatch(NotificationActionTypes.DISMISS)
+    }, 2500)
+  },
+  [NotificationActionTypes.DISMISS]({ commit }) {
+    commit(NotificationMutationTypes.CLEAR_DATA)
   },
 }

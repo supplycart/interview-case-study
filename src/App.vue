@@ -1,9 +1,12 @@
 <template>
-  <div class="relative max-w-full mx-auto">
-    <div class="absolute top-0 right-0">
-      <notification />
+  <div class="min-h-screen bg-gray-50">
+    <div class="relative w-full overflow-y-auto">
+      <div class="absolute top-0 right-0">
+        <notification />
+      </div>
+
+      <router-view />
     </div>
-    <router-view />
   </div>
 </template>
 

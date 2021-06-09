@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import Product from '@/views/Product.vue'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import About from '../views/About.vue'
@@ -28,6 +29,14 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Register',
     component: Register,
   },
+  {
+    path: '/products',
+    name: 'Product',
+    component: Product,
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ]
 
 const router = createRouter({
@@ -38,7 +47,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const loggedIn = localStorage.getItem('user')
 
-  if (to.matched.some(record => record.meta.requiresAuth) && !loggedIn) {
+  if (to.matched.some((record) => record.meta.requiresAuth) && !loggedIn) {
     next('/')
   }
 

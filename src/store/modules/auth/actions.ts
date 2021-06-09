@@ -1,5 +1,5 @@
 import { ActionContext, ActionTree } from 'vuex'
-import axios from 'axios'
+import axios from '@/plugins/axios'
 
 // eslint-disable-next-line import/no-cycle
 import { RootState } from '@/store'
@@ -32,7 +32,7 @@ export interface Actions {
 export const actions: ActionTree<State, RootState> & Actions = {
   [AuthActionTypes.LOGIN]({ commit }, { email, password }) {
     return axios
-      .post('//interview-case-study-backend.test/api/login', {
+      .post('/login', {
         email,
         password,
       })
@@ -54,7 +54,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
     { name, email, password, passwordConfirmation }
   ) {
     return axios
-      .post('//interview-case-study-backend.test/api/register', {
+      .post('/register', {
         name,
         email,
         password,
