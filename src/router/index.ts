@@ -1,8 +1,8 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Home from '../views/Home.vue';
-import Login from '../views/Login.vue';
-import About from '../views/About.vue';
-import Register from '../views/Register.vue';
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import Home from '../views/Home.vue'
+import Login from '../views/Login.vue'
+import About from '../views/About.vue'
+import Register from '../views/Register.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -14,6 +14,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/about',
     name: 'About',
     component: About,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: '/login',
@@ -25,11 +28,21 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Register',
     component: Register,
   },
-];
+]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-});
+})
 
-export default router;
+router.beforeEach((to, from, next) => {
+  const loggedIn = localStorage.getItem('user')
+
+  if (to.matched.some(record => record.meta.requiresAuth) && !loggedIn) {
+    next('/')
+  }
+
+  next()
+})
+
+export default router

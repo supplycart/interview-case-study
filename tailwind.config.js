@@ -5,7 +5,9 @@ module.exports = {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      textColor: ['group-focus'],
+    },
   },
   plugins: [
     require('@tailwindcss/forms'), // eslint-disable-line global-require
