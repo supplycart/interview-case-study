@@ -1,5 +1,5 @@
 <template>
-  <Form title="Create your account">
+  <Form title="Create your account" class="m-3">
     <label for="">User ID</label>
     <input type="text" @blur="checkUserID" placeholder="User ID" v-model="userid">
     <div v-if="uidCheck" class="-mt-1 mb-2 ml-2 flex items-center whitespace-pre">
