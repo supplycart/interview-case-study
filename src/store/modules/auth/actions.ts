@@ -1,14 +1,16 @@
 import { ActionContext, ActionTree } from 'vuex'
+// eslint-disable-next-line import/no-cycle
 import axios from '@/plugins/axios'
 
 // eslint-disable-next-line import/no-cycle
-import { RootState } from '@/store'
+import { RootState, store } from '@/store'
 
 import { LoginCredentials, RegisterCredentials } from '@/types'
 import { State } from './state'
 import { Mutations } from './mutations'
 import { AuthMutationTypes } from './mutation-types'
 import { AuthActionTypes } from './action-types'
+import { CartActionTypes } from '../cart/action-types'
 
 type AugmentedActionContext = {
   commit<K extends keyof Mutations>(
@@ -47,6 +49,9 @@ export const actions: ActionTree<State, RootState> & Actions = {
           },
           accessToken: data.access_token,
         })
+      })
+      .then(() => {
+        store.dispatch(CartActionTypes.GET_CART)
       })
   },
   [AuthActionTypes.REGISTER](

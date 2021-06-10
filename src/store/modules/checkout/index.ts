@@ -9,21 +9,20 @@ import { RootState } from '@/store'
 import { state } from './state'
 import type { State } from './state'
 // eslint-disable-next-line import/no-cycle
+import { getters, Getters } from './getters'
 import { mutations, Mutations } from './mutations'
 // eslint-disable-next-line import/no-cycle
 import { actions, Actions } from './actions'
-// eslint-disable-next-line import/no-cycle
-import { getters, Getters } from './getters'
 
 export { State }
 
-export type ProductStore<S = State> = Omit<
+export type CheckoutStore<S = State> = Omit<
   VuexStore<S>,
-  'commit' | 'dispatch'
+  'getters' | 'commit' | 'dispatch'
 > & {
   commit<K extends keyof Mutations, P extends Parameters<Mutations[K]>[1]>(
     key: K,
-    payload: P,
+    payload?: P,
     options?: CommitOptions
   ): ReturnType<Mutations[K]>
 } & {

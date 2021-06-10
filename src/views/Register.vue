@@ -1,20 +1,12 @@
 <template>
   <div
-    class="
-      min-h-screen
-      bg-gray-50
-      flex flex-col
-      justify-center
-      py-12
-      sm:px-6
-      lg:px-8
-    "
+    class="bg-gray-50 flex-1 flex flex-col justify-center py-12 sm:px-6 lg:px-8"
   >
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <router-link to="/">
         <img
           class="mx-auto h-12 w-auto"
-          src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+          src="https://tailwindui.com/img/logos/workflow-mark-purple-600-to-indigo-600.svg"
           alt="Workflow"
         />
       </router-link>
@@ -174,8 +166,10 @@
                 text-sm
                 font-medium
                 text-white
-                bg-indigo-600
-                hover:bg-indigo-700
+                bg-gradient-to-r
+                from-purple-800
+                to-indigo-700
+                hover:from-purple-700 hover:to-indigo-700
                 focus:outline-none
                 focus:ring-2
                 focus:ring-offset-2
@@ -194,8 +188,11 @@
             block
             w-full
             font-medium
-            text-sm text-center text-indigo-600
-            hover:text-indigo-500 hover:underline
+            text-sm text-center text-transparent
+            bg-clip-text bg-gradient-to-r
+            from-purple-800
+            to-indigo-700
+            hover:from-purple-700 hover:underline
           "
         >
           Already have an account?

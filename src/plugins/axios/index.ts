@@ -3,7 +3,7 @@ import { store } from '@/store'
 import axios from 'axios'
 
 const apiClient = axios.create({
-  baseURL: '//interview-case-study-backend.test/api',
+  baseURL: process.env.VUE_APP_BASE_URL,
   withCredentials: false,
   headers: {
     Accept: 'application/json',

@@ -1,9 +1,13 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <div class="relative w-full overflow-y-auto">
+  <div class="min-h-screen flex bg-gray-50 pb-12 sm:px-6 lg:px-8">
+    <div class="relative w-full flex-1 flex flex-col overflow-y-auto">
+      <div id="navbar" />
+
       <div class="absolute top-0 right-0">
         <notification />
       </div>
+
+      <div id="breadcrumbs" class="px-4 py-2 sm:px-6"></div>
 
       <router-view />
     </div>

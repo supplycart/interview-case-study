@@ -23,6 +23,18 @@ import {
   ProductStore,
   State as ProductState,
 } from '@/store/modules/products'
+// eslint-disable-next-line import/no-cycle
+import {
+  store as cart,
+  CartStore,
+  State as CartState,
+} from '@/store/modules/cart'
+// eslint-disable-next-line import/no-cycle
+import {
+  store as checkout,
+  CheckoutStore,
+  State as CheckoutState,
+} from '@/store/modules/checkout'
 
 import createPersistedState from 'vuex-persistedstate'
 
@@ -30,11 +42,15 @@ export type RootState = {
   notification: NotificationState
   auth: AuthState
   product: ProductState
+  cart: CartState
+  checkout: CheckoutState
 }
 
 export type Store = AuthStore<Pick<RootState, 'auth'>> &
   NotificationStore<Pick<RootState, 'notification'>> &
-  ProductStore<Pick<RootState, 'product'>>
+  ProductStore<Pick<RootState, 'product'>> &
+  CartStore<Pick<RootState, 'cart'>> &
+  CheckoutStore<Pick<RootState, 'checkout'>>
 
 // Plug in logger when in development environment
 const debug = 'production'
@@ -50,6 +66,8 @@ export const store = createStore({
     auth,
     notification,
     product,
+    cart,
+    checkout,
   },
 })
 

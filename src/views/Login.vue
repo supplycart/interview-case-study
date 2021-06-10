@@ -1,14 +1,6 @@
 <template>
   <div
-    class="
-      min-h-screen
-      bg-gray-50
-      flex flex-col
-      justify-center
-      py-12
-      sm:px-6
-      lg:px-8
-    "
+    class="bg-gray-50 flex-1 flex flex-col justify-center py-12 sm:px-6 lg:px-8"
   >
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <router-link to="/">
@@ -98,8 +90,11 @@
                 class="
                   h-4
                   w-4
-                  text-indigo-600
-                  focus:ring-indigo-500
+                  text-transparent
+                  bg-clip-text bg-gradient-to-r
+                  from-purple-800
+                  to-indigo-700
+                  hover:from-purple-700 hover:to-indigo-700
                   border-gray-300
                   rounded
                 "
@@ -114,8 +109,11 @@
                 href="#"
                 class="
                   font-medium
-                  text-indigo-600
-                  hover:text-indigo-500 hover:underline
+                  text-transparent
+                  bg-clip-text bg-gradient-to-r
+                  from-purple-800
+                  to-indigo-700
+                  hover:from-purple-700 hover:to-indigo-700 hover:underline
                 "
               >
                 Forgot your password?
@@ -138,8 +136,10 @@
                 text-sm
                 font-medium
                 text-white
-                bg-indigo-600
-                hover:bg-indigo-700
+                bg-gradient-to-r
+                from-purple-800
+                to-indigo-700
+                hover:from-purple-700 hover:to-indigo-700
                 focus:outline-none
                 focus:ring-2
                 focus:ring-offset-2
@@ -158,8 +158,11 @@
             block
             w-full
             font-medium
-            text-sm text-center text-indigo-600
-            hover:text-indigo-500 hover:underline
+            text-transparent text-sm text-center
+            bg-clip-text bg-gradient-to-r
+            from-purple-800
+            to-indigo-700
+            hover:from-purple-700 hover:to-indigo-700 hover:underline
           "
         >
           Sign up

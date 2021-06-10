@@ -2,12 +2,11 @@
 import { RootState } from '@/store'
 import { ActionContext, ActionTree } from 'vuex'
 // eslint-disable-next-line import/no-cycle
-import axios from '@/plugins/axios'
-import { Product } from '@/types'
+import http from '@/plugins/axios'
 import { Mutations } from './mutations'
 import { State } from './state'
 import { ProductActionTypes } from './action-types'
-// import { ProductMutationTypes } from './mutation-types'
+import { ProductMutationTypes } from './mutation-types'
 
 type AugmentedActionContext = {
   commit<K extends keyof Mutations>(
@@ -19,13 +18,13 @@ type AugmentedActionContext = {
 export interface Actions {
   [ProductActionTypes.GET_PRODUCTS]({
     commit,
-  }: AugmentedActionContext): void | Product[]
+  }: AugmentedActionContext): Promise<void>
 }
 
 export const actions: ActionTree<State, RootState> & Actions = {
-  async [ProductActionTypes.GET_PRODUCTS]() {
-    const data = await axios.get('/products')
-
-    return data.data
+  [ProductActionTypes.GET_PRODUCTS]({ commit }) {
+    return http.get('/products').then((res) => {
+      commit(ProductMutationTypes.SET_PRODUCTS, res.data.data)
+    })
   },
 }
