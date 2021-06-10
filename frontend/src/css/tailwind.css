@@ -28,11 +28,24 @@
     @apply outline-none;
   }
 
+  button:disabled, button:disabled:hover {
+    @apply bg-gray-400;
+    @apply text-black;
+  }
+
+  .button-red {
+    @apply bg-red-300;
+  }
+
+  .button-red:hover {
+    @apply bg-red-500;
+  }
+
   /* button:active */
 
-  input, select {
+  input[type=text], input[type=password], input[type=number], select {
     @apply outline-none;
-    @apply border-gray-200;
+    @apply border-gray-400;
     @apply border;
     @apply p-3;
     @apply my-2;
@@ -45,5 +58,8 @@
 @layer utilities {
   .dark-shadow {
     box-shadow: 0 5px 5px rgb(100,100,100);
+  }
+  .header-shadow {
+    box-shadow: 0 3px 3px rgb(150,150,150);
   }
 }
