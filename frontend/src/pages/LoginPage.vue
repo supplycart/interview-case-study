@@ -1,5 +1,5 @@
 <template>
-  <Form title="Login to your account">
+  <Form title="Login to your account" class="m-3">
     <label for="">User ID</label>
     <input type="text" placeholder="User ID" v-model="userid">
     <label for="">Password</label>
@@ -39,7 +39,8 @@ export default {
         });
 
         if (login.data) {
-          console.log(login.data['loginkey']);
+          this.$cookies.set('user', login.data);
+          this.$router.push('/Home');
         } else {
           this.loginError = 'User ID or Password is incorrect';
         }
@@ -50,6 +51,9 @@ export default {
     }
   },
   mounted() {
+    if (this.$cookies.isKey('user')) {
+      this.$router.push('/Home');
+    }
   }
 };
 </script>
