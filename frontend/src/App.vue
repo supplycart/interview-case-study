@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center p-3 text-xs md:text-sm w-full">
-    <div v-if="path == '/' || path.toLowerCase() == '/register'" class="bg-gradient-to-b from-blue-300 fixed top-0 left-0 h-full w-full z-back"></div>
+  <div class="flex justify-center text-xs md:text-sm w-full">
+    <div v-if="$store.state.showGradient" class="bg-gradient-to-b from-blue-300 fixed top-0 left-0 h-full w-full z-back"></div>
     <router-view></router-view>
   </div>
 </template>
