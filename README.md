@@ -35,6 +35,14 @@ I have created this project using Vue.js & Tailwind, and consuming api from Lara
 yarn install
 ```
 
+### Create environment variables
+
+Create a `.env` file in your root file and create `VUE_APP_BASE_URL`
+
+```
+VUE_APP_BASE_URL=//interview-case-study-backend.test/api
+```
+
 ### Compiles and hot-reloads for development
 
 ```
