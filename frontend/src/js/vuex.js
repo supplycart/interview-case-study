@@ -11,7 +11,11 @@ export default new Vuex.Store({
     totalCart: 0,
     totalPrice: 0,
 
-    showGradient: true
+    showGradient: true,
+
+    gotoHomeChild: '',
+
+    verified: null
   },
   mutations: {
     countTotal (state) {
