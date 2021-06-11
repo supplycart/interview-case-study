@@ -25,6 +25,10 @@ I have created this project using Vue.js & Tailwind, and consuming api from Lara
 - [ ] Add unit tests
 - [x] Deploy app to a server
 
+## Notes
+
+- Before installing this project and running locally, you must have install the [backend repo](https://github.com/rezuankassim/interview-case-study-backend) too as this project is consuming api from [backend repo](https://github.com/rezuankassim/interview-case-study-backend)
+
 ## Project setup
 
 ```
