@@ -102,7 +102,8 @@ export default {
                   name: c['name'],
                   size: s,
                   quantity: c['sizes'][s],
-                  price: this.$store.state.totalPrice
+                  price: this.$store.state.totalPrice,
+                  orderat: date
                 });
               }
             });
