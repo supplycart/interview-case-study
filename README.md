@@ -1,43 +1,66 @@
-<p align="center">
-    <img align="center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
-</p>
+# interview-case-study
 
-# Supplycart Interview Case Study
+## Description
 
-This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned. 
+The project have been already deployment in to a server, you access through this [link](interview-case-study.vercel.app).
 
-### Instructions
+I have created this project using Vue.js & Tailwind, and consuming api from Laravel.
 
-- Fork this repo to your github account
-- Complete the tasks given
-- Once completed, create a PR to this repository
-- Lastly, add some guidance or instruction on how to run your code
+## Tasks
 
-### Requirements
+- [x] As guest, I want to be able to register an account
+- [x] As guest, I want to be able to login using registered account
+- [x] As user, I want to see list of products after login
+- [x] As user, I want to be able to add product to cart
+- [x] As user, I want to be able to place order for added products in cart
+- [x] As user, I want to see my order history
+- [x] As user, I want to be able to logout
 
-You must work on this assignment using:
- - Vue (optional for BE dev)
- - TailwindCSS
- - Laravel (optional for FE dev)
+## Bonus Tasks
 
-### Tasks
+- [ ] Verify email after registration
+- [ ] User activity log e.g. login, logout, add to cart, place order etc
+- [ ] Product attributes and filtering e.g brand, category
+- [ ] Different user can see different price for products
+- [ ] Add unit tests
+- [x] Deploy app to a server
 
-1. As guest, I want to be able to register an account
-2. As guest, I want to be able to login using registered account
-3. As user, I want to see list of products after login
-4. As user, I want to be able to add product to cart
-5. As user, I want to be able to place order for added products in cart
-6. As user, I want to see my order history
-7. As user, I want to be able to logout
+## Notes
 
-### Bonus Tasks
+- Before installing this project and running locally, you must have install the [backend repo](https://github.com/rezuankassim/interview-case-study-backend) too as this project is consuming api from [backend repo](https://github.com/rezuankassim/interview-case-study-backend)
 
-1. Verify email after registration
-2. User activity log e.g. login, logout, add to cart, place order etc
-3. Product attributes and filtering e.g brand, category
-4. Different user can see different price for products
-5. Add unit tests
-6. Deploy app to a server
+## Project setup
 
+```
+yarn install
+```
 
-P/S: If you think there is a better way for us to asses your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
+### Create environment variables
+
+Create a `.env` file in your root file and create `VUE_APP_BASE_URL`
+
+```
+VUE_APP_BASE_URL=//interview-case-study-backend.test/api
+```
+
+### Compiles and hot-reloads for development
+
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+
+```
+yarn build
+```
+
+### Lints and fixes files
+
+```
+yarn lint
+```
+
+### Customize configuration
+
+See [Configuration Reference](https://cli.vuejs.org/config/).
