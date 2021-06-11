@@ -109,7 +109,7 @@ export default {
             });
           });
 
-          var submitOrder = await this.$axios.post('/Products/CreateOrder', orders);
+          var submitOrder = await this.$axios.post('/Orders/CreateOrder', orders);
           if (submitOrder.data) {
             await this.$swal({
               icon: 'success',
