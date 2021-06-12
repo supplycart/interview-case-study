@@ -7,6 +7,7 @@ import Swal from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css';
 
 import VueX from './js/vuex.js';
+import Activity from './js/activity.js'
 
 import Login from './pages/LoginPage.vue'
 import Register from './pages/RegisterPage.vue'
@@ -57,6 +58,7 @@ const axios = Axios
 axios.defaults.baseURL = 'https://api.reeqzan.com'
 
 Vue.prototype.$axios = axios
+Vue.prototype.$activity = Activity
 
 Vue.config.productionTip = false
 
