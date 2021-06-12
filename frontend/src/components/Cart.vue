@@ -69,6 +69,8 @@ export default {
       cart['sizes'][size]--;
       this.$store.commit('countTotal');
 
+      this.$activity.send(`Removed 1 ${cart['name']} from the cart`);
+
       if (Object.keys(cart['sizes']).reduce((a, b) => { return a + cart['sizes'][b] }, 0) == 0) {
         let index = this.$store.state.cart.indexOf(cart);
         this.$store.state.cart.splice(index, 1);
@@ -116,6 +118,8 @@ export default {
               title: 'Order Completed',
               html: `Thank you ${this.name} for your order!<br /><br/>Your order id is ${orderID}`
             });
+
+            this.$activity.send(`Order created with order id ${orderID}`);
 
             this.$store.state.cart = [];
             this.$emit('close');
