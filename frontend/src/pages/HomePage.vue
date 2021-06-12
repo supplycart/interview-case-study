@@ -45,6 +45,8 @@ export default {
       this.showUserMenu = false;
     },
     logoutClicked: function() {
+      this.$activity.send('Logout');
+
       this.$cookies.remove('user');
       this.$router.push('/');
 
