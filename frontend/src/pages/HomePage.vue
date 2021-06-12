@@ -7,11 +7,12 @@
       <div v-if="showUserMenu" class="fixed p-2 right-2 w-1/4 bg-white top-12 border border-gray-400 rounded-md border-solid"
         @mouseover="canCloseUserMenu = false" @mouseleave="canCloseUserMenu = true">
         <div>Hi {{ $cookies.get('user').userID }}</div>
-        <button class="w-full my-2" @click="orderHistoryClicked">{{ $store.state.gotoHomeChild }}</button>
+        <button class="w-full my-2" @click="orderHistoryClicked">{{ $store.state.historyText }}</button>
+        <button class="w-full my-2" @click="activityClicked">{{ $store.state.activityText }}</button>
         <button class="w-full my-2 button-red" @click="logoutClicked">Logout</button>
       </div>
     </div>
-    <div v-if="$store.state.verified" class="bg-yellow-200 p-3" @click="test">
+    <div v-if="$store.state.verified" class="bg-yellow-200 p-3">
       You email address has not been verified. Click <router-link :to="`/Verify/${$cookies.get('user').id}`">here</router-link> to verifiy
     </div>
     <router-view />
@@ -52,12 +53,15 @@ export default {
 
       this.showUserMenu = false;
     },
-    test: function() {
-      let user = this.$cookies.get('user');
-      user.verifycode = null;
-      this.$cookies.set('user', user);
-      this.$store.state.verified = null;
-    }
+    activityClicked: function(e) {
+      if (e.target.innerHTML == 'Products') {
+        this.$router.push('/Home');
+      } else {
+        this.$router.push('/Home/Activity');
+      }
+
+      this.showUserMenu = false;
+    },
   },
   async mounted() {
     if (!this.$cookies.isKey('user')) {
@@ -70,11 +74,6 @@ export default {
   watch: {
     showCart: function(val) {
       document.getElementsByTagName('body')[0].style.overflow = val ? 'hidden' : 'auto';
-      // if (val) {
-
-      // } else {
-
-      // }
     }
   }
 };
