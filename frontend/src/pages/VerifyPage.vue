@@ -50,6 +50,12 @@ export default {
           html: `Thank you ${this.userDetails['fullName']} for verifying your email address.`
         });
 
+        if (this.$cookies.isKey('user')) {
+          let user = this.$cookies.get('user');
+          user.verifycode = null;
+          this.$cookies.set('user', user);
+        }
+
         this.$store.state.verified = null;
         this.$router.push('/');
       } else {
