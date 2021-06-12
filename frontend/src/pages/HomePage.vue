@@ -12,7 +12,7 @@
       </div>
     </div>
     <div v-if="$store.state.verified" class="bg-yellow-200 p-3" @click="test">
-      You email 
+      You email address has not been verified. Click <router-link :to="`/Verify/${$cookies.get('user').id}`">here</router-link> to verifiy
     </div>
     <router-view />
 
