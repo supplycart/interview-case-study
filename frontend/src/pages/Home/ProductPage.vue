@@ -1,20 +1,21 @@
 <template>
   <div class="p-3 w-full">
-    <!-- <div class="flex items-center">
-      <input id="malayCB" type="checkbox" v-model="malayChecked">
-      <label for="malayCB" class="ml-1 mr-3">Malay</label>
-      <input id="chineseCB" type="checkbox" v-model="chineseChecked">
-      <label for="chineseCB" class="ml-1 mr-3">Chinese</label>
-      <input id="indianCB" type="checkbox" v-model="indianChecked">
-      <label for="indianCB" class="ml-1 mr-3">Indian</label>
-    </div> -->
-    <div v-if="loading" class="flex items-center">
+    <div class="flex items-center select-none">
+      <div class="mr-3">Filter :</div>
+      <input id="malay" type="checkbox" value="Malay" v-model="filterCheckBox">
+      <label for="malay" class="ml-1 mr-3">Malay</label>
+      <input id="chinese" type="checkbox" value="Chinese" v-model="filterCheckBox">
+      <label for="chinese" class="ml-1 mr-3">Chinese</label>
+      <input id="indian" type="checkbox" value="Indian" v-model="filterCheckBox">
+      <label for="indian" class="ml-1 mr-3">Indian</label>
+    </div>
+    <div v-if="loading" class="flex items-center mt-3">
       <div class="border-spin rounded-full border-2 h-5 w-5 sm:h-8 sm:w-8 animate-spin"></div>
       <div class="sm:text-xl font-bold ml-3">Getting Products</div>
     </div>
     <div v-for="(cat, catIndex) in allProducts" :key="catIndex">
-      <div class="mt-3 mb-2 font-bold text-center sm:text-justify sm:text-lg text-sm w-full">{{ cat['group'] }}</div>
-      <div class="flex flex-wrap w-full sm:justify-start justify-center">
+      <div v-if="filterCheckBox.includes(cat['group'])" class="mt-3 mb-2 font-bold text-center sm:text-justify sm:text-lg text-sm w-full">{{ cat['group'] }}</div>
+      <div v-if="filterCheckBox.includes(cat['group'])" class="flex flex-wrap w-full sm:justify-start justify-center">
         <div v-for="(prod, prodIndex) in cat['products']" :key="prodIndex" class="border-black border-solid border h-72 m-2 w-52 p-2 relative flex flex-col">
           <img :src="prod['image']" class="w-full max-h-32 bg-black object-contain">
           <div>{{ prod['name'] }}</div>
@@ -39,9 +40,7 @@ export default {
   },
   data: function() {
     return {
-      malayChecked: true,
-      chineseChecked: true,
-      indianChecked: true,
+      filterCheckBox: [ 'Malay', 'Chinese', 'Indian' ],
 
       allProducts: [],
       loading: false
