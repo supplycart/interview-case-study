@@ -52,6 +52,12 @@ export default {
       this.$router.push('/');
 
       this.showUserMenu = false;
+
+      this.$store.state.cart = [];
+      this.$store.state.totalCart = 0;
+      this.$store.state.totalPrice = 0;
+      this.$store.state.discount = 1;
+      this.$store.state.verified = null;
     },
     activityClicked: function(e) {
       if (e.target.innerHTML == 'Products') {
@@ -70,6 +76,7 @@ export default {
     }
 
     this.$store.state.verified = this.$cookies.get('user').verifycode;
+    this.$store.state.discount = this.$cookies.get('user').userType == 'Basic' ? 1 : 0.85;
   },
   watch: {
     showCart: function(val) {
