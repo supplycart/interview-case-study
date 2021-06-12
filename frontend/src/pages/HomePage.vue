@@ -4,7 +4,7 @@
       <img class="h-9 w-9 absolute right-14 cursor-pointer" @click="showCart = true" src="../assets/cart.png" alt="">
       <div v-if="$store.state.totalCart > 0" class="rounded-full absolute z-10 pointer-events-none bg-blue-400 h-5 w-5 flex items-center justify-center bottom-2 right-20 font-bold text-xs">{{ $store.state.totalCart }}</div>
       <img class="h-9 w-9 absolute right-2 cursor-pointer" src="../assets/user.png" alt="" @focus="showUserMenu = true" @blur="canCloseUserMenu ? showUserMenu = false : showUserMenu = true" tabindex="1">
-      <div v-if="showUserMenu" class="fixed p-2 right-2 w-1/4 bg-white top-12 border border-gray-400 rounded-md border-solid"
+      <div v-if="showUserMenu" class="fixed p-2 right-2 w-1/2 sm:w-1/4 bg-white top-12 border border-gray-400 rounded-md border-solid"
         @mouseover="canCloseUserMenu = false" @mouseleave="canCloseUserMenu = true">
         <div>Hi {{ $cookies.get('user').userID }}</div>
         <button class="w-full my-2" @click="orderHistoryClicked">{{ $store.state.historyText }}</button>
