@@ -20,7 +20,7 @@
     <select v-model="userType">
       <option disabled>Select User Type</option>
       <option>Basic</option>
-      <option>Advanced</option>
+      <option>Member</option>
     </select>
     <div v-if="uTypeError" class="text-red-500 -mt-1 mb-2 ml-2">{{ uTypeError }}</div>
 
