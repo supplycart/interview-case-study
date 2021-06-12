@@ -8,8 +8,7 @@
         <div class="flex w-full">
           <img class="h-20 w-20 mr-3 bg-black object-contain" :src="cart['product']['image']" alt="">
           <div class="whitespace-pre-wrap description">
-            <div class="text-lg font-bold sm:text-xl">{{ cart['name'] }} <span class="text-sm">(RM {{ cart['product']['price'].toFixed(2) }}/pc)</span></div>
-            <!-- <div class="mb-3 whitespace-pre-wrap">This is a long text for the description for testing purposes</div> -->
+            <div class="text-lg font-bold sm:text-xl">{{ cart['name'] }} <span class="text-sm">(RM {{ (cart['product']['price'] * $store.state.discount).toFixed(2) }}/pc)</span></div>
             <div class="mb-2">{{ cart['product']['description'] }}</div>
             <div v-for="(size, sIndex) in Object.keys(cart['sizes'])" :key="sIndex" class="flex pt-1" :class="[ cart['sizes'][size] > 0 ? 'block' : 'hidden' ]">
               <div class="size">{{ size }}</div>:
@@ -20,7 +19,7 @@
         </div>
         <div class="text-right sub-total">
           RM
-          <div class="font-bold sm:text-xl text-lg">{{ (cart['product']['price'] * Object.keys(cart['sizes']).reduce((a, b) => { return a + cart['sizes'][b] }, 0)).toFixed(2) }}</div>
+          <div class="font-bold sm:text-xl text-lg">{{ ((cart['product']['price'] * $store.state.discount) * Object.keys(cart['sizes']).reduce((a, b) => { return a + cart['sizes'][b] }, 0)).toFixed(2) }}</div>
         </div>
       </div>
 

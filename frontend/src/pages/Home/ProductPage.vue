@@ -19,7 +19,7 @@
         <div v-for="(prod, prodIndex) in cat['products']" :key="prodIndex" class="border-black border-solid border h-72 m-2 w-52 p-2 relative flex flex-col">
           <img :src="prod['image']" class="w-full max-h-32 bg-black object-contain">
           <div>{{ prod['name'] }}</div>
-          <div>RM {{ $cookies.get('user').userType == 'Basic' ? prod['price'].toFixed(2) : (prod['price'] * 0.85).toFixed(2) }}</div>
+          <div>RM {{ (prod['price'] * $store.state.discount).toFixed(2) }}</div>
           <div class="flex items-center flex-wrap">
             <div v-for="(size, sizeIndex) in prod['sizes'].split(',')" :key="sizeIndex" class="flex items-center">
               <input type="radio" :value="`${prod['name']}_${sizeIndex}`" v-model="prod['selectedSize']" :id="`${prod['name']}_${sizeIndex}`">
