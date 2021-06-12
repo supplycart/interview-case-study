@@ -11,6 +11,7 @@ import VueX from './js/vuex.js';
 import Login from './pages/LoginPage.vue'
 import Register from './pages/RegisterPage.vue'
 import Home from './pages/HomePage.vue'
+import Verify from './pages/VerifyPage.vue'
 import History from './pages/Home/HistoryPage.vue'
 import Product from './pages/Home/ProductPage.vue'
 
@@ -30,6 +31,7 @@ const router = new Router({
   routes: [
     { path: '/', component: Login, meta: { title: 'Login' }  },
     { path: '/Register', component: Register, meta: { title: 'Register' }  },
+    { path: '/Verify/:id', component: Verify, meta: { title: 'Verify' }  },
     { path: '/Home', component: Home, meta: { title: 'Home' },
       children: [
         { path: '/', component: Product, meta: { title: 'Product' } },
