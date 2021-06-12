@@ -124,7 +124,7 @@ export default {
           if (register.data) {
             await this.$swal({
               icon: 'success',
-              html: `Hi ${this.userid}!<br /><br />Your account has been created.<br />Please go back to login page and login using your new user id and password.`
+              html: `Hi ${this.userid}!<br /><br />Your account has been created.<br />Please go back to login page and login using your new user id and password.<br><br>Kindly check your email address to verify your email`
             });
             this.$router.push('/');
           }
