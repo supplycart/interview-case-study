@@ -13,7 +13,8 @@ export default new Vuex.Store({
 
     showGradient: true,
 
-    gotoHomeChild: '',
+    historyText: '',
+    activityText: '',
 
     verified: null
   },
