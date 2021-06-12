@@ -19,7 +19,7 @@
           <img :src="prod['image']" class="w-full max-h-32 bg-black object-contain">
           <div>{{ prod['name'] }}</div>
           <div>RM {{ prod['price'].toFixed(2) }}</div>
-          <div class="flex items-center">
+          <div class="flex items-center flex-wrap">
             <div v-for="(size, sizeIndex) in prod['sizes'].split(',')" :key="sizeIndex" class="flex items-center">
               <input type="radio" :value="`${prod['name']}_${sizeIndex}`" v-model="prod['selectedSize']" :id="`${prod['name']}_${sizeIndex}`">
               <label :for="`${prod['name']}_${sizeIndex}`" class="ml-1 mr-3">{{ size.toUpperCase() }}</label>
@@ -54,6 +54,8 @@ export default {
       let index = parseInt(prod['selectedSize'].split('_')[1]);
       let allSizes = prod['sizes'].split(',').map(s => s.toUpperCase());
       let size = allSizes[index];
+
+      this.$activity.send(`Added 1 ${prod['name']} into the cart`);
       
       let inCart = this.$store.state.cart.filter(c => c['name'] == prod['name']);
       
