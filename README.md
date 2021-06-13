@@ -4,6 +4,8 @@
 
 ## The instructions/guide on how to run the code is available at the [bottom](#instructionsguide-to-run-the-project) of this README
 
+## The structure of the database tables are available [here](#sql-structure)
+
 # Supplycart Interview Case Study
 
 This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned. 
@@ -45,7 +47,7 @@ You must work on this assignment using:
 1. Verify email after registration ✅  
 **When registering, please enter a valid email address so that you'll able to receive the verification email. In the email, you'll see a link and a 4 digit code. Navigate to the link and enter the 4 digit code to verify your email. If you did not verify your email, there will be a yellow color bar at the home page saying that your email is not verified. You can also verify your email by clicking on the link inside the yellow color bar in the home page.**
 2. User activity log e.g. login, logout, add to cart, place order etc ✅  
-**The see your activity log and when does it happened, go to the top right most icon, and click 'My Activity'. This will bring your to [https://supplycart.reeqzan.com/Home/Activity](https://supplycart.reeqzan.com/Home/Activity). In this page, you'll able to see all your activity with the latest one on the top.**
+**To see your activity log and when does it happened, go to the top right most icon, and click 'My Activity'. This will bring you to [https://supplycart.reeqzan.com/Home/Activity](https://supplycart.reeqzan.com/Home/Activity). In this page, you'll able to see all your activity with the latest one on top.**
 3. Product attributes and filtering e.g brand, category ✅  
 **In the home page, there are 3 checkboxes at the top. You may uncheck the category to hide the category from the home page.**
 4. Different user can see different price for products ✅  
@@ -69,7 +71,7 @@ P/S: If you think there is a better way for us to asses your technical skills, f
         // axios.defaults.baseURL = 'https://localhost:5001' // Using local DB
         ```
    - Use local db from https://localhost:5001  
-      To use live, go to **main.js** file located in **/frontend/src/main.js** and comment out line 68 and uncomment line 67. You code should look like below:  
+      To use local, go to **main.js** file located in **/frontend/src/main.js** and comment out line 68 and uncomment line 67. You code should look like below:  
         ```javascript
         // axios.defaults.baseURL = 'https://api.reeqzan.com' // Using live DB
         axios.defaults.baseURL = 'https://localhost:5001' // Using local DB
@@ -78,8 +80,9 @@ P/S: If you think there is a better way for us to asses your technical skills, f
 5. Run the project by typing **'npm run serve'** and your application is accessible at [http://localhost:8080](http://localhost:8080).
 
 ### Backend (.NET Core)
+*Note that if you're running locally, the products will be empty*
 1. cd into your backend folder using CMD/Terminal
-2. If you frontend is running on a different link besides http://localhost:8080, please change the in **Startup.cs** file located in **/backend/Startup.cs** at line 55. You code should look like blelow:
+2. If you frontend is running on a different link besides http://localhost:8080, please change the link in **Startup.cs** file located in **/backend/Startup.cs** at line 55. You code should look like blelow:
     ```csharp
     .WithOrigins("http://localhost:8080") // Change this to match your frontend link
     ```
@@ -91,7 +94,7 @@ P/S: If you think there is a better way for us to asses your technical skills, f
    Change '**USERNAME**' to the username of your mysql  
    Change '**PASSWORD**' to the password of your mysql  
    Change '**DATABASENAME**' to the name of the database that you want to connect
-4. To make sure that the mailer is working, make sure you modify the codes in **Mailer.cs** located in **/backend/Model/Mailer.cs** at line 14, 17 and 19. The code should look like bwlow:
+4. To make sure that the mailer is working, make sure you modify the codes in **Mailer.cs** located in **/backend/Model/Mailer.cs** at line 14, 17 and 19. The code should look like below:
     ```csharp
     var basicCredential = new NetworkCredential("FROMADDRESS", "FROMPASSWORD");
     ```
@@ -105,3 +108,64 @@ P/S: If you think there is a better way for us to asses your technical skills, f
     Change '**FROMPASSWORD**' to the password of the email address that you are using  
     Change '**YOURSMTPHOST**' to the smtp host of your email address  
 5. Run your backend by typing '**dotnet run**' and your backend will be accessible at [https://localhost:5001](https://localhost:5001)
+
+### SQL Structure
+- There are four tables in the database;
+  - **users** table to store all the details of the user
+  - **products** table to store all the details of the product
+  - **orders** table to store all the details of the orders for every users
+  - **activity** table to store all the activity for every users
+- The structure of each table is below:
+  - **user** table
+    ```sql
+    CREATE TABLE users (
+      id int(11) NOT NULL AUTO_INCREMENT,
+      userid varchar(20) NOT NULL,
+      email text NOT NULL,
+      fullname text NOT NULL,
+      usertype text NOT NULL,
+      password text NOT NULL,
+      loginkey text NOT NULL,
+      verifycode int(11) DEFAULT NULL,
+      PRIMARY KEY (id)
+    )
+    ```
+  - **products** table
+    ```sql
+    CREATE TABLE products (
+      id int(11) NOT NULL AUTO_INCREMENT,
+      name text NOT NULL,
+      price double NOT NULL,
+      sizes text NOT NULL,
+      image mediumblob NOT NULL,
+      description text NOT NULL,
+      available text NOT NULL,
+      category text NOT NULL,
+      gender text NOT NULL,
+      PRIMARY KEY (id)
+    )
+    ```
+  - **orders** table
+    ```sql
+    CREATE TABLE orders (
+      id int(11) NOT NULL AUTO_INCREMENT,
+      userid text NOT NULL,
+      name text NOT NULL,
+      orderid text NOT NULL,
+      quantity int(11) NOT NULL,
+      size text NOT NULL,
+      price double NOT NULL,
+      orderat datetime NOT NULL,
+      PRIMARY KEY (id)
+    ) 
+    ```
+  - **activity** table
+    ```sql
+    CREATE TABLE activity (
+      id int(11) NOT NULL AUTO_INCREMENT,
+      userid text NOT NULL,
+      datetime datetime NOT NULL,
+      activity text NOT NULL,
+      PRIMARY KEY (id)
+    )
+    ```
