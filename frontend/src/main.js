@@ -64,7 +64,8 @@ router.beforeEach((to, from, next) => {
 Vue.$cookies.config('1d')
 
 const axios = Axios
-axios.defaults.baseURL = 'https://api.reeqzan.com'
+// axios.defaults.baseURL = 'https://api.reeqzan.com' // Using live DB
+axios.defaults.baseURL = 'https://localhost:5001' // Using local DB
 
 Vue.prototype.$axios = axios
 Vue.prototype.$activity = Activity
