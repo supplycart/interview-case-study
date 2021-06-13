@@ -2,7 +2,7 @@
     <img align="center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
 </p>
 
-## Go to bottom to see instructions on how to run the code
+## The instructions/guide on how to run the code is available at the [bottom](#instructionsguide-to-run-the-project) of this README
 
 # Supplycart Interview Case Study
 
@@ -74,7 +74,7 @@ P/S: If you think there is a better way for us to asses your technical skills, f
         // axios.defaults.baseURL = 'https://api.reeqzan.com' // Using live DB
         axios.defaults.baseURL = 'https://localhost:5001' // Using local DB
         ```
-4. If you are using local db, make sure you run the backend before proceed to step 5 ([Run Backend](###backend_(.NET_Core)))
+4. If you are using local db, make sure you run the backend before proceed to step 5 ([Run Backend](#backend-net-core))
 5. Run the project by typing **'npm run serve'** and your application is accessible at [http://localhost:8080](http://localhost:8080).
 
 ### Backend (.NET Core)
