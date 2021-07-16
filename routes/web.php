@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,12 @@ Route::post('/create-user', [AuthController::class, 'customSignup'])->name('user
 
 Route::get('/dashboard', [AuthController::class, 'dashboardView'])->name('dashboard');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Shop
+
+Route::get('/shop', [ProductsController::class, 'index'])->name('shopindex');
+Route::get('cart', [ProductsController::class, 'cart'])->name('cart');
+Route::get('add-to-cart/{id}', [ProductsController::class, 'addToCart'])->name('addToCart');
+
+Route::patch('update-cart', [ProductsController::class, 'update'])->name('update');
+Route::delete('remove-from-cart', [ProductsController::class, 'remove-from-cart'])->name('remove-from-cart');

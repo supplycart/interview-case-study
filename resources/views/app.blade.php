@@ -33,8 +33,9 @@
             @endif
         @endauth
         </div>
-  @endif
+    @endif
     @yield('content')
+
 </body>
 
 </html>
