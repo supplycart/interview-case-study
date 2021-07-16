@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Http\Controllers\OrderController;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Session;
 
 class ProductsController extends Controller
 {
@@ -74,4 +79,39 @@ class ProductsController extends Controller
             session()->flash('success', 'Product removed successfully');
         }
     }
+    
+    // public function createOrder(array $data)
+    // {
+    //     if (Auth::check())
+    //     {
+    //         $productArray = [];
+    //         foreach ($data as $id){
+    //             array_push($productArray, $id);
+    //         }
+    //         return Order::create([
+    //             'user_id' => Auth::id(),
+    //             'products' => $productArray,
+    //         ]);
+    //     }
+    // }   
+
+    public function checkout()
+    {
+        $cart = session()->get('cart');
+        if($cart) {
+            $keys = array_keys($cart);
+            $id = Auth::id();
+            $products = json_encode($cart);
+            // echo $products;
+            Order::create([
+                'user_id' => $id,
+                'products' => $products
+              ]);
+            $cart = [];
+            session()->put('cart', $cart);
+            return redirect()->route('ordersindex')->with('success', 'Checkout successful');
+        }
+    }
+
+
 }

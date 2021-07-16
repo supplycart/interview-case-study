@@ -76,7 +76,7 @@
             <span>Total cost</span>
             <span>${{ $total }}</span>
           </div>
-          <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+            <a href="{{ route('checkout')}}" class="btn btn-default bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full checkout">Checkout</a>
         </div>
       </div>
 
@@ -111,6 +111,17 @@
                   }
               });
             }
+        });
+        $(".checkout").click(function (e) {
+            e.preventDefault();
+            var ele = $(this);
+              $.ajax({
+                  url: '{{ route('checkout')}}',
+                  method: "get",
+                  success: function (response) {
+                      window.location.replace({{route('ordersindex')}})
+                  }
+              });
         });
     </script>
 @endsection

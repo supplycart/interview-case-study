@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,7 @@ Route::get('add-to-cart/{id}', [ProductsController::class, 'addToCart'])->name('
 
 Route::patch('update-cart', [ProductsController::class, 'update'])->name('update');
 Route::delete('remove-from-cart', [ProductsController::class, 'remove'])->name('remove-from-cart');
+
+// Orders
+Route::get('/orders', [OrderController::class, 'index'])->name('ordersindex');
+Route::get('checkout', [ProductsController::class, 'checkout'])->name('checkout');
