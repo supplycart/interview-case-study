@@ -1,12 +1,13 @@
 @extends('shop.layout')
 @section('title', 'Products')
 @section('content')
-<div class="container products">
-        <div class="row">
+<body class="antialiased">
+    <div class="relative flex-1 items-top justify-center bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <div class="grid grid-cols-3 gap-4">
             @foreach($products as $product)
-                <div class="col-xs-18 col-sm-6 col-md-3">
+                <div>
                     <div class="thumbnail">
-                        <img src="{{ $product->photo }}" width="500" height="300">
+                        <img class="object-scale-down h-48 w-48" src="{{ $product->photo }}" alt="">
                         <div class="caption">
                             <h4>{{ $product->name }}</h4>
                             <p>{{ Str::limit(strtolower($product->description), 50) }}</p>
@@ -18,4 +19,5 @@
             @endforeach
         </div><!-- End row -->
     </div>
+</body>
 @endsection
