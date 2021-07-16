@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <div class="card">
-                    <h3 class="card-header text-center">Signin</h3>
+                    <h3 class="card-header text-center">Sign in</h3>
                     <div class="card-body">
                         <form method="POST" action="{{ route('signin.custom') }}">
                             @csrf
@@ -25,10 +25,15 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember">Remember
-                                    </label>
+                                <div class="flex">
+                                    <div class="checkbox flex-auto">
+                                        <label>
+                                            <input type="checkbox" name="remember">Remember
+                                        </label>
+                                    </div>
+                                    <div class="order-last flex-auto right-0">
+                                        <a class = "text-sm text-gray-700 underline" href="{{ route('register')}}">Register new account</a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="d-grid mx-auto">

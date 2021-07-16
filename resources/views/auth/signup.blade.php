@@ -31,9 +31,9 @@
                             </div>
 
                             <div class="form-group mb-2">
-                                <div class="checkbox">
-                                    <label><input type="checkbox" name="remember">Remember</label>
-                                </div>
+                                    <div class="order-last flex-auto right-0">
+                                        <a class = "text-sm text-gray-700 underline" href="{{ route('login')}}">Login instead</a>
+                                    </div>
                             </div>
 
                             <div class="d-grid mx-auto">
