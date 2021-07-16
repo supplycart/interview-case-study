@@ -38,4 +38,4 @@ Route::get('cart', [ProductsController::class, 'cart'])->name('cart');
 Route::get('add-to-cart/{id}', [ProductsController::class, 'addToCart'])->name('addToCart');
 
 Route::patch('update-cart', [ProductsController::class, 'update'])->name('update');
-Route::delete('remove-from-cart', [ProductsController::class, 'remove-from-cart'])->name('remove-from-cart');
+Route::delete('remove-from-cart', [ProductsController::class, 'remove'])->name('remove-from-cart');
