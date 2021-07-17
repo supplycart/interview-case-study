@@ -1,8 +1,11 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-
-  <SignIn />
+  <div id="app">
+  <router-view/>
+  <!-- <SignIn /> -->
+  </div>
+  
 
   <!-- <TopBar />
   <Header />
@@ -13,18 +16,19 @@
 // import Header from './components/Header.vue'
 // import Products from './components/Products.vue'
 // import TopBar from './components/TopBar.vue'
-import SignIn from './components/SignIn.vue'
+// import SignIn from './components/SignIn.vue'
 
 export default {
   name: 'App',
   components: {
     // HelloWorld
     // Header, Products, TopBar
-    SignIn
+    // SignIn
   },
   data() {
     return {
-      products: []
+      products: [],
+      signIn: true
     }
   },
   created() {

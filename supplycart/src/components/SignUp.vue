@@ -21,6 +21,9 @@
                 <input class="textbox rounded-lg bg-gray-100" type="password" placeholder="Password" height="20" width="50">
             </div>
             <button class="mt-8 bg-gray-50 rounded-lg shadow-lg px-4 py-1 hover:bg-gray-300">Create new account</button>
+            <br>
+            <br>
+            <router-link to="/" class="underline text-blue-600">Go back</router-link>
         </div>
       </div>
       
@@ -43,7 +46,7 @@ export default {
 
 .wrapper {
     text-align: center;
-    margin: 5% auto 5%;
+    margin: 5% auto 10%;
     /* padding: 20px; */
 }
 
@@ -69,4 +72,9 @@ export default {
     padding-bottom: 40px;
 }
 
+@media screen and (max-width: 800px) {
+    .box{
+        width:75%;
+    }
+}
 </style>
