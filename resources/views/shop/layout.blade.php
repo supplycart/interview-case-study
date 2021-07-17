@@ -17,6 +17,8 @@
         @auth
             <a class="text-sm text-gray-700 underline" href="{{ route('dashboard') }}">Home</a>
             <a class="text-sm text-gray-700 underline" href="{{ route('logout') }}">Sign out</a>
+            <a class="text-sm text-gray-700 underline" href="{{ route('shopindex') }}">Shop</a>
+            <a class="text-sm text-gray-700 underline" href="{{ route('ordersindex') }}">Orders</a>
             @else
             <a class="text-sm text-gray-700 underline" href="{{ route('login') }}">Log in</a>
                         
