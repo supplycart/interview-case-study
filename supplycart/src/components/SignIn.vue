@@ -13,7 +13,7 @@
                 <h3>Password</h3>
                 <input class="textbox rounded-lg bg-gray-100" type="password" placeholder="Password" height="20" width="50">
             </div>
-            <button class="mt-8 bg-gray-50 rounded-lg shadow-lg px-4 py-1 hover:bg-gray-300">Sign In</button>
+            <button class="mt-8 bg-gray-50 rounded-lg shadow-lg px-4 py-1 hover:bg-gray-300" @click="goToMain()">Sign In</button>
             <br>
             <br>
             <!-- <div class="underline text-blue-600 mt-5" @click="$redirect('/signup')">Create new account</div> -->
@@ -28,6 +28,11 @@
 <script>
 export default {
     name: "SignIn",
+    methods: {
+        goToMain(){
+            this.$router.push({name:'Main'})
+        }
+    }
 }
 
 </script>

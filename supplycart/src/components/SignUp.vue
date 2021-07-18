@@ -20,7 +20,7 @@
                 <h3>Password</h3>
                 <input class="textbox rounded-lg bg-gray-100" type="password" placeholder="Password" height="20" width="50">
             </div>
-            <button class="mt-8 bg-gray-50 rounded-lg shadow-lg px-4 py-1 hover:bg-gray-300">Create new account</button>
+            <button class="mt-8 bg-gray-50 rounded-lg shadow-lg px-4 py-1 hover:bg-gray-300" @click="goToMain()">Create new account</button>
             <br>
             <br>
             <router-link to="/" class="underline text-blue-600">Go back</router-link>
@@ -33,11 +33,16 @@
 
 <script>
 export default {
-    name: "SignUp"
+    name: "SignUp",
+    methods: {
+        goToMain(){
+            this.$router.push({name:'Main'})
+        }
+    }
 }
 </script>
 
-<style>
+<style scoped>
 /* .box {
     margin-top: 20px;
     position:relative;
