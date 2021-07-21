@@ -1,5 +1,6 @@
 <template>
   <TopBar />
+  <h1 class="ml-5 mt-5 text-2xl">Welcome back, User</h1>
   <div class="flex ">
     <div class="flex-none w-16 h-16 mx-9 mt-5">
       <!-- This item will not grow -->
@@ -24,7 +25,7 @@ export default {
     components: {
         TopBar, Products
     },
-      data() {
+  data() {
     return {
       products: [],
       signIn: true
@@ -45,6 +46,20 @@ export default {
         price: "RM59",
         img: "https://www.ikea.com/my/en/images/products/linnmon-adils-table-white__0737165_pe740925_s5.jpg",
         desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      },
+      {
+        id: 3,
+        name: "Another chair",
+        price: "RM138",
+        img: "https://www.ikea.com/my/en/images/products/renberget-swivel-chair-bomstad-black__0724701_pe734583_s5.jpg?f=s",
+        desc: "Another lorem ipsum"
+      },
+      {
+        id: 4,
+        name: "Lamp",
+        price: "RM69",
+        img: "https://www.ikea.com/my/en/images/products/lersta-floor-reading-lamp-aluminium__0606034_pe681992_s5.jpg?f=s",
+        desc: "Standing lamp"
       }
 
     ]

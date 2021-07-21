@@ -1,7 +1,7 @@
 <template>
   <div class = "p-5 m-5 product bg-white shadow-md rounded-lg item ">
     <div class="item-summary">
-      <img :src="product.img" alt="chair">
+      <img :src="product.img" :alt="product.name">
       <h3>{{product.id}}. {{product.name}}</h3>
     </div>
     <div class="item-details ">
@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 img {
   max-width: 80%;
   max-height: 80%;
@@ -36,7 +36,7 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr 0.5fr;
   column-gap: 20px;
-  place-items: center;
+  /* place-items: center; */
 }
 
 .item-add-to-cart {

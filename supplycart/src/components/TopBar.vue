@@ -1,7 +1,7 @@
 <template>
   <div class="shadow-md container bg-blue-50 h-12 ">
       <div class = "options h-12">
-        <i class="fa fa-history fa-2x" aria-hidden="true"></i>
+        <i @click="goToHistory()" class="fa fa-history fa-2x hover:text-gray-500 cursor-pointer" aria-hidden="true"></i>
         <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
 
 <!-- dropdown button ref: https://tailwindcomponents.com/component/pure-css-dropdown-using-focus-within-with-animation -->
@@ -39,6 +39,11 @@
 
 export default {
   name: "TopBar",
+  methods: {
+    goToHistory(){
+      this.$router.push({name:'History'})
+    }
+  }
 }
 
 </script>
