@@ -42,3 +42,6 @@ I've done all of these on Windows, via Laragon, but the files should still run r
 - Run npm install (just in case)
 - Finally, run php artisan serve. The website should start on http://127.0.0.1:8000.
 
+Side note: I chose to use sqlite for database in this project for simplicity, so if it says database not found, try changing the database path .env file.
+The sqlite database file should be found in the database folder, named databse.sqlite.
+
