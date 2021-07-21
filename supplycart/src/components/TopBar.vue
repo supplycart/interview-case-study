@@ -25,7 +25,7 @@
               </div>
               <div class="py-1">
                 <!-- <a href="javascript:void(0)" tabindex="3" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem" >Sign out</a> -->
-                <router-link to="/" tabindex="3" class="hover:bg-gray-300 text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem">Sign Out</router-link>
+                <router-link @click="logSignOut()" to="/" tabindex="3" class="hover:bg-gray-300 text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem">Sign Out</router-link>
               </div>
             </div>
           </div>
@@ -42,9 +42,14 @@ export default {
   methods: {
     goToHistory() {
       this.$router.push({name:'History'})
+      console.log("switch to history success")
     },
     goToCart() {
        this.$router.push({name:'Cart'})
+       console.log("switch to cart success")
+    },
+    logSignOut(){
+      console.log("signout success")
     }
   }
 }

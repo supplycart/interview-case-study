@@ -24,6 +24,7 @@ export default {
     methods:{
       addedProduct() {
         alert("Added product into cart")
+        console.log("add product into cart success")
       }
     }
 }

@@ -31,6 +31,7 @@ export default {
     methods: {
         goToMain(){
             this.$router.push({name:'Main'})
+            console.log("switch to main success")
         }
     },
     data() {
