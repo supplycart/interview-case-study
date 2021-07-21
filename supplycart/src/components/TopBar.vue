@@ -2,7 +2,7 @@
   <div class="shadow-md container bg-blue-50 h-12 ">
       <div class = "options h-12">
         <i @click="goToHistory()" class="fa fa-history fa-2x hover:text-gray-500 cursor-pointer" aria-hidden="true"></i>
-        <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+        <i @click="goToCart()" class="fa fa-shopping-cart fa-2x hover:text-gray-500 cursor-pointer" aria-hidden="true"></i>
 
 <!-- dropdown button ref: https://tailwindcomponents.com/component/pure-css-dropdown-using-focus-within-with-animation -->
         <div class=" relative inline-block text-left dropdown">
@@ -40,8 +40,11 @@
 export default {
   name: "TopBar",
   methods: {
-    goToHistory(){
+    goToHistory() {
       this.$router.push({name:'History'})
+    },
+    goToCart() {
+       this.$router.push({name:'Cart'})
     }
   }
 }

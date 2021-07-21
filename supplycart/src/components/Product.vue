@@ -10,7 +10,7 @@
       <p>Price: {{product.price}}</p>
     </div>
     <div class="text-right item-add-to-cart">
-      <button class="mt-8 bg-green-100 rounded-lg shadow-lg px-4 py-1 hover:bg-green-200">Add to cart</button>
+      <button @click="addedProduct()" class="mt-8 bg-green-100 rounded-lg shadow-lg px-4 py-1 hover:bg-green-200">Add to cart</button>
     </div>
   </div>
 </template>
@@ -20,6 +20,11 @@ export default {
     name: "Product",
     props: {
         product: Object
+    },
+    methods:{
+      addedProduct() {
+        alert("Added product into cart")
+      }
     }
 }
 </script>
