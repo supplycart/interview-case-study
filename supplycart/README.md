@@ -1,24 +1,21 @@
 # supplycart
 
 ## Project setup
+To run the web app, 
+<ol>
+  <li> At your terminal, enter:
+    
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
+    
+  </li>
+  <li> Then enter:
+    
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+    
+  </li>
+  <li> Lastly, in your preferred web browser, go to http://localhost:8080/ or http://192.168.0.170:8080/, or the route that your terminal specifies
+  
