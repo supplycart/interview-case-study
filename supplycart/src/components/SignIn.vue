@@ -18,6 +18,7 @@
             <router-link to="/signup" class="underline text-blue-600">Create new account</router-link>
         </div>
       </div>
+      
   </div>
 </div>
 </template>

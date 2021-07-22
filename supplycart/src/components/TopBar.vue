@@ -1,6 +1,6 @@
 <template>
-  <div class="shadow-md container bg-blue-50 h-12 ">
-      <div class = "options h-12">
+  <div class="shadow-md flex justify-end items-center bg-blue-200 h-12">
+      <div class="space-x-4">
         <i @click="goToHistory()" class="fa fa-history fa-2x hover:text-gray-500 cursor-pointer" aria-hidden="true"></i>
         <i @click="goToCart()" class="fa fa-shopping-cart fa-2x hover:text-gray-500 cursor-pointer" aria-hidden="true"></i>
 
@@ -9,7 +9,7 @@
           <span class="rounded-md shadow-sm"> 
             <button class="inline-flex justify-center w-full leading-5 transition duration-150 ease-in-out  rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" 
              type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
-              <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+              <i class="fa fa-user-circle fa-2x mr-5" aria-hidden="true"></i>
             </button>
           </span>
           <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
@@ -24,7 +24,6 @@
                 <span role="menuitem" tabindex="-1" class="flex justify-between w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 cursor-not-allowed opacity-50" aria-disabled="true">New feature (soon)</span>
               </div>
               <div class="py-1">
-                <!-- <a href="javascript:void(0)" tabindex="3" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem" >Sign out</a> -->
                 <router-link @click="logSignOut()" to="/" tabindex="3" class="hover:bg-gray-300 text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"  role="menuitem">Sign Out</router-link>
               </div>
             </div>
@@ -57,11 +56,11 @@ export default {
 </script>
 
 <style scoped>
-.container {
+/* .container {
     text-align: right; 
     align-items: center;
     justify-content: space-between;
-}
+} */
 
 .options {
     display: inline-flex;
