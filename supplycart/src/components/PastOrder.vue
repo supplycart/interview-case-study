@@ -7,14 +7,14 @@
                 <div class="item-name">
                     <ol class="list-decimal pl-5">
                         <li v-for="item in pastOrder.products" :key="item.id">
-                             {{ item.name }}
+                             {{ item.name }} 
                         </li>
                     </ol>
                 </div>
                 <div class="item-qty">
                     <ol>
                         <li v-for="item in pastOrder.products" :key="item.id">
-                            x {{ item.qty }}
+                            {{item.price/item.qty}} x {{ item.qty }}
                         </li>
                     </ol>
                 </div>
@@ -47,15 +47,12 @@ export default {
 img {
   max-width: 80%;
   max-height: 80%;
-        /* display: block;
-        margin: 0 auto; */
 }
 
 .item {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 20px;
-  /* place-items: center; */
 }
 
 .item-summary {

@@ -44,16 +44,9 @@ export default {
 </script>
 
 <style scoped>
-/* .box {
-    margin-top: 20px;
-    position:relative;
-    margin-bottom: 20px;
-} */
-
 .wrapper {
     text-align: center;
     margin: 5% auto 10%;
-    /* padding: 20px; */
 }
 
 .input-area {
@@ -72,8 +65,6 @@ export default {
     background: url('../assets/signin-page-bg.jpg');
     background-size: 100% 180%;
     background-position: bottom left;
-    /* min-height: 100vh;
-    height:auto; */
     padding-top: 20px;
     padding-bottom: 40px;
 }

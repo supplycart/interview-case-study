@@ -58,7 +58,6 @@ export default {
 
 <style scoped>
 .container {
-    /* display:flex; */
     text-align: right; 
     align-items: center;
     justify-content: space-between;

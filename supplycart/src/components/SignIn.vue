@@ -1,6 +1,5 @@
 <template>
 <div class="container ">
-  <!-- <div class="flex flex-wrap h-screen justify-center items-center "> -->
     <div class="flex h-full justify-center items-center ">
       <div class="box h-4/5 bg-gray-200 bg-opacity-90 w-5/12 rounded-lg shadow-lg">
         <div class="wrapper w-4/5">
@@ -16,11 +15,9 @@
             <button class="mt-8 bg-gray-50 rounded-lg shadow-lg px-4 py-1 hover:bg-gray-300" @click="goToMain()">Sign In</button>
             <br>
             <br>
-            <!-- <div class="underline text-blue-600 mt-5" @click="$redirect('/signup')">Create new account</div> -->
             <router-link to="/signup" class="underline text-blue-600">Create new account</router-link>
         </div>
       </div>
-      
   </div>
 </div>
 </template>
@@ -61,8 +58,6 @@ export default {
     background: url('../assets/signin-page-bg.jpg');
     background-size: 100% 180%;
     background-position: bottom left;
-    /* min-height: 100vh;
-    height:auto; */
     padding-top: 20px;
     padding-bottom: 90px;
 }

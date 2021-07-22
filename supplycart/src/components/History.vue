@@ -6,16 +6,15 @@
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 Back
             </div>
-        <!-- This item will not grow -->
-    </div>
-    <div class="border-2 flex-grow bg-gray-100 mx-9 my-5">
-        <!-- This item will grow -->
-        <div class="text-3xl text-center my-3">Order History</div>
-        <PastOrders :pastOrders = "pastOrders" />
-    </div>
-    <div class="flex-none w-16 h-16 mx-9 mt-5">
-        <!-- This item will not grow -->
-    </div>
+        </div>
+
+        <div class="border-2 flex-grow bg-gray-100 mx-9 my-5">
+            <div class="text-3xl text-center my-3">Order History</div>
+            <PastOrders :pastOrders = "pastOrders" />
+        </div>
+        
+        <div class="flex-none w-16 h-16 mx-9 mt-5">
+        </div>
   </div>
 </template>
 
