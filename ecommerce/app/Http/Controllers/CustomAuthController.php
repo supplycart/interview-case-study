@@ -81,16 +81,11 @@ class CustomAuthController extends Controller
     }    
     
     /**
-     * Check authentication before redirecting to dashboard. If
-     * user is not logged in, redirect to login page.
+     * Get the view of dashboard page.
      */
     public function dashboard()
     {
-        if(Auth::check()) {
-            return view('dashboard');
-        }
-  
-        return redirect("login")->withSuccess('You are not allowed to access');
+        return view('dashboard');
     }
     
     /**
