@@ -13,6 +13,15 @@
                     <h1 class="text-black-700 bold">{{ $product->name }}</h1>
                     <span class="mt-2 text-gray-500">${{ $product->price }}</span>
                 </div>
+                <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" value="{{ $product->id }}" name="id">
+                    <input type="hidden" value="{{ $product->name }}" name="name">
+                    <input type="hidden" value="{{ $product->price }}" name="price">
+                    <input type="hidden" value="{{ $product->image }}"  name="image">
+                    <input type="hidden" value="1" name="quantity">
+                    <button class="px-4 py-2 mb-3 ml-5 text-white bg-blue-800 rounded">Add To Cart</button>
+                </form>
             </div>
             @endforeach
         </div>
