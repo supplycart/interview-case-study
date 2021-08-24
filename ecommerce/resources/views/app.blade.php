@@ -18,10 +18,13 @@
                 </div>
                 <nav class="p-6 mt-4 text-white bg-black sm:flex sm:justify-center sm:items-center">
                     <div class="flex flex-col sm:flex-row">
-                        <a class="mt-3 hover:underline sm:mx-3 sm:mt-0" href="{{ route('login') }}">Login</a>
-                        <a class="mt-3 hover:underline sm:mx-3 sm:mt-0" href="{{ route('register-user') }}">Register</a>
-                        <a class="mt-3 hover:underline sm:mx-3 sm:mt-0" href="{{ route('dashboard') }}">Shop</a>
-                        <a class="mt-3 hover:underline sm:mx-3 sm:mt-0" href="{{ route('signout') }}">Logout</a>
+                        @if(Auth::user())
+                            <a class="mt-3 hover:underline sm:mx-3 sm:mt-0" href="{{ route('dashboard') }}">Shop</a>
+                            <a class="mt-3 hover:underline sm:mx-3 sm:mt-0" href="{{ route('signout') }}">Logout</a>
+                        @else
+                            <a class="mt-3 hover:underline sm:mx-3 sm:mt-0" href="{{ route('login') }}">Login</a>
+                            <a class="mt-3 hover:underline sm:mx-3 sm:mt-0" href="{{ route('register-user') }}">Register</a>
+                        @endif
                     </div>
                 </nav>
             </div>
