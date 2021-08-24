@@ -1,39 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>E-commerce</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title')</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
-
 <body>
-
-    <nav class="navbar navbar-light navbar-expand-lg mb-5" style="background-color: #e3f2fd;">
-        <div class="container">
-            <a class="navbar-brand mr-auto" href="#">MengYi</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register-user') }}">Register</a>
-                    </li>
-                    @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('signout') }}">Logout</a>
-                    </li>
-                    @endguest
-                </ul>
+    <div class="bg-white">
+        <header>
+            <div class="container px-6 py-3 mx-auto">
+                <div class="flex items-center justify-between">                    
+                    <div class="flex items-center justify-end w-full">
+                        <button" class="mx-4 text-gray-600 focus:outline-none sm:mx-0"></button>
+                    </div>
+                </div>
+                <nav class="p-6 mt-4 text-white bg-black sm:flex sm:justify-center sm:items-center">
+                    <div class="flex flex-col sm:flex-row">
+                        <a class="mt-3 hover:underline sm:mx-3 sm:mt-0" href="{{ route('login') }}">Login</a>
+                        <a class="mt-3 hover:underline sm:mx-3 sm:mt-0" href="{{ route('register-user') }}">Register</a>
+                        <a class="mt-3 hover:underline sm:mx-3 sm:mt-0" href="{{ route('dashboard') }}">Shop</a>
+                        <a class="mt-3 hover:underline sm:mx-3 sm:mt-0" href="{{ route('signout') }}">Logout</a>
+                    </div>
+                </nav>
             </div>
-        </div>
-    </nav>
-    @yield('content')
-
+        </header>
+        
+        <main class="my-8">
+            @yield('content')
+        </main>
+    
+    </div>
 </body>
-
 </html>
