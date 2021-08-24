@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\ProductController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,6 @@ Route::get('registration', [CustomAuthController::class, 'registration'])->name(
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
 
 Route::middleware('auth')->group(function() {
-    Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard'); 
+    Route::get('dashboard', [ProductController::class, 'dashboard'])->name('dashboard'); 
     Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 });

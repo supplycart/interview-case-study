@@ -79,13 +79,13 @@ class CustomAuthController extends Controller
       ]);
     }    
     
-    /**
-     * Get the view of dashboard page.
-     */
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
+    // /**
+    //  * Get the view for dashboard page.
+    //  */
+    // public function dashboard()
+    // {
+    //     return view('dashboard');
+    // }
     
     /**
      * Sign out and redirect to login page.
