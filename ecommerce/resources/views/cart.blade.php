@@ -10,6 +10,11 @@
                 <p class="text-green-800">{{ $message }}</p>
             </div>
         @endif
+        @if ($message = Session::get('error'))
+            <div class="py-4 px-8 my-4 bg-red-400 rounded">
+                <p class="text-red-800">{{ $message }}</p>
+            </div>
+        @endif
         <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
             <div class="w-full pt-4 mt-4 mb-4 px-8">
             <table class="w-full">

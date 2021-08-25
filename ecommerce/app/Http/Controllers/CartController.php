@@ -56,7 +56,7 @@ class CartController extends Controller
 
         session()->flash('success', 'Cart Updated Successfully!');
 
-        return redirect()->route('cart.list');
+        return redirect('cart');
     }
 
     /**
@@ -69,7 +69,7 @@ class CartController extends Controller
         \Cart::remove($request->id);
         session()->flash('success', 'Product Removed from Cart Successfully!');
 
-        return redirect()->route('cart.list');
+        return redirect('cart');
     }
 
     /**
@@ -80,6 +80,6 @@ class CartController extends Controller
         \Cart::clear();
         session()->flash('success', 'Cart Cleared Successfully !');
 
-        return redirect()->route('cart.list');
+        return redirect('cart');
     }
 }

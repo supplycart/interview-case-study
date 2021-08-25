@@ -5,6 +5,11 @@
 @section('content')
     <div class="container px-6 mx-auto">
         <h3 class="text-2xl px-8 font-medium text-gray-700">Order History</h3>
+        @if ($message = Session::get('success'))
+            <div class="py-4 px-8 my-4 bg-green-400 rounded">
+                <p class="text-green-800">{{ $message }}</p>
+            </div>
+        @endif
         <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
             <div class="w-full">
                 @foreach ($ordersProducts as $order => $products)

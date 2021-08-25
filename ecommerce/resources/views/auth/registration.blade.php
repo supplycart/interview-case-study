@@ -5,6 +5,16 @@
 @section('content')
     <div class="container px-6 mx-auto">
         <h3 class="text-2xl px-8 font-medium text-gray-700">Registration</h3>
+        @if ($message = Session::get('success'))
+            <div class="py-4 px-8 my-4 bg-green-400 rounded">
+                <p class="text-green-800">{{ $message }}</p>
+            </div>
+        @endif
+        @if ($message = Session::get('error'))
+            <div class="py-4 px-8 my-4 bg-red-400 rounded">
+                <p class="text-red-800">{{ $message }}</p>
+            </div>
+        @endif
         <div class="bg-white rounded px-8 pt-6 pb-8 mb-4">
             <form method="POST" action="{{ route('register.custom') }}"> 
                 @csrf  

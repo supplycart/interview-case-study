@@ -30,6 +30,11 @@ class OrderController extends Controller
      */
     public function placeOrder()
     {
+        if (\Cart::isEmpty()) {
+            session()->flash('error', 'No Items in Cart!');
+            return redirect()->route('cart.list');
+        }
+
         $order = Order::create([
             'user_id' => Auth::user()->id,
             'total' => \Cart::getTotal()
@@ -47,6 +52,8 @@ class OrderController extends Controller
 
         \Cart::clear();
 
-        return redirect()->route('order');
+        session()->flash('success', 'Order placed successfully!');
+
+        return redirect('order');
     }
 }

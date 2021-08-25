@@ -32,11 +32,17 @@ Bonus tasks are not attempted but some additional tasks are completed as follow:
 ## Run
 
 1. Before running, a local database will need to be configured.
-    - For my case, I have used the MySQL database and administrate it over the web using phpMyAdmin. I then logged onto the phpMyAdmin website and create a database called 'ecommercedb'.
+    - For my case, I have used the MySQL database and administrate it over the web using phpMyAdmin. 
         - Installation of [MySQL with phpMyAdmin](https://www.javahelps.com/2018/10/install-mysql-with-phpmyadmin-on-ubuntu.html)
+    - I then logged onto the phpMyAdmin website and create a database called 'ecommercedb'.
         - Configuration of database name, user, password, etc. at `.env.example` file
+    - After that, start the MySQL service.
 
-2. After that, run the following commands.
+        ```php
+        sudo mysql service start
+        ```
+
+2. Next, run the following commands.
 
     ```php
     cd ecommerce

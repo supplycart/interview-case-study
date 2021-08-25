@@ -35,10 +35,13 @@ class CustomAuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                            ->withSuccess('Signed in');
+            session()->flash('success', 'Logged in Successfully!');
+            return redirect('dashboard');
         }
-        return redirect('login')->withSuccess('Login details are invalid');
+
+        session()->flash('error', 'Login details are invalid');
+
+        return redirect('login');
     }
 
     /**
@@ -50,7 +53,7 @@ class CustomAuthController extends Controller
     }
 
     /**
-     * Validate registration request. Redirect to dashboard page 
+     * Validate registration request. Redirect to login page 
      * if registration details are valid.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -64,21 +67,17 @@ class CustomAuthController extends Controller
         ]);
            
         $data = $request->all();
-        $check = $this->create($data);
-         
-        return redirect('dashboard')->withSuccess('You have signed-in');
+        User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password'])
+        ]);
+        
+        session()->flash('success', 'Registered Successfully!');
+
+        return redirect('login');
     }   
 
-    
-    public function create(array $data)
-    {
-      return User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password'])
-      ]);
-    }    
-    
     /**
      * Sign out and redirect to login page.
      */
@@ -86,6 +85,7 @@ class CustomAuthController extends Controller
         Session::flush();
         Auth::logout();
   
+        session()->flash('success', 'Logged Out Successfully!');
         return redirect('login');
     }
 
