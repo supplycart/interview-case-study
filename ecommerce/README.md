@@ -39,7 +39,7 @@ Bonus tasks are not attempted but some additional tasks are completed as follow:
     - After that, start the MySQL service.
 
         ```php
-        sudo mysql service start
+        sudo service mysql start
         ```
 
 2. Next, run the following commands.
