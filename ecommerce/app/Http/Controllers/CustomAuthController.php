@@ -27,20 +27,20 @@ class CustomAuthController extends Controller
      */
     public function customLogin(Request $request)
     {
+        // Validate if required inputs are given
         $request->validate([
             'email' => 'required',
             'password' => 'required'
         ]);
 
+        // Authenticate user
         $credentials = $request->only('email', 'password');
-
         if (Auth::attempt($credentials)) {
             session()->flash('success', 'Logged in Successfully!');
             return redirect('dashboard');
         }
 
         session()->flash('error', 'Login details are invalid');
-
         return redirect('login');
     }
 
@@ -60,12 +60,14 @@ class CustomAuthController extends Controller
      */
     public function customRegistration(Request $request)
     {  
+        // Validate if inputs are given and in correct format
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);
-           
+        
+        // Store user data
         $data = $request->all();
         User::create([
             'name' => $data['name'],
@@ -74,7 +76,6 @@ class CustomAuthController extends Controller
         ]);
         
         session()->flash('success', 'Registered Successfully!');
-
         return redirect('login');
     }   
 
