@@ -60,7 +60,7 @@ class CartController extends Controller
     }
 
     /**
-     * Remove a product in cart.
+     * Remove a product from cart.
      * 
      * @param  \Illuminate\Http\Request  $request
      */ 

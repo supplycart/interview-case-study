@@ -74,13 +74,19 @@
                              
                           </tbody>
                         </table>
-                        <div class='text-right'> Total: ${{ Cart::getTotal() }} </div>
                         <div>
                             <form action="{{ route('cart.clear') }}" method="POST">
                                 @csrf
                                 <button class="px-6 py-2 text-red-800 bg-red-300">Clear the Cart</button>
                             </form>
                         </div>
+                        <div> Total: ${{ Cart::getTotal() }} </div>
+                        <div>
+                            <form action="{{ route('order.place') }}" method="POST">
+                                @csrf
+                                <button class="px-6 py-2 text-white bg-blue-500">Place Order</button>
+                            </form>
+                        </div>  
                     </div>
                     
                 </div>

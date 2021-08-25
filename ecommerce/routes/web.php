@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ProductController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +31,10 @@ Route::middleware('auth')->group(function() {
     Route::get('dashboard', [ProductController::class, 'dashboard'])->name('dashboard'); 
     Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
     Route::get('cart', [CartController::class, 'cart'])->name('cart.list');
+    Route::get('order', [OrderController::class, 'order'])->name('order');
     Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
     Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
     Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
     Route::post('clear', [CartController::class, 'clearCart'])->name('cart.clear');
+    Route::post('place-order', [OrderController::class, 'placeOrder'])->name('order.place');
 });
