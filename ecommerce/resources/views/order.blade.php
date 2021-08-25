@@ -3,12 +3,12 @@
 @section('title', 'Order')
 
 @section('content')
-    <main class="container mx-auto p-6">
+    <div class="container px-6 mx-auto">
+        <h3 class="text-2xl px-8 font-medium text-gray-700">Order History</h3>
         <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
-            <h3 class="text-3xl text-bold">Order History</h3>
             <div class="w-full">
                 @foreach ($ordersProducts as $order => $products)
-                <div class="mt-4 mb-4">
+                <div class="mt-4 mb-4 px-8">
                     <h1 class="px-4 py-3 text-blue-500">Order ID: {{ $order }}</h1>
                     <table class="w-full">
                         <thead>
@@ -33,5 +33,5 @@
                 @endforeach
             </div>
         </div>
-    </main>
+    </div>
 @endsection

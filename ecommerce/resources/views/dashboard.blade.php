@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="container px-6 mx-auto">
-        <h3 class="text-2xl font-medium text-gray-700">Product List</h3>
-        <div class="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <h3 class="text-2xl px-8 font-medium text-gray-700">Product</h3>
+        <div class="grid grid-cols-1 gap-6 mt-6 px-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @foreach ($products as $product)
             <div class="w-full max-w-sm mx-auto overflow-hidden rounded-md shadow-md">
                 <img src="{{ url($product->image) }}" alt="" class="w-full h-60">

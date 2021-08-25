@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container px-6 mx-auto">
-        <h3 class="text-2xl font-medium text-gray-700">Login</h3>
+        <h3 class="text-2xl px-8 font-medium text-gray-700">Login</h3>
         <div class="bg-white rounded px-8 pt-6 pb-8 mb-4">
             <form method="POST" action="{{ route('login.custom') }}"> 
                 @csrf  
@@ -26,12 +26,6 @@
                     @if ($errors->has('password'))
                         <span class="text-red-500 text-xs italic">{{ $errors->first('password') }}</span>
                     @endif
-                </div>
-
-                <div class='mb-4'>
-                    <label>
-                        <input type="checkbox" name="remember"> Remember Me
-                    </label>
                 </div>
 
                 <div class="flex items-center justify-between">
