@@ -8,16 +8,14 @@ import Home from './component/home';
 
 function App(){
   return(
-    <div>
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='login' component={Register} />
+    <Router>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='login' component={Register} />
 
-        </Switch>
-      </Router>
-    </div>
+      </Switch>
+    </Router>
 
   )
 

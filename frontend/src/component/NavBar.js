@@ -1,33 +1,37 @@
-import React from 'react';
-import SideNav from './SideNav';
+import React from "react";
 
-function Navbar(props) {
+// import UserDropdown from "./UserDropdown.js";
 
-  const [sidebar, setSidebar] = props.functions;
-
+export default function Navbar() {
   return (
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-blue-500 mb-3">
-        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-          <div className="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
-            <ul className="flex flex-col lg:flex-row list-none ml-auto">
-              <li className="nav-item">
-                <button onClick={ ()=>setSidebar(!sidebar) } className="cursor-pointer text-xl mr-48 leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block outline-none focus:outline-none" type="button">
-                  <span className="block relative w-6 h-px rounded-sm bg-white"></span>
-                  <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
-                  <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
-                </button>   {/*TODO: fix title in navbar not in middle*/}
-              </li>
-              <li className="nav-item">
-                <a className="text-sm font-bold leading-relaxed ml-48 mr-4 py-2 whitespace-nowrap uppercase text-white" to="#">
-                  Shopping Lor
-                </a>
-              </li>              
-            </ul>
-
-          </div>
+    <>
+      {/* Navbar */}
+      <nav className="bg-blue-600 absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
+        <div className="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
+          {/* Brand */}
+          <a
+            className="text-black text-base uppercase hidden lg:inline-block font-semibold "
+            href="#pablo"
+            onClick={e => e.preventDefault()}
+          >
+            Dashboard
+          </a>
+          {/* Form */}
+          <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
+            <div className="relative flex w-full flex-wrap items-stretch">
+              <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+                <i className="fas fa-search"></i>
+              </span>
+              <input type="text" placeholder="Search here..." className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"/>
+            </div>
+          </form>
+          {/* User */}
+          <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
+            {/* <UserDropdown /> */}
+          </ul>
         </div>
       </nav>
-    )
+      {/* End Navbar */}
+    </>
+  );
 }
-
-export default Navbar;
