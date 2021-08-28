@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SideNav from './SideNav';
 
 function Navbar(props) {
 
-  const [sidebar, setSidebar] = props.functions;
+  const [sidebar, setSidebar] = useState();
 
   return (
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-blue-500 mb-3">
