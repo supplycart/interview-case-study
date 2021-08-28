@@ -16,7 +16,8 @@ use App\Http\Controllers\API\AuthController;
 */
 Route::post('/register', [\App\Http\Controllers\UserController::class, 'store']);
 
-Route::post('register', [AuthController::class, 'register']);
+// route everything with /product to ProductController
+Route::resource('product', \App\Http\Controllers\ProductController::class);
 
 Route::post('/login', function () {
     return 'welcome';

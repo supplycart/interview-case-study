@@ -1,38 +1,28 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-function Card(){
-    return(
-        <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-        <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-          <div className="flex-auto p-4">
-            <div className="flex flex-wrap">
-              <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                <h5 className="text-blueGray-400 uppercase font-bold text-xs">
-                  Traffic
-                </h5>
-                <span className="font-semibold text-xl text-blueGray-700">
-                  350,897
-                </span>
-              </div>
-              <div className="relative w-auto pl-4 flex-initial">
-                <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500">
-                  <i className="far fa-chart-bar"></i>
-                </div>
-              </div>
+
+function Card( {items} ){
+
+    console.log(items.length);
+
+    // render one card for each item
+    const renderedItems = items.map(item => {
+      return <div key={item.ProductId} className="m-2 rounded bg-white lg:w-1/4 md:w-1/2 p-4 w-full">
+            <Link className="block relative h-48 rounded overflow-hidden" to='/'>
+              <img alt="ecommerce" className="object-cover w-full h-full object-center block"
+                   src={item.Img}></img>
+            </Link>
+            <div className="mt-4">
+              <h3 className="text-gray-500 text-lg tracking-widest title-font mb-1">{item.Name}</h3>
+              <h2 className="text-gray-900 title-font text-xs font-medium">{item.Detail}</h2>
+              <p className="mt-1">Price: ${item.Price}</p>
             </div>
-              <p className="text-sm text-blueGray-400 mt-4">
-              <span className="text-emerald-500 mr-2">
-                <i className="fas fa-arrow-up"></i> 3.48%
-              </span>
-              <span className="whitespace-nowrap">
-                Since last month
-              </span>
-            </p>
-          </div>
         </div>
-      </div>
-    );
 
+    });
+
+  return renderedItems
 }
 
 export default Card;

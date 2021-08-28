@@ -43,7 +43,7 @@ function Registration() {
 
        const register = async () => {
 
-            axios.post('api/register', {
+            axios.post('/register', {
                 username: registerInput.username,
                 email: registerInput.email,
                 password: registerInput.password

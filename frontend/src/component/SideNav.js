@@ -22,13 +22,13 @@ function SideNav(props){
                 <Link to="/"
                       className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"
                 >Home</Link>
-                <Link href="/cart"
+                <Link to="/cart"
                       className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"
                 >Cart</Link>
-                <Link href="#"
+                <Link to="#"
                       className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"
                 >Settings</Link>
-                <Link href="/login"
+                <Link to="/login"
                       className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"
                 >Logout</Link>
             </nav>
