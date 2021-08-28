@@ -1,11 +1,23 @@
 import React from 'react';
+import axios from 'axios';
 
 function Login() {
+
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
         let email = e.target.elements.email?.value;
         let password = e.target.elements.password?.value;
+
+        const data = {
+            email: email,
+            password: password
+        }
+
+        axios.post(`http://localhost:8000/api/login`, data)
+            .then((result) => {
+                console.log(result);
+            })
 
         console.log(email, password);
     };
