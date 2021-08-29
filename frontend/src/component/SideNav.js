@@ -1,13 +1,47 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import axios from 'axios';
+import swal from 'sweetalert';
 
 function SideNav(props){
 
-    const [sidebar, setSidebar] = useState();
+    let history = useHistory();
 
-    // class name to toggle sidebar
-    let menuActive ="sidebar bg-blue-800 text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative  transition duration-200 ease-in-out";
-    let menu = "sidebar bg-blue-800 text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out";
+    // method to logout
+    const logout = (e) => {
+        e.preventDefault();
+
+        axios.post(`/api/logout`)
+            .then(()=> {
+                localStorage.removeItem('auth_token');
+                localStorage.removeItem('auth_name');
+                swal("Success", 'Please come again', 'success');
+                history.push('/login');
+            })
+            .catch((e)=>{
+                console.log(e);
+            });
+    }
+
+    // if user is not login show login and register button
+    let btn = '';
+    if(!localStorage.getItem('auth_token')){
+        btn = (
+            <Link
+                to="/login"
+              className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"
+            >Login</Link>
+        );
+
+    } else { // show logout button
+        btn = (
+            <button
+                onClick={logout}
+                to="/login"
+                className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"
+            >Logout</button>
+        );
+    }
 
     return(
         <div className="flex flex-col w-60 bg-gray-900">
@@ -28,9 +62,11 @@ function SideNav(props){
                 <Link to="#"
                       className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"
                 >Settings</Link>
-                <Link to="/login"
-                      className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"
-                >Logout</Link>
+                <Link
+                    to="/register"
+                    className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"
+                >Register New Account</Link>
+                {btn}
             </nav>
         </div>
     

@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import SideBar from "./SideNav";
 import axios from 'axios';
+import swal from 'sweetalert'; // package to show alert
+
+import SideBar from "./SideNav";
 
 function ItemDetail(props) {
 
     const [product, setProduct] = useState({}); // store product detail for render
+    const [quantity, setQuantity] = useState(1);
     let productId = props.match.params.id; //get product id from param
 
     useEffect(() =>{
@@ -25,6 +28,40 @@ function ItemDetail(props) {
 
         },[]) // only run on page load
 
+    // handle decrement
+    const handleDecrement = () => {
+        if (quantity > 1){
+            setQuantity(prevCount => prevCount - 1);
+        }
+    }
+
+    // handle decrement
+    const handleIncrement = () => {
+        if (quantity < product.stock){
+            setQuantity(prevCount => prevCount + 1);
+        }
+    }
+
+    // add the selected item and quantity to cart
+    const AddToCart = (e) => {
+        e.preventDefault(); //prevent refresh
+
+        const data = {
+            product_id: product.id,
+            product_quantity: quantity,
+        }
+
+        axios.post(`/cart`, data)
+        .then((result) =>{
+            swal('Success', 'Item added successfully', 'success');
+
+        })
+        .catch((e) => {
+            console.log(e);
+        })
+
+    }
+
     return (
         <div className="flex min-h-screen">
             <SideBar/>
@@ -41,12 +78,17 @@ function ItemDetail(props) {
                             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{product.name}</h1>
                                 <div className="flex mb-4">
+                                    <button onClick={handleDecrement} className="text-white text-center text-md font-semibold rounded-tr-md px-1 bg-gray-800 focus:bg-gray-600 focus:outline-none border border-gray-800 focus:border-gray-600">-</button>
+                                    <div type='text' className='text-center w-12'>{quantity}</div>
+                                    <button onClick={handleIncrement} className="text-white text-center text-md font-semibold rounded-tr-md px-1 bg-gray-800 focus:bg-gray-600 focus:outline-none border border-gray-800 focus:border-gray-600">+</button>
+
                                 </div>
                                 <p className="leading-relaxed">{product.detail}</p>
                                 <div className="flex">
                                     <span className="title-font font-medium text-2xl text-gray-900">${product.price}</span>
                                     <button
-                                        className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Add to Cart
+                                        onClick={AddToCart}
+                                        className="flex ml-auto text-white bg-gray-600 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Add to Cart
                                     </button>
                                 </div>
                             </div>

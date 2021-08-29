@@ -14,14 +14,28 @@ use App\Http\Controllers\API\AuthController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('/register', [\App\Http\Controllers\UserController::class, 'store']);
+
+// register endpoint
+Route::post('/register', [\App\Http\Controllers\UserController::class, 'register']);
+
+// login endpoint
+Route::post('/login', [\App\Http\Controllers\UserController::class, 'login']);
+
+// all endpoint inside here require authentication
+Route::middleware(['auth:sanctum'])->group(function (){
+
+    // logout endpoint
+    Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logout']);
+
+});
+
+
 
 // route everything with /product to ProductController
-Route::resource('product', \App\Http\Controllers\ProductController::class);
+Route::resource('/product', \App\Http\Controllers\ProductController::class);
 
-Route::post('/login', function () {
-    return 'welcome';
-});
+// route everything with /cart to CartController
+Route::resource('/cart', \App\Http\Controllers\CartController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

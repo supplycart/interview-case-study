@@ -1,90 +1,57 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
+import swal from 'sweetalert';
 
 function Registration() {
 
-    const [status, setStatus] = useState(0); // store return value from API call
+    let history = useHistory();
     const [registerInput, setRegisterInput] = useState({
+        username: '',
         email: '',
         password: '',
-        success: '',
-        username: '',
-        message: {
-            email: '',
-            password: '',
-            username: ''
-        }
-    })
+        error: []
+    });
+
+    // update useState value everytime input changes
+    const handleInput = (e) => {
+        setRegisterInput({...registerInput, [e.target.name]: e.target.value});
+    }
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-
          let data = {
-            email: e.target.elements.email?.value,
-            password: e.target.elements.password?.value,
-            username: e.target.elements.username?.value,
-             success: '',
-             message: {
-                 email: '',
-                 password: '',
-                 username: ''
-             }
-        }
+             username: registerInput.email,
+             password: registerInput.password,
+             email: registerInput.email,
+         }
 
-        // update useState of user input
-        setRegisterInput({...registerInput, ...data});
+        axios.get('/sanctum/csrf-cookie') // solve csrf error
+            .then(response => {
+                axios.post(`/api/register`, data)
+                    .then((res) =>{
 
-        // update sendingState to trigger useEffect;
-        setStatus(status+1);
-    }
+                        // register success
+                        if (res.data.status === 200){
+                            // set token inside local storage
+                            localStorage.setItem('auth_token', res.data.token);
+                            localStorage.setItem('auth_name', res.data.email);
 
-    useEffect(() => {
+                            //redirect user to login
+                            swal("Success", 'Registration Successful', 'success');
+                            history.push('/login');
 
-       const register = async () => {
-
-            axios.post('/register', {
-                username: registerInput.username,
-                email: registerInput.email,
-                password: registerInput.password
-            })
-              .then((response) =>{
-
-                     // register success
-                    if (response.status === 200){
-                        let data = {
-                            success:'Registration successful'
+                        } else {
+                            setRegisterInput({ ...registerInput, error: res.data.validation_errors })
                         }
-                        setInput(data);
-                    }
-                })
-                .catch((err) => {
-                    let data = {
-                        message: {
-                            email: err.response.data.errors.email,
-                            password: err.response.data.errors.password,
-                            username: err.response.data.errors.username,
-                        }
-                    }
-                    setInput(data);
-                })
 
-        };
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+        });
 
-       if (status !== 0){ // prevent API call when reloading and first landing
-           register();
-       }
 
-       //TODO: use cleanup function to clean registerInput useState
-
-    }, [status]);
-
-    //TODO: fix error not showing correctly
-    // function to set state to registerInput inside useEffect
-    function setInput(data){
-        console.log('Data ', data);
-        setRegisterInput({...registerInput, ...data})
-        console.log(registerInput);
     }
 
     return(
@@ -93,51 +60,57 @@ function Registration() {
                 <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center'>
                     Register for an account 🔐
                 </h1>
-                <span className='text-green-500 font-serif semi-bold'>{registerInput.success}</span>  {/*to show error message*/}
-                <span className='text-red-500 semi-bold'>{registerInput.message.username}</span>  {/*to show error message*/}
+                {/*registration form*/}
                 <form onSubmit={handleFormSubmit}>
+                    <span className='text-red-500 font-serif semi-bold'>{registerInput.error.username}</span>  {/*to show error message*/}
                     <div>
                         <label htmlFor='text'>Username</label>
                         <input
                             type='text'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
-                            id='username'
+                            name='username'
+                            onChange={handleInput}
+                            value={registerInput.username}
                             placeholder='Username'
                         />
                     </div>
-                    <span className='text-red-500 semi-bold'>{registerInput.message.email}</span>  {/*to show error message*/}
+                    <span className='text-red-500 semi-bold'>{registerInput.error.email}</span>  {/*to show error message*/}
                     <div>
                         <label htmlFor='email'>Email</label>
                         <input
                             type='email'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
-                            id='email'
+                            name='email'
+                            onChange={handleInput}
+                            value={registerInput.email}
                             placeholder='Your Email'
                         />
                     </div>
-                    <span className='text-red-500 semi-bold'>{registerInput.message.username}</span>  {/*to show error message*/}
+                    {/*input field*/}
+                    <span className='text-red-500 semi-bold'>{registerInput.error.password}</span>  {/*to show error message*/}
                     <div>
                         <label htmlFor='password'>Password</label>
                         <input
                             type='password'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
-                            id='password'
+                            name='password'
+                            onChange={handleInput}
+                            value={registerInput.password}
                             placeholder='Your Password'
                         />
                     </div>
 
+                    {/*button for register and login*/}
                     <div className='flex justify-center items-center mt-6'>
                         <button
+                            onClick={handleFormSubmit}
                             className={`bg-green-500 hover:bg-green-700 py-2 px-4 text-sm text-white rounded border border-green`}
-                        >
-                            Resigter
-                        </button>
+                        >Resigter</button>
+
                         <Link
                             className={`bg-green-500 hover:bg-green-700 py-2 px-4 text-sm text-white rounded border border-green`}
                             to='/login'
-                        >
-                            Login
-                        </Link>
+                        >Login</Link>
                     </div>
                 </form>
             </div>
