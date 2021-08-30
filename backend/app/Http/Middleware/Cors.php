@@ -20,7 +20,7 @@ class Cors
             ->header('Access-Control-Allow-Credentials', 'true')
             ->header('Access-Control-Allow-Origin', '*')
             ->header('Access-Control-Allow-Methods', '*')
-            ->header('Access-Control-Allow-Headers', 'X-Requested-With, Origin, X-Csrftoken, Content-Type, Accept, Authorization');
+            ->header('Access-Control-Allow-Headers', 'X-Requested-With, Origin, charset, boundary X-Csrftoken, Content-Type, Accept, Authorization, X-Auth-Token');
 
     }
 }

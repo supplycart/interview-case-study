@@ -17,6 +17,9 @@ class CreateCartTable extends Migration
             $table->id('CartId');
             $table->unsignedBigInteger('ProductId');
             $table->unsignedBigInteger('UserId');
+            $table->string('Status');
+            $table->integer('Quantity');
+            $table->float('Cost', 8, 2);
 
             $table->foreign('ProductId')->references('ProductId')->on('products')
                 ->onUpdate('cascade')

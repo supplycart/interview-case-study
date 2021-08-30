@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Product\ProductCollection;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\Product;
-use App\Http\Resources\Product\ProductCollection;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,12 +12,13 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return ProductCollection
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response|object
      */
     public function index()
     {
-        return Product::all();
-//        return new ProductCollection(Product::all());
+        $output = new ProductCollection(Product::all());
+
+        return response($output)->setStatusCode(200);
 
     }
 

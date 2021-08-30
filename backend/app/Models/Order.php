@@ -23,12 +23,13 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereTransactionTime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
- * @mixin \Eloquent
  */
 class Order extends Model
 {
     use HasFactory;
     protected $primaryKey = 'OrderId';
+    public $timestamps = false;
+
 
     /**
      * The attributes that are mass assignable.

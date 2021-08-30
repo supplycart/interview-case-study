@@ -29,6 +29,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $primaryKey = 'ProductId';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -41,6 +42,4 @@ class Product extends Model
         'Stock',
         'Price',
     ];
-
-    public $timestamps = false; // because laravel expect timestamp column by default
 }

@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-function SideNav(props){
+function SideNav(){
 
     let history = useHistory();
 
@@ -24,7 +24,7 @@ function SideNav(props){
     }
 
     // if user is not login show login and register button
-    let btn = '';
+    let btn;
     if(!localStorage.getItem('auth_token')){
         btn = (
             <Link
@@ -37,7 +37,6 @@ function SideNav(props){
         btn = (
             <button
                 onClick={logout}
-                to="/login"
                 className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"
             >Logout</button>
         );
@@ -53,15 +52,15 @@ function SideNav(props){
             <hr className="my-4 md:min-w-full" />
 
             <nav className="md:flex-nowrap md:overflow-hidden flex flex-col px-4 mt-4 text-center">
-                <Link to="/"
+                <Link to="/home"
                       className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"
                 >Home</Link>
                 <Link to="/cart"
                       className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"
                 >Cart</Link>
-                <Link to="#"
+                <Link to="/order-history"
                       className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"
-                >Settings</Link>
+                >Order History</Link>
                 <Link
                     to="/register"
                     className="py-2 mt-3 text-sm text-gray-400 rounded hover:text-gray-700  hover:bg-gray-200"

@@ -3,10 +3,10 @@ import axios from 'axios';
 import swal from 'sweetalert'; // package to show alert
 
 import SideBar from "./SideNav";
-
+//TODO: add alert for max quantity added
 function ItemDetail(props) {
 
-    const [product, setProduct] = useState({}); // store product detail for render
+    const [product, setProduct] = useState({}); // store product detail for render and API call
     const [quantity, setQuantity] = useState(1);
     let productId = props.match.params.id; //get product id from param
 
@@ -14,7 +14,7 @@ function ItemDetail(props) {
 
         const getProduct = async () =>{
 
-            axios.get(`/product/${productId}`)
+            axios.get(`/api/product/${productId}`)
                 .then((result) => {
                     setProduct(result.data.data);
 
@@ -39,6 +39,8 @@ function ItemDetail(props) {
     const handleIncrement = () => {
         if (quantity < product.stock){
             setQuantity(prevCount => prevCount + 1);
+        } else {
+
         }
     }
 
@@ -49,12 +51,24 @@ function ItemDetail(props) {
         const data = {
             product_id: product.id,
             product_quantity: quantity,
+            cost: (quantity * product.price).toFixed(2),
         }
 
-        axios.post(`/cart`, data)
+        console.log(data);
+        axios.post(`/api/cart/add-to-cart`, data)
         .then((result) =>{
-            swal('Success', 'Item added successfully', 'success');
+            if (result.data.status === 200){ // new cart created
+                swal('Success', 'Item added successfully', 'success');
+            } else if (result.data.status === 201) { // old cart updated successfully
+                swal('Success', 'Cart Updated', 'success');
 
+            } else if (result.data.status === 409) { // product not found/removed
+                swal('Product not found', result.data.message, 'warning');
+
+            } else if (result.message === 'Unauthenticated'){
+                swal('Login To Continue', result.data.message, 'warning');
+
+            }
         })
         .catch((e) => {
             console.log(e);
@@ -79,7 +93,7 @@ function ItemDetail(props) {
                                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{product.name}</h1>
                                 <div className="flex mb-4">
                                     <button onClick={handleDecrement} className="text-white text-center text-md font-semibold rounded-tr-md px-1 bg-gray-800 focus:bg-gray-600 focus:outline-none border border-gray-800 focus:border-gray-600">-</button>
-                                    <div type='text' className='text-center w-12'>{quantity}</div>
+                                    <div className='text-center w-12'>{quantity}</div>
                                     <button onClick={handleIncrement} className="text-white text-center text-md font-semibold rounded-tr-md px-1 bg-gray-800 focus:bg-gray-600 focus:outline-none border border-gray-800 focus:border-gray-600">+</button>
 
                                 </div>

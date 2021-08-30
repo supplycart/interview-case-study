@@ -8,10 +8,12 @@ import Login from './component/login';
 import Home from './component/home';
 import Cart from './component/Cart';
 import ItemDetail from './component/ItemDetail';
+import OrderHistory from "./component/OrderHistory";
 
 // default headers for API call
 axios.defaults.baseURL = 'http://localhost:8000/';
 axios.defaults.headers['Content-Type'] = 'application/json';
+axios.defaults.headers['Access-Control-Allow-Origin'] = "*";
 axios.defaults.headers['Accept'] = 'application/json';
 axios.defaults.withCredentials = true;
 axios.interceptors.request.use(function (config){  // set the API token
@@ -26,6 +28,7 @@ function App(){
       <Router>
         <Switch>
             <Route exact path='/home' component={Home} />
+            <Route exact path='/order-history' component={OrderHistory}/>
             <Route exact path='/login' component={Login} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/cart' component={Cart} />

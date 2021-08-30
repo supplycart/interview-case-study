@@ -1,23 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from "react";
 import axios from "axios";
-import swal from 'sweetalert';
-import {useHistory} from "react-router-dom";
-
 import SideBar from "./SideNav";
 
-function Cart() {
+function OrderHistory(){
 
-    let history = useHistory()
-    const [carts, setCart] = useState([]);
+    const [orders, setOrder] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [totalPrice, setTotalPrice] = useState(0);
-    const [render, setRender] = useState(false);
-    const [selectedCart, setSelectedCart] = useState([]);
 
     const fetctData = () => {
-        axios.get('/api/cart/find-cart')
+        axios.get('/api/order')
             .then(result => {
-                setCart(result.data.data);
+                setOrder(result.data.data);
                 setLoading(false);
 
                 // renderTable();
@@ -28,97 +21,38 @@ function Cart() {
         fetctData();
     }, []);
 
-    const handleSelected = (e) => {
-
-        // if checked cart to checkout
-        if (e.target.checked){
-            setTotalPrice(totalPrice + getPrice(e.target.id)) // add product price to total price
-            setSelectedCart(arr => [...arr, parseInt(e.target.id)]) // update selected cart id list
-
-        } else { // if unchecked
-            setTotalPrice(totalPrice - getPrice(e.target.id))
-
-            // get index of item in selectedCart array and remove
-            let cartIndex = selectedCart.indexOf(parseInt(e.target.id));
-            selectedCart.splice(cartIndex, 1);
-        }
-    }
-
-    // get the price of product by id
-    const getPrice = (id) => {
-        for (let i=0; i<carts.length; i++){
-            if (carts[i].id == id){
-                return carts[i].cost;
-            }
-        }
-        return 0;
-    }
-
-    // checkout the selected item on cart
-    const checkOut = () =>{
-
-        if (totalPrice <= 0){
-
-        } else {
-            // call api to checkout
-            let data = {
-                carts: selectedCart
-            }
-            axios.post('/api/cart/checkout', data)
-                .then((result) => {
-                    if (result.data.status === 200){
-                        swal('Info', 'Select a cart to continue', 'info');
-                        setRender(!render); // rerender the page by changing state
-
-                    } else {
-
-                    }
-                })
-                .catch((err) =>{
-                    console.log(err);
-                })
-
-        }
-
-    }
-
-    // render content of table after API data fetched
     const renderTable = () => {
 
         let output;
 
-        if (carts !== undefined){
-            output = carts.map((cart) => {
+        if (orders !== undefined){
+            output = orders.map((order) => {
                 return (
-                    <tr key={cart.id}>
-                        <td className='px-6 py-4 whitespace-nowrap'>
-                            <input type="checkbox" onClick={handleSelected}  id={cart.id} className="checkbox checkbox-lg" />
-                        </td>
+                    <tr key={order.id}>
                         <td className="px-6 py-4 whitespace-wrap">
                             <div className="ml-4">
-                                <div className="text-base font-medium text-gray-900">{cart.id}</div>
+                                <div className="text-base text-center font-medium text-gray-900">{order.id}</div>
                             </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center">
                                 <div className="flex-shrink-0 h-10 w-10">
-                                    <img className="h-10 w-10" src={cart.img} alt=""/>
+                                    <img className="h-10 w-10" src={order.img} alt=""/>
                                 </div>
                                 <div className="ml-4">
-                                    <div className="text-base font-medium text-gray-900">{cart.name}</div>
+                                    <div className="text-base font-medium text-gray-900">{order.product_name}</div>
                                 </div>
                             </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span
                               className="px-2 text-center text-base leading-5 font-semibold">
-                            ${cart.price}
+                            ${order.price}
                           </span>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-base text-center text-gray-500">{cart.quantity}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-base text-center text-gray-500">{cart.cost}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-base text-center text-gray-500">{order.quantity}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-base text-center text-gray-500">{order.cost}</td>
                     </tr>
-
                 );
             })
 
@@ -126,13 +60,12 @@ function Cart() {
             return (
                 <tr>
                     <td className="px-6 py-4 whitespace-wrap"/>
-                    <td className="px-6 py-4 whitespace-wrap"/>
                     <td className="px-6 py-4 whitespace-wrap">
                         <div>Empty Table</div>
                     </td>
                     <td className="px-6 py-4 whitespace-wrap"/>
                     <td className="px-6 py-4 whitespace-wrap"/>
-                    <td className="px-6 py-4 whitespace-wrap"/>
+
                 </tr>
             );
         }
@@ -153,10 +86,7 @@ function Cart() {
                         {/*//page title*/}
                         <div className='flex flex-row mx-12 mx-auto mt-10 max-w-6xl'>
                             <div className='self-center flex-grow'>
-                                <h2 className='text-center text-2xl font-semibold text-gray-700'>Cart</h2>
-                            </div>
-                            <div className='p-4'>
-                                <h2 className='self-end text-center place-self-end text-2xl font-semibold text-gray-700'>Total Price: {totalPrice}</h2>
+                                <h2 className='text-center text-2xl font-semibold text-gray-700'>Order History</h2>
                             </div>
                         </div>
 
@@ -176,13 +106,7 @@ function Cart() {
                                                             scope="col"
                                                             className="px-6 py-3 text-center text-xm font-medium text-gray-500 uppercase tracking-wider"
                                                         >
-                                                            Select
-                                                        </th>
-                                                        <th
-                                                            scope="col"
-                                                            className="px-6 py-3 text-center text-xm font-medium text-gray-500 uppercase tracking-wider"
-                                                        >
-                                                            Cart Id
+                                                            Order Number
                                                         </th>
                                                         <th
                                                             scope="col"
@@ -220,18 +144,14 @@ function Cart() {
                                 </div>
                             </div>
                         </section>
-                        <div className='self-end ml-8'>
-                            <button
-                                onClick={checkOut}
-                                className='text-gray-600 rounded hover:text-white hover:bg-gray-800 text-sm px-4 py-2  border rounded-full'
-                            >Checkout</button>
-                        </div>
                     </div>
                 </div>
             </>
         );
     }
+
+
+
 }
 
-
-export default Cart;
+export default OrderHistory;

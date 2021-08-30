@@ -9,8 +9,8 @@ class Cart extends Model
 {
     use HasFactory;
     protected $primaryKey = 'CartId';
-
-    protected $table = 'cart';
+    protected $table = 'carts';
+    public $timestamps = false;
 
     protected $fillable = [
         'CartId',
