@@ -19,7 +19,7 @@ This packages required to run the application:
 
 ## Setting up the database
 1. Install xampp from (https://www.apachefriends.org/index.html)
-2. Start the Apache and MySQL module
+2. Start the Apache and MySQL module inside xampp dashboard
 3. Click on the admin button for MySQL module to go to local php admin
 4. Create a new database called supplycart
 5. Run `php artisan migrate` to migrate the models
