@@ -45,8 +45,7 @@ class CartController extends Controller
                         'cart_id' => Cart::where('UserId', $user_id)
                                     ->where('ProductId', $product_id)
                                     ->where('Status', '<>', 'Complete')
-                                    ->get()
-                                    ->CartId,
+                                    ->get(),
                         'product_id' => $product_id,
                         'quantity' => $quantity,
                 ]);
@@ -143,7 +142,7 @@ class CartController extends Controller
             $cart = Cart::where('CartId', $cartId)->update(['Status'=> 'Completed']);
 
             Log::channel('syslog')->info('User '. $user_id . ' checkout cart ', [
-                'cart_id' => $cart->CartId,
+                'cart_id' => $cartId,
             ]);
 
             // create new order with this cart
