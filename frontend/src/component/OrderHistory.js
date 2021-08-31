@@ -67,7 +67,6 @@ function OrderHistory(){
             })
 
         } else {
-            console.log('hi')
             return (
                 <tr>
                     <td className="px-6 py-4 whitespace-wrap"/>

@@ -54,7 +54,6 @@ function ItemDetail(props) {
             cost: (quantity * product.price).toFixed(2),
         }
 
-        console.log(data);
         axios.post(`/api/cart/add-to-cart`, data)
         .then((result) =>{
             if (result.data.status === 200){ // new cart created
