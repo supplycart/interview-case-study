@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import SideBar from "./SideNav";
+import swal from "sweetalert";
+import {useHistory} from "react-router-dom";
 
 function OrderHistory(){
 
+    let history = useHistory();
     const [orders, setOrder] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -13,7 +16,15 @@ function OrderHistory(){
                 setOrder(result.data.data);
                 setLoading(false);
 
-                // renderTable();
+            })
+            .catch((err) =>{
+                if (err.message === 'Request failed with status code 401'){ // user not logged in
+                    swal('Login To Continue', 'You are not logged in', 'warning');
+                    history.push('/login'); //redirect to login
+
+                } else {
+                    console.log('2', err);
+                }
             });
     }
 
@@ -22,10 +33,9 @@ function OrderHistory(){
     }, []);
 
     const renderTable = () => {
-
         let output;
 
-        if (orders !== undefined){
+        if (orders.length !== 0){
             output = orders.map((order) => {
                 return (
                     <tr key={order.id}>
@@ -57,8 +67,10 @@ function OrderHistory(){
             })
 
         } else {
+            console.log('hi')
             return (
                 <tr>
+                    <td className="px-6 py-4 whitespace-wrap"/>
                     <td className="px-6 py-4 whitespace-wrap"/>
                     <td className="px-6 py-4 whitespace-wrap">
                         <div>Empty Table</div>
@@ -80,7 +92,6 @@ function OrderHistory(){
             <>
                 <div className="flex min-h-screen">
                     <SideBar/>
-
 
                     <div className='flex flex-col mx-auto max-w-6xl'>
                         {/*//page title*/}

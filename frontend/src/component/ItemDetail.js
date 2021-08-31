@@ -50,7 +50,7 @@ function ItemDetail(props) {
 
         const data = {
             product_id: product.id,
-            product_quantity: quantity,
+            quantity: quantity,
             cost: (quantity * product.price).toFixed(2),
         }
 
@@ -65,13 +65,15 @@ function ItemDetail(props) {
             } else if (result.data.status === 409) { // product not found/removed
                 swal('Product not found', result.data.message, 'warning');
 
-            } else if (result.message === 'Unauthenticated'){
-                swal('Login To Continue', result.data.message, 'warning');
-
             }
         })
         .catch((e) => {
-            console.log(e);
+            if (e.message === 'Request failed with status code 401'){ // user not logged in
+                swal('Login To Continue', 'You are not logged in', 'warning');
+            } else {
+                console.log('2', e);
+            }
+
         })
 
     }

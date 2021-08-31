@@ -46,5 +46,4 @@ Route::middleware(['auth:sanctum'])->group(function (){
 
 });
 
-// route everything with /cart to CartController
 

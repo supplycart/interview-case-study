@@ -41,6 +41,18 @@ return [
             'ignore_exceptions' => false,
         ],
 
+        'syslog' => [
+            'driver' => 'single',
+            'level' => 'debug',
+            'path' => storage_path('logs/syslog.log'),
+        ],
+
+        'errorlog' => [
+            'driver' => 'single',
+            'level' => env('LOG_LEVEL', 'debug'),
+            'path' => storage_path('logs/errorlog.log'),
+        ],
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
@@ -80,16 +92,6 @@ return [
             'with' => [
                 'stream' => 'php://stderr',
             ],
-        ],
-
-        'syslog' => [
-            'driver' => 'syslog',
-            'level' => env('LOG_LEVEL', 'debug'),
-        ],
-
-        'errorlog' => [
-            'driver' => 'errorlog',
-            'level' => env('LOG_LEVEL', 'debug'),
         ],
 
         'null' => [

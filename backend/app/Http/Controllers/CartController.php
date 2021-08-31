@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
@@ -19,60 +20,76 @@ class CartController extends Controller
     public function AddToCart(Request $request){
         $user_id = auth('sanctum')->user()->UserId;
 
-        if ($user_id === null){ // user not logged in
-            return response()->json([
-                'status'=> 405,
-                'message'=> 'Login to continue'
-            ]);
+        $product_id = $request->product_id;
+        $quantity = $request->quantity;
 
-        } else {
-            $product_id = $request->product_id;
-            $quantity = $request->product_id;
+        // check if product exist and still has stock
+        $exist = Product::where('ProductId', $product_id)->exists();
+        $hasStock = Product::where('ProductId', $product_id)->where('Stock', '>', $quantity)->exists();
+        if ($exist && $hasStock) {
 
-            $productCheck = Product::whereStrict('ProductId', $product_id);
-            if ($productCheck) { // product found
+            // reduce product stock
+            Product::where('ProductId', $product_id)
+                ->decrement('Stock', $quantity);
 
-                // check if user has an existing cart
-                if (Cart::where('UserId', $user_id)->where('ProductId', $product_id)->where('Status', '<>', 'Complete')->exists()) {
+            // check if user has an existing cart
+            if (Cart::where('UserId', $user_id)->where('ProductId', $product_id)->where('Status', '<>', 'Complete')->exists()) {
 
-                    // update the cart with quantity
-                    $cart = Cart::table('carts')
-                        ->where('UserId', $user_id)
-                        ->where('ProductId', $product_id)
-                        ->where('Status', '<>', 'Complete')
-                        ->increment('Quantity', $quantity);
+                // update the cart with quantity
+                Cart::where('UserId', $user_id)
+                ->where('ProductId', $product_id)
+                ->where('Status', '<>', 'Complete')
+                ->increment('Quantity', $quantity);
 
-                    return response()->json([
-                        'status' => 201,
-                        'message' => 'Added to cart',
-                    ]);
+                Log::channel('syslog')->info('User '. $user_id . ' updated cart ', [
+                        'cart_id' => Cart::where('UserId', $user_id)
+                                    ->where('ProductId', $product_id)
+                                    ->where('Status', '<>', 'Complete')
+                                    ->get()
+                                    ->CartId,
+                        'product_id' => $product_id,
+                        'quantity' => $quantity,
+                ]);
 
-                } else {
-                    // else create new cart and add item
-                    $newCart = new Cart;
-                    $newCart->UserId = $user_id;
-                    $newCart->ProductId = $product_id;
-                    $newCart->Quantity = $quantity;
-                    $newCart->Status = 'Progress';
-                    $newCart->Cost = $request->cost;
-                    $newCart->save();
-
-                    return response()->json([
-                        'status' => 200,
-                        'message' => 'Added to cart',
-                    ]);
-
-                }
-
-            } else { // if product not found
                 return response()->json([
-                    'status'=> 409,
-                    'message'=> 'Product not found'
+                    'status' => 200,
+                    'message' => 'Added to cart',
+                ]);
+
+            } else {
+                // else create new cart and add item
+                $newCart = new Cart;
+                $newCart->UserId = $user_id;
+                $newCart->ProductId = $product_id;
+                $newCart->Quantity = $quantity;
+                $newCart->Status = 'Progress';
+                $newCart->Cost = $request->cost;
+                $newCart->save();
+
+                Log::channel('syslog')->info('User '. $user_id . ' created cart ', [
+                    'cart_id' => $newCart->CartId,
+                    'product_id' => $product_id,
+                    'quantity' => $quantity,
+                ]);
+
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Added to cart',
                 ]);
 
             }
-        }
 
+        } else if (!$hasStock){ // product out of stock
+            Log::channel('errorlog')->info('User '. $user_id . ' requested for product that is out of stock ', [
+                'product_id' => $product_id,
+            ]);
+
+            return response()->json([
+                'status'=> 403,
+                'message'=> 'Product out of stock'
+            ]);
+
+        }
     }
 
     /**
@@ -92,12 +109,17 @@ class CartController extends Controller
 
         $cartsCollection = CartProductResource::collection($carts);
 
-        if (count($cartsCollection) == 0){
+        // if no cart found
+        if (count($carts) == 0){
+            Log::channel('errorlog')->info('User '. $user_id . ' requested for cart but none found');
+
             return response()->json([
-                'status' => 200,
+                'status' => 404,
                 'message' => 'No cart found',
             ]);
         }
+
+        Log::channel('syslog')->info('User '. $user_id . ' requested for incomplete carte');
 
         return response()->json([
             'data' => $cartsCollection,
@@ -120,12 +142,18 @@ class CartController extends Controller
             // set status to completed
             $cart = Cart::where('CartId', $cartId)->update(['Status'=> 'Completed']);
 
+            Log::channel('syslog')->info('User '. $user_id . ' checkout cart ', [
+                'cart_id' => $cart->CartId,
+            ]);
+
             // create new order with this cart
             // else create new cart and add item
             $newOrder = new Order;
             $newOrder->UserId = $user_id;
             $newOrder->CartId = $cartId;
             $newOrder->save();
+
+            Log::channel('syslog')->info('User '. $user_id . ' created order '. $newOrder->OrderId . ' with cart ' . $cartId);
 
         }
         // success

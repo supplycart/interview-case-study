@@ -1,17 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import swal from 'sweetalert';
-import {useHistory} from "react-router-dom";
 
 import SideBar from "./SideNav";
+import {useHistory} from "react-router-dom";
 
 function Cart() {
 
-    let history = useHistory()
+    let history = useHistory();
     const [carts, setCart] = useState([]);
     const [loading, setLoading] = useState(true);
     const [totalPrice, setTotalPrice] = useState(0);
-    const [render, setRender] = useState(false);
     const [selectedCart, setSelectedCart] = useState([]);
 
     const fetctData = () => {
@@ -20,7 +19,6 @@ function Cart() {
                 setCart(result.data.data);
                 setLoading(false);
 
-                // renderTable();
             });
     }
 
@@ -67,15 +65,21 @@ function Cart() {
             axios.post('/api/cart/checkout', data)
                 .then((result) => {
                     if (result.data.status === 200){
-                        swal('Info', 'Select a cart to continue', 'info');
-                        setRender(!render); // rerender the page by changing state
+                        swal('Success', 'Item bought', 'success');
+                        window.location.reload(); //reload to reload table
 
                     } else {
 
                     }
                 })
                 .catch((err) =>{
-                    console.log(err);
+                    if (err.message === 'Request failed with status code 401'){ // user not logged in
+                        swal('Login To Continue', 'You are not logged in', 'warning');
+                        history.push('/login'); //redirect to login
+
+                    } else {
+                        console.log('2', err);
+                    }
                 })
 
         }

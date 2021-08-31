@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\Order\OrderResource;
 use App\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
@@ -13,7 +15,7 @@ class OrderController extends Controller
      */
     public function getOrder(){
 
-        $user_id = $user_id = auth('sanctum')->user()->UserId;
+        $user_id = auth('sanctum')->user()->UserId;
 
         // get Cart Product and Order where cart status is completed
         $data = Order::where('orders.UserId', $user_id)
@@ -26,6 +28,8 @@ class OrderController extends Controller
             })
             ->orderBy('OrderId','desc')
             ->get();
+
+        Log::channel('syslog')->info('User '. $user_id . ' retrieved order history.');
 
         return OrderResource::collection($data);
     }
