@@ -21,7 +21,7 @@ class DashboardController extends Controller
             return view('dashboard', ['data' => $products]);
         }
   
-        return redirect("login")->withSuccess('You are not allowed to access');
+        return redirect("login")->withFailed('You are not allowed to access');
 
     }
 }

@@ -83,6 +83,6 @@ class CartController extends Controller
             return view('cart', ['data' => $cart]);
         }
   
-        return redirect("login")->withSuccess('You are not allowed to access');
+        return redirect("login")->withFailed('You are not allowed to access');
     }
 }
