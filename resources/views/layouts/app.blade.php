@@ -37,15 +37,17 @@
                     <ul class="navbar-nav me-auto">
                         @guest
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('orders.index') }}">{{ __('Orders') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('activity-logs.index') }}">{{ __('Activity Logs') }}</a>
-                        </li>
+                            @if (!is_null(auth()->user()->email_verified_at))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('orders.index') }}">{{ __('Orders') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('activity-logs.index') }}">{{ __('Activity Logs') }}</a>
+                                </li>
+                            @endif
                         @endguest
                     </ul>
 
