@@ -21,6 +21,7 @@ Auth::routes();
 
 
 Route::group(['middleware' => ['auth', 'verified']], function() {    
+    Route::post('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home-category');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::post('orders', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
