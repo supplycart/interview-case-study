@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ActivityLog;
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -31,31 +32,23 @@ class CartController extends Controller
         $id = $request->id;
         $quantity = $request->quantity;
 
-        $product_name = '';
-        $price = 0;
-        if($id == 1) {
-            $product_name = 'Women\'s Red dress';
-            $price = 225.00;
-        } else {
-            $product_name = 'Hawa Luxe Premium';
-            $price = 315.00;
-        }
+        $product = Product::findOrFail($id);
 
         $cart = Cart::where('user_id', auth()->id())->where('product_id', $id)->first();
         if(is_null($cart)) {
             $cart = new Cart();
             $cart->user_id = auth()->id();
             $cart->product_id = $id;
-            $cart->product_name = $product_name;
+            $cart->product_name = $product->product_name;
             $cart->quantity = $quantity;
-            $cart->price = $price;
+            $cart->price = $product->price;
             $cart->save();
         } else {
             $cart->quantity = $cart->quantity + $quantity;
             $cart->save();
         }
 
-        ActivityLog::LogRecord('Add to cart ' . $product_name);
+        ActivityLog::LogRecord('Add to cart ' . $product->product_name);
 
         return response()->json(['status' => 'success', 'message' => 'Add To Your Cart']);
     }

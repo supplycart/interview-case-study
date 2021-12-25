@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,21 +16,15 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product_name = '';
-        $price = 0;
-        if($id == 1) {
-            $product_name = 'Women\'s Red dress';
-            $price = 225.00;
-        } else {
-            $product_name = 'Hawa Luxe Premium';
-            $price = 315.00;
-        }
+        $product = Product::findOrFail($id);
 
         $data = [
             'id' => $id,
-            'product_name' => $product_name,
-            'price' => $price
+            'product_name' => $product->product_name,
+            'price' => $product->price
         ];
+        
+        ActivityLog::LogRecord('Show Product Detail ' . $product->product_name);
 
         return view('products.show', $data);
     }
