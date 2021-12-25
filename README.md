@@ -41,3 +41,23 @@ You must work on this assignment using:
 
 
 P/S: If you think there is a better way for us to asses your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
+
+
+#########################################################################
+Steps:
+1. Clone this repo
+2. cp .env.example .env
+3. Create database
+4. composer install
+5. php artisan key:generate
+6. php artisan migrate
+7. php artisan db:seed
+8. npm install
+7. php artisan serve
+8. npm run watch
+9. register user
+10. verify email
+11. choose product add to cart
+12. check out
+13. see orders history
+14. see log activities
