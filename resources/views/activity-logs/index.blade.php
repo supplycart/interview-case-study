@@ -7,7 +7,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Order History</h3>
+                        <h3>Activity Logs</h3>
                     </div>
 
                     <div class="card-body">
@@ -15,36 +15,26 @@
                             <thead>
                                 <tr>
                                     <th style="width: 20px">No</th>
-                                    <th>Order Date</th>
-                                    <th>Products</th>
+                                    <th>Activity</th>
+                                    <th>Created Date</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
                                     $i = 1;
                                 @endphp
-                                @foreach ($orders as $order)
+                                @foreach ($activityLogs as $activityLog)
                                     <tr>
                                         <td>{{ $i++ }}</td>
-                                        <td>{{ date('d M Y', strtotime($order->created_at)) }}</td>
-                                        <td>
-                                            <ul>
-                                            @foreach ($order->orderItem as $item)
-                                                <li>
-                                                    Product Name: {{ $item->product_name }} <br/>
-                                                    Quantity: {{ $item->quantity }} <br/>
-                                                    Price: {{ $item->price }}
-                                                </li>
-                                            @endforeach
-                                            </ul>
-                                        </td>
+                                        <td>{{ $activityLog->activity }}</td>
+                                        <td>{{ date('d M Y', strtotime($activityLog->created_at)) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         
                         <div class="card-footer clearfix">
-                            {{ $orders->links('vendor.pagination.bootstrap-4') }}
+                            {{ $activityLogs->links('vendor.pagination.bootstrap-4') }}
                         </div>
                     </div>
 

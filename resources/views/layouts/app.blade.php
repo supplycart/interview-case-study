@@ -35,7 +35,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('orders.index') }}">{{ __('Orders') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('activity-logs.index') }}">{{ __('Activity Logs') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

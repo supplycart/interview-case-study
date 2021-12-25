@@ -35,4 +35,6 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     });
 
     Route::get('{id}/product-detail', [App\Http\Controllers\ProductController::class, 'show'])->name('product-detail');
+
+    Route::get('activity-logs', [App\Http\Controllers\ActivityLogController::class, 'index'])->name('activity-logs.index');
 });

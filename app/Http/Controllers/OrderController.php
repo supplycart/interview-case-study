@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -83,6 +84,8 @@ class OrderController extends Controller
             Cart::where('user_id', auth()->id())->delete();
         }
 
+        ActivityLog::LogRecord('User Place Order');
+        
         return redirect()->route('orders.index')->with('status', 'Success');
     }
 }
