@@ -10,9 +10,9 @@
                     <div class="form-group">
                         <label for="category">Filter Category</label>
                         <select name="category" id="category" class="form-control">
-                            <option value="">Select One</option>
-                            <option value="A">Category A</option>
-                            <option value="B">Category B</option>
+                            <option value="">Select All</option>
+                            <option @if($category == 'A') selected @endif value="A">Category A</option>
+                            <option @if($category == 'B') selected @endif value="B">Category B</option>
                         </select>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                 $priceAfterDiscount = 0;
             @endphp
             <div class="row col-md-12">
-                @foreach ($products ?: [] as $product)
+                @forelse ($products as $product)
                     @php
                         $priceAfterDiscount = $product->price - (($product->discount / 100) * $product->price)
                     @endphp
@@ -69,7 +69,13 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="col-md-6 col-lg-6 col-xl-4 col-sm-6">
+                        <div class="ml-3 p-0 ht-100p">
+                            Not Available
+                        </div>
+                    </div>
+                @endforelse
             </div>
         </div>
 

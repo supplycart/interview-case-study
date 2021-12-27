@@ -24,14 +24,17 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $category = "";
+
         $products = Product::where('status', 'active');
 
         if(!is_null($request->category)) {
-            $products = $products->where('category', $request->category);
+            $category = $request->category;
+            $products = $products->where('category', $category);
         }
 
         $products = $products->get();
 
-        return view('home', compact('products'));
+        return view('home', compact('products', 'category'));
     }
 }
