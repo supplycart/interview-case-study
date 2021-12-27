@@ -12,11 +12,14 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    
     <!-- Style css-->
     <link href="{{ asset('themes/css/style.css') }}" rel="stylesheet"/>
     <link href="{{ asset('themes/css/skins.css') }}" rel="stylesheet"/>
     <link href="{{ asset('themes/css/colors/default.css') }}" rel="stylesheet"/>
+
+    <!-- Icons css-->
+    <link href="{{ asset('themes/plugins/web-fonts/font-awesome/font-awesome.min.css') }}" rel="stylesheet"/>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
