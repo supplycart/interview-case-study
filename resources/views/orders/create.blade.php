@@ -14,7 +14,7 @@
             @endif
             {!! Form::open(['route' => ['orders.store'], 'id'=>'payment-order-form','class'=>'ajax-form','method'=>'POST']) !!}
                 <div class="row row-sm">
-                    <div class="col-lg-12 col-xl-9 col-md-12">
+                    <div class="col-lg-12 col-xl-12 col-md-12">
                         <div class="card custom-card">
                             <div class="card-header">
                                 <h5 class="mb-3 font-weight-bold tx-14">Address</h5>
@@ -68,7 +68,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                         
+                    <div class="col-lg-12 col-xl-9 col-md-12">
                         <div class="card custom-card">
                             <div class="card-header">
                                 <h5 class="mb-3 font-weight-bold tx-14">Your Products</h5>
@@ -127,7 +129,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-12 col-xl-3 col-md-12">
+                    <div class="col-lg-3 col-xl-3 col-md-3">
                         <div class="card custom-card cart-details">
                             <div class="card-body">
                                 <h5 class="mb-3 font-weight-bold tx-14">PRICE DETAIL</h5>
