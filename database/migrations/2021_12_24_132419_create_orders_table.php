@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('postcode');
             $table->string('city');
             $table->string('state');
+            $table->double('total')->default(0);
             $table->enum('status', ['pending', 'cancelled', 'success'])->default('pending');
             $table->timestamps();
 

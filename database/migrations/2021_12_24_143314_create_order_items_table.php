@@ -20,7 +20,6 @@ class CreateOrderItemsTable extends Migration
             $table->string('product_name');
             $table->integer('quantity')->default('1');
             $table->double('price')->default(0);
-            $table->double('total')->default(0);
             $table->timestamps();
         });
     }
