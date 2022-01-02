@@ -20,3 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home/search', 'HomeController@search')->name('home.search');
+Route::post('/addtocart/{productId}', 'HomeController@addToCart')->name('add.to.cart');
+Route::post('/checkout', 'HomeController@checkout')->name('checkout');
+Route::get('/activitylogs', 'HomeController@activityLog')->name('activity.logs');
+Route::post('/payment/fail', 'HomeController@paymentFail')->name('payment.fail');
+Route::post('/payment/success', 'HomeController@paymentSuccess')->name('payment.success');
+Route::get('/purchasehistory', 'HomeController@purchasehistory')->name('purchase.history');
