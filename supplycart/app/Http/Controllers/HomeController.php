@@ -27,7 +27,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::whereNotNull('name');
+        if (isset($_GET['category'])) {
+          $products = $products->where('category', $_GET['category']);
+        }
+        if (isset($_GET['brand'])) {
+          $products = $products->where('brand', $_GET['brand']);
+        }
+        if (isset($_GET['name'])) {
+          $products = $products->where('name', 'like', '%'.$_GET['name'].'%');
+        }
+        $products = $products->get();
         return view('home', compact('products'));
     }
 
@@ -58,9 +68,7 @@ class HomeController extends Controller
       }
 
       Auth::User()->cart()->attach($productId, ['quantity'=> $quantity]);
-      // Auth::User()->cart()->attach($productId);
-      // dd($request);
-      // return redirect()->back();
+      Log::info(Auth::User()->name."added to cart");
 
       return redirect()->back()->withErrors([
           'message-header'  => 'Done!',
@@ -95,6 +103,8 @@ class HomeController extends Controller
       foreach ($toPurchase as $key => $value) {
         Auth::User()->cart()->updateExistingPivot($value->pivot->product_id, ['purchased_at'=> Carbon::now()]);
       }
+
+      Log::info(Auth::User()->name."checked out!");
       return redirect('/home')->withErrors([
           'message-header'  => 'Done!',
           'message-body'    => 'Payment Completed',

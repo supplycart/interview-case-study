@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- tailwind -->
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Font Awesome -->
     <script src="https://use.fontawesome.com/a841cc9af0.js"></script>
@@ -89,7 +89,7 @@
 
         <main class="py-4">
           @if($errors->first('message-header') && $errors->first('message-body'))
-          <div class="">
+          <div class="container mx-auto bg-yellow-200 my-3">
             {{ $errors->first('message-header')."/".$errors->first('message-body') }}
           </div>
           @endif

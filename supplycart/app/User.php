@@ -43,4 +43,23 @@ class User extends Authenticatable
     public function cart(){
         return $this->belongsToMany('App\Product', 'cart')->withPivot(['id', 'quantity', 'purchased_at', 'purchased_price']);
     }
+
+    public function role(){
+      return $this->belongsTo('App\Role');
+    }
+
+    public function priceByRole($price){
+      if (!is_null($this->role)) {
+        switch ($this->role->name) {
+          case 'member':
+          $price = 0.8*$price;
+          break;
+
+          case 'staff':
+          $price = 0.7*$price;
+          break;
+        }
+      }
+      return $price;
+    }
 }

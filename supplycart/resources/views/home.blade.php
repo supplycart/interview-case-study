@@ -2,39 +2,38 @@
 
 @section('content')
 <div class="container">
-    <!-- <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <!-- filter -->
     <div class="">
       <form class="" action="{{ url('/home/search') }}" method="post">
         @csrf
-        <div class="">
-          <label for="">Category</label>
-          <input type="text" name="category" value="">
+        <div class="mx-auto">
 
-          <label for="">Brand</label>
-          <input type="text" name="brand" value="">
+          <label class="px-3" for="">Category</label>
+          <select class="border-2 border-gray-600" name="category">
+            <option value="null" selected disabled>--Please Select--</option>
+            @foreach (App\Product::categories() as $key => $value)
+            <option value="{{ $value[0]->category }}">{{ $value[0]->category }}</option>
+            @endforeach
+          </select>
 
-          <label for="">Name</label>
-          <input type="text" name="name" value="">
 
-          <button type="submit" name="button">Search</button>
+          <label class="px-3" for="">Brand</label>
+          <select class="border-2 border-gray-600" name="brand">
+            <option value="null" selected disabled>--Please Select--</option>
+            @foreach (App\Product::brands() as $key => $value)
+            <option value="{{ $value[0]->brand }}">{{ $value[0]->brand }}</option>
+            @endforeach
+          </select>
+
+
+          <label class="px-3" for="">Name</label>
+          @if (isset($_GET['name']))
+          <input class="border-2 border-gray-600" type="text" name="name" value="{{ $_GET['name'] }}">
+          @else
+          <input class="border-2 border-gray-600" type="text" name="name" value="">
+          @endif
+
+          <button class="bg-blue-200 hover:bg-blue-700 rounded py-2 px-4 text-gray-500 mx-3" type="submit" name="button">Search</button>
         </div>
       </form>
     </div>
@@ -45,8 +44,10 @@
       <form class="" action="{{ url('/checkout') }}" method="post">
         @csrf
         <div class="text-right">
-          <button class="" type="submit" name="button">
-            Checkout
+          <button class="bg-yellow-300 hover:bg-yellow-500 rounded px-3 py-1" type="submit" name="button">
+            <strong>
+              Checkout
+            </strong>
           </button>
         </div>
 
@@ -103,7 +104,7 @@
           <div class="rounded border" style="min-height: 250px;">
             <div class="text-right m-3">
               <strong style="font-size: 23px;">
-                $ {{ $value->price }}
+                $ {{ Auth::User()->priceByRole($value->price) }}
               </strong>
             </div>
             <div class="">

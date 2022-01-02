@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use SoftDeletes;
+
+    public static function categories(){
+      return Product::all()->groupBy('category');
+    }
+
+    public static function brands(){
+      return Product::all()->groupBy('brand');
+    }
 }
