@@ -84,7 +84,40 @@
                     SupplyCart
                 </div>
 
-                <div class="links">
+                <div class="">
+                  <h3>This is for different price display</h3>
+                  <p>
+                    Please use any of the credentials below for different price view.
+                  </p>
+                  <table>
+                    <tr>
+                      <th>
+                        Email
+                      </th>
+                      <th>
+                        password
+                      </th>
+                    </tr>
+                    <tr>
+                      <td>
+                        member@yahoo.com
+                      </td>
+                      <td>
+                        test1234
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        staff@yahoo.com
+                      </td>
+                      <td>
+                        test1234
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <!-- <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
@@ -93,7 +126,7 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </body>

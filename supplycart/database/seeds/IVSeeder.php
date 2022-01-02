@@ -5,6 +5,7 @@ use App\User;
 use App\Role;
 use App\Product;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class IVSeeder extends Seeder
 {
@@ -20,7 +21,7 @@ class IVSeeder extends Seeder
         $user->updated_at   = Carbon::now();
         $user->name         = "Azmin";
         $user->email        = "am211@yahoo.com";
-        $user->password     = '$2y$10$D4tALLgZzOak3zQC3Uq8TO8yde6tiAusJcAp0flW9ikHGrTKCpRD6';
+        $user->password     = Hash::make('test1234');
         $user->role_id      = null;
         $user->save();
 
@@ -29,7 +30,7 @@ class IVSeeder extends Seeder
         $user->updated_at   = Carbon::now();
         $user->name         = "Member";
         $user->email        = "member@yahoo.com";
-        $user->password     = '$2y$10$D4tALLgZzOak3zQC3Uq8TO8yde6tiAusJcAp0flW9ikHGrTKCpRD6';
+        $user->password     = Hash::make('test1234');
         $user->role_id      = 1;
         $user->save();
 
@@ -38,7 +39,7 @@ class IVSeeder extends Seeder
         $user->updated_at   = Carbon::now();
         $user->name         = "Staff";
         $user->email        = "staff@yahoo.com";
-        $user->password     = '$2y$10$D4tALLgZzOak3zQC3Uq8TO8yde6tiAusJcAp0flW9ikHGrTKCpRD6';
+        $user->password     = Hash::make('test1234');
         $user->role_id      = 2;
         $user->save();
 
