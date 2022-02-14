@@ -1,43 +1,46 @@
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+
 <p align="center">
-    <img align="center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
-
-# Supplycart Interview Case Study
-
-This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned. 
 
 ### Instructions
 
-- Fork this repo to your github account
-- Complete the tasks given
-- Once completed, create a PR to this repository
-- Lastly, add some guidance or instruction on how to run your code
+- Clone this repo into your setup
+- run composer install
+- run npm install
+- create and copy .env.example into .env
+- run php artisan optimize:clear
+- run php artisan migrate:fresh --seed
+- run npm run watch
 
 ### Requirements
 
-You must work on this assignment using:
- - Vue (optional for BE dev)
+This project use
+ - VueJS
  - TailwindCSS
- - Laravel (optional for FE dev)
+ - Laravel Framework
+ - MySQL
 
-### Tasks
+### Credential
 
-1. As guest, I want to be able to register an account
-2. As guest, I want to be able to login using registered account
-3. As user, I want to see list of products after login
-4. As user, I want to be able to add product to cart
-5. As user, I want to be able to place order for added products in cart
-6. As user, I want to see my order history
-7. As user, I want to be able to logout
+#Member
+- email: member@member.com
+- password: password
+- Description: this user role can add to cart, remove from cart, place order and view order history (have discount on product)
 
-### Bonus Tasks
+#Guest
+- email: guest@guest.com
+- password: password
+- Description: this user role can add to cart, remove from cart, place order and view order history
 
-1. Verify email after registration
-2. User activity log e.g. login, logout, add to cart, place order etc
-3. Product attributes and filtering e.g brand, category
-4. Different user can see different price for products
-5. Add unit tests
-6. Deploy app to a server
+#Admin
+- email: admin@admin.com
+- password: password
+- Description: this user role can add to cart, remove from cart, place order, view order history and view activity log
 
-
-P/S: If you think there is a better way for us to asses your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
+For demo can access into this url:
+http://ecommerce-adib.herokuapp.com
