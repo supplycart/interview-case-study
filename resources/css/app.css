@@ -1,0 +1,16 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.count{
+    font-size: 13px;
+    background-color: lightblue;
+    margin-right: 5px;
+    font-weight: bold;
+    border-radius: 150px;
+    padding: 4px 10px 4px;
+}
+.bg-peach{
+    --tw-bg-opacity: 1;
+    background-color: rgb(247 228 211 / var(--tw-bg-opacity));
+}
