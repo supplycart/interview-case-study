@@ -135,9 +135,19 @@ export default {
                     this.loading = false;
                 });
         },
+        getVoucher() {
+            if (this.voucher != null) {
+                return {
+                    voucher_id: this.voucher.id
+                }
+            } else {
+                return {
+                };
+            }
+        },
         async order() {
             this.loading = true;
-            await axios.post("/api/order", {voucher_id: this.voucher.id}).then(res => {
+            await axios.post("/api/order", this.getVoucher()).then(res => {
                 this.orderTarget = res.data.id
                 this.success = true;
                 this.message = 'Ordered successfully! You will be redirected to Order Page now.';
