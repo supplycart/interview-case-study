@@ -1,0 +1,60 @@
+/*!
+   * Croodles - Doodle your face (@dicebear/croodles)
+   *
+   * Code licensed under MIT License.
+   * Copyright (c) 2021 Florian Körner
+   *
+   * Design "Croodles - Doodle your face" by vijay verma licensed under CC BY 4.0.
+   * Source: https://www.figma.com/community/file/966199982810283152
+   * License: https://creativecommons.org/licenses/by/4.0/
+   */
+
+/*!
+   * deep-rename-keys <https://github.com/jonschlinkert/deep-rename-keys>
+   *
+   * Copyright (c) 2015 Jon Schlinkert, contributors.
+   * Licensed under the MIT license.
+   */
+
+/*!
+   * has-value <https://github.com/jonschlinkert/has-value>
+   *
+   * Copyright (c) 2014-2016, Jon Schlinkert.
+   * Licensed under the MIT License.
+   */
+
+/*!
+   * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
+   *
+   * Copyright (c) 2014-2017, Jon Schlinkert.
+   * Released under the MIT License.
+   */
+
+/*!
+   * isobject <https://github.com/jonschlinkert/isobject>
+   *
+   * Copyright (c) 2014-2017, Jon Schlinkert.
+   * Released under the MIT License.
+   */
+
+/*!
+   * unset-value <https://github.com/jonschlinkert/unset-value>
+   *
+   * Copyright (c) 2015, 2017, Jon Schlinkert.
+   * Released under the MIT License.
+   */
+
+/*!
+  * vue-router v4.0.14
+  * (c) 2022 Eduardo San Martin Morote
+  * @license MIT
+  */
+
+/**
+ * @license
+ * Lodash <https://lodash.com/>
+ * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */

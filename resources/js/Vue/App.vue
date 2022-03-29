@@ -1,0 +1,28 @@
+<template>
+    <router-view />
+</template>
+
+<script>
+import "../../css/app.css";
+import "../../css/variables.css";
+export default {
+    name: "App"
+}
+</script>
+
+<style>
+* {
+    transition: all 200ms linear;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+</style>
