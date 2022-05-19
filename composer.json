@@ -1,0 +1,16 @@
+{
+    "name": "vendor/name",
+    "description": "//",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\Name\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "SidOmIO",
+            "email": "diksiddiq@gmail.com"
+        }
+    ],
+    "require": {}
+}
