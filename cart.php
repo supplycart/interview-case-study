@@ -149,22 +149,6 @@ if(isset($_SESSION['login_user2'])){
           </ul>
   <?php        
 }
-else {
-
-  ?>
-
-<ul class="nav navbar-nav navbar-right">
-            <li><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-log-in"></span> Login <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-              <li> <a href="login.php"> User Login</a></li>
-              <li> <a href="merchantsignup.php"> Manager Login</a></li>
-              <li> <a href="#"> Admin Login</a></li>
-            </ul>
-            </li>
-          </ul>
-
-<?php
-}
 ?>
 
 

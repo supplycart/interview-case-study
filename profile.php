@@ -15,8 +15,6 @@ $cust = mysqli_query($conn, "SELECT * FROM customer
 $row = mysqli_fetch_array($cust);
 $order = mysqli_query($conn, "SELECT * FROM orders
       WHERE username = '$username'");
-$pastorder = mysqli_query($conn, "SELECT * FROM past_orders
-      WHERE username = '$username'");
 ?>
 
 
@@ -89,23 +87,8 @@ if(isset($_SESSION['login_user2'])){
           </ul>
   <?php        
 }
-else {
-
   ?>
 
-<ul class="nav navbar-nav navbar-right">
-            <li><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-log-in"></span> Login <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-              <li> <a href="login.php"> User Login</a></li>
-              <li> <a href="merchantsignup.php"> Manager Login</a></li>
-              <li> <a href="#"> Admin Login</a></li>
-            </ul>
-            </li>
-          </ul>
-
-<?php
-}
-?>
 
 
         </div>
@@ -121,8 +104,7 @@ else {
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Profile</a></li>
                 <li><a data-toggle="tab" href="#changepassword">Change Password</a></li>
-                <li><a data-toggle="tab" href="#current">Current Order</a></li>
-                <li><a data-toggle="tab" href="#settings">Order History</a></li>
+                <li><a data-toggle="tab" href="#current">Past Order</a></li>
               </ul>
 
               
@@ -298,52 +280,6 @@ echo "</tr>";
   </table>
             
               </div><!--/tab-pane-->
-
-
-<div class="tab-pane" id="settings">
-                  <hr>
-                  <table class="table"  border=0>
-    <tr>
-      <td>Order ID</td>
-      <td>Food Name</td>
-      <td>Price</td>
-      <td>Quantity</td>
-      <td>Total Price</td>
-      <td>Order Date</td>
-      <td>Restaurant Name</td>
-      <td>Status</td>
-    </tr>
-    <?php
-    while($row2= mysqli_fetch_array($pastorder)){
-      echo "<tr class='";
-      if ($row2['status'] == 'delivered')
-        echo "success'>";
-      else
-        echo "danger'>";
-      echo "<td>".$row2['order_ID']."</td>";
-      echo "<td>".$row2['foodname']."</td>";
-      echo "<td>".$row2['price']."</td>";
-      echo "<td>".$row2['quantity']."</td>";
-
-      $total= $row2['price']*$row2['quantity'];
-
-      echo "<td>".$total."</td>";
-      echo "<td>".$row2['order_date']."</td>";
-
-      $resid = $row2['R_ID'];
-$resquery = mysqli_query($conn, "SELECT * FROM RESTAURANTS
-      WHERE R_ID = '$resid'");
-      $row3 = mysqli_fetch_array($resquery);
-
-      echo "<td>".$row3['name']."</td>";
-      echo "<td>".$row2['status']."</td>";
-echo "</tr>";
-    }
-    ?>
-  </table>
-            
-              </div><!--/tab-pane-->
-              
           </div><!--/tab-content-->
 
         </div><!--/col-9-->
