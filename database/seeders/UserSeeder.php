@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         $member = [   
             [
                 'name' => 'Member',
-                'email' => 'member@member.com',
+                'email' => 'member@accenture.com',
                 'email_verified_at' => null,
                 'password' => Hash::make('password'),
                 'remember_token' => null,
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
         $guest = [   
             [
                 'name' => 'Guest',
-                'email' => 'guest@guest.com',
+                'email' => 'guest@accenture.com',
                 'email_verified_at' => null,
                 'password' => Hash::make('password'),
                 'remember_token' => null,
@@ -61,7 +61,7 @@ class UserSeeder extends Seeder
         $admin = [   
             [
                 'name' => 'Admin',
-                'email' => 'admin@admin.com',
+                'email' => 'admin@accenture.com',
                 'email_verified_at' => null,
                 'password' => Hash::make('password'),
                 'remember_token' => null,

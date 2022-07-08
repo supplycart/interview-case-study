@@ -14,26 +14,24 @@ use App\Http\Controllers\AppController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/','MovieController@index')->name('movie');
 
-Route::group(['middleware' => ['auth']], function() {
-    //Product Module
-    Route::get('product','ProductController@index')->name('product');
-    Route::get('sort-product/{option?}/{value?}','ProductController@sort')->name('sort.product');
+//Movie Module
+Route::get('movie','MovieController@index')->name('movie');
+Route::post('movie','MovieController@store')->name('movie.create');
+Route::patch('movie/{id}','MovieController@update')->name('movie.update');
+Route::delete('movie/{id}','MovieController@destroy')->name('movie.delete');
 
-    //Cart Module
-    Route::get('cart','CartController@index')->name('cart');
-    Route::post('add-cart','CartController@store')->name('add.cart');
-    Route::post('remove-cart','CartController@destroy')->name('remove.cart');
+//Actor Module
+Route::get('actor','ActorController@index')->name('actor');
+Route::post('actor','ActorController@store')->name('actor.create');
+Route::patch('actor/{id}','ActorController@update')->name('actor.update');
+Route::delete('actor/{id}','ActorController@destroy')->name('actor.delete');
 
-    //Order Module
-    Route::get('order','OrderController@index')->name('order');
-    Route::post('add-order','OrderController@store')->name('add.order');
-
-    //Trail Module
-    Route::get('trail','TrailController@index')->name('trail');
-});
+//Producer Module
+Route::get('producer','ProducerController@index')->name('producer');
+Route::post('producer','ProducerController@store')->name('producer.create');
+Route::patch('producer/{id}','ProducerController@update')->name('producer.update');
+Route::delete('producer/{id}','ProducerController@destroy')->name('producer.delete');
 
 require __DIR__.'/auth.php';

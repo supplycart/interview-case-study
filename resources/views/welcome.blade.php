@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Supplycart</title>
+        <title>Entropia</title>
 
         <!-- Icon -->
         <link rel="icon" href="{{ asset('assets/icon.png') }}">

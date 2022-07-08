@@ -27,10 +27,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('*', function($view){
-            if(Auth::check()){
-                $cart = count(Cart::where('user_id',Auth::user()->id)->groupBy(['id','color','size'])->get());
+            $cart = 0;
+            // if(Auth::check()){
+            //     $cart = count(Cart::where('user_id',Auth::user()->id)->groupBy(['id','color','size'])->get());
                 View::share('cart',$cart);
-            }
+            // }
         });
     }
 }
