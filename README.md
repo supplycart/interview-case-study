@@ -14,7 +14,7 @@
 - run npm install
 - create and copy .env.example into .env
 - run php artisan optimize:clear
-- run php artisan migrate:fresh --seed
+- run php artisan migrate
 - run npm run watch
 
 ### Requirements
@@ -25,22 +25,5 @@ This project use
  - Laravel Framework
  - MySQL
 
-### Credential
-
-#Member
-- email: member@member.com
-- password: password
-- Description: this user role can add to cart, remove from cart, place order and view order history (have discount on product)
-
-#Guest
-- email: guest@guest.com
-- password: password
-- Description: this user role can add to cart, remove from cart, place order and view order history
-
-#Admin
-- email: admin@admin.com
-- password: password
-- Description: this user role can add to cart, remove from cart, place order, view order history and view activity log
-
 For demo can access into this url:
-http://ecommerce-adib.herokuapp.com
+http://ecommerce-adib.herokuapp.com/movie
