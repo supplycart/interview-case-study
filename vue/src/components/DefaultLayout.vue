@@ -62,10 +62,6 @@
             <div class="flex-shrink-0">
               <img class="h-10 w-10 rounded-full" src="/default.png" alt="" />
             </div>
-            <div class="ml-3">
-              <div class="text-base font-medium leading-none text-white">{{ user.name }}</div>
-              <div class="text-sm font-medium leading-none text-gray-400">{{ user.email }}</div>
-            </div>
             <button type="button" class="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
               <span class="sr-only">View notifications</span>
               <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />

@@ -6,7 +6,11 @@ const store = createStore({
         user:{
             data:{},
             token: sessionStorage.getItem('TOKEN'),
-
+        },
+        products:{
+            loading:false,
+            links:[],
+            data:[],
         }
     },
     getters: {},
@@ -34,8 +38,27 @@ const store = createStore({
                     commit('setUser', res.data)
                 })
         },
+        
+        logout({commit}) {
+            return axiosClient.post('/logout')
+                .then(response => {
+                    commit('logout')
+                    return response;
+                })
+        },
+        getProducts({ commit }, {url = null} = {}) {
+            // commit('setProductsLoading', true)
+            url = url || "/product";
+            return axiosClient.get(url)
+                .then((res) => {
+                    // commit('setProductsLoading', false)
+                    commit("setProducts", res.data);
+                    return res;
+                });
+        },
     },
     mutations: {
+
         logout: (state) => {
             state.user.token = null;
             state.user.data = {};
@@ -43,13 +66,21 @@ const store = createStore({
         },
         
         setUser: (state, userData)=>{
-            state.user.token = userData.token;
             state.user.data = userData.user;
-            sessionStorage.setItem('TOKEN', userData.token);
         },
         setToken: (state, token) => {
             state.user.token = token;
             sessionStorage.setItem('TOKEN', token);
+        },
+        setProductsLoading: (state, loading) => {
+            state.products.loading = loading;
+        },
+        setProducts: (state, products) => {
+            state.products.links = products.meta.links;
+            state.products.data = products.data;
+        },
+        setProductsLoading: (state, loading) => {
+            state.products.loading = loading;
         },
     },
     modules: {},

@@ -40,8 +40,7 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => 'required|email|string|exists:users,email',
             'password' => [
-                'required',
-                Password::min(8)
+                'required'
             ],
             'remember' => 'boolean'
         ]);
