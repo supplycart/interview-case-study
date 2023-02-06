@@ -1,21 +1,23 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import store from '../store';
-import Dashboard from '../views/Dashboard.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import Products from '../views/Products.vue';
 import DefaultLayout from '../components/DefaultLayout.vue';
 import AuthLayout from '../components/AuthLayout.vue';
+import Cart from '../views/Cart.vue';
+import Orders from '../views/Orders.vue';
 
 const routes =[
     {
         path: '/',
-        redirect: '/dashboard',
+        redirect: '/products',
         component: DefaultLayout,
         meta: {requiresAuth: true},
         children: [
-            {path: '/dashboard', name: 'Dashboard', component: Dashboard},
-            {path: '/products', name: 'Products', component: Products}
+            {path: '/products', name: 'Products', component: Products},
+            {path: '/cart', name: 'Cart', component: Cart},
+            {path: '/orders', name: 'Orders', component: Orders},
         ]
     },
     {
@@ -48,7 +50,7 @@ router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth && !store.state.user.token){
         next({name: 'Login'})
     }else if (store.state.user.token && (to.meta.isGuest)){
-        next({name: 'Dashboard'})
+        next({name: 'Products'})
     }else {
         next()
     }

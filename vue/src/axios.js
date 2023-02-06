@@ -11,9 +11,11 @@ axiosClient.interceptors.request.use(config => {
   return config;
 })
 
-axiosClient.interceptors.response.use(response => {
-  return response;
-}, error => {
+axiosClient.interceptors.response.use(response => 
+  {
+    return response;
+  }, 
+  error => {
   if (error.response.status === 401) {
     sessionStorage.removeItem('TOKEN')
     router.push({name: 'Login'})

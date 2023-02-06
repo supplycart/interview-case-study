@@ -5,7 +5,7 @@
   </div>
   <form class="mt-8 space-y-6" @submit="login">
     <Alert v-if="errorMsg">
-      {{ errorMsg }}
+      {{ error }}
       <span
         @click="errorMsg = ''"
         class="w-8 h-8 flex items-center justify-center rounded-full transition-colors cursor-pointer hover:bg-[rgba(0,0,0,0.2)]"
@@ -105,11 +105,11 @@ function login(ev) {
     .dispatch("login", user)
     .then(() => {
       router.push({
-        name: "Dashboard",
+        name: "Products",
       });
     })
     .catch((err) => {
-      errorMsg.value = err.response.data.error;
+      errorMsg.value = err.response;
     });
 }
 

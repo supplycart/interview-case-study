@@ -17,10 +17,10 @@
           </div>
           <div class="hidden md:block">
             <div class="ml-4 flex items-center md:ml-6">
-              <button type="button" class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+              <router-link to="/cart" tag="button" class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                 <span class="sr-only">View notifications</span>
                 <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
-              </button>
+              </router-link>
 
               <!-- Profile dropdown -->
               <Menu as="div" class="relative ml-3">
@@ -62,10 +62,10 @@
             <div class="flex-shrink-0">
               <img class="h-10 w-10 rounded-full" src="/default.png" alt="" />
             </div>
-            <button type="button" class="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-              <span class="sr-only">View notifications</span>
+            <router-link to="/cart" tag="button" class="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+              <span class="sr-only">View cart</span>
               <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
-            </button>
+            </router-link>
           </div>
           <div class="mt-3 space-y-1 px-2">
             <DisclosureButton as="a" @click="logout" class='hover:bg-gray-700 hover:text-white block text-gray-300 px-3 py-2 rounded-md text-base font-medium cursor-pointer'>Sign out</DisclosureButton>
@@ -75,24 +75,26 @@
     </Disclosure>
     <router-view></router-view>
 
+    <Notification/>
+
   </div>
 </template>
 
 <script>
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-import { Bars3Icon, ShoppingCartIcon, XMarkIcon } from '@heroicons/vue/24/outline'
-import {useStore} from 'vuex'
-import {computed} from 'vue'
-import {useRouter} from 'vue-router'
-
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
+import { Bars3Icon, ShoppingCartIcon, XMarkIcon } from '@heroicons/vue/24/outline';
+import {useStore} from 'vuex';
+import {computed} from 'vue';
+import {useRouter} from 'vue-router';
+import Notification from "./Notification.vue";
 
 const navigation = [
-  { name: 'Dashboard', to: {name: 'Dashboard'}},
   { name: 'Products', to: {name: 'Products'}},
+  { name: 'Orders', to: {name:'Orders'}},
 ];
 export default{
   components:{
-    Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems, Bars3Icon, ShoppingCartIcon, XMarkIcon
+    Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems, Bars3Icon, ShoppingCartIcon, XMarkIcon, Notification
   },
   setup(){
     const store = useStore();

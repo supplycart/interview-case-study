@@ -12,15 +12,29 @@
           </p>
       </div>
       <div class="flex flex-row justify-center items-center pb-4">
-          <button class="px-6 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">Add to cart</button>
+          <button @click="addtoCart()" class="px-6 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none">Add to cart</button>
       </div>
   </div>
 </template>
 
 <script setup>
+
+import store from "../store";
 const { product } = defineProps({
   product: Object,
 });
+
+function addtoCart(){
+  store
+  .dispatch('addCartItem',product)
+  .then(() => {
+      store.commit("notify", {
+      type: "success",
+      message: "The item has been successfully added",
+    });
+  })
+}
+
 </script>
 
 <style></style>
