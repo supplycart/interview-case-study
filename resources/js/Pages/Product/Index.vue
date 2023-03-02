@@ -90,6 +90,7 @@ import Toast from "@/Components/Toast.vue";
 export default {
     components: {
         Card,
+        Toast,
     },
     props: {
         products: Object,
