@@ -50,7 +50,10 @@ import { UserCircleIcon } from "@heroicons/vue/24/solid";
                 >
                     {{ $page.props.auth.user.membership_level.name }}
                 </span>
-                <span class="text-sm">
+                <span
+                    v-if="$page.props.auth.user.membership_level"
+                    class="text-sm"
+                >
                     (You're entitled for a
                     {{ $page.props.auth.user.membership_level.discount }}%
                     discount!)

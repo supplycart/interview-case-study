@@ -9,12 +9,12 @@
         <p class="grow text-sm">{{ product.description }}</p>
         <p class="text-center mt-4 font-bold text-lg">
             <span v-if="productDiscount > 0">
-                RM{{ discountedPrice.toFixed(2) }}
+                RM{{ product.discounted_price }}
                 <s class="text-slate-400 text-sm ml-3">
                     RM{{ product.price }}</s
                 >
             </span>
-            <span v-else> RM{{ product.price.toFixed(2) }} </span>
+            <span v-else> RM{{ product.price }} </span>
         </p>
         <button
             class="bg-lime-200 w-full rounded-full py-1 mt-3 font-medium"
@@ -28,14 +28,6 @@
 <script>
 export default {
     props: { product: Object, productDiscount: Number },
-    computed: {
-        discountedPrice() {
-            return (
-                this.product.price -
-                this.product.price * (this.productDiscount / 100)
-            );
-        },
-    },
     methods: {
         addToCart(product_id) {
             this.$emit("addToCart", product_id);

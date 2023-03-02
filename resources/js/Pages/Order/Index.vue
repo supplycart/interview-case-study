@@ -59,7 +59,9 @@ export default {
     data: () => ({
         moment: moment,
         productDiscount: Number(
-            usePage().props.auth.user.membership_level.discount
+            usePage().props.auth.user.membership_level
+                ? usePage().props.auth.user.membership_level.discount
+                : 0
         ),
     }),
 };

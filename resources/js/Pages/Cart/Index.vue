@@ -60,7 +60,9 @@ export default {
     data() {
         return {
             productDiscount: Number(
-                usePage().props.auth.user.membership_level.discount
+                usePage().props.auth.user.membership_level
+                    ? usePage().props.auth.user.membership_level.discount
+                    : 0
             ),
         };
     },

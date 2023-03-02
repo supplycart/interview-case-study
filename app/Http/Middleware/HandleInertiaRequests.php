@@ -30,6 +30,15 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $activity = activity();
+        if($request->user()) {
+            $activity = $activity->causedBy($request->user());
+        }
+        $activity->withProperties([
+            'ip' => $request->ip(),
+            'url' => $request->url()
+        ])->log('Visited Url');
+
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user(),

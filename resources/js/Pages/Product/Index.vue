@@ -107,7 +107,9 @@ export default {
             showToast: false,
             toastText: null,
             productDiscount: Number(
-                usePage().props.auth.user.membership_level.discount
+                usePage().props.auth.user.membership_level
+                    ? usePage().props.auth.user.membership_level.discount
+                    : 0
             ),
         };
     },
