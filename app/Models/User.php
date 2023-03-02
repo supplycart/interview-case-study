@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'membership_level_id'
     ];
 
     /**
@@ -42,6 +43,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function membership_level() {
+        return $this->belongsTo(MembershipLevel::class);
+    }
+    
     public function orders() {
         return $this->hasMany(Order::class);
     }
