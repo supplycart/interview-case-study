@@ -3,13 +3,14 @@
         <p class="text-xl font-bold mr-4 mb-3">Order History</p>
 
         <div v-for="order in orders" class="mt-10">
-            <div class="flex justify-between">
+            <div class="flex justify-between mb-4">
                 <span
                     class="rounded-full bg-lime-500 px-2 text-white font-bold"
                 >
                     SC-{{ order.id }}
                 </span>
                 <span>
+                    Order made on:
                     {{ moment(order.created_at).format("DD MMM Y HH:mm:ss") }}
                 </span>
             </div>

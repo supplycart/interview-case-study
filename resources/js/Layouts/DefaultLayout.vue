@@ -16,8 +16,20 @@ import { UserCircleIcon } from "@heroicons/vue/24/solid";
                     >{{ link.name }}
                 </Link>
             </div>
-            <div class="flex">
-                <div><UserCircleIcon class="h-8 w-8 text-lime-500" /></div>
+            <div class="flex items-center">
+                <div>
+                    <button @click="showProfileAction = !showProfileAction">
+                        <UserCircleIcon class="h-8 w-8 text-lime-500" />
+                    </button>
+                    <ul
+                        v-if="showProfileAction"
+                        class="absolute border right-5 rounded bg-white p-4"
+                    >
+                        <li>
+                            <Link href="/logout" method="post">Logout</Link>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -55,6 +67,7 @@ import Toast from "@/Components/Toast.vue";
 export default {
     data() {
         return {
+            showProfileAction: false,
             showToast: false,
             menuLinks: [
                 {
