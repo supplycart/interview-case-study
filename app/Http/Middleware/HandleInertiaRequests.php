@@ -39,7 +39,7 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
-            'auth.user.membership_level' => $request->user()->membership_level
+            'auth.user.membership_level' => optional($request->user())->membership_level
         ]);
     }
 }
