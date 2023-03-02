@@ -1,9 +1,9 @@
 <template>
-    <div class="rounded-lg border border-slate-200 p-2 flex flex-col">
+    <div class="rounded-lg border border-slate-200 py-2 flex flex-col px-5">
         <img
             :src="product.image"
             alt=""
-            class="aspect-square bg-contain rounded mb-2"
+            class="aspect-square object-contain rounded mb-2"
         />
         <p class="font-bold text-lg">{{ product.name }}</p>
         <p class="grow text-sm">{{ product.description }}</p>

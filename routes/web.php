@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +30,7 @@ Route::group(['middleware' => [
     });
 
     Route::name('products.')->prefix('products')->group(function() {
-        Route::get('/', function() {
-            return Inertia::render('Product/List');
-        })->name('index');
+        Route::get('/', [ProductController::class, 'index'])->name('index');
     });
 });
 require __DIR__.'/auth.php';
