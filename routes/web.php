@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +34,16 @@ Route::group(['middleware' => [
 
     Route::name('products.')->prefix('products')->group(function() {
         Route::get('/', [ProductController::class, 'index'])->name('index');
+    });
+
+    Route::name('carts.')->prefix('carts')->group(function() {
+        Route::get('/', [CartController::class, 'index'])->name('index');
+        Route::post('add', [CartController::class, 'addToCart'])->name('addToCart');
+        Route::post('checkout', [CartController::class, 'checkout'])->name('checkout');
+    });
+
+    Route::name('orders.')->prefix('orders')->group(function() {
+        Route::get('/', [OrderController::class, 'index'])->name('index');
     });
 });
 require __DIR__.'/auth.php';

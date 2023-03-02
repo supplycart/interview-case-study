@@ -50,9 +50,12 @@ import { UserCircleIcon } from "@heroicons/vue/24/solid";
 </template>
 
 <script>
+import Toast from "@/Components/Toast.vue";
+
 export default {
     data() {
         return {
+            showToast: false,
             menuLinks: [
                 {
                     name: "Products",
@@ -68,6 +71,14 @@ export default {
                 },
             ],
         };
+    },
+    watch: {
+        showToast(newValue) {
+            if (newValue)
+                setTimeout(() => {
+                    this.showToast = false;
+                }, 2000);
+        },
     },
 };
 </script>

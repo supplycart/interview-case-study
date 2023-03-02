@@ -16,15 +16,16 @@
             </span>
             <span v-else> RM{{ product.price.toFixed(2) }} </span>
         </p>
-        <button class="bg-lime-200 w-full rounded-full py-1 mt-3 font-medium">
+        <button
+            class="bg-lime-200 w-full rounded-full py-1 mt-3 font-medium"
+            @click="addToCart(product.id)"
+        >
             Add to Cart
         </button>
     </div>
 </template>
 
 <script>
-import Swal from "sweetalert2";
-
 export default {
     props: { product: Object, productDiscount: Number },
     computed: {
@@ -35,6 +36,10 @@ export default {
             );
         },
     },
-    mounted() {},
+    methods: {
+        addToCart(product_id) {
+            this.$emit("addToCart", product_id);
+        },
+    },
 };
 </script>
