@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
     props: { product: Object, productDiscount: Number },
     computed: {
@@ -33,5 +35,6 @@ export default {
             );
         },
     },
+    mounted() {},
 };
 </script>

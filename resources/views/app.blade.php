@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -13,8 +13,18 @@
 
     <!-- Scripts -->
     <style>
-        #app {
+        html {
             height: 100%;
+        }
+
+        body {
+            /* min-height: 100%; */
+            height: 100vh;
+        }
+
+        #app {
+            min-height: 100%;
+            background: rgb(241 245 249);
         }
     </style>
     @routes
@@ -22,7 +32,7 @@
     @inertiaHead
 </head>
 
-<body class="font-sans antialiased h-full">
+<body class="font-sans antialiased">
     @inertia
 </body>
 

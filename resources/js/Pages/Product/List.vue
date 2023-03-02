@@ -5,9 +5,9 @@ import DefaultLayout from "@/Layouts/DefaultLayout.vue";
 <template>
     <DefaultLayout>
         <div class="h-full rounded-lg bg-white p-3">
-            <div class="flex items-center">
-                <p class="text-xl font-bold mr-4">Discover products</p>
-
+            <p class="text-xl font-bold mr-4 mb-3">Discover products</p>
+            <!-- <hr /> -->
+            <div class="flex items-center mt-3">
                 <p>Filter by:</p>
                 <div class="ml-3">
                     <button
@@ -22,7 +22,7 @@ import DefaultLayout from "@/Layouts/DefaultLayout.vue";
                     </button>
                     <div
                         v-if="showCategory"
-                        class="border w-48 rounded mt-2 px-2 fixed bg-white shadow"
+                        class="border w-48 rounded mt-2 px-2 absolute bg-white shadow"
                     >
                         <ul>
                             <li v-for="category in categories" class="py-1">
@@ -53,7 +53,7 @@ import DefaultLayout from "@/Layouts/DefaultLayout.vue";
                     </button>
                     <div
                         v-if="showBrand"
-                        class="border w-48 rounded mt-2 px-2 fixed bg-white shadow"
+                        class="border w-48 rounded mt-2 px-2 absolute bg-white shadow"
                     >
                         <ul>
                             <li v-for="brand in brands" class="py-1">
@@ -72,7 +72,9 @@ import DefaultLayout from "@/Layouts/DefaultLayout.vue";
                     </div>
                 </div>
             </div>
-            <div class="grid sm:grid-cols-3 md:grid-cols-4 gap-4 mt-3">
+            <div
+                class="grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-3"
+            >
                 <Card
                     v-for="product in displayProducts"
                     :product="product"
@@ -100,7 +102,7 @@ export default {
     data() {
         return {
             displayProducts: this.products,
-            showCategory: true,
+            showCategory: false,
             showBrand: false,
             selectedCategories: [],
             selectedBrands: [],
