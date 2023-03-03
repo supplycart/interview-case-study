@@ -36,6 +36,6 @@ class Product extends Model
             $discount = Auth::user()->membership_level->discount;
             return $this->price - ($this->price * $discount / 100);
         }
-        return null;
+        return $this->price;
     }
 }
