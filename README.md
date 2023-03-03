@@ -77,8 +77,8 @@ password: 11111111
 ## Bonus Tasks
 
 -   [x] Verify email after registration
--   [x] User activity log e.g. login, logout, add to cart, place order etc
+-   [x] User activity log e.g. login, logout, add to cart, place order etc (Added logger into `app/Http/Middleware/HandleInertiaRequests.php`)
 -   [x] Product attributes and filtering e.g brand, category
 -   [x] Different user can see different price for products (I'm using membership to control discounts)
--   [x] Add unit tests
+-   [x] Add unit tests (Can be ran using `./vendor/bin/pest`)
 -   [x] Deploy app to a server
