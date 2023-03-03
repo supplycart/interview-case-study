@@ -10,9 +10,17 @@ use App\Models\Product;
 use App\Models\Order;
 use Auth;
 use DB;
+use App\Services\CartService;
 
 class CartController extends Controller
 {
+
+    private CartService $cartService;
+
+    public function __construct(CartService $cartService) {
+        $this->cartService = $cartService;
+    }
+
     public function index() {
         $carts = Cart::with('product')->userCart()->get();
         return Inertia::render('Cart/Index', compact('carts'));
@@ -37,9 +45,9 @@ class CartController extends Controller
                 'quantity' => $quantity,
                 'price_per_quantity' => $products[$product_id]['price'],
                 'discount_per_quantity' => $products[$product_id]['price'] - $products[$product_id]['discounted_price'],
-                'total_amount' => $products[$product_id]['price'] * $quantity,
-                'total_discount' => ($products[$product_id]['price'] - $products[$product_id]['discounted_price']) * $quantity,
-                'total_nett' => $products[$product_id]['discounted_price'] * $quantity
+                'total_amount' => $this->cartService->getTotalAmount($products[$product_id]['price'], $quantity),
+                'total_discount' => $this->cartService->getTotalDiscount($products[$product_id]['price'], $products[$product_id]['discounted_price'], $quantity),
+                'total_nett' => $this->cartService->getTotalAmount($products[$product_id]['discounted_price'], $quantity)
             ];
         }
 
