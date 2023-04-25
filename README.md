@@ -43,7 +43,7 @@ You must work on this assignment using:
 P/S: If you think there is a better way for us to asses your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
 
 
-###Installation
+### Installation
 
 1. Clone the repository
 2. Copy `env` file. `$ cp .env.example .env`
