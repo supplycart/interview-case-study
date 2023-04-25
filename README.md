@@ -41,3 +41,35 @@ You must work on this assignment using:
 
 
 P/S: If you think there is a better way for us to asses your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
+
+
+###Installation
+
+1. Clone the repository
+2. Please ensure your database created
+    a. Host: localhost
+    b. Username: sail
+    c. Password: password
+    d. Port: 3306
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=example_app
+DB_USERNAME=sail
+DB_PASSWORD=password
+```
+3. Run commands below
+```
+$ composer install
+
+$ cp .env.example .env
+
+$ ./vendor/bin/sail up
+$ ./vendor/bin/sail php artisan key:generate
+$ ./vendor/bin/sail php artisan migrate:fresh --seed
+
+$ ./vendor/bin/sail npm install
+$ ./vendor/bin/sail npm run dev
+```
+3. Website should be running on http://localhost
