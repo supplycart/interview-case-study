@@ -41,3 +41,27 @@ You must work on this assignment using:
 
 
 P/S: If you think there is a better way for us to asses your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
+
+
+# How to run the code
+## using local web server
+- composer install
+- npm ci
+- npm run dev
+- copy env.example and create .env
+- update the db credentials, add mail configurations, add AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_BUCKET, AWS_S3_URL, STRIPE_KEY and STRIPE_SECRET
+- php artisan key:generate
+- php artisan migrate --seed
+
+## using docker
+- ./vendor/bin/sail up -d
+- ./vendor/bin/sail npm run dev
+- ./vendor/bin/sail php artisan migrate --seed
+
+## using live server
+- navigate to https://q2yqaqnh776inloah2avj4h5da0aswno.lambda-url.ap-southeast-1.on.aws/
+
+| User | Password |
+| ----------- | ----------- |
+| farah@email.com | password@123 |
+| aina@email.com | password@123 |
