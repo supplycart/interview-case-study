@@ -4,6 +4,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, usePage, useForm } from '@inertiajs/vue3';
 
 const url = usePage().props.s3.url;
+const discount = usePage().props.auth.user.discount;
 
 const props = defineProps({
     products: {
@@ -63,7 +64,7 @@ const addToCart = (id) => {
                         </div>
                     </div>
                     <p class="font-normal text-xl leading-5 text-gray-800 dark:text-white md:mt-6 mt-4">{{ product.name }}</p>
-                    <p class="font-semibold text-xl leading-5 text-gray-800 dark:text-white mt-4">${{ product.price.toFixed(2) }}</p>
+                    <p class="font-semibold text-xl leading-5 text-gray-800 dark:text-white mt-4">${{ (product.price * ((discount) ? discount/100 : 1)).toFixed(2) }}</p>
                 </div>
             </div>
 
