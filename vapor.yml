@@ -1,0 +1,16 @@
+id: 46871
+name: default
+environments:
+    production:
+        memory: 1024
+        cli-memory: 512
+        runtime: 'php-8.2:al2'
+        database: default-db
+        storage: supply-cart-assessment
+        build:
+            - 'composer install --optimize-autoloader --no-dev'
+            - 'php artisan config:cache'
+            - 'php artisan event:cache'
+            - 'php artisan route:cache'
+            - 'php artisan view:cache'
+            - 'npm ci && npm run build && rm -rf node_modules'
