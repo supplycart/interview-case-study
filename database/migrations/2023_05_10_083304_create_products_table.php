@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', 50);
             $table->string('image');
             $table->double('price', 8, 2);
+            $table->boolean('is_on_sale')->default(false);
             $table->timestamps();
         });
     }
