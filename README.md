@@ -53,5 +53,5 @@ P/S: If you think there is a better way for us to asses your technical skills, f
 - Run `php artisan serve` to run the system
 - Register account required if database not seeded with the data
 - Account information (Seed)
-    email: *zali@yahoo.com*
-    password: *secret*
+  - email: *zali@yahoo.com*
+  - password: *secret*
