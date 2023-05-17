@@ -18,12 +18,12 @@ class CreateProductsTable extends Migration
             $table->string('name')->nullable();
             $table->string('sku')->nullable();
             $table->text('description')->nullable();
-            $table->string('cost_price')->nullable();
-            $table->string('price')->nullable();
+            $table->decimal('cost_price', 8, 2)->nullable();
+            $table->decimal('price', 8, 2)->nullable();
             $table->integer('quantity')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('brand_id')->nullable();
-            $table->tinyInteger('is_active')->default(0);
+            $table->tinyInteger('is_active')->default(1);
             $table->tinyInteger('is_delete')->default(0);
             $table->timestamps();
 

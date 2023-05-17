@@ -18,8 +18,8 @@ class CreateOrderProductsTable extends Migration
             $table->unsignedBigInteger('order_id')->nullable();
             $table->unsignedBigInteger('product_id')->nullable();
             $table->integer('quantity')->nullable();
-            $table->string('price')->nullable();
-            $table->string('total_price')->nullable();
+            $table->decimal('price', 8, 2)->nullable();
+            $table->decimal('total_price', 8, 2)->nullable();
             $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders');

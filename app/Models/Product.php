@@ -11,7 +11,17 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'email',
-        'password',
+        'sku',
+        'description',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
 }

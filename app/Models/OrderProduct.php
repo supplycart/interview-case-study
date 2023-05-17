@@ -10,8 +10,10 @@ class OrderProduct extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'order_id',
+        'product_id',
+        'quantity',
+        'price',
+        'total_price'
     ];
 }

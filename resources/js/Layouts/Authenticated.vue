@@ -31,6 +31,16 @@ const showingNavigationDropdown = ref(false);
                                     Dashboard
                                 </BreezeNavLink>
                             </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-2 sm:flex">
+                                <BreezeNavLink :href="route('product.index')" :active="route().current('product.index')">
+                                    Product
+                                </BreezeNavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-2 sm:flex">
+                                <BreezeNavLink :href="route('order.index')" :active="route().current('order.index')">
+                                    History
+                                </BreezeNavLink>
+                            </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">

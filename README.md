@@ -41,3 +41,14 @@ You must work on this assignment using:
 
 
 P/S: If you think there is a better way for us to asses your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
+
+### Setup Instruction
+- Clone Project
+- Run `composer install`
+- Create database, copy `.env.example` and rename to `.env`
+- Migrate database, Run `php artisan migrate`
+- Run `php artisan migrate --seed` to seed the data in database
+- Run `php artisan passport:install` (API Authentication)
+- Run `php artisan key:generate` to generate key if required
+- Run `php artisan serve` to run the system
+- Register account required if database not seeded with the data
