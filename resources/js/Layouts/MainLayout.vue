@@ -1,19 +1,15 @@
 <script setup>
 import { ref } from "vue";
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-import Dropdown from "@/Components/Dropdown.vue";
-import DropdownLink from "@/Components/DropdownLink.vue";
-import NavLink from "@/Components/NavLink.vue";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import { Link } from "@inertiajs/vue3";
-import MapMarkerOutlineIcon from 'vue-material-design-icons/MapMarkerOutline.vue';
+import MenuIcon from 'vue-material-design-icons/Menu.vue';
+
 
 const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
 
-    <div class="min-w-[1150px] bg-gray-100 h-full">
+    <div class="min-w-[1150px] bg-white h-full">
 
         <!-- First Navigation Bar -->
         <div class="flex items-center bg-[#F7F7F7] h-[40px] py-2 fixed z-50 w-full justify-end">
@@ -44,6 +40,10 @@ const showingNavigationDropdown = ref(false);
         
         <!-- Second Navigation Bar -->
         <div class="flex items-center bg-white h-[68px] py-2 fixed z-50 w-full mt-[40px] justify-between border-b border-gray-300">
+            <div class="flex items-center justify-between pl-6 lg:hidden">
+                <MenuIcon fillColor="gray-700" :size="38" class="mr-0.5 cursor-pointer" />
+            </div>
+
             <div class="flex p-8">
                 <Link class="h-[60px] pt-2 rounded-sm cursor-pointer text-[30px]">
                      MUJI 無印良品
@@ -114,15 +114,36 @@ const showingNavigationDropdown = ref(false);
             <Link class="h-[30px] p-4 pt-1 text-gray-900 rounded-sm hover:text-[#972A3E] hover:underline cursur-pointer text-[17px]">
                 Sustainability
             </Link>
-
         </div>
         
-        <main class="max-w-[1500px] mx-auto">
-            <div class="pt-[148px]"></div>
+        <main class="flex justify-center w-screen">
+            <div class="max-w-[1500px] w-[80vw]">
+                <div class="pt-[148px]"></div>
+                <slot />
+            </div>
+            
+            
+            
         </main>
 
         <!-- Footer -->
         <footer class="bg-gray-100 mt-4">
+
+            <div class="flex justify-center w-screen bg-white p-8">
+                <div class="grid grid-cols-1 max-w-[1000px] w-[80vw] place-items-center">
+                    <div class="font-bold text-[22px] font-roboto">MUJI Membership</div>
+                    <div class="text-[13px] text-center">Become a MUJI Member and receive £10 off your first online purchase</div>
+                    <div class="text-[13px] flex text-center">
+                        <div>(Only valid with online orders over £50, excluding shipping) (For more information <Link class="text-blue-600 underline font-bold"> click here</Link>)</div>
+                    </div>
+
+                    <div class="flex w-[85vw] max-w-[580px] py-4 gap-4">
+                        <input class="w-full border-[1px] border-gray-300 rounded-sm focus:border-gray-300" type="text" placeholder="Enter Email Address">
+                        <button class="min-w-[90px] bg-[#7f0019] rounded-md text-white font-bold">Join Now</button>
+                    </div>
+                </div>
+            </div>
+
             <div class="flex bg-white w-full">
                 <Link class="px-8 pt-2 rounded-sm cursor-pointer text-[30px]">
                      MUJI 無印良品
