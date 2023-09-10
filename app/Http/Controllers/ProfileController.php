@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\AddressOptionsStoreRequest;
+use App\Models\Address;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,6 +31,7 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        dd('Update method is being called');
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -60,4 +63,35 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function store(AddressOptionsStoreRequest $request)
+    {
+        try {
+            
+            // Get the current user's address, if it exists
+            $address = Address::where('user_id', auth()->user()->id)->first();
+
+            // If the user doesn't have an address yet, create a new one
+            if (!$address) {
+                $address = new Address;
+                $address->user_id = auth()->user()->id;
+            }
+
+            // Update the address fields
+            $address->addr1 = $request->input('addr1');
+            $address->addr2 = $request->input('addr2');
+            $address->city = $request->input('city');
+            $address->postcode = $request->input('postcode');
+            $address->country = $request->input('country');
+
+            // Save the updated or newly created address to the database
+            $address->save();
+
+        } catch (\Exception $e) {
+
+            \Log::error('Error while storing address: ' . $e->getMessage());
+            return response()->json(['message' => 'An error occurred while storing the address.']);
+        }
+    }
+
 }

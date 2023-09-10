@@ -1,5 +1,12 @@
 import './bootstrap';
 import '../css/app.css';
+import 'animate.css';
+
+import { createPinia} from 'pinia';
+import piniaPluginPersistedState from 'pinia-plugin-persistedstate';
+
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedState)
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
@@ -13,6 +20,7 @@ createInertiaApp({
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) })
+            .use(pinia)
             .use(plugin)
             .use(ZiggyVue, Ziggy)
             .mount(el);

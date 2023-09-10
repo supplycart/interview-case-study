@@ -18,7 +18,12 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "animate.css": "^4.1.1",
+        "pinia": "^2.1.6",
+        "pinia-plugin-persistedstate": "^3.2.0",
         "vue-material-design-icons": "^5.2.0",
+        "vue-numeric-input": "^2.0.0",
+        "vue-recaptcha": "^3.0.0-alpha.6",
         "vue3-carousel": "^0.3.1"
     }
 }
