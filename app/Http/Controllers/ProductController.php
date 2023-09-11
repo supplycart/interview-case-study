@@ -14,9 +14,13 @@ class ProductController extends Controller
      */
     public function index(int $id)
     {
+        
         $product = Product::find($id);
+
+        // Find the category using the product's category ID
         $category = Category::find($product->category);
 
+        // Return the Product view with the product and category name
         return Inertia::render('Product', [
             'product' => Product::find($id),
             'category_name' => $category->name,

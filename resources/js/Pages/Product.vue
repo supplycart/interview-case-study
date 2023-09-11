@@ -2,20 +2,23 @@
 import AuthenticatedLayout from '@/Layouts/MainLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { toRefs, computed } from 'vue';
-import VueNumericInput from '@/Components/VueNumericInput.vue';
 
-import {useCartStore} from '@/store/cart'
+// Import your Cart store and extract its cart property
+import {useCartStore} from '@/store/Cart'
 import {storeToRefs} from 'pinia';
 const cartStore = useCartStore()
 const { cart } = storeToRefs(cartStore)
 
+// Define props for the component, expecting a 'product' object
 const props = defineProps({product: Object});
 const { product } = toRefs(props)
 
+// Define a method to add the product to the cart
 const addToCart = (product) => {
     cart.value.push(product)
 }
 
+// Define a computed property to check if the product is already in the cart
 const isAlreadyInCart = computed(() => {
     let res = cart.value.find(c => c.id === product.value.id)
     if (res) return true
@@ -27,19 +30,24 @@ const isAlreadyInCart = computed(() => {
     <Head title="Product" />
 
     <AuthenticatedLayout>
+        <!-- Breadcrumb navigation -->
         <div class="p-3 font-bold font-roboto text-[15px] text-gray-600">{{ $page.props.category_name }} / {{ product.title }} /</div>
+
         <div class="flex w-full justify-between px-20">
             <div class="pt-10">
+                <!-- Product image -->
                 <div class="flex w-[500px]">
-                    <img :src="product.image" alt="w-auto">
+                    <img :src="product.image" alt="Product Image" />
                 </div>
             </div>
-            
+
             <div class="pt-10 w-[400px]">
+                <!-- Product details -->
                 <div class="text-[30px]">{{ product.title }}</div>
                 <div class="mt-10">{{ product.description }}</div>
                 <div class="text-[24px] mt-6">£{{ product.price }}</div>
-                
+
+                <!-- Add to cart button -->
                 <div v-if="isAlreadyInCart" class="
                         w-full
                         mt-6

@@ -36,6 +36,7 @@ const submit = () => {
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>
+        
         <div class="font-roboto font-bold text-[#80041c] text-center text-[25px] mb-10">Log In to your Account</div>
         <form @submit.prevent="submit">
 

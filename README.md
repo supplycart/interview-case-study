@@ -1,60 +1,92 @@
-HEAD
+# MUJI Online Store Clone
 
-## About Laravel
+This project is a clone of the MUJI Online Store, focusing on implementing various features using Laravel, Vue.js, and Tailwind CSS. It includes user registration, login, product listing, cart management, order placement, order history, and user logout functionalities.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Table of Contents
 
--   [Simple, fast routing engine](https://laravel.com/docs/routing).
--   [Powerful dependency injection container](https://laravel.com/docs/container).
--   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
--   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
--   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
--   [Robust background job processing](https://laravel.com/docs/queues).
--   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   [Requirements](#requirements)
+-   [Installation](#installation)
+-   [Features](#features)
+-   [Future Improvements](#future-improvements)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Requirements
 
-## Learning Laravel
+To run this project, you will need the following technologies:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   Vue.js
+-   Tailwind CSS
+-   Laravel
+-   Inertia.js
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Fork this repository**: Start by forking this repository to your own GitHub account.
 
-## Laravel Sponsors
+2. **Clone the repository**: Clone the forked repository to your local machine.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    ```bash
+    git clone https://github.com/your-username/muji-online-store-clone.git
 
-### Premium Partners
+    ```
 
--   **[Vehikl](https://vehikl.com/)**
--   **[Tighten Co.](https://tighten.co)**
--   **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
--   **[64 Robots](https://64robots.com)**
--   **[Cubet Techno Labs](https://cubettech.com)**
--   **[Cyber-Duck](https://cyber-duck.co.uk)**
--   **[Many](https://www.many.co.uk)**
--   **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
--   **[DevSquad](https://devsquad.com)**
--   **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
--   **[OP.GG](https://op.gg)**
--   **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
--   **[Lendio](https://lendio.com)**
+3. **Install dependencies**: Navigate to the project directory and install the required dependencies for both the backend and frontend.
 
-## Contributing
+    ```bash
+    # Install backend dependencies
+    cd backend
+    composer install
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+    # Install frontend dependencies
+    cd ../frontend
+    npm install
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    ```
 
-## Security Vulnerabilities
+4. **Database Setup**: Set up your database configuration in .env file in the backend directory. Then, run migrations and seed the database.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    ```bash
+    # In the backend directory
+    php artisan migrate --seed
 
-## License
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-b57ceef (first commit)
+5. **Start the Development Servers**: Run the Laravel backend and Vue.js frontend development servers.
+
+    ```bash
+    # In the backend directory
+    php artisan serve
+
+
+    # In the frontend directory
+    npm run dev
+
+    ```
+
+6. **Access the Application**: Open your web browser and navigate to http://localhost:8000 to access the application.
+
+## Usage
+
+1. **User Registration and Login**: You can register a new account as a guest and then log in using your registered account.
+
+2. **Product Listing**: After logging in, you will be able to browse a list of products available on the MUJI Online Store.
+
+3. **Adding Products to Cart**: As a user, you can add products to your cart for later purchase.
+
+4. **Placing Orders**: You can place orders for the products in your cart. Note that this is a simulated feature and does not involve actual payment processing.
+
+5. **Order History**: You can view your order history to see past orders you've placed.
+
+6. **Logout**: When you're done, you can log out of your account.
+
+## Future Improvements
+
+While this project covers a significant portion of the required tasks, there are still some areas that can be improved or extended:
+
+-   Implement email verification for registered users.
+-   Implement user activity logging for actions like login, logout, adding items to the cart, and placing orders.
+-   Enhance product attributes and filtering, such as by brand and category.
+-   Implement differential pricing for products based on user roles.
+-   Add unit tests to ensure the reliability of the application.
+-   Deploy the application to a server for public access.
+    > > > > > > > 5c7ed87 (final commit)

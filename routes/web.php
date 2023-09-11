@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
@@ -17,15 +19,6 @@ use Inertia\Inertia;
 |
 */
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
-
 Route::get('/', function () {return Inertia::render('Dashboard');})->name('dashboard');
 Route::get('/cart', function () {return Inertia::render('Cart');})->name('cart.index');
 Route::get('/Category/{id}', [CategoryController::class, 'index'])->name('category.index');
@@ -38,6 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::get('/checkout_success', function () {return Inertia::render('CheckoutSuccess');})->name('checkout_success.index');
 });
 
 require __DIR__.'/auth.php';

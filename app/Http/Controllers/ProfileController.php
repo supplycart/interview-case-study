@@ -31,7 +31,6 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        dd('Update method is being called');
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -64,6 +63,9 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
+    /**
+     * Store the user's address.
+     */
     public function store(AddressOptionsStoreRequest $request)
     {
         try {
