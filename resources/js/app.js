@@ -11,6 +11,6 @@ let app = createApp({
     }
 });
 
-app.config.globalProperties.PROJECT_PATH = "/public/";
+app.config.globalProperties.PROJECT_PATH = "/";
 
 app.mount('#app');
