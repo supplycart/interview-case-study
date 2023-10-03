@@ -47,12 +47,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Cart
     Route::prefix('cart')->controller(CartController::class)->group(function () {
+        Route::get('/show', 'show')->name('cart.show');
         Route::post('/add', 'add')->name('cart.add');
-        Route::get('/', 'show')->name('cart.show');
     });
 
     // Order
     Route::prefix('order')->controller(OrderController::class)->group(function () {
+        Route::get('/', 'index')->name('order.index');
         Route::post('/create', 'create')->name('order.create');
     });
 });

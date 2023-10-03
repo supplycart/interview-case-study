@@ -3,10 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class OrderController extends Controller
 {
+    function index() : Response {
+        $orders = auth()->user()->orders()->with('products.category')->whereHas('products', function ($products) {
+            $products->orderBy('product_id');
+        })->orderBy('id', 'desc')->paginate(10);
+
+        return Inertia::render('Order/Index', [
+            'orders' => $orders,
+        ]);
+    }
+
     function create() : RedirectResponse {
         $products = auth()->user()->carts;
         $total_price = $products->sum('price');

@@ -50,6 +50,12 @@ onUpdated(() => setMessage());
                                 >
                                     Home
                                 </NavLink>
+                                <NavLink
+                                    :href="route('order.index')"
+                                    :active="route().current('order.index')"
+                                >
+                                    Orders
+                                </NavLink>
                             </div>
                         </div>
 

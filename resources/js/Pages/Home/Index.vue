@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import CardProduct from "@/Components/Cards/CardProduct.vue";
+import CardProduct from "@/Pages/Cart/Partials/CardProduct.vue";
 import Pagination from "@/Components/Layouts/Pagination.vue";
 import { Head } from '@inertiajs/vue3'
 
