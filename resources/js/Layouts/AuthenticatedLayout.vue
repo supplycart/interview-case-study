@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from "vue";
 import ApplicationLogo from "@/Components/Layouts/ApplicationLogo.vue";
 import NotifyMessage from "@/Components/Layouts/NotifyMessage.vue"
 import Dropdown from "@/Components/Layouts/Dropdown.vue";
@@ -7,8 +6,10 @@ import DropdownLink from "@/Components/Layouts/DropdownLink.vue";
 import NavLink from "@/Components/Layouts/NavLink.vue";
 import ButtonSecondary from "@/Components/Buttons/ButtonSecondary.vue";
 import ResponsiveNavLink from "@/Components/Layouts/ResponsiveNavLink.vue";
-import { Link } from "@inertiajs/vue3";
+import { Link,usePage } from "@inertiajs/vue3";
+import { ref, onMounted, onUpdated } from 'vue'
 
+const message = ref(null);
 const showingNavigationDropdown = ref(false);
 const props = defineProps({
     carts_count: {
@@ -16,6 +17,10 @@ const props = defineProps({
         default: 0,
     },
 });
+const setMessage = () => message.value = usePage().props.flash?.message;
+
+onMounted(() => setMessage());
+onUpdated(() => setMessage());
 </script>
 
 <template>
@@ -200,7 +205,7 @@ const props = defineProps({
 
             <!-- Page Content -->
             <main>
-                <NotifyMessage />
+                <NotifyMessage :message="message" />
 
                 <slot />
             </main>
