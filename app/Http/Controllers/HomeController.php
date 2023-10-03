@@ -9,7 +9,7 @@ use Inertia\Response;
 class HomeController extends Controller
 {
     function index() : Response {
-        $products = Product::with('category')->paginate(8);
+        $products = Product::with('category')->orderBy('id', 'desc')->paginate(8);
 
         return Inertia::render('Home/Index', [
             'products' => $products,
