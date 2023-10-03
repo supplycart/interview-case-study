@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -41,5 +42,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', 'edit')->name('profile.edit');
         Route::patch('/', 'update')->name('profile.update');
         Route::delete('/', 'destroy')->name('profile.destroy');
+    });
+
+    // Cart
+    Route::prefix('cart')->controller(CartController::class)->group(function () {
+        Route::post('/add', 'add')->name('cart.add');
     });
 });

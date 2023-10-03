@@ -1,11 +1,20 @@
 <script setup>
-import ButtonPrimary from '@/Components/Buttons/ButtonPrimary.vue'
+import ButtonPrimary from "@/Components/Buttons/ButtonPrimary.vue";
+import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
     product: {
         type: Object,
     },
 });
+const emit = defineEmits('updateMessage');
+
+const addToCart = (id) => {
+    const form = useForm({ id: props.product.id });
+    form.post(route("cart.add"), {
+        onFinish: () => emit('updateMessage'),
+    });
+};
 </script>
 
 <template>
@@ -23,6 +32,11 @@ const props = defineProps({
             </div>
         </div>
 
-        <ButtonPrimary class="w-full mt-4" text="Add To Cart" icon="shopping-cart" />
+        <ButtonPrimary
+            class="w-full mt-4"
+            text="Add To Cart"
+            icon="shopping-cart"
+            @click="addToCart"
+        />
     </div>
 </template>
