@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddToCartRequest;
+use App\Http\Requests\RemoveFromCartRequest;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
@@ -17,13 +18,20 @@ class CartController extends Controller
         return redirect()->route('home.index')->with('message', 'Added to cart.');
     }
 
+    function remove(RemoveFromCartRequest $request) : RedirectResponse {
+        $user_cart = auth()->user()->user_carts()->find($request->id);
+        $user_cart->delete();
+
+        return redirect()->route('cart.show')->with('message', 'Removed from cart.');
+    }
+
     function show() : Response {
-        $carts = auth()->user()->carts()->with('category')->get();
-        $total_price = $carts->sum('price');
+        $user_carts = auth()->user()->user_carts()->with('product.category')->get();
+        $total_price = $user_carts->pluck('product')->sum('price');
 
         return Inertia::render('Cart/Index', [
-            'products' => $carts,
-            'carts_count' => $carts->count(),
+            'user_carts' => $user_carts,
+            'carts_count' => $user_carts->count(),
             'total_price' => $total_price
         ]);
     }

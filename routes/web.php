@@ -49,6 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('cart')->controller(CartController::class)->group(function () {
         Route::get('/show', 'show')->name('cart.show');
         Route::post('/add', 'add')->name('cart.add');
+        Route::post('/remove', 'remove')->name('cart.remove');
     });
 
     // Order

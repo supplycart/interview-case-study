@@ -1,14 +1,18 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import CardProduct from "@/Pages/Cart/Partials/CardProduct.vue";
+import ButtonDanger from "@/Components/Buttons/ButtonDanger.vue";
 import PaymentPanel from "@/Pages/Cart/Partials/PaymentPanel.vue";
-import { Head } from "@inertiajs/vue3";
+import { Head, useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
-    products: Object,
+    user_carts: Array,
     carts_count: Number,
     total_price: Number,
 });
+const remove = (id) => {
+    useForm({ id: id }).post(route("cart.remove"));
+};
 </script>
 
 <template>
@@ -28,13 +32,23 @@ const props = defineProps({
 
             <div v-if="props.total_price > 0" class="grid gap-4 grid-cols-2">
                 <div>
-                    <CardProduct
-                        v-for="(product, id) in props.products"
+                    <div
+                        v-for="(user_cart, id) in props.user_carts"
                         v-bind:key="id"
-                        class="mb-2"
-                        :product="product"
-                        :hideAddToCart="true"
-                    />
+                        class="mb-2 flex gap-2"
+                    >
+                        <CardProduct
+                            class="flex-1"
+                            :product="user_cart.product"
+                            :hideAddToCart="true"
+                        />
+                        <div class="flex-none my-auto">
+                            <ButtonDanger
+                                icon="trash"
+                                @click="remove(user_cart.id)"
+                            />
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <PaymentPanel :total_price="props.total_price" />
