@@ -32,7 +32,7 @@ Route::get('/', function () {
 require __DIR__.'/auth.php';
 
 // Auth
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Home
     Route::prefix('home')->controller(HomeController::class)->group(function () {
         Route::get('/', 'index')->name('home.index');
