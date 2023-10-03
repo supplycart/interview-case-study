@@ -1,5 +1,5 @@
 <script setup>
-import ButtonPrimary from '@/Components/Buttons/ButtonPrimay.vue'
+import ButtonPrimary from '@/Components/Buttons/ButtonPrimary.vue'
 
 const props = defineProps({
     product: {
