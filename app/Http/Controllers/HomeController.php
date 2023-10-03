@@ -13,6 +13,7 @@ class HomeController extends Controller
 
         return Inertia::render('Home/Index', [
             'products' => $products,
+            'carts_count' => auth()->user()->carts->count()
         ]);
     }
 }

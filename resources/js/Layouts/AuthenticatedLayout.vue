@@ -1,14 +1,20 @@
 <script setup>
-import { ref } from 'vue';
-import ApplicationLogo from '@/Components/Layouts/ApplicationLogo.vue';
-import Dropdown from '@/Components/Layouts/Dropdown.vue';
-import DropdownLink from '@/Components/Layouts/DropdownLink.vue';
-import NavLink from '@/Components/Layouts/NavLink.vue';
-import ButtonSecondary from '@/Components/Buttons/ButtonSecondary.vue';
-import ResponsiveNavLink from '@/Components/Layouts/ResponsiveNavLink.vue';
-import { Link } from '@inertiajs/vue3';
+import { ref } from "vue";
+import ApplicationLogo from "@/Components/Layouts/ApplicationLogo.vue";
+import Dropdown from "@/Components/Layouts/Dropdown.vue";
+import DropdownLink from "@/Components/Layouts/DropdownLink.vue";
+import NavLink from "@/Components/Layouts/NavLink.vue";
+import ButtonSecondary from "@/Components/Buttons/ButtonSecondary.vue";
+import ResponsiveNavLink from "@/Components/Layouts/ResponsiveNavLink.vue";
+import { Link } from "@inertiajs/vue3";
 
 const showingNavigationDropdown = ref(false);
+const props = defineProps({
+    carts_count: {
+        type: Number,
+        default: 0,
+    },
+});
 </script>
 
 <template>
@@ -29,15 +35,27 @@ const showingNavigationDropdown = ref(false);
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('home.index')" :active="route().current('home.index')">
+                            <div
+                                class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
+                            >
+                                <NavLink
+                                    :href="route('home.index')"
+                                    :active="route().current('home.index')"
+                                >
                                     Home
                                 </NavLink>
                             </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
-                            <ButtonSecondary icon="shopping-cart" text="My Cart" />
+                            <ButtonSecondary
+                                icon="shopping-cart"
+                                :text="
+                                    props.carts_count > 0
+                                        ? 'My Cart (' + props.carts_count + ')'
+                                        : 'My Cart'
+                                "
+                            />
 
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
@@ -67,8 +85,16 @@ const showingNavigationDropdown = ref(false);
                                     </template>
 
                                     <template #content>
-                                        <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
-                                        <DropdownLink :href="route('logout')" method="post" as="button">
+                                        <DropdownLink
+                                            :href="route('profile.edit')"
+                                        >
+                                            Profile
+                                        </DropdownLink>
+                                        <DropdownLink
+                                            :href="route('logout')"
+                                            method="post"
+                                            as="button"
+                                        >
                                             Log Out
                                         </DropdownLink>
                                     </template>
@@ -79,14 +105,23 @@ const showingNavigationDropdown = ref(false);
                         <!-- Hamburger -->
                         <div class="-mr-2 flex items-center sm:hidden">
                             <button
-                                @click="showingNavigationDropdown = !showingNavigationDropdown"
+                                @click="
+                                    showingNavigationDropdown =
+                                        !showingNavigationDropdown
+                                "
                                 class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
                             >
-                                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                <svg
+                                    class="h-6 w-6"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
                                     <path
                                         :class="{
                                             hidden: showingNavigationDropdown,
-                                            'inline-flex': !showingNavigationDropdown,
+                                            'inline-flex':
+                                                !showingNavigationDropdown,
                                         }"
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
@@ -96,7 +131,8 @@ const showingNavigationDropdown = ref(false);
                                     <path
                                         :class="{
                                             hidden: !showingNavigationDropdown,
-                                            'inline-flex': showingNavigationDropdown,
+                                            'inline-flex':
+                                                showingNavigationDropdown,
                                         }"
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
@@ -111,11 +147,17 @@ const showingNavigationDropdown = ref(false);
 
                 <!-- Responsive Navigation Menu -->
                 <div
-                    :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }"
+                    :class="{
+                        block: showingNavigationDropdown,
+                        hidden: !showingNavigationDropdown,
+                    }"
                     class="sm:hidden"
                 >
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('home.index')" :active="route().current('home.index')">
+                        <ResponsiveNavLink
+                            :href="route('home.index')"
+                            :active="route().current('home.index')"
+                        >
                             Home
                         </ResponsiveNavLink>
                     </div>
@@ -126,12 +168,20 @@ const showingNavigationDropdown = ref(false);
                             <div class="font-medium text-base text-gray-800">
                                 {{ $page.props.auth.user.name }}
                             </div>
-                            <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
+                            <div class="font-medium text-sm text-gray-500">
+                                {{ $page.props.auth.user.email }}
+                            </div>
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('logout')" method="post" as="button">
+                            <ResponsiveNavLink :href="route('profile.edit')">
+                                Profile
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                :href="route('logout')"
+                                method="post"
+                                as="button"
+                            >
                                 Log Out
                             </ResponsiveNavLink>
                         </div>

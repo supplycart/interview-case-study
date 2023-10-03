@@ -9,6 +9,7 @@ import { ref } from 'vue'
 const message = ref(null);
 const props = defineProps({
     products: Object,
+    carts_count: Number,
 });
 const updateMessage = () => {
     message.value = usePage().props.flash?.message;
@@ -18,7 +19,7 @@ const updateMessage = () => {
 <template>
     <Head title="Home" />
 
-    <AuthenticatedLayout>
+    <AuthenticatedLayout :carts_count="carts_count">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Home
