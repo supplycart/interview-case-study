@@ -1,19 +1,13 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import CardProduct from "@/Components/Cards/CardProduct.vue";
-import NotifyMessage from "@/Components/Layouts/NotifyMessage.vue";
 import Pagination from "@/Components/Layouts/Pagination.vue";
-import { Head, usePage } from '@inertiajs/vue3'
-import { ref } from 'vue'
+import { Head } from '@inertiajs/vue3'
 
-const message = ref(null);
 const props = defineProps({
     products: Object,
     carts_count: Number,
 });
-const updateMessage = () => {
-    message.value = usePage().props.flash?.message;
-}
 </script>
 
 <template>
@@ -25,8 +19,6 @@ const updateMessage = () => {
                 Home
             </h2>
         </template>
-
-        <NotifyMessage :message="message" />
 
         <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-4">

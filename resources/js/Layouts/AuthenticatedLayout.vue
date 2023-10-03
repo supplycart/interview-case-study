@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import ApplicationLogo from "@/Components/Layouts/ApplicationLogo.vue";
+import NotifyMessage from "@/Components/Layouts/NotifyMessage.vue"
 import Dropdown from "@/Components/Layouts/Dropdown.vue";
 import DropdownLink from "@/Components/Layouts/DropdownLink.vue";
 import NavLink from "@/Components/Layouts/NavLink.vue";
@@ -199,6 +200,8 @@ const props = defineProps({
 
             <!-- Page Content -->
             <main>
+                <NotifyMessage />
+
                 <slot />
             </main>
         </div>

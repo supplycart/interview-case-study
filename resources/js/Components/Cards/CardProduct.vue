@@ -12,11 +12,9 @@ const props = defineProps({
     }
 });
 const emit = defineEmits('updateMessage');
-const addToCart = (id) => {
+const addToCart = () => {
     const form = useForm({ id: props.product.id });
-    form.post(route("cart.add"), {
-        onFinish: () => emit('updateMessage'),
-    });
+    form.post(route("cart.add"));
 };
 </script>
 
