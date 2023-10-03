@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\Product;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class HomeController extends Controller
 {
     function index() : Response {
-        return Inertia::render('Home');
+        $products = Product::with('category')->paginate(8);
+
+        return Inertia::render('Home/Index', [
+            'products' => $products,
+        ]);
     }
 }
