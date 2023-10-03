@@ -6,9 +6,12 @@ const props = defineProps({
     product: {
         type: Object,
     },
+    hideAddToCart: {
+        type: Boolean,
+        default: false,
+    }
 });
 const emit = defineEmits('updateMessage');
-
 const addToCart = (id) => {
     const form = useForm({ id: props.product.id });
     form.post(route("cart.add"), {
@@ -33,6 +36,7 @@ const addToCart = (id) => {
         </div>
 
         <ButtonPrimary
+            v-if="! hideAddToCart"
             class="w-full mt-4"
             text="Add To Cart"
             icon="shopping-cart"

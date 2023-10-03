@@ -50,6 +50,7 @@ const props = defineProps({
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <ButtonSecondary
                                 icon="shopping-cart"
+                                :href="route('cart.show')"
                                 :text="
                                     props.carts_count > 0
                                         ? 'My Cart (' + props.carts_count + ')'

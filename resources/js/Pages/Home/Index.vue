@@ -3,7 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import CardProduct from "@/Components/Cards/CardProduct.vue";
 import NotifyMessage from "@/Components/Layouts/NotifyMessage.vue";
 import Pagination from "@/Components/Layouts/Pagination.vue";
-import { usePage } from '@inertiajs/vue3'
+import { Head, usePage } from '@inertiajs/vue3'
 import { ref } from 'vue'
 
 const message = ref(null);

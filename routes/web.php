@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -47,5 +48,11 @@ Route::middleware('auth:sanctum')->group(function () {
     // Cart
     Route::prefix('cart')->controller(CartController::class)->group(function () {
         Route::post('/add', 'add')->name('cart.add');
+        Route::get('/', 'show')->name('cart.show');
+    });
+
+    // Order
+    Route::prefix('order')->controller(OrderController::class)->group(function () {
+        Route::post('/create', 'create')->name('order.create');
     });
 });
