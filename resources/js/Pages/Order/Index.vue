@@ -6,6 +6,7 @@ import { Head } from "@inertiajs/vue3";
 
 const props = defineProps({
     orders: Object,
+    carts_count: Number,
 });
 </script>
 

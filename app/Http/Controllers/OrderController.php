@@ -17,6 +17,7 @@ class OrderController extends Controller
 
         return Inertia::render('Order/Index', [
             'orders' => $orders,
+            'carts_count' => auth()->user()->carts->count()
         ]);
     }
 

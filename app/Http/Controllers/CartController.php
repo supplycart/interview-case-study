@@ -31,7 +31,7 @@ class CartController extends Controller
 
         return Inertia::render('Cart/Index', [
             'user_carts' => $user_carts,
-            'carts_count' => $user_carts->count(),
+            'carts_count' => auth()->user()->carts->count(),
             'total_price' => $total_price
         ]);
     }
