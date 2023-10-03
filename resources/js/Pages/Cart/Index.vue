@@ -26,11 +26,12 @@ const props = defineProps({
                 My Cart
             </h2>
 
-            <div class="grid gap-4 grid-cols-2">
-                <div class="grid gap-2">
+            <div v-if="props.total_price > 0" class="grid gap-4 grid-cols-2">
+                <div>
                     <CardProduct
                         v-for="(product, id) in props.products"
                         v-bind:key="id"
+                        class="mb-2"
                         :product="product"
                         :hideAddToCart="true"
                     />
@@ -38,6 +39,9 @@ const props = defineProps({
                 <div>
                     <PaymentPanel :total_price="props.total_price" />
                 </div>
+            </div>
+            <div v-else class="p-4 w-full text-center">
+                No item in your cart.
             </div>
         </div>
     </AuthenticatedLayout>

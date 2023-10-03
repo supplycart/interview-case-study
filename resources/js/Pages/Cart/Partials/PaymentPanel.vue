@@ -20,7 +20,7 @@ const order = () => useForm({}).post(route("order.create"));
             class="w-full mt-8"
             text="Order"
             textSize="text-xl"
-            @click="order"
+            @click.prevent="order"
         />
     </div>
 </template>
