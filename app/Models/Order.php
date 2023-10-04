@@ -23,11 +23,8 @@ class Order extends Model
         'cancelled_at'
     ];
 
-    protected static $logName = 'order';
-    protected static $logOnlyDirty = true;
-
     function getActivitylogOptions() : LogOptions {
-        return LogOptions::defaults();
+        return LogOptions::defaults()->logOnlyDirty()->useLogName('order');
     }
 
     public function user()

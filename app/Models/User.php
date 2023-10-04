@@ -45,12 +45,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
-    protected static $logName = 'user';
-    protected static $logOnlyDirty = true;
     protected static $logAttributes = ['orders', 'carts', 'user_carts'];
 
     function getActivitylogOptions() : LogOptions {
-        return LogOptions::defaults();
+        return LogOptions::defaults()->logOnlyDirty()->useLogName('user');
     }
 
     public function orders()

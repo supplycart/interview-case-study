@@ -23,11 +23,8 @@ class UserCart extends Model
 
     public $timestamps = false;
 
-    protected static $logName = 'cart';
-    protected static $logOnlyDirty = true;
-
     function getActivitylogOptions() : LogOptions {
-        return LogOptions::defaults();
+        return LogOptions::defaults()->logOnlyDirty()->useLogName('cart');
     }
 
     public function user()

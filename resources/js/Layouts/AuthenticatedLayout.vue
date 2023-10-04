@@ -56,6 +56,12 @@ onUpdated(() => setMessage());
                                 >
                                     Orders
                                 </NavLink>
+                                <NavLink
+                                    :href="route('activity.index')"
+                                    :active="route().current('activity.index')"
+                                >
+                                    Activities
+                                </NavLink>
                             </div>
                         </div>
 

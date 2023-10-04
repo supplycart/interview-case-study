@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -7,7 +8,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Spatie\Activitylog\Models\Activity;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,9 +60,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
 
     // Activity
-    Route::prefix('activity')->group(function () {
-        Route::get('/', function () {
-            return Activity::orderBy('id', 'desc')->get();
-        })->name('activity.index');
+    Route::prefix('activity')->controller(ActivityController::class)->group(function () {
+        Route::get('/', 'index')->name('activity.index');
     });
 });
