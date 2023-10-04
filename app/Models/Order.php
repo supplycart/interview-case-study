@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Order extends Model
 {
-    use HasFactory;
+    use LogsActivity, HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +22,13 @@ class Order extends Model
         'payed_amount',
         'cancelled_at'
     ];
+
+    protected static $logName = 'order';
+    protected static $logOnlyDirty = true;
+
+    function getActivitylogOptions() : LogOptions {
+        return LogOptions::defaults();
+    }
 
     public function user()
     {

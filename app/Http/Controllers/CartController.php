@@ -12,8 +12,9 @@ use Inertia\Response;
 class CartController extends Controller
 {
     function add(AddToCartRequest $request) : RedirectResponse {
-        $product = Product::find($request->id);
-        auth()->user()->carts()->save($product);
+        auth()->user()->user_carts()->create([
+            'product_id' => $request->id
+        ]);
 
         return redirect()->route('home.index')->with('message', 'Added to cart.');
     }

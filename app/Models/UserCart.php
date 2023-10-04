@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class UserCart extends Model
 {
-    use HasFactory;
+    use LogsActivity, HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -18,6 +20,15 @@ class UserCart extends Model
         'user_id',
         'product_id',
     ];
+
+    public $timestamps = false;
+
+    protected static $logName = 'cart';
+    protected static $logOnlyDirty = true;
+
+    function getActivitylogOptions() : LogOptions {
+        return LogOptions::defaults();
+    }
 
     public function user()
     {

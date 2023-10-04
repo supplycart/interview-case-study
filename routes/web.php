@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Spatie\Activitylog\Models\Activity;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,5 +57,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('order')->controller(OrderController::class)->group(function () {
         Route::get('/', 'index')->name('order.index');
         Route::post('/create', 'create')->name('order.create');
+    });
+
+    // Activity
+    Route::prefix('activity')->group(function () {
+        Route::get('/', function () {
+            return Activity::orderBy('id', 'desc')->get();
+        })->name('activity.index');
     });
 });
