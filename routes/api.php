@@ -23,4 +23,8 @@ Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
     Route::get('/getOrder', 'OrderController@getOrderList');
 
     Route::get('/getCart/{user_id}', 'CartController@getCart');
+
+    Route::group(['prefix' => 'auth'], function(){
+        Route::post('/register', 'AuthController@register');
+    });
 });
