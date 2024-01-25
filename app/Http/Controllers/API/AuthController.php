@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\AdminRepository;
+use App\Repositories\UserRepository;
 use App\Http\Request\LoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -12,16 +12,16 @@ use Hash;
 
 class AuthController
 {
-    public function __construct(AdminRepository $adminRepository) {
-        $this->_adminRepository = $adminRepository;
+    public function __construct(UserRepository $UserRepository) {
+        $this->_userRepository = $UserRepository;
     }
 
     public function login(Request $request){
         $username = $request->username;
         $password = $request->password;
 
-        $user = $this->_adminRepository->getActiveUser($username);
-        $ban_user = $this->_adminRepository->getBannedUser($username);
+        $user = $this->_userRepository->getActiveUser($username);
+        $ban_user = $this->_userRepository->getBannedUser($username);
 
         if($ban_user){
             return 'The User banned due to'.$ban_user->reason;
@@ -29,19 +29,19 @@ class AuthController
         }
 
         if($user){
-            if(Auth::guard('admin')->attempt(['username' => $username, 'password' => $password, 'status' => 1])) {
+            if(Auth::guard('api')->attempt(['username' => $username, 'password' => $password, 'status' => 1])) {
                 // if new agent, generate a session id
                 if($user->session_id == null) {
-                    $session_id = $this->_adminRepository->updateSessionIDByUserID($user->id);
+                    $session_id = $this->_userRepository->updateSessionIDByUserID($user->id);
                     $user->session_id = $session_id;
                 }
 
-                return redirect(route('home'));
+                return response()->json(['data' => $user], 200);
             }else{
                     throw new \Exception(__("page.incorrect_password"));
             }
         }else{
-            $user = $this->_adminRepository->getInactiveUserByUsername($username);
+            $user = $this->_userRepository->getInactiveUserByUsername($username);
 
             if ($user) {
                 throw new \Exception(__("page.contact_admin_active"));
