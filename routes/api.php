@@ -14,18 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
 {   
+    Route::group(['prefix' => 'auth'], function(){
+        Route::post('/register', 'AuthController@register');
+        Route::post('/login', 'AuthController@login');
+    });
+
     Route::get('/getProduct',  'ProductController@getProductList');
     Route::get('/getProductDetail/{id}',  'ProductController@getProductDetail');
     Route::post('/addProduct',  'ProductController@addProduct');
     Route::post('/removeProduct', 'ProductController@removeProduct');
     Route::post('/updateProduct', 'ProductController@updateStatus');
+    Route::get('/getCategoryProduct/{category_id}', 'ProductCOntroller@getProductInCategory');
 
     Route::get('/getOrder', 'OrderController@getOrderList');
 
     Route::get('/getCart/{user_id}', 'CartController@getCart');
 
-    Route::group(['prefix' => 'auth'], function(){
-        Route::post('/register', 'AuthController@register');
-        Route::post('/login', 'AuthController@login');
-    });
+    Route::get('/getCategory', 'CategoryController@getCategory');
 });
