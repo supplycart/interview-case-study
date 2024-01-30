@@ -12,4 +12,8 @@ class CartController
 
         return response()->json(['data' => $cart], 200);
     }
+
+    public function addToCart($product_id){
+        
+    }
 }

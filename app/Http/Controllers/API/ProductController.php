@@ -79,7 +79,7 @@ class ProductController extends Controller
     public function getProductInCategory($category_id){
         try{
             $product_list = Product::where(['category_id' => $category_id, 'status' => 1])->get();
-
+            
             return response()->json(['data' => $product_list], 200);
         } catch (\Exception $e) {
             return response(['msg' => $e->getMessage()], 500);

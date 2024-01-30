@@ -24,11 +24,12 @@ Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
     Route::post('/addProduct',  'ProductController@addProduct');
     Route::post('/removeProduct', 'ProductController@removeProduct');
     Route::post('/updateProduct', 'ProductController@updateStatus');
-    Route::get('/getCategoryProduct/{category_id}', 'ProductCOntroller@getProductInCategory');
+    Route::get('/getCategoryProduct/{category_id}', 'ProductController@getProductInCategory');
 
     Route::get('/getOrder', 'OrderController@getOrderList');
 
     Route::get('/getCart/{user_id}', 'CartController@getCart');
+    Route::post('/addToCart/{product_id}', 'CartController@addToCart');
 
     Route::get('/getCategory', 'CategoryController@getCategory');
 });
