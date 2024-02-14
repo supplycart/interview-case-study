@@ -30,6 +30,7 @@ Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
 
     Route::get('/getCart/{user_id}', 'CartController@getCart');
     Route::post('/addToCart/{product_id}', 'CartController@addToCart');
+    Route::post('/checkout', 'CartController@checkout');
 
     Route::get('/getCategory', 'CategoryController@getCategory');
 });
