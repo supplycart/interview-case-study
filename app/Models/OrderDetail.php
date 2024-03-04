@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Order extends Model
+class OrderDetail extends Model
 {
     use SoftDeletes;
     
-    protected $table = "order";
-    protected $fillable = ['id', 'order_id', 'user_id','status', 'order_price', 'order_complete', 'user_id'];
+    protected $table = "order_detail";
+    protected $fillable = ['product_id', 'product_price', 'coupon_id', 'user_id'];
 }

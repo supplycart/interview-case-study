@@ -38,7 +38,7 @@ class AuthController
 
                 return response()->json(['data' => $user], 200);
             }else{
-                    throw new \Exception(__("page.incorrect_password"));
+                return response()->json(['data' => __("page.incorrect_password")], 404);
             }
         }else{
             $user = $this->_userRepository->getInactiveUserByUsername($username);

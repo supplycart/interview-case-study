@@ -26,7 +26,7 @@ Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
     Route::post('/updateProduct', 'ProductController@updateStatus');
     Route::get('/getCategoryProduct/{category_id}', 'ProductController@getProductInCategory');
 
-    Route::get('/getOrder', 'OrderController@getOrderList');
+    Route::get('/getOrder/{user_id}', 'OrderController@getOrderList');
 
     Route::get('/getCart/{user_id}', 'CartController@getCart');
     Route::post('/addToCart/{product_id}', 'CartController@addToCart');

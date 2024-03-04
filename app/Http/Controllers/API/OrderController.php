@@ -8,13 +8,14 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    public function getOrderList(){
-        $order_list = Order::all();
+    public function getOrderList($user_id){
+        
+        $order = Order::where('user_id', $user_id)->first();
 
-        return response()->json(['data' => $order_list], 200);
+        return response()->json(['data' => $order], 200);
     }
 
-    // public function createOrder(){
-
+    // public function createOrder(Request $request){
+        
     // }
 }
