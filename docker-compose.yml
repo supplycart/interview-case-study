@@ -1,69 +1,19 @@
-version: "3.9"
-
-networks:
-    laravel:
-        name: laravel
-
+version: '3'
 services:
-
-    nginx:
-        build:
-            context: .
-            dockerfile: nginx.dockerfile
-        depends_on:
-            - php
-            - mysql
-        container_name: nginx
-        ports:
-            - 80:80
-            - 443:443
-        volumes:
-            - ./src:/var/www/html
-        networks:
-            - laravel
-
-    php:
-        build:
-            context: .
-            dockerfile: php.dockerfile
-        container_name: php
-        volumes:
-            - ./src:/var/www/html
-        networks:
-            - laravel
-
-    mysql:
-        image: mariadb:10.5.8
-        container_name: mysql
-        ports:
-            - 3306:3306
-        volumes:
-            - ./mysql:/var/lib/mysql
-        environment:
-            MYSQL_DATABASE: laraveldb
-            MYSQL_USER: laravel
-            MYSQL_PASSWORD: secret
-            MYSQL_ROOT_PASSWORD: secret
-        networks:
-            - laravel
-
-    composer:
-        image: composer:latest
-        container_name: composer
-        volumes:
-            - ./src:/var/www/html
-        working_dir: /var/www/html
-        networks:
-            - laravel
-
-    artisan:
-        build:
-            context: .
-            dockerfile: php.dockerfile
-        container_name: artisan
-        volumes:
-            - ./src:/var/www/html
-        working_dir: /var/www/html
-        entrypoint: ['php', 'artisan']
-        networks:
-            - laravel
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:80
+    depends_on:
+      - db
+  db:
+    image: mysql:10.5.8
+    environment:
+      MYSQL_DATABASE: simple_shop
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./data:/var/lib/mysql

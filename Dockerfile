@@ -1,13 +1,31 @@
-FROM php:8.0-fpm-alpine
+# Use an official PHP runtime as a base image
+FROM php:8.1-apache
 
-ADD ./php/www.conf /usr/local/etc/php-fpm.d/www.conf
+# Set the working directory in the container
+WORKDIR /var/www/html
 
-RUN addgroup -g 1000 laravel && adduser -G laravel -g laravel -s /bin/sh -D laravel
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y \
+        libzip-dev \
+        unzip \
+        git \
+        curl
 
-RUN mkdir -p /var/www/html
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_mysql zip
 
-ADD ./src/ /var/www/html
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN docker-php-ext-install pdo pdo_mysql
+# Copy composer.json and composer.lock into the container
+COPY composer.json composer.lock ./
 
-RUN chown -R laravel:laravel /var/www/html
+# Install application dependencies
+RUN composer install --no-scripts
+
+# Copy the application code into the container
+COPY . .
+
+# Expose port 80 for the Apache web server
+EXPOSE 8000
