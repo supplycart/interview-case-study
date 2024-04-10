@@ -5,9 +5,17 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
-use App\Http\Request\LoginRequest;
+use App\Http\Requests\API\LoginRequest;
+use App\Http\Requests\API\ForgetPasswordRequest;
 use App\Models\User;
+use App\Mail\ResetPassword;
+use App\Http\Requests\API\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Stripe\Stripe;
+use Stripe\Customer;
 use Hash;
 
 class AuthController
@@ -16,7 +24,7 @@ class AuthController
         $this->_userRepository = $UserRepository;
     }
 
-    public function login(Request $request){
+    public function login(LoginRequest $request){
         $username = $request->username;
         $password = $request->password;
 
@@ -44,69 +52,80 @@ class AuthController
             $user = $this->_userRepository->getInactiveUserByUsername($username);
 
             if ($user) {
-                throw new \Exception(__("page.contact_admin_active"));
+                return response()->json(['data' => __("page.contact_admin_active")], 404);
+                // throw new \Exception(__(""));
             }else{
-                throw new \Exception(__("page.no_user"));
+                return response()->json(['data' => __("page.no_user")], 404);
             }
         }
     }
 
-    public function register(Request $request){
-        $validation = $request->validate([
-            'username' => [
-                'required',
-                'min:5',
-                'max:15',
-                function ($attribute, $value, $fail) {
-                    // check unique validation
-                    $user = User::where($attribute, $value)
-                        ->where(function ($query) {
-                            $query->where('status', 1)
-                                ->orWhere('status', 0);
-                        })
-                        ->first();
-
-                    if ($user != null) {
-                        $fail($attribute . ' has to be unique');
-                    }
-
-                    // check username format, alpha num and underscore only
-                    if (!preg_match("/^[a-zA-Z0-9_\-]*$/", $value)) {
-                        $fail($attribute . ' has to be a combination of alphabet letters, numbers, and _ only');
-                    }
-                },
-            ],
-            'password' => 'required|min:6|confirmed',
-            'email' => [
-                'required',
-                'email',
-                function ($attribute, $value, $fail) {
-                    $user = User::where($attribute, $value)
-                        ->where(function ($query) {
-                            $query->where('status', 1)
-                                ->orWhere('status', 0);
-                        })
-                        ->first();
-
-                    if ($user != null) {
-                        $fail($attribute . ' has to be unique');
-                    }
-                },
-            ],
-        ]);
-
+    public function createUser(RegisterRequest $request){
         $user_id = generate_unique_id('USER-', "User", "user_id");
         $request->offsetSet('password', Hash::make($request->input("password")));
+        
+        try {
+            $new_user = new User;
+            $new_user->fill($request->input());
 
-        $new_user = new User;
-        $new_user->fill($request->input());
+            $new_user->username = $request['username'];
+            $new_user->user_id = $user_id;
+            $new_user->status = 1;
+            $new_user->name = $request['name'];
 
-        $new_user->username = $request['username'];
-        $new_user->user_id = $user_id;
-        $new_user->status = 0;
+            Stripe::setApiKey(config('services.stripe.secret'));
 
-        $new_user->save();
+            $stripe_response = Customer::create([
+                'name' => $new_user->name,
+                'email' => $new_user->email,
+                'metadata' => ['user_id' => $new_user->user_id]
+            ]);
+            
+            $new_user->stripe_id = $stripe_response->id;
+            $new_user->save();
 
-        return response()->json(['data' => true], 200);
+            return response()->json(['data' => true], 200);
+        } catch (\Exception $e) {
+            return response()->json(['data' => $e->getMessage()], 404);
+        }
+        
+    }
+
+    public function forgetPassword(Request $request){
+        $email = $request->email;
+        $user = User::where('email', $email)->first();
+
+        if(!$user){
+            return response()->json(['data' => __("auth.no_email")], 404);
+        }
+
+        $token = Str::random(80);
+
+        DB::table('password_reset_tokens')->updateOrInsert(
+            ['email' => $email], 
+            ['token' => $token, 'user_id' => $user->id, 'email' => $email]
+        );
+
+        Mail::to($email)->send(new ResetPassword($token));
+        return response()->json(['data' => __("password.sent")], 200);
+    }
+
+    public function getPasswordLink(ForgetPasswordRequest $request){
+        $token = $request->token;
+        $password = $request->password;
+
+        $password_reminder = DB::table('password_reset_tokens')
+            ->where(['token' => $token])
+            ->first();
+
+        if($password_reminder){
+            $new_password = bcrypt($password);
+            User::where('id', $password_reminder->user_id)
+                ->update(['password' => $new_password]);
+        }else{
+            return response()->json(['data' => __("password.contact_admin")], 404);
+        }
+
+        return response()->json(['data' => __("password.done")], 200);
     }
 }

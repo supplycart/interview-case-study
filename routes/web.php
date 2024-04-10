@@ -34,3 +34,5 @@ Route::prefix('transaction')->group(function (){
 Route::prefix('order')->group(function (){
     Route::get('/list', 'OrderController@list')->name('order.list');
 });
+
+Route::view('reset_password','reset_password')->name('reset_password');

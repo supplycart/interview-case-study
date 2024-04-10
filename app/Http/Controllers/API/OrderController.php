@@ -15,7 +15,7 @@ class OrderController extends Controller
         return response()->json(['data' => $order], 200);
     }
 
-    // public function createOrder(Request $request){
-        
-    // }
+    public function payOrder($order_id){
+        //
+    }
 }
