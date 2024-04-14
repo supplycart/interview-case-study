@@ -16,6 +16,6 @@ class OrderController extends Controller
     }
 
     public function payOrder($order_id){
-        //
+        //test
     }
 }
