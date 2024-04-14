@@ -28,20 +28,12 @@ jobs:
 
       # Checks-out your repository under $GITHUB_WORKSPACE, 
       # so your job can access it
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-
-          # Fetch all history for all tags and branches
-          fetch-depth: 0
-
-          # Checkout a specific branch
-          ref: main
+      - uses: actions/checkout@v2
 
       # This is a composite GitHub Action (Linux runner) 
       # for deploying repository content to remote server
       - name: SFTP-Deploy-Action
-        uses: milanmk/actions-file-deployer@master
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
         with:
           remote-protocol: sftp
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
