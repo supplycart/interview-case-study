@@ -44,7 +44,7 @@ jobs:
         uses: milanmk/actions-file-deployer@master
         with:
           remote-protocol: sftp
-
+          ssh_private_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDEmkq9T6TDDUQ5P1KLu9GwqL79Z1WyxB1Tvbr2pLggtFjqnINzDsdytrKA2b9ak1HddjcS7GKeG2XckEbhabKXrMlwBph0UUizFiEjaYiCaCXQxrwrQArspeviCyLzeG8hR/+jymih7DMTLBRNBkXi2qktMiddfco6PNP>
           # Credentials for SFTP access to server using GitHub secrets
           remote-host: ${{ secrets.FTP_HOST }}
           remote-user: ${{ secrets.FTP_USER }}
