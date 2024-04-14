@@ -54,4 +54,4 @@ jobs:
           remote-path: /var/www/html
 
           # Port for SFTP access to server
-          remote-port: 221
+          remote-port: 22
