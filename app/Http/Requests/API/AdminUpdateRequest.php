@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\API;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\ApiRequest;
-    
-class LoginRequest extends ApiRequest
+
+class AdminUpdateRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +23,8 @@ class LoginRequest extends ApiRequest
     {   
         return [
             'username' => 'required',
-            'password' => 'required',
+            'status' => 'required',
+            'role' => 'required',
         ];
     }
 }

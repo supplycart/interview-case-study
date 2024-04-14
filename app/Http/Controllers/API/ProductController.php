@@ -15,7 +15,7 @@ class ProductController extends Controller
             
             return response()->json(['data' => $product_list], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
+            return response()->json(['data' => $e->getMessage()], 404);
         }
     }
 
@@ -25,7 +25,7 @@ class ProductController extends Controller
             
             return response()->json(['data' => $product], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
+            return response()->json(['data' => $e->getMessage()], 500);
         }
     }
 
@@ -36,7 +36,7 @@ class ProductController extends Controller
 
             if ($existed) {
                 // Product already exists
-                return response()->json(['msg' => 'Product Duplicated'], 400);
+                return response()->json(['data' =>'Product Duplicated'], 404);
             }
 
             // Product doesn't exist, create it
@@ -46,33 +46,36 @@ class ProductController extends Controller
                 'status' => 0
             ]);
 
-            return response()->json(['msg' => 'Product Added'], 200);
+            return response()->json(['data' =>'done'], 200);
 
         } catch (\Exception $e) {
-            return response()->json(['msg' => $e->getMessage()], 500);
+            return response()->json(['data' => $e->getMessage()], 404);
         }
     }
 
-    public function removeProduct(Request $request){
+    public function removeProduct($id){
         try {
-            Product::where('id', $request->id)->delete();
+            Product::where('id', $id)->delete();
 
-            return response()->json(['msg' => "Product Deleted"], 200);
+            return response()->json(['data' => "done"], 200);
 
         } catch (\Exception $e) {
-            return response(['msg' => $e->getMessage()], 500);
+            return response(['data' => $e->getMessage()], 404);
         }
     }
 
-    public function updateStatus(Request $request){
+    public function updateProduct(Request $request, $id){
         try{
-            $product = Product::find($request->id);
-
-            Product::where('id', $request->id)->update(['status' => !$product->status]);
-
-            return response()->json(['msg' => "Product Status Updated"], 200);
+            Product::where('id', $id)->update([
+                'name' => $request->name,
+                'new_product' => $request->new_product,
+                'category_id' => $request->category_id,
+                'status' => $request->status,
+                'price' => $request->price,
+            ]);
+            return response()->json(['data' =>"done"], 200);
         } catch (\Exception $e) {
-            return response(['msg' => $e->getMessage()], 500);
+            return response(['data' =>$e->getMessage()], 404);
         }
     }
 
@@ -82,7 +85,7 @@ class ProductController extends Controller
             
             return response()->json(['data' => $product_list], 200);
         } catch (\Exception $e) {
-            return response(['msg' => $e->getMessage()], 500);
+            return response(['data' =>$e->getMessage()], 404);
         }
     }
 }

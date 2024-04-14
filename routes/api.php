@@ -21,12 +21,22 @@ Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
         Route::post('/passwordLink', 'AuthController@getPasswordLink')->name('password_link');
     });
 
-    Route::get('/getProduct',  'ProductController@getProductList');
-    Route::get('/getProductDetail/{id}',  'ProductController@getProductDetail');
-    Route::post('/addProduct',  'ProductController@addProduct');
-    Route::post('/removeProduct', 'ProductController@removeProduct');
-    Route::post('/updateProduct', 'ProductController@updateStatus');
-    Route::get('/getCategoryProduct/{category_id}', 'ProductController@getProductInCategory');
+    Route::group(['prefix' => 'admin'], function(){
+        Route::post('/create', 'AdminController@createAdmin');
+        Route::post('/login', 'AdminController@login');
+        Route::post('/update/{id}', 'AdminController@updateAdmin');
+        Route::post('/resetPassword/{id}', 'AdminController@resetAdminPassword');
+        Route::get('/get/{id}', 'AdminController@getAdmin');
+    });
+
+    Route::group(['prefix' => 'product'], function(){
+        Route::get('/list',  'ProductController@getProductList');
+        Route::get('/detail/{id}', 'ProductController@getProductDetail');
+        Route::post('/add',  'ProductController@addProduct');
+        Route::post('/remove/id', 'ProductController@removeProduct');
+        Route::post('/update/{id}', 'ProductController@updateProduct');
+        Route::get('/category/{category_id}', 'ProductController@getProductInCategory');
+    });
 
     Route::get('/getOrder/{user_id}', 'OrderController@getOrderList');
     Route::get('/payOrder/{order_id}', 'PaymentController@checkout');

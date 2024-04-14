@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('password');
             $table->boolean('status');
+            $table->integer('role');
             $table->string('session_id');
             $table->timestamps();
         });

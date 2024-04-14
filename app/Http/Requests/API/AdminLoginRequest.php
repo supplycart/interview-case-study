@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\API;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\ApiRequest;
-    
-class LoginRequest extends ApiRequest
+
+class AdminLoginRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,7 +20,7 @@ class LoginRequest extends ApiRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {   
+    {
         return [
             'username' => 'required',
             'password' => 'required',
