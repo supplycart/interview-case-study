@@ -46,9 +46,9 @@ jobs:
           remote-protocol: sftp
 
           # Credentials for SFTP access to server using GitHub secrets
-          remote-host: sftp://simpleshop.today
+          remote-host: ${{ secrets.FTP_HOST }}
           remote-user: ${{ secrets.FTP_USER }}
-          remote-password: ${{ secrets.FTP_PASSWORD }}
+          remote-password: 'sadbuai'
 
           # Path for specific folder on server for files deployment
           remote-path: /var/www/html
