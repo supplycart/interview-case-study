@@ -39,7 +39,7 @@ Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
     });
 
     Route::get('/getOrder/{user_id}', 'OrderController@getOrderList');
-    Route::get('/payOrder/{order_id}', 'PaymentController@checkout');
+    Route::get('/payOrder/{order_id}', 'OrderController@checkout');
     Route::get('/payment/process', 'PaymentController@processPayment')->name('payment.process');
 
     Route::get('/getCart/{user_id}', 'CartController@getCart');
