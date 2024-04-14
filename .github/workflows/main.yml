@@ -50,6 +50,7 @@ jobs:
           remote-user: ${{ secrets.FTP_USER }}
           remote-password: ${{ secrets.FTP_PASSWORD }}
 
+          local-path: ./*
           # Path for specific folder on server for files deployment
           remote-path: /var/www/html
 
