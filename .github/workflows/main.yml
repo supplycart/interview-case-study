@@ -41,7 +41,7 @@ jobs:
       # This is a composite GitHub Action (Linux runner) 
       # for deploying repository content to remote server
       - name: SFTP-Deploy-Action
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
+        uses: milanmk/actions-file-deployer@master
         with:
           remote-protocol: sftp
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
