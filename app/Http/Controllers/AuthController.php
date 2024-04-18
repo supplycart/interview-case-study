@@ -98,4 +98,10 @@ class AuthController extends Controller
 
         $new_user->save();
     }
+
+    public function logout($id){
+        User::where('id', $id)->update(['session_id' => null]);
+
+        return response()->json(['data' => 'done'], 200);
+    }
 }

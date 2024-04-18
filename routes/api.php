@@ -19,6 +19,7 @@ Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
         Route::post('/register', 'AuthController@createUser');
         Route::post('/forgetPassword', 'AuthController@forgetPassword');
         Route::post('/passwordLink', 'AuthController@getPasswordLink')->name('password_link');
+        Route::get('/logout/{id}', 'AuthController@logout');
     });
 
     Route::prefix('admin')->group(function(){
@@ -36,10 +37,13 @@ Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
     Route::prefix('product')->group(function(){
         Route::get('/list',  'ProductController@getProductList');
         Route::get('/detail/{id}', 'ProductController@getProductDetail');
-        Route::post('/add',  'ProductController@addProduct');
-        Route::post('/remove/id', 'ProductController@removeProduct');
-        Route::post('/update/{id}', 'ProductController@updateProduct');
         Route::get('/category/{category_id}', 'ProductController@getProductInCategory');
+
+        Route::middleware(['auth.admin'])->group(function(){
+            Route::post('/add', 'ProductController@addProduct');
+            Route::post('/remove/id', 'ProductController@removeProduct');
+            Route::post('/update/{id}', 'ProductController@updateProduct');
+        });
     });
 
     Route::get('/getOrder/{user_id}', 'OrderController@getOrderList');
