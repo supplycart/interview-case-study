@@ -14,22 +14,26 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
 {   
-    Route::group(['prefix' => 'auth'], function(){
-        Route::post('/register', 'AuthController@createUser');
+    Route::prefix('auth')->group(function(){
         Route::post('/login', 'AuthController@login');
+        Route::post('/register', 'AuthController@createUser');
         Route::post('/forgetPassword', 'AuthController@forgetPassword');
         Route::post('/passwordLink', 'AuthController@getPasswordLink')->name('password_link');
     });
 
-    Route::group(['prefix' => 'admin'], function(){
-        Route::post('/create', 'AdminController@createAdmin');
+    Route::prefix('admin')->group(function(){
         Route::post('/login', 'AdminController@login');
-        Route::post('/update/{id}', 'AdminController@updateAdmin');
-        Route::post('/resetPassword/{id}', 'AdminController@resetAdminPassword');
-        Route::get('/get/{id}', 'AdminController@getAdmin');
+
+        Route::middleware(['auth.admin'])->group(function(){
+            Route::post('/create', 'AdminController@createAdmin');
+            Route::post('/update/{id}', 'AdminController@updateAdmin');
+            Route::post('/resetPassword/{id}', 'AdminController@resetAdminPassword');
+            Route::get('/get/{id}', 'AdminController@getAdmin');
+            Route::get('/logout/{id}', 'AdminController@logout');
+        });
     });
 
-    Route::group(['prefix' => 'product'], function(){
+    Route::prefix('product')->group(function(){
         Route::get('/list',  'ProductController@getProductList');
         Route::get('/detail/{id}', 'ProductController@getProductDetail');
         Route::post('/add',  'ProductController@addProduct');

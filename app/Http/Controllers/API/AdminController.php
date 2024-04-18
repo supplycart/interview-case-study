@@ -80,4 +80,10 @@ class AdminController
 
         return response()->json(['data' => 'done'], 200);
     }
+
+    public function logout($id){
+        Admin::where('id', $id)->update(['session_id' => null]);
+
+        return response()->json(['data' => 'done'], 200);
+    }
 }
