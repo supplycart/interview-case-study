@@ -19,7 +19,10 @@ Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
         Route::post('/register', 'AuthController@createUser');
         Route::post('/forgetPassword', 'AuthController@forgetPassword');
         Route::post('/passwordLink', 'AuthController@getPasswordLink')->name('password_link');
-        Route::get('/logout', 'AuthController@logout');
+
+        Route::middleware(['auth.user'])->group(function(){
+            Route::get('/logout', 'AuthController@logout');
+        });
     });
 
     Route::prefix('admin')->group(function(){
