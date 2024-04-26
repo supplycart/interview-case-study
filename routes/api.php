@@ -21,16 +21,19 @@ Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
         Route::post('/passwordLink', 'AuthController@getPasswordLink')->name('password_link');
 
         Route::middleware(['auth.user'])->group(function(){
+            Route::post('/update/{id}', 'AuthController@updateUser');
+            Route::get('/get/{id}', 'AuthController@getUser');
             Route::get('/logout', 'AuthController@logout');
         });
     });
 
     Route::prefix('admin')->group(function(){
         Route::post('/login', 'AdminController@login');
+        Route::post('/create', 'AdminController@createAdmin');
+        Route::post('/resetPassword/{id}', 'AdminController@resetAdminPassword');
+
         Route::middleware(['auth.admin'])->group(function(){
-            Route::post('/create', 'AdminController@createAdmin');
             Route::post('/update/{id}', 'AdminController@updateAdmin');
-            Route::post('/resetPassword/{id}', 'AdminController@resetAdminPassword');
             Route::get('/get/{id}', 'AdminController@getAdmin');
             Route::get('/logout', 'AdminController@logout');
         });

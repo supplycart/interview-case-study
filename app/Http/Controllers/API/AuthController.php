@@ -58,6 +58,21 @@ class AuthController
         }
     }
 
+    public function getUser($id){
+        $user = User::find($id);
+
+        return response()->json(['data' => $user], 200);
+    }
+
+    public function updateUser(Request $request, $id){
+        User::where('id', $id)
+            ->update([
+                $request->all()
+            ]);
+        
+        return response()->json(['data' => 'done'], 200);
+    }
+
     public function createUser(RegisterRequest $request){
         $user_id = generate_unique_id('USER-', "User", "user_id");
         $request->offsetSet('password', Hash::make($request->input("password")));
