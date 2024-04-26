@@ -34,20 +34,13 @@ class AdminController
         $username = $request->username;
         $password = $request->password;
 
+        Auth::guard('admin')->attempt(['username' => $username, 'password' => $password, 'status' => 1]);
         $admin = $this->_adminRepository->getActiveUser($username);
 
         if($admin){
-            if(Auth::guard('admin')->attempt(['username' => $username, 'password' => $password, 'status' => 1])) {
-                // if new agent, generate a session id
-                if($admin->session_id == null) {
-                    $session_id = $this->_adminRepository->updateSessionIDByUserID($admin->id);
-                    $admin->session_id = $session_id;
-                }
+            $admin->token = $token;
 
-                return response()->json(['data' => $admin], 200);
-            }else{
-                return response()->json(['data' => __("page.incorrect_password")], 404);
-            }
+            return response()->json(['data' => $admin], 200);
         }
         
         return response()->json(['data' => __("page.no_user")], 404);
@@ -81,8 +74,8 @@ class AdminController
         return response()->json(['data' => 'done'], 200);
     }
 
-    public function logout($id){
-        Admin::where('id', $id)->update(['session_id' => null]);
+    public function logout(){
+        Auth::guard('admin')->logout();
 
         return response()->json(['data' => 'done'], 200);
     }

@@ -29,7 +29,7 @@ class AuthController extends Controller
         }
 
         if($user){
-            if(Auth::guard('admin')->attempt(['username' => $username, 'password' => $password, 'status' => 1])) {
+            if(Auth::guard('api')->attempt(['username' => $username, 'password' => $password, 'status' => 1])) {
                 // if new agent, generate a session id
                 if($user->session_id == null) {
                     $session_id = $this->_adminRepository->updateSessionIDByUserID($user->id);
@@ -100,7 +100,7 @@ class AuthController extends Controller
     }
 
     public function logout($id){
-        User::where('id', $id)->update(['session_id' => null]);
+        Admin::where('id', $id)->update(['session_id' => null]);
 
         return response()->json(['data' => 'done'], 200);
     }

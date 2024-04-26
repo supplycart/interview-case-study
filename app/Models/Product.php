@@ -10,8 +10,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class Product extends Model
 {
     use SoftDeletes;
+    
     protected $table = "products";
-    protected $fillable = ['name', 'price', 'status'];
+    protected $fillable = ['name', 'price', 'status', 'stripe_id', 'category_id'];
 
     public function carts()
     {

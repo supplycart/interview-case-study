@@ -20,13 +20,21 @@ use Hash;
 
 class AuthController
 {
-    public function __construct(UserRepository $UserRepository) {
-        $this->_userRepository = $UserRepository;
+    public function __construct(UserRepository $userRepository) {
+        $this->_userRepository = $userRepository;
     }
 
     public function login(LoginRequest $request){
         $username = $request->username;
         $password = $request->password;
+        
+        $credentials = request(['username', 'password']);
+        
+        $token = Auth::guard('api')->attempt(['username' => $username, 'password' => $password, 'status' => 1]);
+
+        if (!$token) {
+            return response()->json(['error' => 'page.incorrect_password'], 401);
+        }
 
         $user = $this->_userRepository->getActiveUser($username);
         $ban_user = $this->_userRepository->getBannedUser($username);
@@ -37,17 +45,9 @@ class AuthController
         }
 
         if($user){
-            if(Auth::guard('api')->attempt(['username' => $username, 'password' => $password, 'status' => 1])) {
-                // if new agent, generate a session id
-                if($user->session_id == null) {
-                    $session_id = $this->_userRepository->updateSessionIDByUserID($user->id);
-                    $user->session_id = $session_id;
-                }
+            $user->token = $token;
 
-                return response()->json(['data' => $user], 200);
-            }else{
-                return response()->json(['data' => __("page.incorrect_password")], 404);
-            }
+            return response()->json(['data' => $user], 200);
         }else{
             $user = $this->_userRepository->getInactiveUserByUsername($username);
 
@@ -127,5 +127,11 @@ class AuthController
         }
 
         return response()->json(['data' => __("password.done")], 200);
+    }
+
+    public function logout(){
+        Auth::guard('api')->logout();
+
+        return response()->json(['data' => 'done'], 200);
     }
 }

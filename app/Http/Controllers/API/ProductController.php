@@ -4,7 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\API\Product\AddProductRequest;
+use App\Http\Requests\API\Product\UpdateProductRequest;
 use App\Models\Product;
+use Stripe\StripeClient;
 
 class ProductController extends Controller
 {
@@ -29,8 +32,10 @@ class ProductController extends Controller
         }
     }
 
-    public function addProduct(Request $request)
+    public function addProduct(AddProductRequest $request)
     {
+        $stripe = new StripeClient(config('services.stripe.secret'));
+
         try {
             $existed = Product::where('name', $request->name)->first();
 
@@ -39,11 +44,22 @@ class ProductController extends Controller
                 return response()->json(['data' =>'Product Duplicated'], 404);
             }
 
+            $stripe_product = $stripe->products->create([
+                'name' => $request->name,
+                "active" => true,
+                "default_price_data" => [
+                    "currency" => 'myr',
+                    "unit_amount_decimal" => $request->price,
+                ],
+            ]);
+
             // Product doesn't exist, create it
             Product::create([
                 'name' => $request->name,
-                'price' => $request->price,
-                'status' => 0
+                'price' => $request->price/100,
+                'status' => 0,
+                'stripe_id' => $stripe_product->id,
+                'category_id' => $request->category_id
             ]);
 
             return response()->json(['data' =>'done'], 200);
@@ -64,15 +80,9 @@ class ProductController extends Controller
         }
     }
 
-    public function updateProduct(Request $request, $id){
+    public function updateProduct(UpdateProductRequest $request, $id){
         try{
-            Product::where('id', $id)->update([
-                'name' => $request->name,
-                'new_product' => $request->new_product,
-                'category_id' => $request->category_id,
-                'status' => $request->status,
-                'price' => $request->price,
-            ]);
+            Product::where('id', $id)->update($request->all());
             return response()->json(['data' =>"done"], 200);
         } catch (\Exception $e) {
             return response(['data' =>$e->getMessage()], 404);

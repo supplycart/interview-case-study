@@ -9,24 +9,6 @@ use App\Models\User;
 class UserRepository extends BaseRepository
 {
     /**
-     * @var array
-     */
-    // protected $fieldSearchable = [
-    //     'name',
-    //     'parent_id'
-    // ];
-
-    /**
-     * Return searchable fields
-     *
-     * @return array
-     */
-    // public function getFieldsSearchable()
-    // {
-    //     return $this->fieldSearchable;
-    // }
-
-    /**
      * Configure the Model
      **/
     public function model()

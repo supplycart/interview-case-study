@@ -5,10 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 
-class AdminAuth
+class UserAuth
 {
     /**
      * Handle an incoming request.
@@ -17,7 +16,7 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::guard('admin')->check())
+        if (Auth::guard('api')->check())
 		{
 			return $next($request);
 		}
