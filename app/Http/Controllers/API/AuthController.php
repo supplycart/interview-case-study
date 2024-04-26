@@ -28,8 +28,6 @@ class AuthController
         $username = $request->username;
         $password = $request->password;
         
-        $credentials = request(['username', 'password']);
-        
         $token = Auth::guard('api')->attempt(['username' => $username, 'password' => $password, 'status' => 1]);
 
         if (!$token) {

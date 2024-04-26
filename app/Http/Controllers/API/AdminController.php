@@ -34,7 +34,12 @@ class AdminController
         $username = $request->username;
         $password = $request->password;
 
-        Auth::guard('admin')->attempt(['username' => $username, 'password' => $password, 'status' => 1]);
+        $token = Auth::guard('admin')->attempt(['username' => $username, 'password' => $password, 'status' => 1]);
+
+        if (!$token) {
+            return response()->json(['error' => 'page.incorrect_password'], 401);
+        }
+        
         $admin = $this->_adminRepository->getActiveUser($username);
 
         if($admin){
