@@ -65,12 +65,15 @@ class AuthController
     }
 
     public function updateUser(Request $request, $id){
+
         User::where('id', $id)
-            ->update([
+            ->update(
                 $request->all()
-            ]);
-        
-        return response()->json(['data' => 'done'], 200);
+            );
+
+        $user = User::find($id);
+
+        return response()->json(['data' => $user], 200);
     }
 
     public function createUser(RegisterRequest $request){

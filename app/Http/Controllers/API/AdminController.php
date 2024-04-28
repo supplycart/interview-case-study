@@ -59,13 +59,13 @@ class AdminController
 
     public function updateAdmin(AdminUpdateRequest $request, $id){
         Admin::where('id', $id)
-            ->update([
-                'role' => $request->role,
-                'status' => $request->status,
-                'username' => $request->username,
-            ]);
-        
-        return response()->json(['data' => 'done'], 200);
+            ->update(
+                $request->all()
+            );
+            
+        $admin = Admin::find($id);
+
+        return response()->json(['data' => $admin], 200);
     }
 
     public function resetAdminPassword(AdminPasswordResetRequest $request, $id){
