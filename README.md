@@ -49,7 +49,7 @@ While completing the above tasks, we will be particularly looking at how you han
 
 3. **Query Efficiency**: Optimization of database queries, including proper use of Laravel's query builder and Eloquent ORM features.
 
-4. **Consistent Naming Convention**: Use of snake_case for database columns and PHP variables, camelCase for JavaScript variables, and adherence to Laravel and Vue.js naming conventions.
+4. **Consistent Naming Convention**: Use of snake_case for database columns, camelCase for PHP and JavaScript variables, and adherence to Laravel and Vue.js naming conventions.
 
 5. **Proper Handling of Monetary Values**: Accurate representation and calculation of prices and totals.
 
