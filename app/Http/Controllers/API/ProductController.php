@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\API\Product\AddProductRequest;
 use App\Http\Requests\API\Product\UpdateProductRequest;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Stripe\StripeClient;
 
 class ProductController extends Controller
@@ -83,15 +84,31 @@ class ProductController extends Controller
     public function updateProduct(UpdateProductRequest $request, $id){
         try{
             Product::where('id', $id)->update($request->all());
-            return response()->json(['data' =>"done"], 200);
+
+            $product = Product::find($id);
+
+            $stripe = new StripeClient(config('services.stripe.secret'));
+            $stripe->products->update(
+                $product->stripe_id,
+                [
+                    'name' => $product->name,
+                    'price' => $product->price,
+                ]
+            );
+
+            return response()->json(['data' => $product], 200);
+            
         } catch (\Exception $e) {
             return response(['data' =>$e->getMessage()], 404);
         }
     }
 
-    public function getProductInCategory($category_id){
+    public function getProductInCategory($category_id=null){
         try{
-            $product_list = Product::where(['category_id' => $category_id, 'status' => 1])->get();
+            if(!$category_id)
+                $product_list = Product::all();
+            else
+                $product_list = Product::where(['category_id' => $category_id, 'status' => 1])->get();
             
             return response()->json(['data' => $product_list], 200);
         } catch (\Exception $e) {

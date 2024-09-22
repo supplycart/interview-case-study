@@ -29,7 +29,7 @@ class AuthController
         $password = $request->password;
         
         $token = Auth::guard('api')->attempt(['username' => $username, 'password' => $password, 'status' => 1]);
-
+        
         if (!$token) {
             return response()->json(['error' => 'page.incorrect_password'], 401);
         }

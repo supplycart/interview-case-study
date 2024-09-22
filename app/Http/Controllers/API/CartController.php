@@ -9,6 +9,7 @@ use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Repositories\CartRepository;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CartController
 {
@@ -16,21 +17,21 @@ class CartController
         $this->_cartRepository = $cartRepository;
     }
 
-    public function getCart($user_id){
+    public function getCart(Request $request, $user_id){
         $cart = Cart::leftJoin('products', 'cart.product_id', 'products.id')
             ->where('user_id', $user_id)
             ->get();
-
+        // dd(Auth::user());
         return response()->json(['data' => $cart], 200);
     }
 
     public function addToCart(Request $request, $product_id){
-        $cart = Cart::where(['product_id' => $product_id, 'user_id' => $request->user_id])->first();
+        $cart = Cart::where(['product_id' => $product_id, 'user_id' => Auth::user()->id])->first();
 
         if($cart){
             $cart->increment('qty',1);
 
-            return response()->json(['data' => 'added'], 200);
+            return response()->json(['data' => true], 200);
         }
 
         Cart::create([

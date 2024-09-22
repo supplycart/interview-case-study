@@ -42,24 +42,27 @@ Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
     Route::prefix('product')->group(function(){
         Route::get('/list',  'ProductController@getProductList');
         Route::get('/detail/{id}', 'ProductController@getProductDetail');
-        Route::get('/category/{category_id}', 'ProductController@getProductInCategory');
+        Route::get('/category/{category_id?}', 'ProductController@getProductInCategory');
         Route::middleware(['auth.admin'])->group(function(){
             Route::post('/add', 'ProductController@addProduct');
             Route::delete('/delete/{id}', 'ProductController@removeProduct');
             Route::post('/update/{id}', 'ProductController@updateProduct');
         });
     });
-
-    Route::prefix('sales_order')->group(function(){
-        Route::get('/getOrder/{user_id}', 'OrderController@getOrderList');
-        Route::post('/checkout', 'OrderController@checkout');
+    Route::prefix('cart')->middleware(['auth.user'])->group(function(){
+        Route::get('/list/{user_id}', 'CartController@getCart');
+        Route::post('/addToCart/{product_id}', 'CartController@addToCart');
     });
 
-    Route::get('/payOrder/{order_id}', 'OrderController@payOrder');
-    Route::get('/payment/process', 'PaymentController@processPayment')->name('payment.process');
+    Route::prefix('sales_order')->middleware(['auth.user'])->group(function(){
+        Route::get('/getOrder/{user_id}', 'OrderController@getOrderList');
+        Route::get('/getOrderItem/{order_id}', 'OrderController@getOrderDetail');
+        Route::get('/addItem/{user_id}', 'OrderController@addOrderItem');
+        Route::post('/checkout', 'OrderController@checkout');
+        Route::get('/payOrder/{order_id}', 'PaymentController@payOrder');
+    });
 
-    Route::get('/getCart/{user_id}', 'CartController@getCart');
-    Route::post('/addToCart/{product_id}', 'CartController@addToCart');
+    Route::get('/payment/process', 'PaymentController@processPayment')->name('payment.process');
     
 
     Route::get('/getCategory', 'CategoryController@getCategory');

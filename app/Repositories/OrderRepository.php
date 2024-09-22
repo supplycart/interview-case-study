@@ -4,6 +4,10 @@ namespace App\Repositories;
 
 use Illuminate\Container\Container as Application;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\OrderDetail;
+use App\Models\Cart;
+use DB;
 
 class OrderRepository extends BaseRepository
 {
@@ -12,7 +16,7 @@ class OrderRepository extends BaseRepository
         return Order::class;
     }
 
-    public function createOrder($user_id, $cart){
+    public function createOrder($user_id){
         DB::beginTransaction();
         try {
             $coupon_id = null;
@@ -20,9 +24,10 @@ class OrderRepository extends BaseRepository
 
             $order_id = generate_unique_id('O-', "Order", "order_id");
             $order_exited = Order::where(['user_id' => $user_id, 'status' => 1])->exists();
-            
+
             if($order_exited){
-                return response()->json(['data' => 'Please Paid current order.'], 404);
+                // return response()->json(['data' => 'Please Paid current order.'], 401);
+                throw new \Exception('Please Paid current order.');
             }
 
             $order = new Order;
@@ -30,8 +35,8 @@ class OrderRepository extends BaseRepository
             $order->user_id = $user_id;
             $order->status = 1;
 
-            $order->save();
-            
+            $cart = Cart::where('user_id', $user_id)->get();
+
             foreach($cart as $item){
                 $product = Product::find($item->product_id);
 
@@ -48,12 +53,13 @@ class OrderRepository extends BaseRepository
             }
 
             $order->order_price = $total;
+
             $order->save();
 
+            DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json(['data' => $e->getMessage()], 404);
+            return $e->getMessage();
         }
-        DB::commit();
     }
 }
