@@ -1,0 +1,43 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vue-tsc && vite build"
+    },
+    "devDependencies": {
+        "@inertiajs/vue3": "^1.0.0",
+        "@tailwindcss/forms": "^0.5.3",
+        "@vitejs/plugin-vue": "^5.0.0",
+        "autoprefixer": "^10.4.12",
+        "axios": "^1.7.4",
+        "laravel-vite-plugin": "^1.0",
+        "postcss": "^8.4.31",
+        "tailwindcss": "^3.2.1",
+        "typescript": "^5.5.3",
+        "vite": "^5.0",
+        "vue": "^3.4.0",
+        "vue-tsc": "^2.0.24"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.6.0",
+        "@fortawesome/free-brands-svg-icons": "^6.6.0",
+        "@fortawesome/free-regular-svg-icons": "^6.6.0",
+        "@fortawesome/free-solid-svg-icons": "^6.6.0",
+        "@fortawesome/vue-fontawesome": "^3.0.8",
+        "@headlessui/vue": "^1.7.23",
+        "@splidejs/vue-splide": "^0.6.12",
+        "@vueform/slider": "^2.1.10",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.1.1",
+        "flowbite": "^2.5.2",
+        "lodash": "^4.17.21",
+        "lucide-vue-next": "^0.446.0",
+        "pinia": "^2.2.2",
+        "qs": "^6.13.0",
+        "radix-vue": "^1.9.6",
+        "tailwind-merge": "^2.5.2",
+        "tailwindcss-animate": "^1.0.7",
+        "vue3-toastify": "^0.2.3"
+    }
+}
