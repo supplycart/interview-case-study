@@ -13,8 +13,8 @@ services:
       - DB_HOST=mariadb
       - DB_PORT=3306
       - DB_DATABASE=kyoto_supplycart
-      - DB_USERNAME=randhawa
-      - DB_PASSWORD=raj0176698168
+      - DB_USERNAME=""
+      - DB_PASSWORD=""
     volumes:
       - .:/var/www/html
       - ./node_modules:/app/node_modules
