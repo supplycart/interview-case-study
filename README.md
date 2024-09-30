@@ -1,66 +1,76 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <img align="center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
 </p>
 
-## About Laravel
+# Supplycart Interview Case Study
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Instructions
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Fork this repo to your github account
+- Complete the tasks given
+- Once completed, create a PR to this repository
+- Lastly, add some guidance or instruction on how to run your code
 
-## Learning Laravel
+## Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+You must work on this assignment using:
+- Vue (optional for BE dev)
+- TailwindCSS
+- Laravel (optional for FE dev)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Tasks
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. As guest, I want to be able to register an account
+2. As guest, I want to be able to login using registered account
+3. As user, I want to see list of products after login
+4. As user, I want to be able to add product to cart
+5. As user, I want to be able to place order for added products in cart
+6. As user, I want to see my order history
+7. As user, I want to be able to logout
 
-## Laravel Sponsors
+## Bonus Tasks
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Verify email after registration
+2. User activity log e.g. login, logout, add to cart, place order etc
+3. Product attributes and filtering e.g brand, category
+4. Different user can see different price for products
+5. Add unit tests
+6. Deploy app to a server
 
-### Premium Partners
+## Key Evaluation Criteria
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+While completing the above tasks, we will be particularly looking at how you handle the following aspects:
 
-## Contributing
+1. **Data Validation**: Proper validation of user inputs and data integrity checks.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. **Data Transformation**: Efficient and logical transformation of data between different parts of the application.
 
-## Code of Conduct
+3. **Query Efficiency**: Optimization of database queries, including proper use of Laravel's query builder and Eloquent ORM features.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. **Consistent Naming Convention**: Use of snake_case for database columns, camelCase for PHP and JavaScript variables, and adherence to Laravel and Vue.js naming conventions.
 
-## Security Vulnerabilities
+5. **Proper Handling of Monetary Values**: Accurate representation and calculation of prices and totals.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+6. **Database Design**: Well-structured migration files that demonstrate thoughtful schema design, including appropriate indexes.
 
-## License
+7. **Code Organization**: Clear, modular, and maintainable code structure.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+8. **Security Best Practices**: Implementation of necessary security measures to protect against common vulnerabilities.
+
+9. **API Design** (if applicable): RESTful design principles and clear documentation.
+
+10. **Error Handling**: Graceful error handling and informative error messages.
+
+## Submission Guidelines
+
+- Ensure your code is well-commented and follows PSR-12 coding standards for PHP.
+- Include a README.md file with setup instructions and any assumptions made.
+- If you have suggestions for improving this case study, feel free to include them in your submission.
+
+We look forward to reviewing your implementation and discussing your approach during the interview process.
+
+---
+
+P/S: If you think there is a better way for us to assess your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
