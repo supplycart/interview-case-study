@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(MasterLookupSeeder::class);
         $this->call(CategorySeeder::class);
+        $this->call(BrandSeeder::class);
         $this->call(ProductSeeder::class);
     }
 }

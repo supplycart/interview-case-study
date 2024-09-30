@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|ProductImage whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductImage whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductImage whereUrl($value)
+ * @method static \Database\Factories\ProductImageFactory factory($count = null, $state = [])
  * @mixin \Eloquent
  */
 class ProductImage extends Model
