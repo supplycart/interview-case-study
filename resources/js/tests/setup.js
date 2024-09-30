@@ -1,8 +1,8 @@
 // setup.js
-import { beforeEach, afterEach } from 'vitest'
-import { setActivePinia, createPinia } from 'pinia'
-import { createApp } from 'vue'
 import { cleanup } from '@testing-library/vue'
+import { createPinia, setActivePinia } from 'pinia'
+import { afterEach, beforeEach } from 'vitest'
+import { createApp } from 'vue'
 
 // Mocking localStorage
 global.localStorage = {

@@ -19,6 +19,7 @@
         "axios": "^1.6.4",
         "eslint": "^9.11.1",
         "eslint-plugin-prettier": "^5.2.1",
+        "eslint-plugin-simple-import-sort": "^12.1.1",
         "eslint-plugin-vue": "^9.28.0",
         "happy-dom": "^15.7.4",
         "laravel-vite-plugin": "^1.0.0",
@@ -31,12 +32,16 @@
         "vue-eslint-parser": "^9.4.3"
     },
     "dependencies": {
+        "@vee-validate/zod": "^4.13.2",
+        "@vueuse/core": "^11.1.0",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
         "lucide-vue-next": "^0.446.0",
         "pinia": "^2.2.2",
         "radix-vue": "^1.9.6",
         "tailwind-merge": "^2.5.2",
-        "tailwindcss-animate": "^1.0.7"
+        "tailwindcss-animate": "^1.0.7",
+        "vee-validate": "^4.13.2",
+        "zod": "^3.23.8"
     }
 }

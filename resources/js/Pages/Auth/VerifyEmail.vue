@@ -1,8 +1,19 @@
 <script setup>
-import { computed } from 'vue'
-import GuestLayout from '@/Layouts/GuestLayout.vue'
-import PrimaryButton from '@/Components/PrimaryButton.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
+import { computed } from 'vue'
+
+import PrimaryButton from '@/Components/PrimaryButton.vue'
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from '@/Components/ui/card'
+import AppLayout from '@/Layouts/AppLayout.vue'
+import { Button } from '@/Components/ui/button'
+import { ChevronLeft } from 'lucide-vue-next'
 
 const props = defineProps({
     status: {
@@ -22,40 +33,48 @@ const verificationLinkSent = computed(
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Email Verification" />
+    <Head title="Email Verification" />
 
-        <div class="mb-4 text-sm text-gray-600">
-            Thanks for signing up! Before getting started, could you verify your
-            email address by clicking on the link we just emailed to you? If you
-            didn't receive the email, we will gladly send you another.
-        </div>
+    <AppLayout>
+        <div class="container">
+            <div class="flex flex-col items-center justify-center h-[100dvh]">
+                <form @submit.prevent="submit">
+                    <Card class="w-full max-w-[380px]">
+                        <CardHeader>
+                            <CardTitle
+                                class="flex flex-row justify-between text-center"
+                            >
+                                <Link class="w-fit" href="/">
+                                    <ChevronLeft />
+                                </Link>
+                                You're one step closer!
+                                <span></span>
+                            </CardTitle>
+                            <CardDescription class="text-center mt-4">
+                                We've sent you a verification email. Do check
+                                your inbox or spam for it!
 
-        <div
-            class="mb-4 font-medium text-sm text-green-600"
-            v-if="verificationLinkSent"
-        >
-            A new verification link has been sent to the email address you
-            provided during registration.
-        </div>
-
-        <form @submit.prevent="submit">
-            <div class="mt-4 flex items-center justify-between">
-                <PrimaryButton
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Resend Verification Email
-                </PrimaryButton>
-
-                <Link
-                    :href="route('logout')"
-                    method="post"
-                    as="button"
-                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >Log Out</Link
-                >
+                                <p
+                                    v-if="verificationLinkSent"
+                                    class="mt-8 font-medium text-green-600"
+                                >
+                                    A new verification link has been sent to the
+                                    email address you provided during
+                                    registration.
+                                </p>
+                            </CardDescription>
+                        </CardHeader>
+                        <CardFooter class="flex flex-col items-center">
+                            <Button
+                                :class="{ 'opacity-25': form.processing }"
+                                :disabled="form.processing"
+                            >
+                                Re-send Verification Email
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                </form>
             </div>
-        </form>
-    </GuestLayout>
+        </div>
+    </AppLayout>
 </template>
