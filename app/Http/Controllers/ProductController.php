@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\MasterLookupHelper;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -12,19 +14,43 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $activeStatus = MasterLookupHelper::getStatusID('product_status', 'active');
+        $selectedCategories = $request->input('categories', []);
+        $selectedBrands     = $request->input('brands', []);
+        $activeStatus       = MasterLookupHelper::getStatusID('product_status', 'active');
 
-        $products = Product::with('image')
+        $products = Product::with('images')
             ->where('status_id', $activeStatus)
             ->when(
                 $request->input('search'),
-                fn(Builder $query, $search) => $query->where('name', 'like', "%$search%")
+                fn (Builder $query, $search) => $query->where('name', 'like', "%$search%")
+            )
+            ->when(
+                count($selectedCategories) > 0,
+                fn (Builder $query) => $query
+                    ->whereHas(
+                        'categories',
+                        fn (Builder $query) => $query->whereIn('name', $selectedCategories)
+                    )
             )
             ->latest('id')
-            ->simplePaginate(10, ['*'], 'products', $request->input('page', 1));
+            ->paginate(12, ['*'], 'page', $request->input('page', 1))
+            ->withQueryString();
+
+        $brands = \Cache::remember('all_brands', 60 * 60 * 24, function () {
+            return Brand::all();
+        });
+
+        $categories = \Cache::remember('all_categories', 60 * 60 * 24, function () {
+            return Category::all();
+        });
 
         return Inertia::render('Product/Index', [
-            'products' => $products->items(),
+            'search'             => $request->input('search'),
+            'products'           => $products,
+            'categories'         => $categories,
+            'selectedCategories' => $selectedCategories,
+            'brands'             => $brands,
+            'selectedBrands'     => $selectedBrands,
         ]);
     }
 

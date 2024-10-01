@@ -10,11 +10,24 @@
 
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div
-                    class="grid grid-cols-3 justify-center overflow-hidden bg-white shadow-sm sm:rounded-lg"
-                >
-                    <div v-for="product in products">
-                        <ProductCard :product="product" class="p-2"></ProductCard>
+                <div class="grid grid-flow-row-dense grid-cols-4">
+                    <div class="mx-2 col-span-1">
+                        <ProductFilter
+                            v-for="filter in filters"
+                            :items="filter.all"
+                            :selectedItems="filter.selected"
+                            :filter-name="filter.filterName"
+                            :filter-type="filter.filterType"
+                            :search="filter.input"
+                        />
+                    </div>
+                    <div class="mx-2 col-span-3">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 justify-center overflow-hidden bg-white shadow-sm sm:rounded-lg p-3">
+                            <ProductCard v-for="product in products.data" :product="product" class="flex-grow p-2 "></ProductCard>
+                        </div>
+                        <div class="my-4">
+                            <Pagination :pagination="products" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -25,7 +38,39 @@
 <script setup>
 import {Head} from "@inertiajs/vue3";
 import AuthenticatedLayout from "../../Layouts/AuthenticatedLayout.vue";
-import ProductCard from "../../Components/ProductCard.vue";
+import ProductCard from "../../Components/Product/ProductCard.vue";
+import {computed} from "vue";
+import Pagination from "@/Components/Pagination.vue";
+import ProductFilter from "@/Components/Product/ProductFilter.vue";
 
-defineProps({products: Array});
+const props = defineProps({
+    search: String,
+    products: Object,
+    categories: Object,
+    selectedCategories: Array,
+    brands: Object,
+    selectedBrands: Array
+});
+
+const filters = computed(() => {
+    return {
+        search: {
+            input: props.search,
+            filterName: 'search',
+            filterType: 'text'
+        },
+        categories: {
+            all: props.categories,
+            selected: props.selectedCategories,
+            filterName: 'categories',
+            filterType: 'checkbox'
+        },
+        brands: {
+            all: props.brands,
+            selected: props.selectedBrands,
+            filterName: 'brands',
+            filterType: 'checkbox'
+        },
+    }
+});
 </script>
