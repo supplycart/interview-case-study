@@ -43,11 +43,11 @@ onMounted(() => {
     initDropdowns()
     if (props.goods?.data) {
         const queries = qs.parse(window.location.search.substring(1))
-        filters.brands = queries?.brands?.map((brand) => Number.parseInt(brand)) ?? []
+        filters.brands = Array.isArray(queries?.brands) ? queries.brands.map((brand) => Number.parseInt(brand as string)) : []
             ;[rangePrices.min, rangePrices.max] = [props.prices?.min, props.prices?.max]
         filters.prices = queries?.prices ? Object.values(queries.prices).map((value) => Number.parseInt(value as string)) : Object.values(rangePrices)
         queries.properties ? filters.properties.push(...(queries.properties as string[])) : null
-        sort.value = queries?.sort
+        sort.value = queries?.sort as string
     }
 })
 
@@ -77,7 +77,7 @@ const rangePrices = reactive({
 
 const formRoute = computed(() => (route('goods.index', props.category)))
 
-const brandFilter = (brand) => {
+const brandFilter = (brand: number) => {
     const brandIndex = filters.brands.indexOf(brand)
     brandIndex === -1 ? filters.brands.push(brand) : filters.brands.splice(brandIndex, 1)
     filters
@@ -105,7 +105,7 @@ const priceFilter = () => {
         .get(formRoute.value)
 }
 
-const propertyFilter = (value) => {
+const propertyFilter = (value: string) => {
     filters.properties.push(value)
     filters.get(formRoute.value)
 }
@@ -141,7 +141,7 @@ const sortOptions = [
     }
 ]
 
-const goodsSort = (key) => {
+const goodsSort = (key: any) => {
     filters
         .transform((data) => ({
             ...data,
