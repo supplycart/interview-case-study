@@ -73,8 +73,7 @@ const bulkDelete = () => router.delete(route('cart.bulk-delete'))
                                 class="mr-4 flex h-32 w-32 shrink-0 items-center justify-center"
                             >
                                 <img
-                                    v-if="good.preview"
-                                    :src="good.preview"
+                                    src="https://via.placeholder.com/150"
                                     :alt="good.title"
                                     :title="good.title"
                                     class="h-full w-full rounded-lg object-cover object-center"
