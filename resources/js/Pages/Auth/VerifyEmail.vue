@@ -1,8 +1,10 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3'
+import { ChevronLeft } from 'lucide-vue-next'
 import { computed } from 'vue'
 
 import PrimaryButton from '@/Components/PrimaryButton.vue'
+import { Button } from '@/Components/ui/button'
 import {
     Card,
     CardContent,
@@ -12,8 +14,6 @@ import {
     CardTitle,
 } from '@/Components/ui/card'
 import AppLayout from '@/Layouts/AppLayout.vue'
-import { Button } from '@/Components/ui/button'
-import { ChevronLeft } from 'lucide-vue-next'
 
 const props = defineProps({
     status: {

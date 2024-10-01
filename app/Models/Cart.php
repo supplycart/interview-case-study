@@ -62,7 +62,7 @@ class Cart extends Model
         // Checkout logic as before
         $order = Order::create([
             'user_id' => $this->user_id,
-            'cart_items' => json_encode($this->cart_items), // Save cart items for the order
+            'order_items' => json_encode($this->cart_items), // Save cart items for the order
         ]);
 
         // Clear the cart after checkout

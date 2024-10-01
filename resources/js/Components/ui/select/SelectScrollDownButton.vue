@@ -1,12 +1,11 @@
 <script setup>
-import { Plus } from 'lucide-vue-next'
-import { NumberFieldIncrement, useForwardProps } from 'radix-vue'
+import { ChevronDown } from 'lucide-vue-next'
+import { SelectScrollDownButton, useForwardProps } from 'radix-vue'
 import { computed } from 'vue'
 
 import { cn } from '@/lib/utils'
 
 const props = defineProps({
-    disabled: { type: Boolean, required: false },
     asChild: { type: Boolean, required: false },
     as: { type: null, required: false },
     class: { type: null, required: false },
@@ -18,22 +17,21 @@ const delegatedProps = computed(() => {
     return delegated
 })
 
-const forwarded = useForwardProps(delegatedProps)
+const forwardedProps = useForwardProps(delegatedProps)
 </script>
 
 <template>
-    <NumberFieldIncrement
-        data-slot="increment"
-        v-bind="forwarded"
+    <SelectScrollDownButton
+        v-bind="forwardedProps"
         :class="
             cn(
-                'absolute top-1/2 -translate-y-1/2 right-0 disabled:cursor-not-allowed disabled:opacity-20 p-3',
+                'flex cursor-default items-center justify-center py-1',
                 props.class
             )
         "
     >
         <slot>
-            <Plus class="h-4 w-4" />
+            <ChevronDown class="h-4 w-4" />
         </slot>
-    </NumberFieldIncrement>
+    </SelectScrollDownButton>
 </template>

@@ -1,7 +1,7 @@
 <script setup>
 import { Head, usePage } from '@inertiajs/vue3'
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 import { Button } from '@/Components/ui/button'
 import {
@@ -11,6 +11,23 @@ import {
     CardHeader,
     CardTitle,
 } from '@/Components/ui/card'
+import { Label } from '@/Components/ui/label'
+import {
+    NumberField,
+    NumberFieldContent,
+    NumberFieldDecrement,
+    NumberFieldIncrement,
+    NumberFieldInput,
+} from '@/Components/ui/number-field'
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select'
 import {
     Table,
     TableBody,
@@ -19,24 +36,23 @@ import {
     TableHeader,
     TableRow,
 } from '@/Components/ui/table'
-import {
-    NumberField,
-    NumberFieldContent,
-    NumberFieldDecrement,
-    NumberFieldIncrement,
-    NumberFieldInput,
-} from '@/Components/ui/number-field'
+import { useToast } from '@/Components/ui/toast/use-toast'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
-import { toast } from '@/Components/ui/toast'
+import { useCartStore } from '@/Stores/cartStore'
 
 // Setup reactive products list and user tier
 const products = ref([])
 const loading = ref(true)
 const quantities = ref([])
+const categories = ref([])
+const brands = ref([])
+const selectedCategory = ref('all')
+const selectedBrand = ref('all')
 
-console.log(quantities.value)
-
+const cartStore = useCartStore()
 const user = usePage().props.auth.user
+
+const { toast } = useToast()
 
 // Fetch products from backend
 const fetchProducts = async () => {
@@ -45,27 +61,79 @@ const fetchProducts = async () => {
             '/products/get?user_tier=' + user.user_tier
         )
         products.value = response.data
+        quantities.value = products.value.map((product) =>
+            product.quantity <= 0 ? 0 : 1
+        )
+
+        const uniqueCategories = [
+            ...new Set(
+                products.value.map((product) => product.product_category)
+            ),
+        ]
+        categories.value = uniqueCategories
+
+        const uniqueBrands = [
+            ...new Set(products.value.map((product) => product.product_brand)),
+        ]
+        brands.value = uniqueBrands
     } catch (error) {
-        console.error('Error fetching products:', error)
+        toast({
+            title: 'There was an issue when trying to fetch the products.',
+            variant: 'destructive',
+        })
     } finally {
         loading.value = false
+    }
+}
+
+// Fetch cart from backend
+const fetchCart = async () => {
+    try {
+        const response = await axios.get('/cart/')
+        cartStore.setCart(response.data)
+    } catch (error) {
+        toast({
+            title: 'There was an issue when trying to fetch the cart.',
+            variant: 'destructive',
+        })
     }
 }
 
 // Add product to cart
 const addToCart = async (productId, quantity = 1) => {
     try {
-        const response = await axios.post(`/cart/${productId}`, {
-            quantity,
+        const response = await axios.post(`/cart/add/${productId}`, {
+            quantity: quantity || 1,
         })
-        toast('Product added to cart successfully') // Show success message
+        toast({
+            title: 'Product added to cart successfully',
+        })
     } catch (error) {
-        console.error('Error adding to cart:', error)
-        toast('Failed to add product to cart') // Show error message
+        toast({
+            title: 'Failed to add product to cart',
+            variant: 'destructive',
+        })
+    } finally {
+        fetchCart()
     }
 }
 
-// Fetch products when component is mounted
+// Filter products based on category and brand
+const filteredProducts = computed(() => {
+    return products.value.filter((product) => {
+        const matchesCategory =
+            selectedCategory.value === 'all' ||
+            product.product_category === selectedCategory.value
+
+        const matchesBrand =
+            selectedBrand.value === 'all' ||
+            product.product_brand === selectedBrand.value
+
+        return matchesCategory && matchesBrand
+    })
+})
+
+// Fetch products and cart when component is mounted
 onMounted(fetchProducts)
 </script>
 
@@ -87,21 +155,74 @@ onMounted(fetchProducts)
                 <h3 class="text-2xl font-bold tracking-tight">
                     You have no products
                 </h3>
-                <p class="text-sm text-muted-foreground">
-                    You can start selling as soon as you add a product.
-                </p>
-                <Button class="mt-4"> Add Product </Button>
             </div>
         </div>
 
         <div v-else>
             <Card>
-                <CardHeader>
-                    <CardTitle>Products</CardTitle>
-                    <CardDescription>
-                        Here are a list of products that you may add to your
-                        cart.
-                    </CardDescription>
+                <CardHeader
+                    class="flex flex-col md:flex-row justify-between gap-4 md:gap-1.5 items-center"
+                >
+                    <div class="flex flex-col gap-2">
+                        <CardTitle>Products</CardTitle>
+                        <CardDescription>
+                            Here are a list of products that you may add to your
+                            cart.
+                        </CardDescription>
+                    </div>
+                    <div class="flex flex-row gap-4">
+                        <div class="flex flex-col gap-2">
+                            <Label>Category</Label>
+                            <Select v-model="selectedCategory">
+                                <SelectTrigger>
+                                    <SelectValue
+                                        placeholder="Filter by Category"
+                                    />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectLabel>Categories</SelectLabel>
+                                        <SelectItem value="all">
+                                            All Categories
+                                        </SelectItem>
+                                        <SelectItem
+                                            v-for="category in categories"
+                                            :key="category"
+                                            :value="category"
+                                        >
+                                            {{ category }}
+                                        </SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <Label>Brand</Label>
+                            <Select v-model="selectedBrand">
+                                <SelectTrigger>
+                                    <SelectValue
+                                        placeholder="Filter by Brand"
+                                    />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectLabel>Brands</SelectLabel>
+                                        <SelectItem value="all">
+                                            All Brands
+                                        </SelectItem>
+                                        <SelectItem
+                                            v-for="brand in brands"
+                                            :key="brand"
+                                            :value="brand"
+                                        >
+                                            {{ brand }}
+                                        </SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                    </div>
                 </CardHeader>
                 <CardContent>
                     <Table>
@@ -121,14 +242,14 @@ onMounted(fetchProducts)
                             </TableRow>
                         </TableHeader>
                         <TableBody
-                            v-for="(product, index) in products"
+                            v-for="(product, index) in filteredProducts"
                             :key="product.id"
                         >
                             <TableRow>
                                 <TableCell class="sm:table-cell">
                                     <img
                                         alt="Product image"
-                                        class="aspect-square rounded-md object-cover"
+                                        class="aspect-square rounded-md object-cover min-w-[64px]"
                                         height="64"
                                         src="https://picsum.photos/100"
                                         width="64"
@@ -145,9 +266,10 @@ onMounted(fetchProducts)
                                 </TableCell>
                                 <TableCell>
                                     {{
-                                        product.price.currency +
-                                        ' ' +
-                                        product.price.amount
+                                        new Intl.NumberFormat('en-US', {
+                                            style: 'currency',
+                                            currency: product.price.currency,
+                                        }).format(product.price.amount)
                                     }}
                                 </TableCell>
                                 <TableCell>
@@ -159,8 +281,11 @@ onMounted(fetchProducts)
                                     <NumberField
                                         :id="'quantity-' + product.id"
                                         v-model="quantities[index]"
-                                        :default-value="1"
-                                        :min="1"
+                                        :default-value="
+                                            product.quantity <= 0 ? 0 : 1
+                                        "
+                                        :min="product.quantity <= 0 ? 0 : 1"
+                                        :max="product.quantity"
                                         class="max-w-[110px]"
                                     >
                                         <NumberFieldContent>
@@ -176,6 +301,7 @@ onMounted(fetchProducts)
                                                 quantities[index]
                                             )
                                         "
+                                        :disabled="product.quantity <= 0"
                                     >
                                         Add to Cart
                                     </Button>

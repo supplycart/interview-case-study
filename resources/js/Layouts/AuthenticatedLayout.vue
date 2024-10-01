@@ -1,6 +1,8 @@
 <script setup>
+import { Link, usePage } from '@inertiajs/vue3'
 import {
     Bell,
+    ChevronRight,
     CircleUser,
     Home,
     LineChart,
@@ -11,9 +13,19 @@ import {
     ShoppingCart,
     Users,
 } from 'lucide-vue-next'
+import { computed, onMounted, ref, watch } from 'vue'
 
 import { Badge } from '@/Components/ui/badge'
 import { Button } from '@/Components/ui/button'
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from '@/Components/ui/dialog'
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -23,10 +35,85 @@ import {
     DropdownMenuTrigger,
 } from '@/Components/ui/dropdown-menu'
 import { Input } from '@/Components/ui/input'
+import {
+    NumberField,
+    NumberFieldContent,
+    NumberFieldDecrement,
+    NumberFieldIncrement,
+    NumberFieldInput,
+} from '@/Components/ui/number-field'
 import { Sheet, SheetContent, SheetTrigger } from '@/Components/ui/sheet'
-import { Link, usePage } from '@inertiajs/vue3'
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/Components/ui/table'
+import Toaster from '@/Components/ui/toast/Toaster.vue'
+import { useToast } from '@/Components/ui/toast/use-toast'
+import { useCartStore } from '@/Stores/cartStore'
+import { useOrderStore } from '@/Stores/orderStore'
 
 const user = usePage().props.auth.user
+const page = usePage().url
+
+const cartStore = useCartStore()
+const cart = computed(() => cartStore.cart)
+
+const orderStore = useOrderStore()
+const orders = computed(() => orderStore.orders)
+
+const { toast } = useToast()
+
+// Fetch cart from backend
+const fetchCart = async () => {
+    try {
+        const response = await axios.get('/cart/')
+        cartStore.setCart(response.data)
+    } catch (error) {
+        toast({
+            title: 'There was an issue when trying to fetch the cart.',
+            variant: 'destructive',
+        })
+    }
+}
+
+const checkout = async () => {
+    try {
+        const response = await axios.post('/cart/checkout')
+        toast({
+            title: 'Everything looks good, expect to have your items soon.',
+            description: 'Redirecting you to the orders page...',
+        })
+    } catch (error) {
+        toast({
+            title: 'There was an issue when trying to checkout.',
+            variant: 'destructive',
+        })
+    } finally {
+        fetchCart()
+        window.location.href = '/orders'
+    }
+}
+
+// Fetch orders from backend
+const fetchOrders = async () => {
+    try {
+        const response = await axios.get('/orders/all/')
+        orderStore.setOrders(response.data)
+    } catch (error) {
+        toast({
+            title: 'There was an issue when trying to fetch the orders.',
+            variant: 'destructive',
+        })
+    }
+}
+
+// Fetch orders and cart when component is mounted
+onMounted(fetchOrders)
+onMounted(fetchCart)
 </script>
 
 <template>
@@ -53,44 +140,29 @@ const user = usePage().props.auth.user
                         class="grid items-start px-2 text-sm font-medium lg:px-4"
                     >
                         <a
-                            href="/"
-                            class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                            href="/dashboard"
+                            :class="{
+                                'flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary': true,
+                                'bg-muted text-primary': page === '/dashboard',
+                            }"
                         >
-                            <Home class="h-4 w-4" />
-                            Dashboard
+                            <Package class="h-4 w-4" />
+                            Products
                         </a>
                         <a
-                            href="#"
-                            class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                            href="/orders"
+                            :class="{
+                                'flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary': true,
+                                'bg-muted text-primary': page === '/orders',
+                            }"
                         >
                             <ShoppingCart class="h-4 w-4" />
                             Orders
                             <Badge
                                 class="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
                             >
-                                6
+                                {{ orders?.orders?.length || 0 }}
                             </Badge>
-                        </a>
-                        <a
-                            href="#"
-                            class="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
-                        >
-                            <Package class="h-4 w-4" />
-                            Products
-                        </a>
-                        <a
-                            href="#"
-                            class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                        >
-                            <Users class="h-4 w-4" />
-                            Customers
-                        </a>
-                        <a
-                            href="#"
-                            class="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                        >
-                            <LineChart class="h-4 w-4" />
-                            Analytics
                         </a>
                     </nav>
                 </div>
@@ -114,69 +186,138 @@ const user = usePage().props.auth.user
                     <SheetContent side="left" class="flex flex-col">
                         <nav class="grid gap-2 text-lg font-medium">
                             <a
-                                href="#"
-                                class="flex items-center gap-2 text-lg font-semibold"
+                                href="/dashboard"
+                                class="flex items-center gap-2 text-lg font-semibold mb-4"
                             >
                                 <Package2 class="h-6 w-6" />
                                 <span class="sr-only">SupplyCart</span>
                             </a>
                             <a
-                                href="#"
-                                class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+                                href="/dashboard"
+                                :class="{
+                                    'mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 hover:text-foreground': true,
+                                    'bg-muted text-foreground':
+                                        page === '/dashboard',
+                                    'text-muted-foreground':
+                                        page !== '/dashboard',
+                                }"
                             >
-                                <Home class="h-5 w-5" />
-                                Dashboard
+                                <Package class="h-5 w-5" />
+                                Products
                             </a>
                             <a
-                                href="#"
-                                class="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
+                                href="/orders"
+                                :class="{
+                                    'mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 hover:text-foreground': true,
+                                    'bg-muted text-foreground':
+                                        page === '/orders',
+                                    'text-muted-foreground': page !== '/orders',
+                                }"
                             >
                                 <ShoppingCart class="h-5 w-5" />
                                 Orders
                                 <Badge
                                     class="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
                                 >
-                                    6
+                                    {{ orders?.orders?.length || 0 }}
                                 </Badge>
-                            </a>
-                            <a
-                                href="#"
-                                class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-                            >
-                                <Package class="h-5 w-5" />
-                                Products
-                            </a>
-                            <a
-                                href="#"
-                                class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-                            >
-                                <Users class="h-5 w-5" />
-                                Customers
-                            </a>
-                            <a
-                                href="#"
-                                class="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-                            >
-                                <LineChart class="h-5 w-5" />
-                                Analytics
                             </a>
                         </nav>
                     </SheetContent>
                 </Sheet>
-                <div class="w-full flex-1">
-                    <form>
-                        <div class="relative">
-                            <Search
-                                class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground"
-                            />
-                            <Input
-                                type="search"
-                                placeholder="Search products..."
-                                class="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
-                            />
-                        </div>
-                    </form>
-                </div>
+                <div class="w-full flex-1"></div>
+                <Dialog>
+                    <DialogTrigger>
+                        <Button
+                            variant="secondary"
+                            size="icon"
+                            class="rounded-full w-max gap-4 p-4"
+                        >
+                            <ShoppingCart class="h-5 w-5" />
+                            <Badge class="">{{ cart.total_items || 0 }}</Badge>
+                            <span class="sr-only">Toggle cart</span>
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent class="max-w-max">
+                        <DialogHeader>
+                            <DialogTitle>
+                                {{
+                                    cart?.total_items !== 0
+                                        ? 'Cart'
+                                        : 'Your cart is empty'
+                                }}
+                            </DialogTitle>
+                            <DialogDescription>
+                                {{
+                                    cart?.total_items !== 0
+                                        ? 'Here is your cart, check one more time before purchasing.'
+                                        : 'Add a product, and come back here.'
+                                }}
+                            </DialogDescription>
+                        </DialogHeader>
+
+                        <Table v-if="cart?.total_items !== 0">
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead class="w-[100px] sm:table-cell">
+                                        <span class="sr-only">img</span>
+                                    </TableHead>
+                                    <TableHead>Name</TableHead>
+                                    <TableHead>Brand</TableHead>
+                                    <TableHead>Category</TableHead>
+                                    <TableHead>Price</TableHead>
+                                    <TableHead>Quantity</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody
+                                v-for="(cart, index) in cart['cart_items']"
+                                :key="cart.product_id"
+                            >
+                                <TableRow>
+                                    <TableCell class="sm:table-cell">
+                                        <img
+                                            alt="Product image"
+                                            class="aspect-square rounded-md object-cover min-w-[64px]"
+                                            height="64"
+                                            src="https://picsum.photos/100"
+                                            width="64"
+                                        />
+                                    </TableCell>
+                                    <TableCell class="font-medium">
+                                        {{ cart.product_name }}
+                                    </TableCell>
+                                    <TableCell>
+                                        {{ cart.product_brand }}
+                                    </TableCell>
+                                    <TableCell>
+                                        {{ cart.product_category }}
+                                    </TableCell>
+                                    <TableCell>
+                                        {{
+                                            new Intl.NumberFormat('en-US', {
+                                                style: 'currency',
+                                                currency: cart.price.currency,
+                                            }).format(cart.price.amount)
+                                        }}
+                                    </TableCell>
+                                    <TableCell>
+                                        {{ cart.quantity }}
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+
+                        <DialogFooter v-if="cart?.total_items !== 0">
+                            <Button
+                                class="flex flex-row items-center justify-center"
+                                @click="checkout()"
+                            >
+                                Proceed to Checkout
+                                <ChevronRight class="w-[22px] h-[22px]" />
+                            </Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
                 <DropdownMenu>
                     <DropdownMenuTrigger as-child>
                         <Button
@@ -209,4 +350,5 @@ const user = usePage().props.auth.user
             </main>
         </div>
     </div>
+    <Toaster />
 </template>

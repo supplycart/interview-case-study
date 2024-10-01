@@ -37,6 +37,9 @@ class CartController extends Controller
         $totalItems = 0;
         $totalPrice = 0;
 
+        // Array to hold the updated cart items with product details
+        $updatedCartItems = [];
+
         foreach ($cartItems as $item) {
             $product = Product::find($item['product_id']);
             if ($product) {
@@ -50,16 +53,25 @@ class CartController extends Controller
                     // Log or handle the case where the price is not found
                     Log::warning("Price not found for product ID: {$item['product_id']}, user tier: $userTier");
                 }
+
+                // Append product details to the cart item
+                $updatedCartItems[] = array_merge($item, [
+                    'product_name' => $product->product_name,
+                    'product_brand' => $product->product_brand,
+                    'product_category' => $product->product_category,
+                    'price' => $price,
+                ]);
             }
         }
 
-        // Return the cart details
+        // Return the cart details with updated cart items
         return response()->json([
-            'cart_items' => $cartItems,
+            'cart_items' => $updatedCartItems,
             'total_items' => $totalItems,
             'total_price' => $totalPrice,
         ]);
     }
+
 
     public function addToCart(Request $request, Product $product)
     {

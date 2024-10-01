@@ -31,6 +31,10 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/orders', function () {
+    return Inertia::render('Orders');
+})->middleware(['auth', 'verified'])->name('orders');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -42,14 +46,14 @@ Route::middleware('auth')->group(function () {
 
     // Route for viewing all orders (order history)
     Route::prefix('orders')->group(function () {
-        Route::get('/', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('/all', [OrderController::class, 'index'])->name('orders.index');
         Route::get('/{id}', [OrderController::class, 'show'])->name('orders.show');
     });
 
     Route::prefix('cart')->group(function () {
         Route::get('/', [CartController::class, 'index'])->name('cart.index');
-        Route::post('/{product}', [CartController::class, 'addToCart'])->name('cart.add');
-        Route::delete('/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+        Route::post('/add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
+        Route::delete('/remove/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
         Route::post('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     });
 });
