@@ -23,7 +23,7 @@ class MasterLookupHelper
             ->select([self::$id])
             ->where(self::$type, $lookupType)
             ->where(self::$value, $lookupValue)
-            ->where('is_active', '=', 1)
+            ->whereNull('deleted_at')
             ->value(self::$id);
     }
 
@@ -31,7 +31,7 @@ class MasterLookupHelper
     {
         return \DB::table(self::$table)
             ->where(self::$type, $lookupType)
-            ->where('is_active', '=', 1)
+            ->whereNull('deleted_at')
             ->pluck(self::$value, self::$id);
     }
 
@@ -39,7 +39,7 @@ class MasterLookupHelper
     {
         return \DB::table(self::$table)
             ->where(self::$id, $lookupID)
-            ->where('is_active', '=', 1)
+            ->whereNull('deleted_at')
             ->value(self::$value);
     }
 
@@ -47,7 +47,7 @@ class MasterLookupHelper
     {
         return \DB::table(self::$table)
             ->whereIn(self::$id, $lookupIDs)
-            ->where('is_active', '=', 1)
+            ->whereNull('deleted_at')
             ->pluck(self::$value, self::$id);
     }
 
@@ -71,7 +71,7 @@ class MasterLookupHelper
     {
         return \DB::table(self::$table)
             ->where(self::$type, $lookupType)
-            ->where('is_active', '=', 1)
+            ->whereNull('deleted_at')
             ->pluck(self::$id, self::$value)
             ->toArray();
     }
@@ -80,7 +80,7 @@ class MasterLookupHelper
     {
         return \DB::table(self::$table)
             ->where(self::$type, $lookupType)
-            ->where('is_active', '=', 1)
+            ->whereNull('deleted_at')
             ->pluck(self::$value, self::$id)
             ->toArray();
     }

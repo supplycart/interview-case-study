@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('quantity');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+            $table->unique(['user_id', 'product_id']);
         });
     }
 
