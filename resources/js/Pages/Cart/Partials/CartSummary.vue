@@ -31,7 +31,7 @@
             </dl>
         </div>
 
-        <div v-show="proceedToCheckout.proceedState === false">
+        <div v-show="proceedToCheckout.proceedState === false" class="grid grid-rows-2 gap-1">
             <button
                 @click="proceedToCheckout.proceed()"
                 :disabled="cartItems.length < 1"
