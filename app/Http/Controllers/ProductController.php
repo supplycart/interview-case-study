@@ -14,8 +14,8 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $selectedCategories = $request->input('categories', []);
-        $selectedBrands     = $request->input('brands', []);
+        $selectedCategories = $request->string('categories')->ltrim(',')->rtrim(',')->explode(',');
+        $selectedBrands     = $request->string('brands')->ltrim(',')->rtrim(',')->explode(',');
         $activeStatus       = MasterLookupHelper::getStatusID('product_status', 'active');
 
         $products = Product::with('images')
@@ -25,11 +25,11 @@ class ProductController extends Controller
                 fn (Builder $query, $search) => $query->where('name', 'like', "%$search%")
             )
             ->when(
-                count($selectedCategories) > 0,
+                count($selectedCategories) > 0 && !empty($selectedCategories[0]),
                 fn (Builder $query) => $query
                     ->whereHas(
                         'categories',
-                        fn (Builder $query) => $query->whereIn('name', $selectedCategories)
+                        fn (Builder $query) => $query->whereIn('category_id', $selectedCategories)
                     )
             )
             ->latest('id')

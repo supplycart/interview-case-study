@@ -49,14 +49,15 @@ function addToCart(productId, quantity) {
             product_id: productId,
             quantity: quantity
         }
-    }).then(response => {
-        console.log(response.data);
-    }).catch(error => {
-        error.message = error.response.data.message;
-        error.show = true;
-    }).finally(() => {
-        addToCartButton.value = false;
-        addToCartButton.text = 'Add to cart';
-    });
+    })
+        .then(() => {})
+        .catch(error => {
+            error.message = error.response.data.message;
+            error.show = true;
+        })
+        .finally(() => {
+            addToCartButton.value = false;
+            addToCartButton.text = 'Add to cart';
+        });
 }
 </script>

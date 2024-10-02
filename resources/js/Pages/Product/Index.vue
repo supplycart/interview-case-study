@@ -14,16 +14,19 @@
                     <div class="mx-2 col-span-1">
                         <ProductFilter
                             v-for="filter in filters"
-                            :items="filter.all"
-                            :selectedItems="filter.selected"
+                            :items="filter.items"
+                            :selectedItems="filter.selectedItems"
                             :filter-name="filter.filterName"
                             :filter-type="filter.filterType"
-                            :search="filter.input"
                         />
                     </div>
                     <div class="mx-2 col-span-3">
                         <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 justify-center overflow-hidden bg-white shadow-sm sm:rounded-lg p-3">
-                            <ProductCard v-for="product in products.data" :product="product" class="flex-grow p-2 "></ProductCard>
+                            <ProductCard
+                                v-for="product in products.data"
+                                :product="product"
+                                class="flex-grow p-2 "
+                            />
                         </div>
                         <div class="my-4">
                             <Pagination :pagination="products" />
@@ -55,19 +58,19 @@ const props = defineProps({
 const filters = computed(() => {
     return {
         search: {
-            input: props.search,
+            items: props.search ?? '',
             filterName: 'search',
             filterType: 'text'
         },
         categories: {
-            all: props.categories,
-            selected: props.selectedCategories,
+            items: props.categories,
+            selectedItems: props.selectedCategories,
             filterName: 'categories',
             filterType: 'checkbox'
         },
         brands: {
-            all: props.brands,
-            selected: props.selectedBrands,
+            items: props.brands,
+            selectedItems: props.selectedBrands,
             filterName: 'brands',
             filterType: 'checkbox'
         },
