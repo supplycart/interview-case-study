@@ -75,7 +75,8 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/{{ secrets.DOCKER_IMAGE }}
 
       - name: Build and push
-      id: pushbuild
+      - name: Build and push
+        id: pushbuild
         uses: docker/build-push-action@v6
         with:
           context: .
