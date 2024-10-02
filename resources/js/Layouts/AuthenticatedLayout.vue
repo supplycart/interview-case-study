@@ -6,6 +6,7 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
+import CartLogo from "@/Components/Cart/CartLogo.vue";
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -49,6 +50,11 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <div class="hidden sm:ms-6 sm:flex sm:items-center">
+                            <div class="flex shrink-0 items-center">
+                                <Link :href="route('cart.index')">
+                                    <CartLogo class="block h-9 w-auto text-gray-500" :show-count="true"/>
+                                </Link>
+                            </div>
                             <!-- Settings Dropdown -->
                             <div class="relative ms-3">
                                 <Dropdown align="right" width="48">

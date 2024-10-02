@@ -36,7 +36,7 @@ class AddToCartRequest extends FormRequest
                             ->where('status_id', $productStatus['active'])
                     )
             ],
-            'quantity' => ['required', 'integer', 'min:1'],
+            'quantity' => ['required', 'integer'],
         ];
     }
 

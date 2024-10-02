@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $name
@@ -46,6 +46,9 @@ use Illuminate\Support\Carbon;
  * @property-read Collection<int, ProductImage> $images
  * @property-read int|null $images_count
  * @method static Builder|Product whereBrandId($value)
+ * @property-read \App\Models\ProductImage|null $image
+ * @property string $discount_price
+ * @method static Builder|Product whereDiscountPrice($value)
  * @mixin Eloquent
  */
 class Product extends Model

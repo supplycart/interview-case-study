@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Carts;
 
-use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -27,5 +26,10 @@ class AddToCartAction
                 ['product_id', 'user_id'],
                 ['quantity' => DB::raw('quantity + ' . $quantity)]
             );
+
+        Auth::user()
+            ->carts()
+            ->where('quantity', '<=', 0)
+            ->delete();
     }
 }

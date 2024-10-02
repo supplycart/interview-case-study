@@ -30,9 +30,7 @@ Route::middleware('auth')->group(function () {
         Route::get('{product}', [ProductController::class, 'show'])->name('products.show');
     });
 
-    Route::group(['prefix' => 'cart'], function () {
-        Route::post('', [CartController::class, 'store'])->name('cart.store');
-    });
+    Route::resource('cart', CartController::class)->only(['index', 'store', 'destroy']);
 });
 
 require __DIR__.'/auth.php';
