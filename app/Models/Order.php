@@ -23,6 +23,7 @@ class Order extends Model
     public function products()
     {
         $productIds = collect($this->order_items)->pluck('product_id')->toArray();
+
         return Product::whereIn('id', $productIds)->get();
     }
 }

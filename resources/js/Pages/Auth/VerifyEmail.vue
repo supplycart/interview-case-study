@@ -3,11 +3,9 @@ import { Head, Link, useForm } from '@inertiajs/vue3'
 import { ChevronLeft } from 'lucide-vue-next'
 import { computed } from 'vue'
 
-import PrimaryButton from '@/Components/PrimaryButton.vue'
 import { Button } from '@/Components/ui/button'
 import {
     Card,
-    CardContent,
     CardDescription,
     CardFooter,
     CardHeader,

@@ -1,19 +1,14 @@
 <script setup>
 import { Link, usePage } from '@inertiajs/vue3'
 import {
-    Bell,
     ChevronRight,
     CircleUser,
-    Home,
-    LineChart,
     Menu,
     Package,
     Package2,
-    Search,
     ShoppingCart,
-    Users,
 } from 'lucide-vue-next'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted } from 'vue'
 
 import { Badge } from '@/Components/ui/badge'
 import { Button } from '@/Components/ui/button'
@@ -34,19 +29,12 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/Components/ui/dropdown-menu'
-import { Input } from '@/Components/ui/input'
-import {
-    NumberField,
-    NumberFieldContent,
-    NumberFieldDecrement,
-    NumberFieldIncrement,
-    NumberFieldInput,
-} from '@/Components/ui/number-field'
 import { Sheet, SheetContent, SheetTrigger } from '@/Components/ui/sheet'
 import {
     Table,
     TableBody,
     TableCell,
+    TableFooter,
     TableHead,
     TableHeader,
     TableRow,
@@ -72,7 +60,7 @@ const fetchCart = async () => {
     try {
         const response = await axios.get('/cart/')
         cartStore.setCart(response.data)
-    } catch (error) {
+    } catch {
         toast({
             title: 'There was an issue when trying to fetch the cart.',
             variant: 'destructive',
@@ -87,7 +75,7 @@ const checkout = async () => {
             title: 'Everything looks good, expect to have your items soon.',
             description: 'Redirecting you to the orders page...',
         })
-    } catch (error) {
+    } catch {
         toast({
             title: 'There was an issue when trying to checkout.',
             variant: 'destructive',
@@ -103,7 +91,7 @@ const fetchOrders = async () => {
     try {
         const response = await axios.get('/orders/all/')
         orderStore.setOrders(response.data)
-    } catch (error) {
+    } catch {
         toast({
             title: 'There was an issue when trying to fetch the orders.',
             variant: 'destructive',
@@ -112,8 +100,10 @@ const fetchOrders = async () => {
 }
 
 // Fetch orders and cart when component is mounted
-onMounted(fetchOrders)
-onMounted(fetchCart)
+onMounted(() => {
+    fetchOrders()
+    fetchCart()
+})
 </script>
 
 <template>
@@ -270,8 +260,8 @@ onMounted(fetchCart)
                                 </TableRow>
                             </TableHeader>
                             <TableBody
-                                v-for="(cart, index) in cart['cart_items']"
-                                :key="cart.product_id"
+                                v-for="(item, index) in cart['cart_items']"
+                                :key="item.product_id"
                             >
                                 <TableRow>
                                     <TableCell class="sm:table-cell">
@@ -284,27 +274,32 @@ onMounted(fetchCart)
                                         />
                                     </TableCell>
                                     <TableCell class="font-medium">
-                                        {{ cart.product_name }}
+                                        {{ item.product_name }}
                                     </TableCell>
                                     <TableCell>
-                                        {{ cart.product_brand }}
+                                        {{ item.product_brand }}
                                     </TableCell>
                                     <TableCell>
-                                        {{ cart.product_category }}
+                                        {{ item.product_category }}
                                     </TableCell>
                                     <TableCell>
                                         {{
                                             new Intl.NumberFormat('en-US', {
                                                 style: 'currency',
-                                                currency: cart.price.currency,
-                                            }).format(cart.price.amount)
+                                                currency: item.price.currency,
+                                            }).format(item.price.amount)
                                         }}
                                     </TableCell>
                                     <TableCell>
-                                        {{ cart.quantity }}
+                                        {{ item.quantity }}
                                     </TableCell>
                                 </TableRow>
                             </TableBody>
+                            <TableFooter class="bg-background" colspan="6">
+                                <TableCell class="text-end" colspan="6">
+                                    Total: ${{ cart.total_price }}
+                                </TableCell>
+                            </TableFooter>
                         </Table>
 
                         <DialogFooter v-if="cart?.total_items !== 0">

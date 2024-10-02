@@ -37,7 +37,7 @@ const emits = defineEmits([
 ])
 
 const delegatedProps = computed(() => {
-    const { class: _, side, ...delegated } = props
+    const { class: _, ...delegated } = props
 
     return delegated
 })

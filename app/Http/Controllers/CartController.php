@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\UserActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -19,7 +20,7 @@ class CartController extends Controller
         $cart = Cart::where('user_id', $userId)->first();
 
         // If the cart doesn't exist, create a new one
-        if (!$cart) {
+        if (! $cart) {
             $cart = Cart::create([
                 'user_id' => $userId,
                 'cart_items' => [],
@@ -72,7 +73,6 @@ class CartController extends Controller
         ]);
     }
 
-
     public function addToCart(Request $request, Product $product)
     {
         // Validate the quantity input
@@ -89,6 +89,12 @@ class CartController extends Controller
         // Add product to cart
         $cart->addProduct($product, $request->quantity);
 
+        UserActivityLog::create([
+            'user_id' => auth()->id(),
+            'activity' => 'addToCart',
+            'details' => 'User added a product to the cart at '.now(),
+        ]);
+
         return response()->json(['message' => 'Product added to cart']);
     }
 
@@ -100,6 +106,12 @@ class CartController extends Controller
         // Remove product from cart
         $cart->removeProduct($product);
 
+        UserActivityLog::create([
+            'user_id' => auth()->id(),
+            'activity' => 'removeFromCart',
+            'details' => 'User removed a product from the cart at '.now(),
+        ]);
+
         return response()->json(['message' => 'Product removed from cart']);
     }
 
@@ -110,6 +122,12 @@ class CartController extends Controller
 
         // Checkout process
         $order = $cart->checkout();
+
+        UserActivityLog::create([
+            'user_id' => auth()->id(),
+            'activity' => 'checkout',
+            'details' => 'User proceeded to checkout at '.now(),
+        ]);
 
         return response()->json(['message' => 'Order placed successfully', 'order' => $order]);
     }

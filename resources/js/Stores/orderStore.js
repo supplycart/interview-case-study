@@ -5,8 +5,8 @@ export const useOrderStore = defineStore('orders', {
         orders: [],
     }),
     actions: {
-        setOrders(newOrders) {
-            this.orders = newOrders
+        setOrders(val) {
+            this.orders = val
         },
     },
 })

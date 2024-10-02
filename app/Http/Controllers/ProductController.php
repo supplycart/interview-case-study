@@ -10,7 +10,6 @@ class ProductController extends Controller
     /**
      * Get all products with optional filtering by user tier.
      *
-     * @param  Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function get(Request $request)

@@ -1,9 +1,7 @@
 <script setup>
-import { Head, usePage } from '@inertiajs/vue3'
-import axios from 'axios'
-import { computed, onMounted, ref } from 'vue'
+import { Head } from '@inertiajs/vue3'
+import { computed } from 'vue'
 
-import { Button } from '@/Components/ui/button'
 import {
     Card,
     CardContent,
@@ -11,42 +9,21 @@ import {
     CardHeader,
     CardTitle,
 } from '@/Components/ui/card'
-import { Label } from '@/Components/ui/label'
-import {
-    NumberField,
-    NumberFieldContent,
-    NumberFieldDecrement,
-    NumberFieldIncrement,
-    NumberFieldInput,
-} from '@/Components/ui/number-field'
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectLabel,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select'
 import {
     Table,
     TableBody,
     TableCell,
+    TableFooter,
     TableHead,
     TableHeader,
     TableRow,
 } from '@/Components/ui/table'
-import { useToast } from '@/Components/ui/toast/use-toast'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 import { useOrderStore } from '@/Stores/orderStore'
 
 // Setup reactive products list and user tier
 const orderStore = useOrderStore()
 const orders = computed(() => orderStore.orders)
-
-const user = usePage().props.auth.user
-
-const { toast } = useToast()
 </script>
 
 <template>
@@ -77,8 +54,8 @@ const { toast } = useToast()
                         </CardDescription>
                     </div>
                 </CardHeader>
-                <CardContent>
-                    <Card>
+                <CardContent class="flex flex-col gap-4">
+                    <Card v-for="(order, index) in orders.orders" :key="order">
                         <CardHeader
                             class="flex flex-col md:flex-row justify-between gap-4 md:gap-1.5 items-center"
                         >
@@ -86,17 +63,83 @@ const { toast } = useToast()
                                 <CardTitle
                                     class="flex flex-row justify-between items-center"
                                 >
-                                    <span> Order #{{}} </span>
+                                    <span class="text-lg">
+                                        Order #{{ index + 1 }}
+                                    </span>
                                     <span class="text-muted-foreground text-sm">
-                                        {{ new Date().toLocaleString() }}
+                                        {{
+                                            new Date(
+                                                order.created_at
+                                            ).toLocaleString()
+                                        }}
                                     </span>
                                 </CardTitle>
-                                <CardDescription>
-                                    <span>{{}}</span>
-                                </CardDescription>
+                                <CardDescription></CardDescription>
                             </div>
                         </CardHeader>
-                        <CardContent></CardContent>
+                        <CardContent>
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead
+                                            class="w-[100px] sm:table-cell"
+                                        >
+                                            <span class="sr-only">img</span>
+                                        </TableHead>
+                                        <TableHead>Name</TableHead>
+                                        <TableHead>Brand</TableHead>
+                                        <TableHead>Category</TableHead>
+                                        <TableHead>Price</TableHead>
+                                        <TableHead>Quantity</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody
+                                    v-for="(item, index) in order.order_items"
+                                    :key="item.product_id"
+                                >
+                                    <TableRow>
+                                        <TableCell class="sm:table-cell">
+                                            <img
+                                                alt="Product image"
+                                                class="aspect-square rounded-md object-cover min-w-[64px]"
+                                                height="64"
+                                                src="https://picsum.photos/100"
+                                                width="64"
+                                            />
+                                        </TableCell>
+                                        <TableCell class="font-medium">
+                                            {{ item?.product_name }}
+                                        </TableCell>
+                                        <TableCell>
+                                            {{ item?.product_brand }}
+                                        </TableCell>
+                                        <TableCell>
+                                            {{ item?.product_category }}
+                                        </TableCell>
+                                        <TableCell>
+                                            {{
+                                                new Intl.NumberFormat('en-US', {
+                                                    style: 'currency',
+                                                    currency:
+                                                        item?.price?.currency ||
+                                                        'USD',
+                                                }).format(
+                                                    item?.price?.amount || 0
+                                                )
+                                            }}
+                                        </TableCell>
+                                        <TableCell>
+                                            {{ item?.quantity }}
+                                        </TableCell>
+                                    </TableRow>
+                                </TableBody>
+                                <TableFooter class="bg-background" colspan="6">
+                                    <TableCell class="text-end" colspan="6">
+                                        Total: ${{ order.total_price }}
+                                    </TableCell>
+                                </TableFooter>
+                            </Table>
+                        </CardContent>
                     </Card>
                 </CardContent>
             </Card>

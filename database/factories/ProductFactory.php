@@ -51,7 +51,7 @@ class ProductFactory extends Factory
         }
 
         return [
-            'product_name' => $this->faker->word() . ' ' . $this->faker->word(),
+            'product_name' => $this->faker->word().' '.$this->faker->word(),
             'product_brand' => $this->faker->company(),
             'product_category' => $this->faker->word(),
             'price' => json_encode($prices), // Store all tier prices in a JSON array

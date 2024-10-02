@@ -18,7 +18,7 @@ class Cart extends Model
         parent::__construct($attributes);
 
         // Ensure cart_items is an array when creating a new instance
-        if (!isset($this->cart_items) || !is_array($this->cart_items)) {
+        if (! isset($this->cart_items) || ! is_array($this->cart_items)) {
             $this->cart_items = [];
         }
     }
@@ -59,10 +59,35 @@ class Cart extends Model
 
     public function checkout()
     {
-        // Checkout logic as before
+        // Ensure cart_items is an array
+        $cartItems = is_array($this->cart_items) ? $this->cart_items : [];
+
+        // Fetch the user's tier
+        $user = User::find($this->user_id);
+        $userTier = $user->user_tier;
+
+        // Calculate the total price of the cart
+        $totalPrice = 0;
+
+        foreach ($cartItems as $item) {
+            $product = Product::find($item['product_id']);
+            if ($product) {
+                // Find the price based on the user's tier
+                $price = collect(json_decode($product->price))->firstWhere('user_tier', $userTier);
+                if ($price) {
+                    $totalPrice += $price->amount * $item['quantity'];
+                } else {
+                    // Log or handle the case where the price is not found
+                    Log::warning("Price not found for product ID: {$item['product_id']}, user tier: $userTier");
+                }
+            }
+        }
+
+        // Create the order with the total price
         $order = Order::create([
             'user_id' => $this->user_id,
-            'order_items' => json_encode($this->cart_items), // Save cart items for the order
+            'order_items' => json_encode($cartItems),  // Save cart items for the order
+            'total_price' => $totalPrice, // Append the calculated total price
         ]);
 
         // Clear the cart after checkout
