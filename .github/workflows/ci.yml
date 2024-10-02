@@ -96,4 +96,4 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
 
       - name: SCP docker-compose file
-        run: scp -r docker-compose.yml /nginx/conf.d/default.conf ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/home/ec2-user
+        run: scp -r -o StrictHostKeyChecking=no docker-compose.yml /nginx/conf.d/default.conf ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }}:/home/ec2-user
