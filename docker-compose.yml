@@ -2,16 +2,9 @@ version: '3.5'
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: laravel-app
-    container_name: laravel-app
+    image: koyomdev21/supcart:master
     restart: unless-stopped
     working_dir: /var/www/html
-    volumes:
-      - ./:/var/www/html
-      - ./storage:/var/www/html/storage
     networks:
       - app-network
     environment:
