@@ -1,6 +1,6 @@
 <template>
-    <div class="bg-white rounded-lg flex items-start justify-start p-4">
-        <div>
+    <div class="flex items-start justify-start p-4">
+        <div class="w-full">
             <h3 class="mb-3 text-2xl font-medium text-gray-900">
                 {{
                     filterName
