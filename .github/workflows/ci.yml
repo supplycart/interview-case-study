@@ -39,7 +39,7 @@ jobs:
         run: cp .env.example .env
 
       - name: Install composer dependencies
-        run: composer install --optimize-autoloader --no-dev
+        run: composer install --optimize-autoloader
 
       - name: Install dependencies
         run: npm install
