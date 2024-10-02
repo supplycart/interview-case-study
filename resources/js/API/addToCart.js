@@ -9,7 +9,7 @@ export default async function addToCart(productId, quantity = 1) {
     const { toast } = useToast()
 
     try {
-        const response = await axios.post(`/cart/add/${productId}`, {
+        const _response = await axios.post(`/cart/add/${productId}`, {
             quantity: quantity || 1,
         })
         toast({

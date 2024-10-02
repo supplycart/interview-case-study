@@ -10,6 +10,9 @@ import {
 } from 'lucide-vue-next'
 import { computed, onMounted } from 'vue'
 
+import checkout from '@/API/checkout'
+import getCart from '@/API/getCart'
+import getOrders from '@/API/getOrders'
 import { Badge } from '@/Components/ui/badge'
 import { Button } from '@/Components/ui/button'
 import {
@@ -40,7 +43,6 @@ import {
     TableRow,
 } from '@/Components/ui/table'
 import Toaster from '@/Components/ui/toast/Toaster.vue'
-import { useToast } from '@/Components/ui/toast/use-toast'
 import { useCartStore } from '@/Stores/cartStore'
 import { useOrderStore } from '@/Stores/orderStore'
 
@@ -53,56 +55,10 @@ const cart = computed(() => cartStore.cart)
 const orderStore = useOrderStore()
 const orders = computed(() => orderStore.orders)
 
-const { toast } = useToast()
-
-// Fetch cart from backend
-const fetchCart = async () => {
-    try {
-        const response = await axios.get('/cart/')
-        cartStore.setCart(response.data)
-    } catch {
-        toast({
-            title: 'There was an issue when trying to fetch the cart.',
-            variant: 'destructive',
-        })
-    }
-}
-
-const checkout = async () => {
-    try {
-        const response = await axios.post('/cart/checkout')
-        toast({
-            title: 'Everything looks good, expect to have your items soon.',
-            description: 'Redirecting you to the orders page...',
-        })
-    } catch {
-        toast({
-            title: 'There was an issue when trying to checkout.',
-            variant: 'destructive',
-        })
-    } finally {
-        fetchCart()
-        window.location.href = '/orders'
-    }
-}
-
-// Fetch orders from backend
-const fetchOrders = async () => {
-    try {
-        const response = await axios.get('/orders/all/')
-        orderStore.setOrders(response.data)
-    } catch {
-        toast({
-            title: 'There was an issue when trying to fetch the orders.',
-            variant: 'destructive',
-        })
-    }
-}
-
 // Fetch orders and cart when component is mounted
 onMounted(() => {
-    fetchOrders()
-    fetchCart()
+    getOrders()
+    getCart()
 })
 </script>
 
@@ -297,7 +253,7 @@ onMounted(() => {
                             </TableBody>
                             <TableFooter class="bg-background" colspan="6">
                                 <TableCell class="text-end" colspan="6">
-                                    Total: ${{ cart.total_price }}
+                                    Total: ${{ cart.total_price.toFixed(2) }}
                                 </TableCell>
                             </TableFooter>
                         </Table>
@@ -305,7 +261,7 @@ onMounted(() => {
                         <DialogFooter v-if="cart?.total_items !== 0">
                             <Button
                                 class="flex flex-row items-center justify-center"
-                                @click="checkout()"
+                                @click="checkout"
                             >
                                 Proceed to Checkout
                                 <ChevronRight class="w-[22px] h-[22px]" />

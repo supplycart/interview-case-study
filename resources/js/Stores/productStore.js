@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useProductsStore = defineStore('products', {
     state: () => ({
-        products: [],
-        quantities: [],
-        brands: [],
-        categories: [],
-        loading: true,
+        products: ref([]),
+        quantities: ref([]),
+        brands: ref([]),
+        categories: ref([]),
+        loading: ref(true),
     }),
     actions: {
         setProducts(val) {
