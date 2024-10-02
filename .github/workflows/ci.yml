@@ -50,5 +50,11 @@ jobs:
       - name: Generate app key
         run: php artisan key:generate
 
+      - name: Optimize application
+        run: php artisan optimize
+
+      - name: Clear config cache
+        run: php artisan config:clear
+
       - name: Run tests
         run: php artisan test
