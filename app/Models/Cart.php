@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Inertia\Inertia;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $user_id
@@ -35,9 +35,14 @@ class Cart extends Model
     {
         parent::boot();
 
-        static::saved(function ($cart) {
-            Inertia::share('cartCount', $cart->user->carts()->count());
+        static::saved(function (self $cart) {
+            Inertia::share('cartCount', $cart->user->carts()->sum('quantity'));
         });
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function product(): BelongsTo

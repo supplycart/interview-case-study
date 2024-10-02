@@ -13,8 +13,11 @@
 <script setup>
 import {reactive} from "vue";
 import CartLogo from "@/Components/Cart/CartLogo.vue";
+import {cartCounterStore} from "@/cartCounter.js";
 
-defineProps({
+const counter = cartCounterStore();
+
+const props = defineProps({
     productId: Number,
     quantity: {
         type: Number,
@@ -47,7 +50,9 @@ function addToCart(productId, quantity) {
             quantity: quantity
         }
     })
-        .then(() => {})
+        .then(() => {
+            counter.increment();
+        })
         .catch(error => {
             error.message = error.response.data.message;
             error.show = true;

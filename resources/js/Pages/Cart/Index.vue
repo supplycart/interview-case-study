@@ -1,5 +1,5 @@
 <template>
-    <Head title="Products"/>
+    <Head title="Shopping Carts"/>
 
     <AuthenticatedLayout>
         <template #header>
@@ -12,7 +12,7 @@
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="grid grid-flow-row-dense auto-rows-max md:grid-cols-4">
                     <div class="mx-2 md:col-span-3 row-span-1">
-                        <div class="w-full overflow-hidden bg-white rounded-lg md:rounded-none shadow-sm p-3 grid gap-y-4">
+                        <div class="w-full overflow-hidden bg-white rounded-lg shadow-sm p-3 grid gap-y-4">
                             <CartItems
                                 v-for="cartItem in props.cartItems"
                                 v-if="props.cartItems.length > 0"
@@ -33,9 +33,9 @@
 <script setup>
 import {Head} from "@inertiajs/vue3";
 import AuthenticatedLayout from "../../Layouts/AuthenticatedLayout.vue";
-import CartItems from "@/Components/Cart/CartItems.vue";
-import EmptyCart from "@/Components/Cart/EmptyCart.vue";
-import CartSummary from "@/Components/Cart/CartSummary.vue";
+import CartItems from "@/Pages/Cart/Partials/CartItems.vue";
+import EmptyCart from "@/Pages/Cart/Partials/EmptyCart.vue";
+import CartSummary from "@/Pages/Cart/Partials/CartSummary.vue";
 
 const props = defineProps({
     cartItems: Array

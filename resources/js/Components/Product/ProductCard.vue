@@ -10,7 +10,7 @@
                 {{ product.name }}
             </Link>
             <div class="flex items-start justify-start">
-                <span class="text-lg font-bold text-gray-900 my-3">{{ product.currency }} {{ product.price }}</span>
+                <span class="text-lg font-bold text-gray-900 my-3">{{ product.currency }} {{ parseFloat(product.price).toFixed(2) }}</span>
             </div>
             <div class="flex items-center justify-center">
                 <AddToCart :product-id="product.id"></AddToCart>
