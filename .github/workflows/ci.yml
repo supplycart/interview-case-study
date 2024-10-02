@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    strategy:
+      matrix:
+        node-version: [ 20.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Copy .env
+        run: cp .env.example .env
+
+      - name: Install composer dependencies
+        run: composer install --optimize-autoloader --no-dev
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build assets
+        run: npm run dev
+
+      - name: Generate app key
+        run: php artisan key:generate
+
+      - name: Run tests
+        run: ./vendor/bin/pest
