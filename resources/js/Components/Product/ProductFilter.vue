@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-start justify-start p-4">
+    <div class="flex items-start justify-start md:bg-white p-4">
         <div class="w-full">
             <h3 class="mb-3 text-2xl font-medium text-gray-900">
                 {{

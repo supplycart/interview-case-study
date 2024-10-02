@@ -32,6 +32,10 @@ class ProductController extends Controller
                         fn (Builder $query) => $query->whereIn('category_id', $selectedCategories)
                     )
             )
+            ->when(
+                count($selectedBrands) > 0 && !empty($selectedBrands[0]),
+                fn (Builder $query) => $query->whereIn('brand_id', $selectedBrands)
+            )
             ->latest('id')
             ->paginate(12, ['*'], 'page', $request->input('page', 1))
             ->withQueryString();
