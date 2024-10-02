@@ -39,4 +39,9 @@ class CartController extends Controller
 
         return response()->noContent();
     }
+
+    public function checkout(Request $request)
+    {
+        dd($request->all());
+    }
 }

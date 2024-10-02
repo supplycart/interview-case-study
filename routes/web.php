@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
         Route::get('{product}', [ProductController::class, 'show'])->name('products.show');
     });
 
+    Route::post('cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     Route::resource('cart', CartController::class)->only(['index', 'store', 'destroy']);
 });
 

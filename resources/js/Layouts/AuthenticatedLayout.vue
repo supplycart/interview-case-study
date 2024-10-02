@@ -9,7 +9,6 @@ import {Link} from '@inertiajs/vue3';
 import CartLogo from "@/Components/Cart/CartLogo.vue";
 
 const showingNavigationDropdown = ref(false);
-
 </script>
 
 <template>

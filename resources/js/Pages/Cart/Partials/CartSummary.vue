@@ -31,21 +31,28 @@
             </dl>
         </div>
 
-        <button
-            :disabled="cartItems.length < 1"
-            :class="[{'cursor-not-allowed' : cartItems.length < 1}, cartItems.length < 1 ? 'bg-gray-300' : 'bg-indigo-700' , {'hover:bg-gray-400' : cartItems.length < 1}]"
-            class="flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white hover:bg-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300"
-        >
-            Proceed to Checkout
-        </button>
+        <div v-show="proceedToCheckout.proceedState === false">
+            <button
+                @click="proceedToCheckout.proceed()"
+                :disabled="cartItems.length < 1"
+                :class="[
+                {'cursor-not-allowed hover:bg-gray-400' : cartItems.length < 1 || proceedToCheckout.isPaying},
+                cartItems.length < 1 || proceedToCheckout.isPaying ? 'bg-gray-300' : 'bg-indigo-700' ,
+               ]"
+                class="flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white hover:bg-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300"
+            >
+                {{ proceedToCheckout.proceedToCheckoutCopy }}
+            </button>
 
-        <div class="flex items-center justify-center gap-2">
-            <span class="text-sm font-normal text-gray-500"> or </span>
-            <Link
-                :href="route('products.index')"
-                v-html="'Continue Shopping'"
-                class="cursor-pointer inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline"
-            />
+            <div class="flex items-center justify-center gap-2" v-show="proceedToCheckout.isPaying === false">
+                <span class="text-sm font-normal text-gray-500"> or </span>
+                <Link
+                    :href="route('cart.index')"
+                    @click="proceedToCheckout.backToCart()"
+                    v-html="proceedToCheckout.continueShoppingCopy"
+                    class="cursor-pointer inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline"
+                />
+            </div>
         </div>
     </div>
 </template>
@@ -53,6 +60,9 @@
 <script setup>
 import {Link, usePage} from '@inertiajs/vue3'
 import {computed, ref} from "vue";
+import {checkoutStore} from "@/checkoutStore.js";
+
+const proceedToCheckout = checkoutStore();
 
 const props = defineProps({
     cartItems: Array
@@ -93,5 +103,4 @@ const totalPrice = computed(() => {
 
     return  parseFloat(totalWithoutTax + totalTax.value + parseFloat(shippingFee)).toFixed(2);
 });
-
 </script>
