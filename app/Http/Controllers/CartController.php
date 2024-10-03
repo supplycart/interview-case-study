@@ -14,7 +14,8 @@ class CartController extends Controller
     public function index(Request $request)
     {
         return Inertia::render('Cart/Index', [
-            'cartItems' => $request->user()->carts()->with('product.image')->get()
+            'cartItems' => $request->user()->carts()->with('product.image')->get(),
+            'paymentInfo' => $request->user()->paymentInfo,
         ]);
     }
 

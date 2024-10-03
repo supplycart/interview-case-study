@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->decimal('price');
-            $table->decimal('discount_price')->default(0.00);
+            $table->decimal('discount')->default(0.00);
             $table->string('currency');
             $table->integer('stock');
             $table->unsignedBigInteger('status_id');

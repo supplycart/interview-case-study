@@ -19,7 +19,7 @@
                                 v-else-if="proceedToCheckout.proceedState === false"
                                 :cart-item="cartItem"
                             />
-                            <CheckoutForm v-else />
+                            <CheckoutForm v-else :payment-info="paymentInfo" />
                         </div>
                     </div>
                     <div class="mx-2 md:my-0 my-2 md:col-span-1 row-span-1 bg-white rounded-lg md:bg-transparent">
@@ -41,7 +41,8 @@ import {checkoutStore} from "@/checkoutStore.js";
 import CheckoutForm from "@/Pages/Cart/Partials/CheckoutForm.vue";
 
 const props = defineProps({
-    cartItems: Array
+    cartItems: Array,
+    paymentInfo: Object
 })
 
 const proceedToCheckout = checkoutStore();

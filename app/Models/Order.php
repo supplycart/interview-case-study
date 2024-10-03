@@ -2,45 +2,43 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-/**
- *
- *
- * @property int $id
- * @property int $user_id
- * @property string $order_number
- * @property string $total_price
- * @property string $total_discount
- * @property string $total_payment
- * @property int $payment_method_id
- * @property int $payment_status_id
- * @property int $status_id
- * @property string|null $note
- * @property string|null $payment_date
- * @property string|null $completed_date
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Order query()
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereCompletedDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereNote($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereOrderNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaymentDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaymentMethodId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order wherePaymentStatusId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereStatusId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereTotalDiscount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereTotalPayment($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereTotalPrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
- * @mixin \Eloquent
- */
 class Order extends Model
 {
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::saving(function (self $model) {
+            if (!$model->order_number) {
+                $model->order_number = Carbon::now()->format('YmdHis').'-'.uniqid();
+            }
+        });
+
+        self::saved(function (self $model) {
+            OrderLog::create([
+                'order_id'  => $model->id,
+                'status_id' => $model->status_id,
+            ]);
+        });
+    }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(OrderItem::class, 'order_id', 'id');
+    }
+
+    public function paymentInfo(): HasOne
+    {
+        return $this->hasOne(OrderPaymentInformation::class, 'order_id', 'id');
+    }
+
+    public function address(): HasOne
+    {
+        return $this->hasOne(OrderAddress::class, 'order_id', 'id');
+    }
 }

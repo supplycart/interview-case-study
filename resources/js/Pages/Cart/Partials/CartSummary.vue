@@ -85,7 +85,7 @@ const originalPrice = computed(() => {
 
 const discount = computed(() => {
     const total = props.cartItems.reduce((total, item) => {
-        return total + item.product.discount_price * item.quantity;
+        return total + item.product.discount * item.quantity;
     }, 0);
 
     return parseFloat(total).toFixed(2);

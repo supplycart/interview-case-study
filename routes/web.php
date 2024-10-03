@@ -19,7 +19,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('products', ProductController::class)->only(['index', 'show']);
+
     Route::resource('cart', CartController::class)->only(['index', 'store', 'destroy']);
+
+    Route::get('order/summary/{order:order_number}', [OrderController::class, 'summary'])->name('order.summary');
     Route::resource('order', OrderController::class)->only(['index', 'store', 'show', 'update']);
 });
 

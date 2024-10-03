@@ -14,6 +14,14 @@ class StoreOrderRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'cardExpiration' => $this->date('cardExpiration')->format('m-y'),
+            'saveInfo'       => $this->boolean('saveInfo'),
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -22,7 +30,17 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'           => ['required', 'string', 'max:255'],
+            'phone'          => ['required', 'string', 'max:255'],
+            'email'          => ['required', 'email'],
+            'cardNumber'     => ['required', 'numeric', 'digits:12'],
+            'cardExpiration' => ['required', 'date_format:m-y'],
+            'cardCvc'        => ['required', 'numeric', 'digits:3'],
+            'address'        => ['required', 'string', 'max:255'],
+            'city'           => ['required', 'string', 'max:255'],
+            'state'          => ['required', 'string', 'max:255'],
+            'zipCode'        => ['required', 'numeric', 'digits:5'],
+            'saveInfo'       => ['required', 'boolean'],
         ];
     }
 }

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Orders\StoreOrderAction;
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\Response;
 
 class OrderController extends Controller
 {
@@ -27,9 +30,17 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOrderRequest $request)
+    public function store(StoreOrderRequest $request, StoreOrderAction $action)
     {
-        //
+        try {
+            $orderNumber = $action->execute(
+                $request->validated()
+            );
+
+            return response()->json(['orderNumber' => $orderNumber], Response::HTTP_CREATED);
+        } catch (\Throwable $e) {
+            return response()->json(['message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -62,5 +73,12 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function summary(Order $order)
+    {
+        return Inertia::render('Order/Confirmation', [
+            'order' => $order->load('address'),
+        ]);
     }
 }
