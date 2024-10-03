@@ -20,9 +20,12 @@ return new class extends Migration
             $table->decimal('discount_price')->default(0.00);
             $table->string('currency');
             $table->integer('stock');
-            $table->string('status_id');
+            $table->unsignedBigInteger('status_id');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+            $table->index(['status_id', 'brand_id'], 'status_brand_idx');
+            $table->foreign('status_id')->references('id')->on('master_lookups');
         });
     }
 

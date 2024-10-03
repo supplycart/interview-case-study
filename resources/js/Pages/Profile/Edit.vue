@@ -35,7 +35,7 @@ defineProps({
                     <UpdateProfileInformationForm
                         :must-verify-email="mustVerifyEmail"
                         :status="status"
-                        class="w-full"
+                        class="max-w-xl"
                     />
                 </div>
 
