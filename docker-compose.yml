@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  main:
+    container_name: Serve
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: 'php artisan serve --host=0.0.0.0'
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+
+  queue:
+    container_name: Queue
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: 'php artisan queue:work'
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: simple_shop
+    ports:
+    - 3306:3306
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 9001:80
+    environment:
+      - PMA_ARBITRARY=1
+
+  mailpit:
+    image: axllent/mailpit
+    container_name: MailPit
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - laravel-exa
+
+networks:
+  laravel-exa:
+    driver: bridge
+
+volumes:
+  db:
+    driver: local
