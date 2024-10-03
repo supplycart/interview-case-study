@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -34,6 +35,8 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'cartCount' => $request->user()?->carts()->sum('quantity') ?? 0,
+            'settings' => Setting::all()->mapWithKeys(fn ($setting) => [$setting->key => $setting->value]),
         ];
     }
 }
