@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('order_detail', function (Blueprint $table) {
             $table->id();
+            $table->string('order_id');
             $table->string('product_id');
             $table->float('product_price');
-            $table->string('coupon_id');
             $table->softDeletes();
             $table->timestamps();
         });
