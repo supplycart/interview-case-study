@@ -102,6 +102,11 @@ const showingNavigationDropdown = ref(false);
 
                         <!-- Hamburger -->
                         <div class="-me-2 flex items-center sm:hidden">
+                            <div class="flex shrink-0 items-center">
+                                <Link :href="route('cart.index')">
+                                    <CartLogo class="block h-9 w-auto text-gray-500" :show-count="true"/>
+                                </Link>
+                            </div>
                             <button
                                 @click="
                                     showingNavigationDropdown =

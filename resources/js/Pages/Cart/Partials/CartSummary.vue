@@ -71,7 +71,7 @@ const props = defineProps({
 const page = usePage();
 const shippingFee = props.cartItems.length > 0
     ? parseFloat(page.props.settings.shipping_fee_price).toFixed(2)
-    : 0;
+    : "0.00";
 const taxPercentage = parseFloat(page.props.settings.tax_percentage);
 const totalTax = ref(0.00);
 
