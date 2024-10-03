@@ -75,6 +75,8 @@ class StoreOrderAction
                 $user->paymentInfo()->updateOrCreate([], $orderPaymentInformation);
             }
 
+            $user->carts()->delete();
+
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollBack();
