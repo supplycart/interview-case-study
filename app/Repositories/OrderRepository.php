@@ -56,6 +56,9 @@ class OrderRepository extends BaseRepository
 
             $order->save();
 
+            activity()
+                ->log($user_id, 'Order '.$order->order_id.' Created');
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();

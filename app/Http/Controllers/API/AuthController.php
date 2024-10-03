@@ -8,14 +8,13 @@ use App\Repositories\UserRepository;
 use App\Http\Requests\API\LoginRequest;
 use App\Http\Requests\API\ForgetPasswordRequest;
 use App\Models\User;
+use App\Models\UserLog;
 use App\Mail\ResetPassword;
 use App\Http\Requests\API\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
-use Stripe\Stripe;
-use Stripe\Customer;
 use Hash;
 
 class AuthController
@@ -29,9 +28,9 @@ class AuthController
         $password = $request->password;
         
         $token = Auth::guard('api')->attempt(['username' => $username, 'password' => $password, 'status' => 1]);
-        
+
         if (!$token) {
-            return response()->json(['error' => 'page.incorrect_password'], 401);
+            return response()->json(['messages' => ['Incorrect Password']], 401);
         }
 
         $user = $this->_userRepository->getActiveUser($username);
@@ -45,6 +44,9 @@ class AuthController
         if($user){
             $user->token = $token;
 
+            activity()
+                ->log($user->id, 'User Login');
+
             return response()->json(['data' => $user], 200);
         }else{
             $user = $this->_userRepository->getInactiveUserByUsername($username);
@@ -53,7 +55,7 @@ class AuthController
                 return response()->json(['data' => __("page.contact_admin_active")], 404);
                 // throw new \Exception(__(""));
             }else{
-                return response()->json(['data' => __("page.no_user")], 404);
+                return response()->json(['data' => 'no user'], 404);
             }
         }
     }
@@ -71,6 +73,9 @@ class AuthController
                 $request->all()
             );
 
+        activity()
+            ->log($id, 'User profile update');
+
         $user = User::find($id);
 
         return response()->json(['data' => $user], 200);
@@ -87,22 +92,16 @@ class AuthController
             $new_user->username = $request['username'];
             $new_user->user_id = $user_id;
             $new_user->status = 1;
-            $new_user->name = $request['name'];
-
-            Stripe::setApiKey(config('services.stripe.secret'));
-
-            $stripe_response = Customer::create([
-                'name' => $new_user->name,
-                'email' => $new_user->email,
-                'metadata' => ['user_id' => $new_user->user_id]
-            ]);
-            
-            $new_user->stripe_id = $stripe_response->id;
             $new_user->save();
+
+            $new_user->sendEmailVerificationNotification();
+
+            activity()
+                ->log($new_user->id, 'Registered');
 
             return response()->json(['data' => true], 200);
         } catch (\Exception $e) {
-            return response()->json(['data' => $e->getMessage()], 404);
+            return response()->json(['messages' => $e->getMessage()], 404);
         }
         
     }
@@ -146,6 +145,10 @@ class AuthController
     }
 
     public function logout(){
+
+        activity()
+            ->log(Auth::user()->id, 'User Logout');
+        
         Auth::guard('api')->logout();
 
         return response()->json(['data' => 'done'], 200);

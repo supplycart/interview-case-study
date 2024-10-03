@@ -29,7 +29,7 @@ class RegisterRequest extends ApiRequest
             'email' => 'required|email|unique:users,email|max:50',
             'password' => 'required|confirmed|min:6',
             'username' => 'required|max:50',
-            'name' => 'required|max:50',
+            // 'name' => 'required|max:50',
         ];
     }
 }

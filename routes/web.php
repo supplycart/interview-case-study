@@ -36,3 +36,5 @@ Route::prefix('order')->group(function (){
 });
 
 Route::view('reset_password','reset_password')->name('reset_password');
+Route::get('/email/verify/{id}/{hash}', 'AuthController@verifyEmail')
+     ->name('verification.verify');

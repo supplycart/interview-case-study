@@ -50,8 +50,9 @@ Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
         });
     });
     Route::prefix('cart')->middleware(['auth.user'])->group(function(){
-        Route::get('/list/{user_id}', 'CartController@getCart');
+        Route::get('/list', 'CartController@getCart');
         Route::post('/addToCart/{product_id}', 'CartController@addToCart');
+        Route::delete('remove/{cart_id}', 'CartController@remove');
     });
 
     Route::prefix('sales_order')->middleware(['auth.user'])->group(function(){
@@ -59,11 +60,31 @@ Route::group(['middleware' => 'api', 'namespace' => 'API'], function()
         Route::get('/getOrderItem/{order_id}', 'OrderController@getOrderDetail');
         Route::get('/addItem/{user_id}', 'OrderController@addOrderItem');
         Route::post('/checkout', 'OrderController@checkout');
-        Route::get('/payOrder/{order_id}', 'PaymentController@payOrder');
+
+        Route::middleware(['expired_order'])->group(function(){
+            Route::get('/payOrder/{order_id}', 'PaymentController@payOrder');
+            Route::get('/cancelOrder/{order_id}', 'OrderController@cancelOrder');
+        });
     });
 
-    Route::get('/payment/process', 'PaymentController@processPayment')->name('payment.process');
-    
+    Route::prefix('user')->middleware(['auth.user'])->group(function(){
+        Route::get('/getActivity', 'UserController@getActivity');
+    });
 
     Route::get('/getCategory', 'CategoryController@getCategory');
+
+    Route::get('/payment/process', 'PaymentController@processPayment')->name('payment.process');
+
+    Route::prefix('email')->group(function(){
+        Route::middleware(['auth.user'])->group(function(){
+            Route::get('/verify', function () {
+                return view('auth.verify-email');
+            })->name('verification.notice');
+            Route::post('/verification-notification', function (Request $request) {
+                $request->user()->sendEmailVerificationNotification();
+            
+                return back()->with('message', 'Verification link sent!');
+            })->name('verification.send');
+        });
+    });
 });

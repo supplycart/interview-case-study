@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\OrderRepository;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -16,30 +17,44 @@ class OrderController extends Controller
 
     public function getOrderList($user_id){
         
-        $order = Order::where(['user_id' => $user_id, 'status' => 1])->get();
+        $order = Order::where(['user_id' => $user_id])->orderBy('id', 'DESC')->get();
 
         return response()->json(['data' => $order], 200);
     }
 
     public function getOrderDetail($order_id){
-        $orderDetail = OrderDetail::where(['order_id' => $order_id])->get();
+        $orderDetail = OrderDetail::with('product')->where(['order_id' => $order_id])->get();
 
         return response()->json(['data' => $orderDetail], 200);
     }
 
     public function cancelOrder($order_id){
-        Order::update('status', 0)->where('id', $order_id);
+        try {
+            $order = Order::where('id', $order_id)
+                ->update(['status' => 0]);
+
+            activity()
+                ->log(Auth::user()->id, 'Order '.$order->order_id.' Cancelled');
+
+            return response()->json(['data' => 'done'], 200);
+        } catch (\Exception $e) {
+            return response(['msg' => $e->getMessage()], 500);
+        }
     }
 
     public function checkout(Request $request){
-        $user_id = Auth::guard('api')->user()->id;
+        try{
+            $user_id = Auth::guard('api')->user()->id;
 
-        $message = $this->_orderRepository->createOrder($user_id);
-        
-        if($message){
-            return response()->json(['msg' => $message], 409);
+            $message = $this->_orderRepository->createOrder($user_id);
+            
+            if($message){
+                return response()->json(['msg' => $message], 400);
+            }
+
+            return response()->json(['data' => 'done'], 200);
+        } catch (\Exception $e) {
+            return response(['msg' => $e->getMessage()], 500);
         }
-
-        return response()->json(['data' => 'done'], 200);
     }
 }

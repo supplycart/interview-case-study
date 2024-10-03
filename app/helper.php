@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\UserLog;
 use App\Models\Config;
 
     function getConfig($key) {
@@ -48,4 +49,8 @@ use App\Models\Config;
             throw new \Exception("Failed to generate unique id");
         }
     
+    }
+
+    function activity() {
+        return new UserLog();
     }

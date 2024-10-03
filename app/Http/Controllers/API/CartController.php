@@ -17,15 +17,15 @@ class CartController
         $this->_cartRepository = $cartRepository;
     }
 
-    public function getCart(Request $request, $user_id){
+    public function getCart(Request $request){
         $cart = Cart::leftJoin('products', 'cart.product_id', 'products.id')
-            ->where('user_id', $user_id)
+            ->where('user_id', Auth::user()->id)
             ->get();
-        // dd(Auth::user());
+
         return response()->json(['data' => $cart], 200);
     }
 
-    public function addToCart(Request $request, $product_id){
+    public function addToCart($product_id){
         $cart = Cart::where(['product_id' => $product_id, 'user_id' => Auth::user()->id])->first();
 
         if($cart){
@@ -36,9 +36,19 @@ class CartController
 
         Cart::create([
             'product_id' => $product_id,
-            'user_id' => $request->user_id
+            'user_id' => Auth::user()->id
         ]);
 
         return response()->json(['data' => true], 200);
+    }
+
+    public function remove($cart_id){
+        try {
+            Cart::where(['product_id' => $cart_id, 'user_id' => Auth::user()->id])->delete();
+
+            return response()->json(['data' => true], 200);
+        } catch (\Exception $e) {
+            return response()->json(['messages' => $e->getMessage()], 400);
+        }
     }
 }

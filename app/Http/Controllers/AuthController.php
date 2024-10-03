@@ -8,7 +8,9 @@ use App\Repositories\AdminRepository;
 use App\Http\Request\LoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Hash;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -97,6 +99,14 @@ class AuthController extends Controller
         $new_user->status = 0;
 
         $new_user->save();
+    }
+
+    public function verifyEmail(Request $request){
+        $user = User::findOrFail($request->route('id'));
+        User::where('id', $user->id)
+                ->update(['email_verified_at' => Carbon::now()]);
+
+        return redirect('/home/dashboard');
     }
 
     public function logout($id){

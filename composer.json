@@ -10,6 +10,7 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "laravel/ui": "^4.5",
         "laravelcollective/html": "^6.4",
         "php-open-source-saver/jwt-auth": "^2.2",
         "stripe/stripe-php": "^13.15",
@@ -31,7 +32,7 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/helper.php"
+            "app/Helper.php"
         ]
     },
     "autoload-dev": {
