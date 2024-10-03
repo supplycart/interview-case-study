@@ -2,7 +2,7 @@
     <section aria-labelledby="payment-and-shipping-heading" class="bg-white p-6 col-start-1 row-start-1 mx-auto w-full">
         <h2 id="payment-and-shipping-heading" class="sr-only">Payment and shipping details</h2>
 
-        <form @submit.prevent="form.post(route('cart.checkout'))">
+        <form @submit.prevent="form.post(route('order.store'))">
             <div class="mx-auto px-4 w-full lg:px-0">
                 <div>
                     <h3 id="contact-info-heading" class="text-lg font-medium text-gray-900">Contact information</h3>

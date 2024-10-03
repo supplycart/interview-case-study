@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Actions\Carts\AddToCartAction;
 use App\Actions\Carts\DeleteItemFromCartAction;
 use App\Http\Requests\AddToCartRequest;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,20 +27,19 @@ class CartController extends Controller
             );
 
             return response()->noContent();
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return response()->json(['message' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
         }
     }
 
     public function destroy(int $productId, DeleteItemFromCartAction $action)
     {
-        $action->execute($productId);
+        try {
+            $action->execute($productId);
 
-        return response()->noContent();
-    }
-
-    public function checkout(Request $request)
-    {
-        dd($request->all());
+            return response()->noContent();
+        } catch (\Throwable $e) {
+            return response()->json(['message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }

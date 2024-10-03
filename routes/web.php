@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -30,8 +31,8 @@ Route::middleware('auth')->group(function () {
         Route::get('{product}', [ProductController::class, 'show'])->name('products.show');
     });
 
-    Route::post('cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     Route::resource('cart', CartController::class)->only(['index', 'store', 'destroy']);
+    Route::resource('order', OrderController::class)->only(['index', 'store', 'show', 'update']);
 });
 
 require __DIR__.'/auth.php';
