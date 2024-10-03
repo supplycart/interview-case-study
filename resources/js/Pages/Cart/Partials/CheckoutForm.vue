@@ -199,12 +199,14 @@ import {checkoutStore} from "@/checkoutStore.js";
 import {ref} from "vue";
 import Spinner from "@/Components/Spinner.vue";
 import Checkbox from "@/Components/Checkbox.vue";
+import {cartCounterStore} from "@/cartCounter.js";
 
 const props = defineProps({
     cartItems: Array,
     paymentInfo: Object
 })
 
+const cartCounter = cartCounterStore();
 const proceedToCheckout = checkoutStore();
 const user = usePage().props.auth.user;
 const isPaying = ref(false);
@@ -224,6 +226,7 @@ const form = useForm({
     saveInfo: false,
 })
 
+
 function submitForm() {
     form.clearErrors();
     isPaying.value = true;
@@ -233,6 +236,7 @@ function submitForm() {
         url: route('order.store'),
         data: form.data()
     }).then(response => {
+        cartCounter.reset();
         const orderNumber = response.data.orderNumber;
 
         router.visit(route('order.summary', orderNumber));

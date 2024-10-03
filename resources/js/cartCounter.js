@@ -14,6 +14,9 @@ export const cartCounterStore = defineStore('cartCount', {
         },
         decrementBy(amount) {
             this.count -= amount
+        },
+        reset() {
+            this.count = 0
         }
     }
 })
