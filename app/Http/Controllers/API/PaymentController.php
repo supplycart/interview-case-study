@@ -16,8 +16,12 @@ class PaymentController extends Controller
 {
   public function payOrder($order_id){
     try{
-      $order = Order::where('id', $order_id)
+      $order = Order::find($order_id);
+      $order = tap($order)
         ->update(['status' => 2]);
+
+        activity()
+          ->log(Auth::user()->id, 'Order '.$order->order_id.' Paid');
 
       return response()->json(['data' => 'done'], 200);
     } catch(\Exception $e){

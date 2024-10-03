@@ -24,13 +24,15 @@ class OrderController extends Controller
 
     public function getOrderDetail($order_id){
         $orderDetail = OrderDetail::with('product')->where(['order_id' => $order_id])->get();
-
+        
         return response()->json(['data' => $orderDetail], 200);
     }
 
     public function cancelOrder($order_id){
         try {
-            $order = Order::where('id', $order_id)
+            
+            $order = Order::find($order_id);
+            $order = tap($order)
                 ->update(['status' => 0]);
 
             activity()

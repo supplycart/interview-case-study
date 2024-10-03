@@ -145,9 +145,7 @@ class AuthController
     }
 
     public function logout(){
-
-        activity()
-            ->log(Auth::user()->id, 'User Logout');
+        activity()->log(Auth::user()->id, 'User Logout');
         
         Auth::guard('api')->logout();
 

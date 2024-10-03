@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\OrderDetail;
 use App\Models\Cart;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class OrderRepository extends BaseRepository
 {
@@ -29,14 +30,14 @@ class OrderRepository extends BaseRepository
                 // return response()->json(['data' => 'Please Paid current order.'], 401);
                 throw new \Exception('Please Paid current order.');
             }
-
-            $order = new Order;
-            $order->order_id = $order_id;
-            $order->user_id = $user_id;
-            $order->status = 1;
-
+            $order = Order::create([
+                'order_id' => $order_id,
+                'user_id' => Auth::user()->id,
+                'status' => 1
+            ]);
+            
             $cart = Cart::where('user_id', $user_id)->get();
-
+            
             foreach($cart as $item){
                 $product = Product::find($item->product_id);
 

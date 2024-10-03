@@ -15,7 +15,9 @@ class UserController
 
     public function getActivity(){
         try {
-            $logs = UserLog::where('user_id', Auth::user()->id)->get();
+            $logs = UserLog::where('user_id', Auth::user()->id)
+                ->orderBy('created_at', 'DESC')
+                ->get();
 
             return response()->json(['data' => $logs], 200);
         } catch (\Exception $e) {
