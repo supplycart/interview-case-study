@@ -36,7 +36,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'cartCount' => $request->user()?->carts()->sum('quantity') ?? 0,
-            'settings' => Setting::all()->mapWithKeys(fn ($setting) => [$setting->key => $setting->value]),
+            'settings'  => Setting::all()->mapWithKeys(fn ($setting) => [$setting->key => $setting->value]),
         ];
     }
 }

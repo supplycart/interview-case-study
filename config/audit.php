@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'enabled' => env('AUDITING_ENABLED', true),
 
     /*
@@ -24,13 +23,13 @@ return [
     |
     */
 
-    'user'      => [
+    'user' => [
         'morph_prefix' => 'user',
         'guards'       => [
             'web',
             'api'
         ],
-        'resolver'     => OwenIt\Auditing\Resolvers\UserResolver::class
+        'resolver' => OwenIt\Auditing\Resolvers\UserResolver::class
     ],
 
     /*

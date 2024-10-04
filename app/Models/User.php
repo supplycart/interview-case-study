@@ -12,7 +12,9 @@ use OwenIt\Auditing\Contracts\Auditable;
 
 class User extends Authenticatable implements MustVerifyEmail, Auditable
 {
-    use HasFactory, Notifiable, \OwenIt\Auditing\Auditable;
+    use HasFactory;
+    use Notifiable;
+    use \OwenIt\Auditing\Auditable;
 
     /**
      * The attributes that are mass assignable.
@@ -50,7 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail, Auditable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
         ];
     }
 

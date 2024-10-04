@@ -22,7 +22,7 @@ class AddToCartAction
             ->upsert(
                 ['product_id' => $productId, 'quantity' => $quantity],
                 ['product_id', 'user_id'],
-                ['quantity' => DB::raw('quantity + ' . $quantity)]
+                ['quantity' => DB::raw('quantity + '.$quantity)]
             );
 
         Auth::user()

@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Event::listen(
             Login::class,
-        fn (Login $event) => $event->user->update(['last_login_at' => now()])
+            fn (Login $event) => $event->user->update(['last_login_at' => now()])
         );
     }
 

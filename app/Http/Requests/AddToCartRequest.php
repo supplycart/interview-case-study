@@ -31,7 +31,7 @@ class AddToCartRequest extends FormRequest
                 'required',
                 Rule::exists('products', 'id')
                     ->where(
-                        fn(Builder $query) => $query
+                        fn (Builder $query) => $query
                             ->where('stock', '>', 0)
                             ->where('status_id', $productStatus['active'])
                     )
@@ -44,7 +44,7 @@ class AddToCartRequest extends FormRequest
     {
         $this->merge([
             'product_id' => $this->integer('product_id'),
-            'quantity' => $this->integer('quantity'),
+            'quantity'   => $this->integer('quantity'),
         ]);
     }
 }
