@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('zip_code')->nullable();
             $table->string('state')->nullable();
             $table->rememberToken();
+            $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
         });
 

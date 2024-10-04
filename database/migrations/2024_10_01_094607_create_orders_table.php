@@ -30,16 +30,6 @@ return new class () extends Migration {
             $table->foreign('status_id')->references('id')->on('master_lookups');
         });
 
-        Schema::create('order_logs', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('order_id')->constrained()->cascadeOnDelete();
-            $table->unsignedBigInteger('status_id');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-
-            $table->foreign('status_id')->references('id')->on('master_lookups');
-        });
-
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained()->cascadeOnDelete();
@@ -85,10 +75,8 @@ return new class () extends Migration {
     public function down(): void
     {
         Schema::dropIfExists('orders');
-        Schema::dropIfExists('order_logs');
         Schema::dropIfExists('order_items');
+        Schema::dropIfExists('order_payment_information');
         Schema::dropIfExists('order_addresses');
-        Schema::dropIfExists('order_shipping_information');
-        Schema::dropIfExists('order_shipping_information_logs');
     }
 };
