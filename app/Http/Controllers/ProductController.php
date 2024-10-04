@@ -18,7 +18,7 @@ class ProductController extends Controller
         $selectedBrands     = $request->string('brands')->ltrim(',')->rtrim(',')->explode(',');
         $activeStatus       = MasterLookupHelper::getStatusID('product_status', 'active');
 
-        $products = Product::with('images')
+        $products = Product::with(['images', 'categories', 'brand'])
             ->where('status_id', $activeStatus)
             ->when(
                 $request->input('search'),

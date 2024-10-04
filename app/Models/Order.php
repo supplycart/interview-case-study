@@ -37,6 +37,11 @@ class Order extends Model
         return $this->hasOne(OrderPaymentInformation::class, 'order_id', 'id');
     }
 
+    public function status(): HasOne
+    {
+        return $this->hasOne(MasterLookup::class, 'id', 'status_id');
+    }
+
     public function address(): HasOne
     {
         return $this->hasOne(OrderAddress::class, 'order_id', 'id');

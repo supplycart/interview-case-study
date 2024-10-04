@@ -9,7 +9,7 @@
         </template>
 
         <div class="py-12">
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-[100rem] sm:px-6 lg:px-8">
                 <div class="grid grid-flow-row-dense auto-rows-max md:grid-cols-4">
                     <div class="mx-2 md:my-0 my-2 md:col-span-1 row-span-1 bg-white rounded-lg md:bg-transparent">
                         <ProductFilter

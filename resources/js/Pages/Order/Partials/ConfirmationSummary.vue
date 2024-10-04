@@ -2,32 +2,16 @@
     <section class="bg-white py-8 antialiased md:py-16">
         <div class="mx-auto max-w-2xl px-4 2xl:px-0">
             <h2 class="text-xl font-semibold text-gray-900 sm:text-2xl mb-2">Thanks for your order!</h2>
-            <p class="text-gray-500 mb-6 md:mb-8">Your order <a href="#" class="font-bold text-gray-900 hover:underline">{{ order.order_number }}</a> will be processed within 24 hours during working days. We will notify you by email once your order has been shipped.</p>
+            <p class="text-gray-500 mb-6 md:mb-8">Your order
+                <Link :href="route('order.show')" class="font-bold text-gray-900 hover:underline">{{ order.order_number }}</Link>
+                will be processed within 24 hours during working days. We will notify you by email once your order has been shipped.
+            </p>
             <div class="space-y-4 sm:space-y-2 rounded-lg border border-gray-100 bg-gray-50 p-6 mb-6 md:mb-8">
-                <dl class="sm:flex items-center justify-between gap-4">
-                    <dt class="font-normal mb-1 sm:mb-0 text-gray-500">Date</dt>
-                    <dd class="font-medium text-gray-900 sm:text-end">{{ formatDate(order.created_at) }}</dd>
-                </dl>
-                <dl class="sm:flex items-center justify-between gap-4">
-                    <dt class="font-normal mb-1 sm:mb-0 text-gray-500">Payment Method</dt>
-                    <dd class="font-medium text-gray-900 sm:text-end">Card</dd>
-                </dl>
-                <dl class="sm:flex items-center justify-between gap-4">
-                    <dt class="font-normal mb-1 sm:mb-0 text-gray-500">Name</dt>
-                    <dd class="font-medium text-gray-900 sm:text-end">{{ order.address.name }}</dd>
-                </dl>
-                <dl class="sm:flex items-center justify-between gap-4">
-                    <dt class="font-normal mb-1 sm:mb-0 text-gray-500">Address</dt>
-                    <dd class="font-medium text-gray-900 sm:text-end">
-                        {{ order.address.address }}<br>
-                        {{ order.address.city }}, {{ order.address.state }}<br>
-                        {{ order.address.zip_code }}
-                    </dd>
-                </dl>
-                <dl class="sm:flex items-center justify-between gap-4">
-                    <dt class="font-normal mb-1 sm:mb-0 text-gray-500">Phone</dt>
-                    <dd class="font-medium text-gray-900 sm:text-end">{{ order.address.phone }}</dd>
-                </dl>
+                <DefinitionList :item="'Date'" :value="formatDate(order.created_at)" />
+                <DefinitionList :item="'Payment Method'" :value="'Card'" />
+                <DefinitionList :item="'Name'" :value="order.address.name" />
+                <DefinitionList :item="'Address'" :value="`${order.address.address}<br>${order.address.city}, ${order.address.state}<br>${order.address.zip_code}`" />
+                <DefinitionList :item="'Phone'" :value="order.address.phone" />
             </div>
             <div class="flex justify-center items-center space-x-4">
                 <link
@@ -48,7 +32,8 @@
 <script setup>
 import { defineProps } from 'vue'
 import { Link } from '@inertiajs/vue3';
-import { formatDate } from "../../../dateFormatter.js";
+import { formatDate } from "@/dateFormatter.js";
+import DefinitionList from "@/Components/DefinitionList.vue";
 
 const props = defineProps({
     order: Object

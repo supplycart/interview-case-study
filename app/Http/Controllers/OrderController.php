@@ -5,31 +5,39 @@ namespace App\Http\Controllers;
 use App\Actions\Orders\StoreOrderAction;
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\Response;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $orders = Order::query()
+            ->withCount('items')
+            ->with([
+                'status:id,value',
+                'paymentInfo' => function (HasOne $query) {
+                    $query
+                        ->select(['id', 'order_id', 'status_id'])
+                        ->with('status:id,value');
+                }
+            ])
+            ->latest()
+            ->paginate(10, ['*'], 'page', $request->input('page', 1))
+            ->withQueryString();
+
+        return Inertia::render('Order/Index', [
+            'orders' => $orders
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreOrderRequest $request, StoreOrderAction $action)
     {
         try {
@@ -43,34 +51,7 @@ class OrderController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order)
     {
         //
     }

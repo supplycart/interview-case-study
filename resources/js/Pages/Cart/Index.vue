@@ -9,7 +9,7 @@
         </template>
 
         <div class="py-12">
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-[100rem] sm:px-6 lg:px-8">
                 <div class="grid grid-flow-row-dense auto-rows-max md:grid-cols-4">
                     <div class="mx-2 md:col-span-3 row-span-1">
                         <div class="w-full overflow-hidden bg-white rounded-lg shadow-sm p-3 grid gap-y-4">
