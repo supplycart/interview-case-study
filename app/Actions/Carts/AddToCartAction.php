@@ -9,15 +9,13 @@ use Illuminate\Support\Facades\DB;
 class AddToCartAction
 {
     /**
-     * @throws \Exception
+     * @throws \Throwable
      */
     public function execute(int $productId, int $quantity = 1): void
     {
         $product = Product::findOrFail($productId);
 
-        if ($product->stock < $quantity) {
-            throw new \Exception('Insufficient stock');
-        }
+        throw_if($product->stock < $quantity, new \Exception('Insufficient stock'));
 
         Auth::user()
             ->carts()

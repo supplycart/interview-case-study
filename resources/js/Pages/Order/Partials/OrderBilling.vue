@@ -64,6 +64,4 @@ const paymentInfo = computed(() => {
         expiry: formatMonthYear(props.order.payment_info.expiration_date)
     }
 });
-
-console.log(paymentInfo.value);
 </script>
