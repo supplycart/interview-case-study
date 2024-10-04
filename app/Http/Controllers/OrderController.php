@@ -56,7 +56,7 @@ class OrderController extends Controller
         ]);
 
         return Inertia::render('Order/Detail', [
-            'order' =>$order->load(['items.product.image', 'address', 'paymentInfo.status', 'status'])
+            'order' =>$order
         ]);
     }
 

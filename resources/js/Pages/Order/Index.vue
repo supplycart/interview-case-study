@@ -13,6 +13,8 @@
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <Table :headers="headers" :body="body" :show-action="true" />
+
+                        <Pagination :pagination="orders" class="my-5" />
                     </div>
                 </div>
             </div>
@@ -26,6 +28,7 @@ import AuthenticatedLayout from "../../Layouts/AuthenticatedLayout.vue";
 import Table from "@/Components/Table.vue";
 import { computed } from "vue";
 import { ucwords } from "@/stringFormatter.js";
+import Pagination from "@/Components/Pagination.vue";
 
 const props = defineProps({
     orders: Object
