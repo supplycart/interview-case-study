@@ -7,17 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Inertia\Inertia;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Cart extends Model
+class Cart extends Model implements Auditable
 {
-    protected static function boot()
-    {
-        parent::boot();
+    use \OwenIt\Auditing\Auditable;
 
-        static::saved(function (self $cart) {
-            Inertia::share('cartCount', $cart->user->carts()->sum('quantity'));
-        });
-    }
+    protected $guarded = ['id'];
 
     public function user(): BelongsTo
     {

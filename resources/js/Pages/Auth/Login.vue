@@ -5,7 +5,8 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import {Head, Link, useForm} from '@inertiajs/vue3';
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 
 defineProps({
     canResetPassword: {
@@ -96,5 +97,14 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
+        <hr class="my-6">
+        <Link
+            :href="route('register')"
+            class="rounded-md text-sm text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        >
+            <SecondaryButton class="w-full flex justify-center">
+                Register
+            </SecondaryButton>
+        </Link>
     </GuestLayout>
 </template>

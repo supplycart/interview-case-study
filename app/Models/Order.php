@@ -6,9 +6,12 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Order extends Model
+class Order extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     protected static function boot()
     {
         parent::boot();
@@ -17,13 +20,6 @@ class Order extends Model
             if (!$model->order_number) {
                 $model->order_number = Carbon::now()->format('YmdHis').'-'.uniqid();
             }
-        });
-
-        self::saved(function (self $model) {
-            OrderLog::create([
-                'order_id'  => $model->id,
-                'status_id' => $model->status_id,
-            ]);
         });
     }
 
