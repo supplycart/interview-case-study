@@ -11,7 +11,7 @@
 2. Copy the `.env.example` file to `.env` and update the database configuration
 3. Run `composer install`
 4. Run `php artisan key:generate`
-5. Run `npm install`
+5. Run `npm install && npm run build`
 6. Run `php artisan migrate --seed`
 7. Run `php artisan serve`
 8. Visit `http://localhost` (or whatever your setup is) in your browser
