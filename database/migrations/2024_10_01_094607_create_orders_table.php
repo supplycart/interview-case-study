@@ -14,11 +14,12 @@ return new class () extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('order_number')->unique();
-            $table->decimal('total_price');
+            $table->decimal('total_original_price');
             $table->decimal('total_discount');
             $table->decimal('total_payment');
-            $table->unsignedBigInteger('payment_method_id');
-            $table->unsignedBigInteger('payment_status_id');
+            $table->decimal('total_tax');
+            $table->decimal('shipping_fee');
+            $table->string('currency');
             $table->unsignedBigInteger('status_id');
             $table->text('note')->nullable();
             $table->timestamp('payment_date')->nullable();
@@ -27,8 +28,6 @@ return new class () extends Migration {
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
             $table->foreign('status_id')->references('id')->on('master_lookups');
-            $table->foreign('payment_method_id')->references('id')->on('master_lookups');
-            $table->foreign('payment_status_id')->references('id')->on('master_lookups');
         });
 
         Schema::create('order_logs', function (Blueprint $table) {
@@ -46,32 +45,18 @@ return new class () extends Migration {
             $table->foreignId('order_id')->constrained()->cascadeOnDelete();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->integer('quantity');
-            $table->decimal('price', 10, 2);
-            $table->decimal('discount', 10, 2);
-            $table->decimal('total_price', 10, 2);
+            $table->decimal('original_price', 10);
+            $table->decimal('discount', 10);
+            $table->decimal('total_price', 10);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
 
-        Schema::create('order_addresses', function (Blueprint $table) {
+        Schema::create('order_payment_information', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained()->cascadeOnDelete();
-            $table->string('name');
-            $table->string('phone');
-            $table->string('address');
-            $table->string('city');
-            $table->string('zip_code');
-            $table->string('state');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-        });
-
-        Schema::create('order_shipping_information', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('order_id')->constrained()->cascadeOnDelete();
-            $table->string('courier');
-            $table->string('shipping_id')->index();
-            $table->decimal('shipping_fee');
+            $table->string('card_number');
+            $table->string('expiration_date');
             $table->unsignedBigInteger('status_id');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
@@ -79,15 +64,18 @@ return new class () extends Migration {
             $table->foreign('status_id')->references('id')->on('master_lookups');
         });
 
-        Schema::create('order_shipping_information_logs', function (Blueprint $table) {
+        Schema::create('order_addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_shipping_information_id');
-            $table->unsignedBigInteger('status_id');
+            $table->foreignId('order_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('address');
+            $table->string('city');
+            $table->string('zip_code');
+            $table->string('state');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-
-            $table->foreign('order_shipping_information_id', 'shipping_info_id')->references('id')->on('order_shipping_information')->cascadeOnDelete();
-            $table->foreign('status_id')->references('id')->on('master_lookups')->cascadeOnDelete();
         });
     }
 

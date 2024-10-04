@@ -19,6 +19,9 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+            $table->index(['type', 'value', 'deleted_at'], 'type_value_idx');
+            $table->index(['type', 'deleted_at'], 'type_idx');
         });
     }
 

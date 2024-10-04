@@ -16,13 +16,16 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+        $price    = $this->faker->randomFloat(2, 1, 1000);
+        $discount = $this->faker->randomFloat(2, 0, 20) * $price / 100;
+
         return [
-            'name' => $this->faker->name,
+            'name'        => $this->faker->name,
             'description' => $this->faker->text,
-            'price' => $this->faker->randomFloat(2, 1, 1000),
-            'discount_price' => $this->faker->randomFloat(2, 0, 100),
-            'currency' => 'MYR',
-            'stock' => $this->faker->numberBetween(1, 100),
+            'price'       => $price,
+            'discount'    => $discount,
+            'currency'    => 'MYR',
+            'stock'       => $this->faker->numberBetween(1, 100),
         ];
     }
 }

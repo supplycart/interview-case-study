@@ -6,6 +6,9 @@
 
 This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned.
 
+## Installation
+See [installation.md](installation.md) for installation instructions.
+
 ## Instructions
 
 - Fork this repo to your github account
