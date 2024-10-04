@@ -22,3 +22,5 @@
 ## Assumptions
 - The application is running on a local development environment
 - The database is MySQL
+- The application is running on `http://localhost`
+- If you are running the application on a different domain or port, update the `APP_URL` in the `.env` file
