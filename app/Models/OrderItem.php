@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class OrderItem extends Model
 {
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     public function product(): HasOne
     {

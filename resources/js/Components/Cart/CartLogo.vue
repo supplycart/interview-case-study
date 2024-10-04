@@ -10,7 +10,6 @@
 </template>
 
 <script setup>
-import {usePage} from "@inertiajs/vue3";
 import {cartCounterStore} from "@/cartCounter.js";
 
 const counter = cartCounterStore();
@@ -25,6 +24,4 @@ defineProps({
         default: 0
     }
 });
-
-const count = usePage().props.cartCount;
 </script>

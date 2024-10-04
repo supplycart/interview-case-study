@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class OrderPaymentInformation extends Model
 {
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     protected function cardNumber(): Attribute
     {

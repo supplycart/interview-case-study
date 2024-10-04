@@ -9,5 +9,5 @@ class UserPaymentInformation extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
 }

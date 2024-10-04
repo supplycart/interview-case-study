@@ -27,30 +27,6 @@ class MasterLookupHelper
             ->value(self::$id);
     }
 
-    public static function getValueByLookupType(string $lookupType): \Illuminate\Support\Collection
-    {
-        return \DB::table(self::$table)
-            ->where(self::$type, $lookupType)
-            ->whereNull('deleted_at')
-            ->pluck(self::$value, self::$id);
-    }
-
-    public static function getValueByID(int $lookupID)
-    {
-        return \DB::table(self::$table)
-            ->where(self::$id, $lookupID)
-            ->whereNull('deleted_at')
-            ->value(self::$value);
-    }
-
-    public static function getValueByIDs(array $lookupIDs): \Illuminate\Support\Collection
-    {
-        return \DB::table(self::$table)
-            ->whereIn(self::$id, $lookupIDs)
-            ->whereNull('deleted_at')
-            ->pluck(self::$value, self::$id);
-    }
-
     public static function getKeyByLookUpType(string $lookUpType): array
     {
         $results = \DB::table(self::$table);
@@ -65,23 +41,5 @@ class MasterLookupHelper
         }
 
         return self::$getKeyByLookUpTypeCache[$lookUpType];
-    }
-
-    public static function pluckValuesByType(string $lookupType): array
-    {
-        return \DB::table(self::$table)
-            ->where(self::$type, $lookupType)
-            ->whereNull('deleted_at')
-            ->pluck(self::$id, self::$value)
-            ->toArray();
-    }
-
-    public static function pluckFilterByType(string $lookupType): array
-    {
-        return \DB::table(self::$table)
-            ->where(self::$type, $lookupType)
-            ->whereNull('deleted_at')
-            ->pluck(self::$value, self::$id)
-            ->toArray();
     }
 }
