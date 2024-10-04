@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\Orders\StoreOrderAction;
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -24,6 +25,10 @@ class OrderController extends Controller
                         ->with('status:id,value');
                 }
             ])
+            ->when(
+                $request->input('status'),
+                fn (Builder $query, $statusId) => $query->where('status_id', $statusId)
+            )
             ->latest()
             ->paginate(10, ['*'], 'page', $request->input('page', 1))
             ->withQueryString();
@@ -56,7 +61,7 @@ class OrderController extends Controller
         ]);
 
         return Inertia::render('Order/Detail', [
-            'order' =>$order
+            'order' => $order
         ]);
     }
 
