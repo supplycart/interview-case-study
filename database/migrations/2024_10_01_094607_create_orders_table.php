@@ -17,6 +17,9 @@ return new class () extends Migration {
             $table->decimal('total_original_price');
             $table->decimal('total_discount');
             $table->decimal('total_payment');
+            $table->decimal('total_tax');
+            $table->decimal('shipping_fee');
+            $table->string('currency');
             $table->unsignedBigInteger('status_id');
             $table->text('note')->nullable();
             $table->timestamp('payment_date')->nullable();

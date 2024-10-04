@@ -4,6 +4,7 @@ namespace App\Actions\Orders;
 
 use App\Helpers\MasterLookupHelper;
 use App\Models\Order;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -25,6 +26,12 @@ class StoreOrderAction
             return $cart->product->discount * $cart->quantity;
         });
 
+        $settings      = Setting::all();
+        $taxPercentage = $settings->where('key', 'tax_percentage')->value('value');
+        $shippingFee   = $settings->where('key', 'shipping_fee_price')->value('value');
+
+        $tax = ($originalPrice - $discount) * $taxPercentage / 100;
+
         try {
             DB::beginTransaction();
 
@@ -32,9 +39,12 @@ class StoreOrderAction
             $order->user_id              = $user->getKey();
             $order->total_original_price = $originalPrice;
             $order->total_discount       = $discount;
-            $order->total_payment        = $originalPrice - $discount;
+            $order->total_payment        = ($originalPrice - $discount) + $tax + $shippingFee;
+            $order->shipping_fee         = $shippingFee;
+            $order->total_tax            = $tax;
             $order->status_id            = MasterLookupHelper::getStatusID('order_status', 'pending');
             $order->payment_date         = now();
+            $order->currency             = $productsFromCart->first()->product->currency;
             $order->save();
 
             $orderItems = $productsFromCart->map(function ($cart) {

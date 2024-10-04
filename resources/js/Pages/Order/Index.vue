@@ -45,10 +45,10 @@ const body = computed(() => {
         return [
             order.order_number,
             order.items_count,
-            order.total_payment,
+            order.currency + ' ' + order.total_payment,
             ucwords(order.payment_info.status.value),
             ucwords(order.status.value),
-            route('order.show', order.id)
+            route('order.show', order.order_number)
         ]
     })
 })

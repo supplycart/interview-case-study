@@ -17,7 +17,7 @@ class StoreOrderRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'cardExpiration' => $this->date('cardExpiration')->format('m-y'),
+            'cardExpiration' => $this->date('cardExpiration')->format('m/y'),
             'saveInfo'       => $this->boolean('saveInfo'),
         ]);
     }
@@ -34,7 +34,7 @@ class StoreOrderRequest extends FormRequest
             'phone'          => ['required', 'string', 'max:255'],
             'email'          => ['required', 'email'],
             'cardNumber'     => ['required', 'numeric', 'digits:12'],
-            'cardExpiration' => ['required', 'date_format:m-y'],
+            'cardExpiration' => ['required', 'date_format:m/y'],
             'cardCvc'        => ['required', 'numeric', 'digits:3'],
             'address'        => ['required', 'string', 'max:255'],
             'city'           => ['required', 'string', 'max:255'],

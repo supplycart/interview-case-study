@@ -1,6 +1,6 @@
 <template>
     <div class="w-full max-w-full bg-white border border-gray-200 rounded-lg shadow p-2">
-        <ProductImage :product-id="product.id" :image-url="product.images[0].url"></ProductImage>
+        <ProductImage :product-slug="product.slug" :image-url="product.images[0].url"></ProductImage>
         <div class="px-5 pb-5">
             <div class="flex flex-grow overflow-auto justify-start gap-1 mb-3">
                 <span
@@ -45,6 +45,4 @@ const categories = computed(() => {
 const brand = computed(() => {
     return props.product.brand;
 });
-
-console.log(categories.value, brand.value);
 </script>

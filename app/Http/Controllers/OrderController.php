@@ -33,11 +33,6 @@ class OrderController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(StoreOrderRequest $request, StoreOrderAction $action)
     {
         try {
@@ -53,7 +48,16 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        //
+        $order->load([
+            'items.product.image',
+            'address',
+            'paymentInfo.status:id,value',
+            'status:id,value'
+        ]);
+
+        return Inertia::render('Order/Detail', [
+            'order' =>$order->load(['items.product.image', 'address', 'paymentInfo.status', 'status'])
+        ]);
     }
 
     public function summary(Order $order)

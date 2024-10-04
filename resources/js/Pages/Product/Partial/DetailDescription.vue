@@ -17,8 +17,8 @@
         </div>
     </div>
 </template>
-<script setup lang="ts">
-import AddToCart from "../../../Components/Cart/AddToCart.vue";
+<script setup>
+import AddToCart from "@/Components/Cart/AddToCart.vue";
 import {ref} from "vue";
 
 defineProps({

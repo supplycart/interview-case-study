@@ -9,7 +9,7 @@
             :class="{'font-medium text-gray-900 whitespace-nowrap' : index === 0}"
         >
             <span v-if="!isValidUrl(item)">{{ item }}</span>
-            <Link v-else :href="item" class="font-medium text-indigo-600 hover:underline">Edit</Link>
+            <Link v-else :href="item" class="font-medium text-indigo-600 hover:underline">View</Link>
         </th>
     </tr>
     </tbody>

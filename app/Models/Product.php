@@ -27,6 +27,15 @@ class Product extends Model
         'status_id',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (self $product) {
+            $product->slug = \Str::slug($product->name);
+        });
+    }
+
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class, 'product_categories');
