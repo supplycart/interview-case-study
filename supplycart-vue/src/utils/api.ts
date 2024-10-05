@@ -5,7 +5,7 @@ axios.defaults.xsrfCookieName = 'XSRF-TOKEN';
 axios.defaults.xsrfHeaderName = 'X-XSRF-TOKEN';
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL + '/api', 
+  baseURL: import.meta.env.VITE_BACKEND_URL + '/api', 
   headers: {
     Accept: 'application/json', 
   },
@@ -16,7 +16,7 @@ api.interceptors.request.use(async (config) => {
   if (config.method !== 'get') {
     try {
       // Send a GET request to the /sanctum/csrf-cookie endpoint
-      await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL + '/sanctum/csrf-cookie');
+      await axios.get(import.meta.env.VITE_BACKEND_URL + '/sanctum/csrf-cookie');
     } catch (err) {
       console.error('CSRF cookie has not been set: ', err);
     }
@@ -31,7 +31,7 @@ api.interceptors.request.use(async (config) => {
 });
 
 export const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+  baseURL: import.meta.env.VITE_BACKEND_URL,
   headers: {
     Accept: 'application/json',
   },
