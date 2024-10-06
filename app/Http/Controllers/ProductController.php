@@ -61,7 +61,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        $product->load('images', 'categories');
+        $product->load('images', 'categories', 'brand');
 
         return Inertia::render('Product/Detail', [
             'product' => $product,

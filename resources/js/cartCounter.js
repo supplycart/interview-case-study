@@ -3,7 +3,7 @@ import {usePage} from "@inertiajs/vue3";
 
 export const cartCounterStore = defineStore('cartCount', {
     state: () => ({
-        count: usePage().props.cartCount
+        count: parseInt(usePage().props.cartCount ?? 0)
     }),
     actions: {
         increment() {
@@ -12,8 +12,11 @@ export const cartCounterStore = defineStore('cartCount', {
         decrement() {
             this.count--
         },
+        incrementBy(amount) {
+            this.count += parseInt(amount)
+        },
         decrementBy(amount) {
-            this.count -= amount
+            this.count -= parseInt(amount)
         },
         reset() {
             this.count = 0

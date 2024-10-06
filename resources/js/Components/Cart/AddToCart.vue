@@ -1,13 +1,15 @@
 <template>
-    <button @click="addToCart(productId, quantity)" :disabled="addToCartButton.value"
-            :class="addToCartButton.value ? ['bg-gray-300', 'cursor-not-allowed'] : ['bg-indigo-500', 'hover:bg-indigo-800']"
-            class="w-full flex gap-2 items-center justify-center text-white focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center"
-    >
-        <CartLogo/>
-        {{ addToCartButton.text }}
-    </button>
+    <div class="w-full">
+        <button @click="addToCart(productId, quantity)" :disabled="addToCartButton.value"
+                :class="addToCartButton.value ? ['bg-gray-300', 'cursor-not-allowed'] : ['bg-indigo-500', 'hover:bg-indigo-800']"
+                class="w-full flex gap-2 items-center justify-center text-white focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center"
+        >
+            <CartLogo/>
+            {{ addToCartButton.text }}
+        </button>
 
-    <div class="text text-red-500" v-if="error.show"></div>
+        <div class="my-3 text text-red-500" v-show="error.show">{{ error.message }}</div>
+    </div>
 </template>
 
 <script setup>
@@ -36,6 +38,13 @@ const addToCartButton = reactive({
 });
 
 function addToCart(productId, quantity) {
+    if (quantity < 1) {
+        error.message = 'Quantity must be at least 1';
+        error.show = true;
+
+        return;
+    }
+
     error.message = '';
     error.show = false;
 
@@ -51,7 +60,7 @@ function addToCart(productId, quantity) {
         }
     })
         .then(() => {
-            counter.increment();
+            counter.incrementBy(quantity);
         })
         .catch(error => {
             error.message = error.response.data.message;
