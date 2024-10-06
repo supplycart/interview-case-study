@@ -21,6 +21,8 @@ class OrderFactory extends Factory
             'total_price' => $this->faker->randomFloat(2, 50, 500),
             'status' => 'pending',
             'date' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

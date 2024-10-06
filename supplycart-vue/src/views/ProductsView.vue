@@ -1,21 +1,29 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useCartStore } from '../stores/cartStore';
-import type { Product } from '@/utils/types'; 
+import type { Product } from '@/utils/types';
+import api from '@/utils/api';
 
-// Define the list of products using the Product type
-const products = ref<Product[]>([
-  { id: 1, name: 'Product 1', price: 100 },
-  { id: 2, name: 'Product 2', price: 150 },
-  { id: 3, name: 'Product 3', price: 200 },
-]);
-
+const products = ref<Product[]>([]);
 const cartStore = useCartStore();
 
-// Enforce Product type on the function parameter
+// Fetch products from the API
+const fetchProducts = async () => {
+  try {
+    const response = await api.get('/products'); // Fetch products from backend
+    products.value = response.data;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
+};
+
+// Add product to cart
 const addToCart = (product: Product) => {
   cartStore.addProductToCart(product);
 };
+
+// Fetch products when component is mounted
+onMounted(fetchProducts);
 </script>
 
 <template>
