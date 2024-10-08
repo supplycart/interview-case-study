@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Return the cart for the authenticated user
     public function index()
     {
-        //
+        // Get the cart for the authenticated user, along with its items and products
+        $cart = Cart::with('items.product')->where('user_id', Auth::id())->first();
+
+        if ($cart) {
+            return response()->json($cart);
+        }
+
+        return response()->json(['message' => 'Cart not found'], 404);
     }
 
     /**

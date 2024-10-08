@@ -5,9 +5,9 @@ axios.defaults.xsrfCookieName = 'XSRF-TOKEN';
 axios.defaults.xsrfHeaderName = 'X-XSRF-TOKEN';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL + '/api', 
+  baseURL: import.meta.env.VITE_BACKEND_URL + '/api', // Use Vite's env variables
   headers: {
-    Accept: 'application/json', 
+    Accept: 'application/json',
   },
 });
 
@@ -28,13 +28,6 @@ api.interceptors.request.use(async (config) => {
   return config;
 }, (error) => {
   return Promise.reject(error);
-});
-
-export const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL,
-  headers: {
-    Accept: 'application/json',
-  },
 });
 
 export default api;
