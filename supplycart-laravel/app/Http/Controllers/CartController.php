@@ -12,11 +12,23 @@ class CartController extends Controller
     // Return the cart for the authenticated user
     public function index()
     {
-        Log::info('Auth::id()', Auth::id());
         // Get the cart for the authenticated user, along with its items and products
         $cart = Cart::with('items.product')->where('user_id', Auth::id())->first();
 
         if ($cart) {
+            $totalPrice = 0;
+
+            // Loop through the items and compute subtotal and total price
+            foreach ($cart->items as $item) {
+                // Compute subtotal for each item (price * quantity)
+                $item->subtotal = round($item->product->price * $item->quantity, 2);
+                // Accumulate total price
+                $totalPrice += $item->subtotal;
+            }
+
+            // Add the total price of the cart to the response
+            $cart->total_price = round($totalPrice, 2);
+
             return response()->json($cart);
         }
 

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import { useAuthStore } from '../stores/auth'
+import Cart from '../views/Cart.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,6 +48,12 @@ const router = createRouter({
       meta: { title: 'Password Reset', middleware: ['auth'] },
       component: () => import('../views/auth/PasswordReset.vue'),
     },
+    {
+        path: '/cart',
+        name: 'cart',
+        meta: { title: 'Cart', middleware: [] },
+        component: Cart,
+      },
   ],
 })
 

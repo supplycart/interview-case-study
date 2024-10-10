@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { RouterLink } from 'vue-router';
-import { useAuthStore } from '../stores/auth'; // Your store managing user authentication
+import { useAuthStore } from '../stores/auth'; 
 
 const authStore = useAuthStore();
 const isAuthenticated = computed(() => authStore.isLoggedIn);
@@ -57,5 +57,5 @@ const handleLogout = () => {
 </template>
 
 <style scoped>
-/* Add styles as needed */
+
 </style>
