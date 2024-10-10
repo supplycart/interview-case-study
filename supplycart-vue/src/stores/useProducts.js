@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import axios from '../utils/axios';
+import axios from '@/utils/axios';
 
 export const useProductsStore = defineStore('products', () => {
   const products = ref([]);
@@ -12,7 +12,7 @@ export const useProductsStore = defineStore('products', () => {
     error.value = null;
     try {
       const response = await axios.get('/api/products');
-      products.value = response.data; // Assuming the response contains an array of products
+      products.value = response.data;
     } catch (err) {
       error.value = 'Error fetching products.';
     } finally {

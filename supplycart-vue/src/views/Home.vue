@@ -1,13 +1,26 @@
 <script setup>
 import { onMounted } from 'vue';
-import { useProductsStore } from '../stores/products'; 
+import { useProductsStore } from '@/stores/useProducts'; 
+import { useCartStore } from '@/stores/useCart'; 
 
 const productsStore = useProductsStore();
+const cartStore = useCartStore();
 
 // Fetch products when the component is mounted
 onMounted(() => {
   productsStore.fetchProducts();
 });
+
+// Add a product to the cart
+const handleAddToCart = (productId) => {
+  cartStore.addToCart(productId)
+    .then(() => {
+      alert('Product added to cart successfully!');
+    })
+    .catch((error) => {
+      console.error('Error adding product to cart:', error);
+    });
+};
 </script>
 
 <template>
@@ -37,6 +50,7 @@ onMounted(() => {
           <p class="text-gray-600 mt-2">{{ product.description }}</p>
           <p class="text-lg font-bold text-gray-900 mt-4">RM {{ product.price }}</p>
           <button
+            @click="handleAddToCart(product.id)"
             class="w-full mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
           >
             Add to Cart

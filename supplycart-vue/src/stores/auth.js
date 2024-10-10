@@ -16,7 +16,7 @@ export const useAuthStore = defineStore('auth', () => {
       user.value = data
     } catch (error) {
       if (error.response.status === 409) {
-        router.push({ name: 'dashboard' })
+        router.push({ name: 'home' })
       }
     }
   }
@@ -34,7 +34,7 @@ export const useAuthStore = defineStore('auth', () => {
 
       await fetchUser()
 
-      router.push({ name: 'dashboard' })
+      router.push({ name: 'home' })
     } catch (error) {
       if (error.response.status === 422) {
         errors.value = error.response.data.errors
@@ -55,7 +55,7 @@ export const useAuthStore = defineStore('auth', () => {
 
       await fetchUser()
 
-      router.push({ name: 'dashboard' })
+      router.push({ name: 'home' })
     } catch (error) {
       if (error.response.status === 422) {
         errors.value = error.response.data.errors

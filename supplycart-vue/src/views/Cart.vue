@@ -1,13 +1,12 @@
 <script setup>
 import { onMounted } from 'vue';
-import { useCart } from '@/stores/useCart'; // Import the custom cart hook
-
+import { useCartStore } from '@/stores/useCart'; 
 const {
   cartItems,
   totalCartPrice, 
   removeFromCart,
   checkAuthentication,
-} = useCart(); 
+} = useCartStore(); 
 
 // Check authentication and fetch cart items on component mount
 onMounted(() => {

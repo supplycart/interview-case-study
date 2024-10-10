@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\CartItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -54,7 +55,32 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userId = Auth::id();
+        $productId = $request->input('product_id');
+        $quantity = $request->input('quantity', 1); // Default to 1 if not provided
+
+        // Find or create a cart for the user
+        $cart = Cart::firstOrCreate(['user_id' => $userId]);
+
+        // Check if the product is already in the cart
+        $cartItem = CartItem::where('cart_id', $cart->id)
+                            ->where('product_id', $productId)
+                            ->first();
+
+        if ($cartItem) {
+            // If the product is already in the cart, update the quantity
+            $cartItem->quantity += $quantity;
+        } else {
+            // If the product is not in the cart, create a new cart item
+            $cartItem = new CartItem();
+            $cartItem->cart_id = $cart->id;
+            $cartItem->product_id = $productId;
+            $cartItem->quantity = $quantity;
+        }
+
+        $cartItem->save();
+
+        return response()->json(['message' => 'Product added to cart successfully.'], 200);
     }
 
     /**

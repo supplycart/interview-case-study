@@ -24,7 +24,6 @@ class CartItemSeeder extends Seeder
                     'cart_id' => $cart->id,
                     'product_id' => $product->id,
                     'quantity' => rand(1, 5), // Random quantity
-                    'price' => $product->price, // Use the product price at the time
                 ]);
             }
         });

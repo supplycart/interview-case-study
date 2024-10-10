@@ -18,7 +18,6 @@ class CreateCartItemsTable extends Migration
             $table->unsignedBigInteger('cart_id'); // Link to the cart
             $table->unsignedBigInteger('product_id'); // Link to the product
             $table->integer('quantity'); // Quantity of the product in the cart
-            $table->decimal('price', 10, 2); // Price at the time of adding to cart
             $table->timestamps();
 
             // Foreign key constraints
