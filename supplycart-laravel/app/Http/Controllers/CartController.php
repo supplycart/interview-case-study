@@ -15,7 +15,15 @@ class CartController extends Controller
         // Get the cart for the authenticated user, along with its items and products
         $cart = Cart::with('items.product')->where('user_id', Auth::id())->first();
 
-        if ($cart) {
+        // If the cart is not found, return an empty structure
+        if (!$cart) {
+            $cart = [
+                'id' => null,
+                'user_id' => Auth::id(),
+                'items' => [],
+                'total_price' => 0.00, // Total price is 0 for an empty cart
+            ];
+        } else {
             $totalPrice = 0;
 
             // Loop through the items and compute subtotal and total price
@@ -28,11 +36,9 @@ class CartController extends Controller
 
             // Add the total price of the cart to the response
             $cart->total_price = round($totalPrice, 2);
-
-            return response()->json($cart);
         }
 
-        return response()->json(['message' => 'Cart not found'], 404);
+        return response()->json($cart);
     }
 
     /**
