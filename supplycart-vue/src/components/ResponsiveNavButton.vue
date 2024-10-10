@@ -2,10 +2,6 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  to: {
-    type: [String, Object],
-    required: true,
-  },
   active: {
     type: Boolean,
   },
@@ -19,7 +15,7 @@ const classes = computed(() =>
 </script>
 
 <template>
-  <RouterLink :to="to" :class="classes">
+  <button :class="classes">
     <slot />
-  </RouterLink>
+  </button>
 </template>

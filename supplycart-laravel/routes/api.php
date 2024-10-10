@@ -21,9 +21,13 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/products', [ProductController::class, 'index']);
+Route::middleware([])->group(function () {;
+    Route::get('/products', [ProductController::class, 'index']);
+});
 
-Route::get('/cart', [CartController::class, 'index']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/cart', [CartController::class, 'index']);
 
-Route::get('/orders', [OrderController::class, 'index']);
-Route::post('/orders', [OrderController::class, 'store']);
+    Route::get('/orders', [OrderController::class, 'index']);
+    Route::post('/orders', [OrderController::class, 'store']);
+});

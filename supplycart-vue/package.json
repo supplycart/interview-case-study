@@ -16,10 +16,17 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@iconify/vue": "^4.1.2",
+    "@react-icons/all-files": "^4.1.0",
     "@types/vue": "^1.0.31",
     "@vueuse/core": "^11.1.0",
     "axios": "^1.7.7",
+    "hugeicons-vue": "^0.0.1",
     "pinia": "^2.1.7",
+    "react-icons": "^5.3.0",
     "vue": "^3.4.29",
     "vue-router": "^4.4.5"
   },

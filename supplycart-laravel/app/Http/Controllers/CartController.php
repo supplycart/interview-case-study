@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
     // Return the cart for the authenticated user
     public function index()
     {
+        Log::info('Auth::id()', Auth::id());
         // Get the cart for the authenticated user, along with its items and products
         $cart = Cart::with('items.product')->where('user_id', Auth::id())->first();
 

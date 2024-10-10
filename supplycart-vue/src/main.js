@@ -1,16 +1,23 @@
-import { createApp, markRaw } from 'vue'
+import './assets/main.css'
+
+import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+
 import App from './App.vue'
 import router from './router'
-import './index.css'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons'
+
+// Add the icons to the library
+library.add(faShoppingCart, faUser)
 
 const app = createApp(App)
-const pinia = createPinia()
 
-app.use(
-    pinia.use(({ store }) => {
-        store.router = markRaw(router)
-    }),
-)
+// Register FontAwesome component globally
+app.component('font-awesome-icon', FontAwesomeIcon)
+
+app.use(createPinia())
 app.use(router)
+
 app.mount('#app')

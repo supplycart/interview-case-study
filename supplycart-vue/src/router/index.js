@@ -1,192 +1,73 @@
-import { createWebHistory, createRouter } from 'vue-router'
-import { useUsers } from '@/stores/user'
-import Welcome from '@/pages/Welcome.vue'
-import PageNotFound from '@/pages/errors/404.vue'
-import Dashboard from '@/pages/Dashboard.vue'
-import Login from '@/pages/auth/Login.vue'
-import Register from '@/pages/auth/Register.vue'
-import ForgotPassword from '@/pages/auth/ForgotPassword.vue'
-import ResetPassword from '@/pages/auth/ResetPassword.vue'
-import VerifyEmail from '@/pages/auth/VerifyEmail.vue'
-// import Products from '@pages/Products.vue'
-
-const APP_NAME = import.meta.env.VITE_APP_NAME
-
-const routes = [
-    {
-        path: '/',
-        name: 'welcome',
-        component: Welcome,
-        meta: {
-            title: 'Welcome',
-            metaTags: [
-                {
-                    name: 'Welcome',
-                    content:
-                        'An application / authentication starter kit frontend in Vue.js 3 for Laravel Breeze.',
-                },
-                {
-                    property: 'og:Welcome',
-                    content:
-                        'An application / authentication starter kit frontend in Vue.js 3 for Laravel Breeze.',
-                },
-            ],
-        },
-    },
-
-    // {
-    //     path: '/',
-    //     name: 'products',
-    //     component: Products,
-    // },
-    {
-        path: '/',
-        redirect: '/',
-        component: Welcome,
-        query: {
-            verified: 'verified',
-        },
-        meta: {
-            guard: 'auth',
-        },
-    },
-    {
-        path: '/dashboard',
-        name: 'dashboard',
-        component: Dashboard,
-        meta: {
-            title: 'Dashboard',
-            guard: 'auth',
-        },
-    },
-    {
-        path: '/login',
-        name: 'login',
-        component: Login,
-        query: {
-            reset: 'reset',
-        },
-        meta: {
-            title: 'Log in',
-            guard: 'guest',
-        },
-    },
-    {
-        path: '/register',
-        name: 'register',
-        component: Register,
-        meta: {
-            title: 'Register',
-            guard: 'guest',
-        },
-    },
-    {
-        path: '/forgot-password',
-        name: 'forgot-password',
-        component: ForgotPassword,
-        meta: {
-            title: 'Forget Password',
-            guard: 'guest',
-        },
-    },
-    {
-        path: '/password-reset/:token',
-        name: 'password-reset',
-        component: ResetPassword,
-        query: {
-            email: 'email',
-        },
-        meta: {
-            title: 'Reset Password',
-            guard: 'guest',
-        },
-    },
-    {
-        path: '/verify-email',
-        name: 'verify-email',
-        component: VerifyEmail,
-        query: {
-            resend: 'resend',
-        },
-        meta: {
-            title: 'Email Verification',
-            guard: 'auth',
-        },
-    },
-    {
-        path: '/page-not-found',
-        name: 'page-not-found',
-        component: PageNotFound,
-        meta: {
-            title: 'Page Not Found',
-        },
-    },
-    {
-        path: '/:pathMatch(.*)*',
-        redirect: '/page-not-found',
-    },
-]
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from '../views/Home.vue'
+import { useAuthStore } from '../stores/auth'
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes,
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      meta: { title: 'Home', middleware: [] },
+      component: Home,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      meta: { title: 'Login', middleware: ['guest'] },
+      component: () => import('../views/auth/Login.vue'),
+    },
+    {
+      path: '/register',
+      name: 'register',
+      meta: { title: 'Register', middleware: ['guest'] },
+      component: () => import('../views/auth/Register.vue'),
+    },
+    {
+      path: '/forgot-password',
+      name: 'forgot-password',
+      meta: { title: 'Forgot Password', middleware: ['guest'] },
+      component: () => import('../views/auth/ForgotPassword.vue'),
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      meta: { title: 'Dashboard', middleware: ['auth', 'verified'] },
+      component: () => import('../views/Dashboard.vue'),
+    },
+    {
+      path: '/verify-email',
+      name: 'verify-email',
+      meta: { title: 'Email Verify', middleware: ['auth'] },
+      component: () => import('../views/auth/VerifyEmail.vue'),
+    },
+    {
+      path: '/password-reset/:token',
+      name: 'password-reset',
+      meta: { title: 'Password Reset', middleware: ['auth'] },
+      component: () => import('../views/auth/PasswordReset.vue'),
+    },
+  ],
 })
 
-// Navigation guard
+router.beforeEach(async (to, from, next) => {
+  document.title = to.meta.title + ' :: ' + import.meta.env.VITE_APP_NAME
 
-router.beforeEach((to, from, next) => {
-    const store = useUsers()
+  const auth = useAuthStore()
 
-    const auth = store.authUser
+  if (!auth.isLoggedIn) {
+    await auth.fetchUser()
+  }
 
-    if (to.matched.some(route => route.meta.guard === 'guest') && auth)
-        next({ name: 'welcome' })
-    else if (to.matched.some(route => route.meta.guard === 'auth') && !auth)
-        next({ name: 'login' })
-    else next()
-})
-
-// Page Title and Metadata
-
-router.beforeEach((to, from, next) => {
-    const nearestWithTitle = to.matched
-        .slice()
-        .reverse()
-        .find(r => r.meta && r.meta.title)
-
-    const nearestWithMeta = to.matched
-        .slice()
-        .reverse()
-        .find(r => r.meta && r.meta.metaTags)
-
-    if (nearestWithTitle) {
-        document.title = nearestWithTitle.meta.title + ' - ' + APP_NAME
-    } else {
-        document.title = APP_NAME
-    }
-
-    Array.from(document.querySelectorAll('[data-vue-router-controlled]')).map(
-        el => el.parentNode.removeChild(el),
-    )
-
-    if (!nearestWithMeta) return next()
-
-    nearestWithMeta.meta.metaTags
-        .map(tagDef => {
-            const tag = document.createElement('meta')
-
-            Object.keys(tagDef).forEach(key => {
-                tag.setAttribute(key, tagDef[key])
-            })
-
-            tag.setAttribute('data-vue-router-controlled', '')
-
-            return tag
-        })
-
-        .forEach(tag => document.head.appendChild(tag))
-
-    next()
+  if (to.meta.middleware.includes('guest') && auth.isLoggedIn) next({ name: 'dashboard' })
+  else if (
+    to.meta.middleware.includes('verified') &&
+    auth.isLoggedIn &&
+    !auth.user.email_verified_at
+  )
+    next({ name: 'dashboard' })
+  else if (to.meta.middleware.includes('auth') && !auth.isLoggedIn) next({ name: 'login' })
+  else next()
 })
 
 export default router
