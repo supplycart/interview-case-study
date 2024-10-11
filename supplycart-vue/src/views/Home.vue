@@ -2,24 +2,34 @@
 import { onMounted } from 'vue';
 import { useProductsStore } from '@/stores/useProducts'; 
 import { useCartStore } from '@/stores/useCart'; 
+import { useAuthStore } from '@/stores/auth'; // Import the auth store for checking authentication
+import { useRouter } from 'vue-router'; // Import the Vue router
 
 const productsStore = useProductsStore();
 const cartStore = useCartStore();
+const authStore = useAuthStore(); // Use the auth store to check login status
+const router = useRouter(); // Use router for redirection
 
 // Fetch products when the component is mounted
 onMounted(() => {
   productsStore.fetchProducts();
 });
 
-// Add a product to the cart
+// Add a product to the cart or redirect to login if user is not authenticated
 const handleAddToCart = (productId) => {
-  cartStore.addToCart(productId)
-    .then(() => {
-      alert('Product added to cart successfully!');
-    })
-    .catch((error) => {
-      console.error('Error adding product to cart:', error);
-    });
+  if (!authStore.isLoggedIn) {
+    // Redirect to login if the user is not logged in
+    router.push({ name: 'login' });
+  } else {
+    // Add product to cart if the user is logged in
+    cartStore.addToCart(productId)
+      .then(() => {
+        alert('Product added to cart successfully!');
+      })
+      .catch((error) => {
+        console.error('Error adding product to cart:', error);
+      });
+  }
 };
 </script>
 

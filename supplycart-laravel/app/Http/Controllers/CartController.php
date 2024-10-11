@@ -110,8 +110,37 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cart $cart)
+    public function destroy($productId)
     {
-        //
+        $userId = Auth::id();
+
+        // Get the cart for the authenticated user
+        $cart = Cart::where('user_id', $userId)->first();
+
+        if (!$cart) {
+            return response()->json(['message' => 'Cart not found.'], 404);
+        }
+
+        // Find the cart item by product ID
+        $cartItem = CartItem::where('cart_id', $cart->id)
+                            ->where('product_id', $productId)
+                            ->first();
+
+        if (!$cartItem) {
+            return response()->json(['message' => 'Product not found in the cart.'], 404);
+        }
+
+        // Reduce the quantity of the cart item
+        if ($cartItem->quantity > 1) {
+            $cartItem->quantity -= 1;
+            $cartItem->save();
+
+            return response()->json(['message' => 'Product quantity reduced successfully.', 'quantity' => $cartItem->quantity], 200);
+        } else {
+            // If quantity is 1, remove the item from the cart
+            $cartItem->delete();
+
+            return response()->json(['message' => 'Product removed from cart successfully.'], 200);
+        }
     }
 }

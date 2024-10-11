@@ -26,7 +26,7 @@ const handleLogout = () => {
       <RouterLink to="/cart" class="relative">
         <font-awesome-icon icon="shopping-cart" class="text-2xl" />
         <!-- Optional: Cart item count (if you track cart items) -->
-        <span class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-2 text-xs">3</span>
+        <!-- <span class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-2 text-xs">3</span> -->
       </RouterLink>
 
       <!-- User Icon/Authentication -->
