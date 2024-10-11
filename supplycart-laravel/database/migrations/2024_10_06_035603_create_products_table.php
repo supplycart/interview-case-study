@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price', 10, 2);
             $table->string('image_url')->nullable(); // Optional image URL
             $table->integer('stock')->nullable(); // Optional stock count
+            $table->enum('category', ['Electronics', 'Fashion', 'Beauty', 'Home', 'Sports'])->default('Electronics');
             $table->timestamps();
         });
     }

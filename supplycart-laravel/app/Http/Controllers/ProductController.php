@@ -15,10 +15,12 @@ class ProductController extends Controller
     {
         $products = Product::all();
         $brands = Brand::all();
+        $categories = Product::CATEGORIES;
 
         return response()->json([
             'products' => $products,
             'brands' => $brands,
+            'categories' => $categories,
         ]);
     }
 

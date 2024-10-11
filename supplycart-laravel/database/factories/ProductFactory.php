@@ -16,6 +16,8 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $categories = Product::CATEGORIES;
+
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
@@ -24,6 +26,7 @@ class ProductFactory extends Factory
             'stock' => $this->faker->numberBetween(1, 100),
             'created_at' => now(),
             'updated_at' => now(),
+            'category' => $categories[array_rand($categories)],
             'brand_id' => rand(1, 5)
         ];
     }
