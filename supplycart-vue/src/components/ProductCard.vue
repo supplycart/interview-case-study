@@ -62,20 +62,28 @@ const handleAddToCart = () => {
 <template>
   <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-200 p-6 border flex flex-col h-full">
     <!-- Show checkbox if needed -->
-    <input 
-      v-if="showCheckbox" 
-      type="checkbox" 
-      class="mb-4"
-      :checked="checked"
-      @change="onCheckboxChange && onCheckboxChange()"
-    />
+    <div>
+        <input 
+            v-if="showCheckbox" 
+            type="checkbox" 
+            class="mb-4"
+            :checked="checked"
+            @change="onCheckboxChange && onCheckboxChange()"
+        />
+    </div>
 
     <img :src="product.image_url" alt="Product Image" class="w-full h-40 object-cover rounded-md mb-4">
-    
+
     <div class="flex-grow">
       <h3 class="text-lg font-semibold text-gray-700">{{ product.name }}</h3>
       <p class="text-sm text-gray-500 mt-1">{{ product.description }}</p>
       <p class="text-lg font-bold text-gray-900 mt-4">RM {{ product.price }}</p>
+    </div>
+
+    <!-- Brand and Category Tags -->
+    <div class="flex space-x-2 mt-2">
+      <span class="text-xs font-semibold text-white bg-gray-600 px-2 py-1 rounded-sm">{{ product?.brand?.name }}</span>
+      <span class="text-xs font-semibold text-white bg-blue-600 px-2 py-1 rounded-full">{{ product?.category }}</span>
     </div>
 
     <!-- Show quantity controls and subtotal if inCart is true -->
@@ -106,4 +114,3 @@ const handleAddToCart = () => {
     </PrimaryButton>
   </div>
 </template>
-

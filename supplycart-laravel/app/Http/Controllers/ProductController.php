@@ -13,7 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        // Eager load the 'brand' relationship for all products
+        $products = Product::with('brand')->get();
         $brands = Brand::all();
         $categories = Product::CATEGORIES;
 

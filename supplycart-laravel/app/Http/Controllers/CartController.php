@@ -14,7 +14,7 @@ class CartController extends Controller
     public function index()
     {
         // Get the cart for the authenticated user, along with its items and products
-        $cart = Cart::with('items.product')->where('user_id', Auth::id())->first();
+        $cart = Cart::with('items.product', 'items.product.brand')->where('user_id', Auth::id())->first();
 
         // If the cart is not found, return an empty structure
         if (!$cart) {
