@@ -16,10 +16,13 @@ class OrderFactory extends Factory
      */
     public function definition()
     {
+        // Define the possible status values
+        $statuses = ['To Pay', 'To Ship', 'To Receive', 'Completed', 'Cancelled', 'Return Refund'];
+
         return [
             'user_id' => rand(1, 2),
             'total_price' => $this->faker->randomFloat(2, 50, 500),
-            'status' => 'pending',
+            'status' => $statuses[array_rand($statuses)], // Select a random status from the array
             'date' => now(),
             'created_at' => now(),
             'updated_at' => now(),

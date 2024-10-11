@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->decimal('total_price', 10, 2);
-            $table->string('status')->default('pending'); // Order status
+            $table->enum('status', ['To Pay', 'To Ship', 'To Receive', 'Completed', 'Cancelled', 'Return Refund'])->default('To Pay');
             $table->timestamp('date')->useCurrent(); // Order date
             $table->timestamps();
 
