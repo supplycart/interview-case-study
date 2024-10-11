@@ -8,7 +8,7 @@ const productsStore = useProductsStore();
 const selectedBrand = ref(null);
 const selectedCategory = ref(null);
 const availableBrands = computed(() => productsStore.brands); // Use computed for available brands
-const categories = ref([]); 
+const availableCategories = computed(() => productsStore.categories); // Use computed for available categories
 
 onMounted(async () => {
   await productsStore.fetchProducts(); // Fetch products, brands, and categories data
@@ -18,7 +18,7 @@ onMounted(async () => {
 const filteredProducts = computed(() => {
   return productsStore.products.filter(product => {
     const brandMatches = !selectedBrand.value || product.brand_id === selectedBrand.value;
-    const categoryMatches = !selectedCategory.value || product.category_num === selectedCategory.value;
+    const categoryMatches = !selectedCategory.value || product.category === selectedCategory.value;
     return brandMatches && categoryMatches;
   });
 });
@@ -46,8 +46,8 @@ const filteredProducts = computed(() => {
         <label for="category" class="block font-medium text-gray-700">Category</label>
         <select id="category" v-model="selectedCategory" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md">
           <option :value="null">All Categories</option>
-          <option v-for="category in categories" :key="category" :value="category">
-            Category {{ category }}
+          <option v-for="category in availableCategories" :key="category" :value="category">
+            {{ category }}
           </option>
         </select>
       </div>
