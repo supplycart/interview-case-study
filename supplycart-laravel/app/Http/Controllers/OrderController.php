@@ -17,7 +17,15 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return Order::with('items.product')->get();
+        $userId = auth()->id();
+        $orders = Order::with('items.product') // Eager load order items and products
+                        ->where('user_id', $userId)
+                        ->orderBy('date', 'desc')
+                        ->get();
+
+        return response()->json([
+            'orders' => $orders,
+        ]);
     }
 
     /**
