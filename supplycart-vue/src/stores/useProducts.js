@@ -4,6 +4,7 @@ import axios from '@/utils/axios';
 
 export const useProductsStore = defineStore('products', () => {
   const products = ref([]);
+  const brands = ref([]);
   const loading = ref(false);
   const error = ref(null);
 
@@ -12,7 +13,8 @@ export const useProductsStore = defineStore('products', () => {
     error.value = null;
     try {
       const response = await axios.get('/api/products');
-      products.value = response.data;
+      products.value = response.data.products;
+      brands.value = response.data.brands; 
     } catch (err) {
       error.value = 'Error fetching products.';
     } finally {
@@ -22,6 +24,7 @@ export const useProductsStore = defineStore('products', () => {
 
   return {
     products,
+    brands, 
     loading,
     error,
     fetchProducts,

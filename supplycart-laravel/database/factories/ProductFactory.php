@@ -24,6 +24,7 @@ class ProductFactory extends Factory
             'stock' => $this->faker->numberBetween(1, 100),
             'created_at' => now(),
             'updated_at' => now(),
+            'brand_id' => rand(1, 5)
         ];
     }
 }
