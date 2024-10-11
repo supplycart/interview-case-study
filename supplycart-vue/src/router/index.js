@@ -10,7 +10,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      meta: { title: 'Home', middleware: [] },
+      meta: { title: 'Home', middleware: [] }, // Allow users to browse product listing without login
       component: Home,
     },
     {
@@ -52,13 +52,13 @@ const router = createRouter({
     {
       path: '/cart',
       name: 'cart',
-      meta: { title: 'Cart', middleware: [] },
+      meta: { title: 'Cart', middleware: ['auth'] },  // Requires auth middleware or else will redirect to login
       component: Cart,
     },
     {
       path: '/order-history',
       name: 'orderhistory',
-      meta: { title: 'Order History', middleware: [] },
+      meta: { title: 'Order History', middleware: ['auth'] },  // Requires auth middleware or else will redirect to login
       component: OrderHistory,
     },
   ],
@@ -69,19 +69,22 @@ router.beforeEach(async (to, from, next) => {
 
   const auth = useAuthStore()
 
+  // Fetch user info if not logged in yet
   if (!auth.isLoggedIn) {
     await auth.fetchUser()
   }
 
-  if (to.meta.middleware.includes('guest') && auth.isLoggedIn) next({ name: 'dashboard' })
-  else if (
-    to.meta.middleware.includes('verified') &&
-    auth.isLoggedIn &&
-    !auth.user.email_verified_at
-  )
-    next({ name: 'dashboard' })
-  else if (to.meta.middleware.includes('auth') && !auth.isLoggedIn) next({ name: 'login' })
-  else next()
+  // Check if route requires auth and user is not logged in
+  if (to.meta.middleware.includes('auth') && !auth.isLoggedIn) {
+    return next({ name: 'login' }) // Redirect to login if not authenticated
+  }
+
+  // Redirect logged-in users away from guest routes (e.g., login/register)
+  if (to.meta.middleware.includes('guest') && auth.isLoggedIn) {
+    return next({ name: 'home' }) // Redirect logged-in users to dashboard
+  }
+
+  next() // Proceed to the route if everything is valid
 })
 
 export default router
