@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -31,23 +35,50 @@ class OrderController extends Controller
             'items' => 'required|array',
         ]);
 
+        $totalPrice = 0; // Initialize total price
+
+        // Create an order
         $order = Order::create([
-            'user_id' => auth()->id(), // or another way to retrieve user_id
-            'total_price' => collect($orderData['items'])->sum(fn($item) => $item['price'] * $item['quantity']),
+            'user_id' => auth()->id(), // Get the authenticated user ID
+            'total_price' => 0, // We will update this after calculating the total price
             'status' => 'pending',
             'date' => now(),
         ]);
 
+        // Loop through each item and create OrderItem, while calculating the total price from DB
         foreach ($orderData['items'] as $item) {
+            $product = Product::find($item['product_id']); // Retrieve the product from the database
+
+            if (!$product) {
+                return response()->json(['message' => 'Product not found'], 404); // Handle product not found
+            }
+
+            $itemPrice = $product->price; // Fetch the product price from DB
+            $itemQuantity = $item['quantity']; // Quantity from the request
+
+            // Add the subtotal for this item to the total price
+            $totalPrice += $itemPrice * $itemQuantity;
+
+            // Create an order item
             OrderItem::create([
                 'order_id' => $order->id,
-                'product_id' => $item['product_id'],
-                'quantity' => $item['quantity'],
-                'price' => $item['price'],
+                'product_id' => $product->id,
+                'quantity' => $itemQuantity,
+                'price' => $itemPrice, // Save the product price from DB
             ]);
+
+            // Remove item from cart after order is placed
+            CartItem::where('cart_id', auth()->user()->cart->id)
+                ->where('product_id', $product->id)
+                ->delete();
         }
 
-        return response()->json(['message' => 'Order created successfully']);
+        // Update the order with the calculated total price
+        $order->update([
+            'total_price' => $totalPrice,
+        ]);
+
+        return response()->json(['message' => 'Order created successfully', 'order_id' => $order->id]);
     }
 
     /**

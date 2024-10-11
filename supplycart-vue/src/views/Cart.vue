@@ -2,6 +2,7 @@
 import { onMounted, ref, watch } from 'vue';
 import { useCartStore } from '@/stores/useCart'; 
 import ProductCard from '@/components/ProductCard.vue'; // Import the ProductCard component
+import axios from '@/utils/axios'; // Import axios for making API requests
 
 const loading = ref(true);  // Track loading state
 const cartStore = useCartStore();
@@ -30,19 +31,31 @@ const updateQuantity = (item, change) => {
 
 // Handle checkbox selection for checkout
 const handleCheckboxChange = (item) => {
-  const index = selectedItems.value.indexOf(item.product_id);
+  const index = selectedItems.value.findIndex(selected => selected.product_id === item.product_id);
   if (index === -1) {
-    selectedItems.value.push(item.product_id);
+    selectedItems.value.push({ ...item });
   } else {
     selectedItems.value.splice(index, 1);
   }
 };
 
 // Proceed to checkout with selected items
-const proceedToCheckout = () => {
+const proceedToCheckout = async () => {
   if (selectedItems.value.length > 0) {
-    console.log('Proceeding to checkout with:', selectedItems.value);
-    // Handle checkout logic here (e.g., redirect to checkout page)
+    try {
+      const response = await axios.post('/api/orders', { items: selectedItems.value });
+      alert('Order placed successfully! Order ID: ' + response.data.order_id);
+      
+      // Refetch cart data to update the cart (after items have been removed)
+      await cartStore.fetchCartItems();
+
+      // Optionally, reset selectedItems array and redirect to an order confirmation page
+      selectedItems.value = [];
+      // router.push({ name: 'order-confirmation', params: { orderId: response.data.order_id } }); // Example of redirecting to order confirmation page
+    } catch (error) {
+      console.error('Error placing order:', error);
+      alert('Failed to place order.');
+    }
   } else {
     alert('Please select items to proceed to checkout.');
   }
@@ -66,24 +79,27 @@ const proceedToCheckout = () => {
         :quantity="item.quantity"
         :subtotal="item.subtotal"
         :showCheckbox="true"
-        :checked="selectedItems.includes(item.product_id)"
+        :checked="selectedItems.some(selected => selected.product_id === item.product_id)"
         :onCheckboxChange="() => handleCheckboxChange(item)"
         :updateQuantity="(change) => updateQuantity(item, change)"
       />
     </div>
 
-    <!-- Display total price from backend -->
-    <div v-if="cartStore.cartItems.length > 0" class="mt-6">
-      <h2 class="text-2xl font-bold text-gray-800">Total: RM {{ cartStore.totalPrice }}</h2>
+    <!-- Display total price for selected items -->
+    <div v-if="selectedItems.length > 0" class="mt-6">
+      <h2 class="text-2xl font-bold text-gray-800">
+        Total: RM {{ selectedItems.reduce((total, item) => total + (item.quantity * item.product.price), 0).toFixed(2) }}
+      </h2>
       <button 
         @click="proceedToCheckout"
         class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
       >
-        Proceed to Checkout
+        Place Order
       </button>
     </div>
 
-    <!-- Message if cart is empty -->
-    <div v-else class="text-center text-gray-600 mt-8">Your cart is empty.</div>
+    <!-- Message if no items are selected for checkout -->
+    <div v-else class="text-center text-gray-600 mt-8">Please select items to place your order.</div>
   </div>
 </template>
+
