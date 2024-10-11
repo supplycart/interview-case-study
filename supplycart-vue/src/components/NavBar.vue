@@ -41,7 +41,7 @@ const handleLogout = () => {
         <Dropdown v-if="isAuthenticated" align="right" width="48">
           <!-- Trigger for dropdown: User icon and name -->
           <template #trigger>
-            <div class="flex items-center space-x-1 cursor-pointer">
+            <div class="flex items-center space-x-2 cursor-pointer">
               <font-awesome-icon :icon="faUser" class="text-xl" />
               <span class="text-sm font-medium">{{ userName }}</span>
             </div>
