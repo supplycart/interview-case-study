@@ -1,11 +1,14 @@
 <script setup>
 import { onMounted, ref, computed } from 'vue';
-import axios from '@/utils/axios'; 
+import axios from '@/utils/axios';
+import OrderCard from '@/components/OrderCard.vue'; // Import order card component
+import Loading from '@/components/Loading.vue'; // Import loading component
+import Error from '@/components/Error.vue'; // Import error component
 
-const orders = ref([]); // Store all orders
+const orders = ref([]);
 const loading = ref(true);
 const error = ref(null);
-const activeStatus = ref('To Pay'); // Default active status
+const activeStatus = ref('To Pay');
 const statuses = ['To Pay', 'To Ship', 'To Receive', 'Completed', 'Cancelled', 'Return Refund'];
 
 // Fetch all orders from the backend
@@ -54,32 +57,18 @@ const filteredOrders = computed(() => {
     </div>
 
     <!-- Loading state -->
-    <div v-if="loading" class="text-center text-gray-600">Loading order history...</div>
+    <Loading v-if="loading" />
 
     <!-- Error state -->
-    <div v-if="error" class="text-center text-red-600">{{ error }}</div>
+    <Error v-if="error" :error="error" />
 
     <!-- Display orders -->
     <div v-if="filteredOrders.length > 0" class="space-y-4">
-      <div
-        v-for="order in filteredOrders"
-        :key="order.id"
-        class="bg-white shadow-md p-4 rounded-lg"
-      >
-        <h2 class="text-xl font-bold text-gray-700">Order ID: {{ order.id }}</h2>
-        <p class="text-gray-600">Total: RM {{ order.total_price }}</p>
-        <p class="text-gray-500">Date: {{ new Date(order.date).toLocaleDateString() }}</p>
-        <ul class="mt-2 space-y-2">
-          <li
-            v-for="item in order.items"
-            :key="item.id"
-            class="flex justify-between items-center"
-          >
-            <span>{{ item.product.name }} (x{{ item.quantity }})</span>
-            <span>RM {{ item.price * item.quantity }}</span>
-          </li>
-        </ul>
-      </div>
+        <OrderCard 
+            v-for="order in filteredOrders" 
+            :key="order.id" 
+            :order="order" 
+        />
     </div>
 
     <!-- No orders -->
