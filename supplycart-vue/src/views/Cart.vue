@@ -2,7 +2,7 @@
 import { onMounted, ref, watch } from 'vue';
 import { useCartStore } from '@/stores/useCart'; 
 import ProductCard from '@/components/ProductCard.vue'; // Import the ProductCard component
-import axios from '@/utils/axios'; // Import axios for making API requests
+import axios from '@/utils/axios';
 
 const loading = ref(true);  // Track loading state
 const cartStore = useCartStore();
@@ -35,15 +35,12 @@ const handleCheckboxChange = (item) => {
 
 // Handle quantity update
 const updateQuantity = async (item, change) => {
-  const newQuantity = item.quantity + change;
-  if (newQuantity > 0) {
-    // Update the quantity by calling the cart store
-    await cartStore.addToCart(item.product_id, change);
-    
-    // After updating the quantity, refetch cart items with the selected item IDs to get the updated total price
-    const selectedItemIds = selectedItems.value.map(selectedItem => selectedItem.product_id);
-    await cartStore.fetchCartItems(selectedItemIds); // Fetch cart items with selected items
-  }
+  // Update the quantity or remove the item if quantity reaches zero
+  await cartStore.addToCart(item.product_id, change);
+
+  // Refetch the cart items with the selected item IDs to get the updated total price
+  const selectedItemIds = selectedItems.value.map(selectedItem => selectedItem.product_id);
+  await cartStore.fetchCartItems(selectedItemIds);
 };
 
 // Proceed to checkout with selected items
@@ -56,7 +53,6 @@ const proceedToCheckout = async () => {
       // Refetch cart data to update the cart (after items have been removed)
       await cartStore.fetchCartItems();
 
-      // Optionally, reset selectedItems array and redirect to an order confirmation page
       selectedItems.value = [];
     } catch (error) {
       console.error('Error placing order:', error);

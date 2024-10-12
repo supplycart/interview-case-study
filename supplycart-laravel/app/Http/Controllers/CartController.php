@@ -76,17 +76,26 @@ class CartController extends Controller
         if ($cartItem) {
             // If the product is already in the cart, update the quantity
             $cartItem->quantity += $quantity;
+
+            // If the quantity is 0 or less, remove the item from the cart
+            if ($cartItem->quantity <= 0) {
+                $cartItem->delete();
+                return response()->json(['message' => 'Product removed from cart.'], 200);
+            }
         } else {
-            // If the product is not in the cart, create a new cart item
-            $cartItem = new CartItem();
-            $cartItem->cart_id = $cart->id;
-            $cartItem->product_id = $productId;
-            $cartItem->quantity = $quantity;
+            // If the product is not in the cart, and the quantity is positive, create a new cart item
+            if ($quantity > 0) {
+                $cartItem = new CartItem();
+                $cartItem->cart_id = $cart->id;
+                $cartItem->product_id = $productId;
+                $cartItem->quantity = $quantity;
+                $cartItem->save();
+            }
         }
 
         $cartItem->save();
 
-        return response()->json(['message' => 'Product added to cart successfully.'], 200);
+        return response()->json(['message' => 'Cart updated successfully.'], 200);
     }
 
     /**
