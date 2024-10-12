@@ -49,7 +49,7 @@ class OrderController extends Controller
         $order = Order::create([
             'user_id' => auth()->id(), // Get the authenticated user ID
             'total_price' => 0, // We will update this after calculating the total price
-            'status' => 'pending',
+            'status' => 'To Ship', // Set order status to: To Ship
             'date' => now(),
         ]);
 
