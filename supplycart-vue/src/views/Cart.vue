@@ -9,33 +9,40 @@ const cartStore = useCartStore();
 const selectedItems = ref([]);  // Track selected items for checkout
 
 onMounted(async () => {
-  await cartStore.fetchCartItems(); // Fetch cart items and total price from the backend
+  await cartStore.fetchCartItems(); // Fetch cart items from the backend
   loading.value = false; // Set loading to false after data is fetched
 });
 
-// Watch for changes in cartItems and log for debugging
+// Watch for changes in selected items and refetch the total price
 watch(
-  () => cartStore.cartItems, 
-  (newCartItems) => {
-    console.log('Cart items updated:', newCartItems);
+  selectedItems, 
+  async (newSelectedItems) => {
+    // Send the selected item IDs to the backend to get the updated total price
+    const selectedItemIds = newSelectedItems.map(item => item.product_id);
+    await cartStore.fetchCartItems(selectedItemIds); // Fetch cart items with selected items
   }
 );
 
-// Handle quantity update
-const updateQuantity = (item, change) => {
-  const newQuantity = item.quantity + change;
-  if (newQuantity > 0) {
-    cartStore.addToCart(item.product_id, change);
+// Handle checkbox selection for checkout
+const handleCheckboxChange = (item) => {
+  const foundIndex = selectedItems.value.findIndex(selected => selected.product_id === item.product_id);
+  if (foundIndex === -1) {
+    selectedItems.value = [...selectedItems.value, { ...item }];
+  } else {
+    selectedItems.value = selectedItems.value.filter(selected => selected.product_id !== item.product_id);
   }
 };
 
-// Handle checkbox selection for checkout
-const handleCheckboxChange = (item) => {
-  const index = selectedItems.value.findIndex(selected => selected.product_id === item.product_id);
-  if (index === -1) {
-    selectedItems.value.push({ ...item });
-  } else {
-    selectedItems.value.splice(index, 1);
+// Handle quantity update
+const updateQuantity = async (item, change) => {
+  const newQuantity = item.quantity + change;
+  if (newQuantity > 0) {
+    // Update the quantity by calling the cart store
+    await cartStore.addToCart(item.product_id, change);
+    
+    // After updating the quantity, refetch cart items with the selected item IDs to get the updated total price
+    const selectedItemIds = selectedItems.value.map(selectedItem => selectedItem.product_id);
+    await cartStore.fetchCartItems(selectedItemIds); // Fetch cart items with selected items
   }
 };
 
@@ -51,7 +58,6 @@ const proceedToCheckout = async () => {
 
       // Optionally, reset selectedItems array and redirect to an order confirmation page
       selectedItems.value = [];
-      // router.push({ name: 'order-confirmation', params: { orderId: response.data.order_id } }); // Example of redirecting to order confirmation page
     } catch (error) {
       console.error('Error placing order:', error);
       alert('Failed to place order.');
@@ -81,14 +87,14 @@ const proceedToCheckout = async () => {
         :showCheckbox="true"
         :checked="selectedItems.some(selected => selected.product_id === item.product_id)"
         :onCheckboxChange="() => handleCheckboxChange(item)"
-        :updateQuantity="(change) => updateQuantity(item, change)"
+        :updateQuantity="(change) => updateQuantity(item, change)" 
       />
     </div>
 
     <!-- Display total price for selected items -->
     <div v-if="selectedItems.length > 0" class="mt-6">
       <h2 class="text-2xl font-bold text-gray-800">
-        Total: RM {{ selectedItems.reduce((total, item) => total + (item.quantity * item.product.price), 0).toFixed(2) }}
+        Total: RM {{ cartStore.totalPrice }}
       </h2>
       <button 
         @click="proceedToCheckout"
@@ -102,4 +108,3 @@ const proceedToCheckout = async () => {
     <div v-else class="text-center text-gray-600 mt-8">Please select items to place your order.</div>
   </div>
 </template>
-

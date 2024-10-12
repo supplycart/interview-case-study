@@ -11,33 +11,39 @@ use Illuminate\Support\Facades\Log;
 class CartController extends Controller
 {
     // Return the cart for the authenticated user
-    public function index()
+    public function index(Request $request)
     {
-        // Get the cart for the authenticated user, along with its items and products
+        // Get the cart for the authenticated user
         $cart = Cart::with('items.product', 'items.product.brand')->where('user_id', Auth::id())->first();
 
-        // If the cart is not found, return an empty structure
+        // Get the selected item IDs from the request (array of product IDs)
+        $selectedItemIds = $request->input('selected_items', []);
+
+        // If the cart is not found, return an empty cart structure
         if (!$cart) {
-            $cart = [
+            return response()->json([
                 'id' => null,
                 'user_id' => Auth::id(),
                 'items' => [],
-                'total_price' => 0.00, // Total price is 0 for an empty cart
-            ];
-        } else {
-            $totalPrice = 0;
+                'total_price' => 0.00
+            ]);
+        }
 
-            // Loop through the items and compute subtotal and total price
-            foreach ($cart->items as $item) {
-                // Compute subtotal for each item (price * quantity)
-                $item->subtotal = round($item->product->price * $item->quantity, 2);
-                // Accumulate total price
+        $totalPrice = 0;
+
+        // Loop through the cart items
+        foreach ($cart->items as $item) {
+            // Calculate the subtotal for each item (price * quantity)
+            $item->subtotal = round($item->product->price * $item->quantity, 2);
+
+            // If the item is selected, include it in the total price calculation
+            if (in_array($item->product_id, $selectedItemIds)) {
                 $totalPrice += $item->subtotal;
             }
-
-            // Add the total price of the cart to the response
-            $cart->total_price = round($totalPrice, 2);
         }
+
+        // Set the total price for the selected items
+        $cart->total_price = round($totalPrice, 2);
 
         return response()->json($cart);
     }

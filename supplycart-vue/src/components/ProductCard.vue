@@ -88,19 +88,21 @@ const handleAddToCart = () => {
 
     <!-- Show quantity controls and subtotal if inCart is true -->
     <div v-if="inCart" class="flex items-center mt-4">
-      <button 
+        <button 
         class="bg-gray-300 text-gray-900 px-2 py-1 rounded-md"
-        @click="updateQuantity && updateQuantity(-1)"
-      >
-        -
-      </button>
-      <span class="mx-4">{{ quantity }}</span>
-      <button 
-        class="bg-gray-300 text-gray-900 px-2 py-1 rounded-md"
-        @click="updateQuantity && updateQuantity(1)"
-      >
+        @click="() => updateQuantity && updateQuantity(1)"
+        >
         +
-      </button>
+        </button>
+        <span class="mx-4">{{ quantity }}</span>
+
+        <button 
+        class="bg-gray-300 text-gray-900 px-2 py-1 rounded-md"
+        @click="() => updateQuantity && updateQuantity(-1)"
+        >
+        -
+        </button>
+
       <p class="ml-4 text-lg font-bold">Subtotal: RM {{ subtotal }}</p>
     </div>
 
