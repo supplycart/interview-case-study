@@ -39,8 +39,11 @@ class OrderController extends Controller
     // Create a new order
     public function store(Request $request)
     {
+        // Validate the incoming items array
         $orderData = $request->validate([
-            'items' => 'required|array',
+            'items' => 'required|array|min:1', // Ensure the 'items' field is an array and not empty
+            'items.*.product_id' => 'required|integer|exists:products,id', // Each product ID must exist in the 'products' table
+            'items.*.quantity' => 'required|integer|min:1', // Quantity must be at least 1
         ]);
 
         $totalPrice = 0; // Initialize total price

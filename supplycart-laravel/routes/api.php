@@ -21,6 +21,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// No need to login to view products, just like ecommerce behaviour
 Route::middleware([])->group(function () {;
     Route::get('/products', [ProductController::class, 'index']);
 });
@@ -28,9 +29,7 @@ Route::middleware([])->group(function () {;
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/cart', [CartController::class, 'index']);
     Route::post('/cart', [CartController::class, 'store']);
-    Route::delete('/cart/{productId}', [CartController::class, 'destroy']);
 
-    // Route::get('/orders', [OrderController::class, 'index']);
     Route::get('/orders', [OrderController::class, 'index']);
     Route::post('/orders', [OrderController::class, 'store']);
 });

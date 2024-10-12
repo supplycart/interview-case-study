@@ -61,9 +61,15 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate product ID and quantity
+        $validatedData = $request->validate([
+            'product_id' => 'required|integer|exists:products,id', // Ensure the product ID exists
+            'quantity' => 'required|integer|min:0', // Quantity must be an integer and >= 0
+        ]);
+
         $userId = Auth::id();
-        $productId = $request->input('product_id');
-        $quantity = $request->input('quantity', 1); // Default to 1 if not provided
+        $productId = $validatedData['product_id'];
+        $quantity = $validatedData['quantity'];
 
         // Find or create a cart for the user
         $cart = Cart::firstOrCreate(['user_id' => $userId]);
@@ -127,35 +133,6 @@ class CartController extends Controller
      */
     public function destroy($productId)
     {
-        $userId = Auth::id();
-
-        // Get the cart for the authenticated user
-        $cart = Cart::where('user_id', $userId)->first();
-
-        if (!$cart) {
-            return response()->json(['message' => 'Cart not found.'], 404);
-        }
-
-        // Find the cart item by product ID
-        $cartItem = CartItem::where('cart_id', $cart->id)
-                            ->where('product_id', $productId)
-                            ->first();
-
-        if (!$cartItem) {
-            return response()->json(['message' => 'Product not found in the cart.'], 404);
-        }
-
-        // Reduce the quantity of the cart item
-        if ($cartItem->quantity > 1) {
-            $cartItem->quantity -= 1;
-            $cartItem->save();
-
-            return response()->json(['message' => 'Product quantity reduced successfully.', 'quantity' => $cartItem->quantity], 200);
-        } else {
-            // If quantity is 1, remove the item from the cart
-            $cartItem->delete();
-
-            return response()->json(['message' => 'Product removed from cart successfully.'], 200);
-        }
+        //
     }
 }
