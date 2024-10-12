@@ -27,7 +27,6 @@ export const useCartStore = defineStore('cart', () => {
     try {
       loading.value = true;
       await axios.post('/api/cart', { product_id: productId, quantity });
-      await fetchCartItems(); // Refresh cart after adding or updating the quantity
     } catch (error) {
       console.error('Error adding product to cart:', error);
     } finally {
