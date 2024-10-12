@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router';
 import { useAuthStore } from '../stores/auth'; 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faShoppingCart, faUser, faHistory } from '@fortawesome/free-solid-svg-icons';
-import Dropdown from '@/components/Dropdown.vue'; // Import Dropdown component
+import Dropdown from '@/components/Dropdown.vue'; 
 
 const authStore = useAuthStore();
 const isAuthenticated = computed(() => authStore.isLoggedIn);

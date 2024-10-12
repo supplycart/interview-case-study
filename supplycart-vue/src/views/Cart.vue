@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue';
 import { useCartStore } from '@/stores/useCart'; 
-import ProductCard from '@/components/ProductCard.vue'; // Import the ProductCard component
+import ProductCard from '@/components/ProductCard.vue'; 
 import axios from '@/utils/axios';
 
 const loading = ref(true);  // Track loading state

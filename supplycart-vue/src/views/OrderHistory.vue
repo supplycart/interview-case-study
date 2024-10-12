@@ -1,9 +1,10 @@
 <script setup>
 import { onMounted, ref, computed } from 'vue';
 import axios from '@/utils/axios';
-import OrderCard from '@/components/OrderCard.vue'; // Import order card component
-import Loading from '@/components/Loading.vue'; // Import loading component
-import Error from '@/components/Error.vue'; // Import error component
+import OrderCard from '@/components/OrderCard.vue';
+import Loading from '@/components/Loading.vue'; 
+import Error from '@/components/Error.vue';
+import StatusTabs from '@/components/StatusTabs.vue'; 
 
 const orders = ref([]);
 const loading = ref(true);
@@ -29,11 +30,6 @@ onMounted(() => {
   fetchOrderHistory();
 });
 
-// Handle tab click to filter orders based on status
-const handleStatusClick = (status) => {
-  activeStatus.value = status;
-};
-
 // Computed property to filter orders based on selected status
 const filteredOrders = computed(() => {
   return orders.value.filter(order => order.status === activeStatus.value);
@@ -45,16 +41,11 @@ const filteredOrders = computed(() => {
     <h1 class="text-3xl font-bold mb-6 text-gray-800">Order History</h1>
 
     <!-- Status Tabs -->
-    <div class="flex justify-between mb-6 border-b">
-      <button 
-        v-for="status in statuses" 
-        :key="status" 
-        @click="handleStatusClick(status)"
-        :class="['text-gray-600 px-4 py-2', activeStatus === status ? 'font-bold border-b-2 border-black' : '']"
-      >
-        {{ status }}
-      </button>
-    </div>
+    <StatusTabs
+      :statuses="statuses"
+      :activeStatus="activeStatus"
+      @update:activeStatus="activeStatus = $event"
+    />
 
     <!-- Loading state -->
     <Loading v-if="loading" />
@@ -64,11 +55,11 @@ const filteredOrders = computed(() => {
 
     <!-- Display orders -->
     <div v-if="filteredOrders.length > 0" class="space-y-4">
-        <OrderCard 
-            v-for="order in filteredOrders" 
-            :key="order.id" 
-            :order="order" 
-        />
+      <OrderCard 
+        v-for="order in filteredOrders" 
+        :key="order.id" 
+        :order="order" 
+      />
     </div>
 
     <!-- No orders -->
