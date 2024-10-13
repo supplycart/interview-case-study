@@ -61,26 +61,26 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate product ID and quantity
+        // Validate product ID and ensure quantity is either 1 or -1
         $validatedData = $request->validate([
             'product_id' => 'required|integer|exists:products,id', // Ensure the product ID exists
-            'quantity' => 'required|integer|min:0', // Quantity must be an integer and >= 0
+            'quantity' => 'required|integer|in:1,-1', // Quantity must be 1 or -1 (for + or - actions)
         ]);
 
         $userId = Auth::id();
         $productId = $validatedData['product_id'];
-        $quantity = $validatedData['quantity'];
+        $quantity = $validatedData['quantity']; // Either 1 or -1
 
         // Find or create a cart for the user
         $cart = Cart::firstOrCreate(['user_id' => $userId]);
 
-        // Check if the product is already in the cart
+        // Find the cart item with the given product ID in the user's cart
         $cartItem = CartItem::where('cart_id', $cart->id)
                             ->where('product_id', $productId)
                             ->first();
 
         if ($cartItem) {
-            // If the product is already in the cart, update the quantity
+            // Update the quantity of the existing cart item
             $cartItem->quantity += $quantity;
 
             // If the quantity is 0 or less, remove the item from the cart
@@ -88,20 +88,24 @@ class CartController extends Controller
                 $cartItem->delete();
                 return response()->json(['message' => 'Product removed from cart.'], 200);
             }
+
+            // Save the updated cart item
+            $cartItem->save();
+            return response()->json(['message' => 'Cart item updated successfully.'], 200);
         } else {
-            // If the product is not in the cart, and the quantity is positive, create a new cart item
+            // If the item doesn't exist and the quantity is positive, add it to the cart
             if ($quantity > 0) {
                 $cartItem = new CartItem();
                 $cartItem->cart_id = $cart->id;
                 $cartItem->product_id = $productId;
                 $cartItem->quantity = $quantity;
                 $cartItem->save();
+                return response()->json(['message' => 'Product added to cart successfully.'], 200);
             }
         }
 
-        $cartItem->save();
-
-        return response()->json(['message' => 'Cart updated successfully.'], 200);
+        // In case nothing is updated or added (e.g., invalid quantity)
+        return response()->json(['message' => 'Invalid quantity action.'], 400);
     }
 
     /**

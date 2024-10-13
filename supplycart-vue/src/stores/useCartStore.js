@@ -26,11 +26,13 @@ export const useCartStore = defineStore('cart', () => {
   const addToCart = async (productId, quantity = 1) => {
     try {
       loading.value = true;
-      await axios.post('/api/cart', { product_id: productId, quantity });
-      await fetchCartItems();
-      toast.success('Product added to cart successfully!');
+      const response = await axios.post('/api/cart', { product_id: productId, quantity });
+  
+      const successMessage = response.data?.message || 'Product added to cart successfully!';
+      toast.success(successMessage);
     } catch (err) {
-      toast.error(err.response?.data?.message || 'Error adding product to cart.');
+      const errorMessage = err.response?.data?.message || 'Error adding product to cart.';
+      toast.error(errorMessage);
     } finally {
       loading.value = false;
     }
