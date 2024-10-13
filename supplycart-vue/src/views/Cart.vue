@@ -3,13 +3,13 @@ import { onMounted, ref, watch } from 'vue';
 import { useCartStore } from '@/stores/useCartStore'; 
 import ProductCard from '@/components/ProductCard.vue';
 
-const loading = ref(true);  // Track loading state
+const loading = ref(true); 
 const cartStore = useCartStore();
-const selectedItems = ref([]);  // Track selected items for checkout
+const selectedItems = ref([]);  
 
 onMounted(async () => {
-  await cartStore.fetchCartItems(); // Fetch cart items from the backend
-  loading.value = false; // Set loading to false after data is fetched
+  await cartStore.fetchCartItems(); 
+  loading.value = false; 
 });
 
 // Watch for changes in selected items and refetch the total price
@@ -44,18 +44,8 @@ const updateQuantity = async (item, change) => {
 
 // Proceed to checkout with selected items
 const proceedToCheckout = async () => {
-  if (selectedItems.value.length > 0) {
-    try {
-      const data = await cartStore.checkout(selectedItems.value);
-      alert('Order placed successfully! Order ID: ' + data.order_id);
-      await cartStore.fetchCartItems();  // Refetch the cart after placing an order
-      selectedItems.value = [];
-    } catch (error) {
-      alert('Failed to place order.');
-    }
-  } else {
-    alert('Please select items to proceed to checkout.');
-  }
+  await cartStore.checkout(selectedItems.value);
+  selectedItems.value = [];
 };
 </script>
 

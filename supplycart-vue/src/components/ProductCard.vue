@@ -49,12 +49,6 @@ const handleAddToCart = () => {
     router.push({ name: 'login' });
   } else {
     cartStore.addToCart(props.product.id)
-      .then(() => {
-        alert('Product added to cart successfully!');
-      })
-      .catch((error) => {
-        console.error('Error adding product to cart:', error);
-      });
   }
 };
 </script>
