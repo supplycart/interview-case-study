@@ -50,8 +50,8 @@ class OrderController extends Controller
 
         // Create an order
         $order = Order::create([
-            'user_id' => auth()->id(), // Get the authenticated user ID
-            'total_price' => 0, // We will update this after calculating the total price
+            'user_id' => auth()->id(),
+            'total_price' => 0,
             'status' => 'To Ship', // Set order status to: To Ship
             'date' => now(),
         ]);
@@ -77,6 +77,16 @@ class OrderController extends Controller
                 'quantity' => $itemQuantity,
                 'price' => $itemPrice, // Save the product price from DB
             ]);
+
+            // Subtract the ordered quantity from product stock
+            $product->stock -= $itemQuantity;
+
+            // If stock becomes negative or zero, throw error
+            if ($product->stock < 0) {
+                return response()->json(['message' => 'Insufficient stock for product: ' . $product->name], 400);
+            }
+
+            $product->save(); // Save the updated product stock value
 
             // Remove item from cart after order is placed
             CartItem::where('cart_id', auth()->user()->cart->id)

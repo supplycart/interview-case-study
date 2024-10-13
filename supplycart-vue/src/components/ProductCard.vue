@@ -77,7 +77,8 @@ const handleAddToCart = () => {
     <div class="flex-grow">
       <h3 class="text-lg font-semibold text-gray-700">{{ product.name }}</h3>
       <p class="text-sm text-gray-500 mt-1">{{ product.description }}</p>
-      <p class="text-lg font-bold text-gray-900 mt-4">RM {{ product.price }}</p>
+      <p class="text-sm text-gray-500 mt-1">Stock Available: {{ product.stock }}</p>
+      <p class="text-lg font-bold text-gray-900 mt-3">RM {{ product.price }}</p>
     </div>
 
     <!-- Brand and Category Tags -->
