@@ -17,6 +17,7 @@ export const useCartStore = defineStore('cart', () => {
       totalPrice.value = response.data.total_price; // Set total price from the backend
     } catch (error) {
       console.error('Error fetching cart items:', error);
+      error.value = 'Error fetching cart items.';
     } finally {
       loading.value = false;
     }
@@ -27,20 +28,33 @@ export const useCartStore = defineStore('cart', () => {
     try {
       loading.value = true;
       await axios.post('/api/cart', { product_id: productId, quantity });
+      await fetchCartItems(); // Refetch cart items after updating the cart
     } catch (error) {
       console.error('Error adding product to cart:', error);
+      error.value = 'Error adding product to cart.';
     } finally {
       loading.value = false;
     }
   };
-  
+
+  // Proceed to checkout
+  const checkout = async (selectedItems) => {
+    try {
+      const response = await axios.post('/api/orders', { items: selectedItems });
+      return response.data;  // Return the order ID and other data
+    } catch (error) {
+      console.error('Error placing order:', error);
+      throw new Error('Failed to place order.');
+    }
+  };
 
   return {
     cartItems,
-    totalPrice,  // Use total price from backend
+    totalPrice,
     loading,
     error,
     fetchCartItems,
     addToCart,
+    checkout,
   };
 });

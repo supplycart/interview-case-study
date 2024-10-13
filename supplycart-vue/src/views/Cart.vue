@@ -1,8 +1,7 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue';
-import { useCartStore } from '@/stores/useCart'; 
-import ProductCard from '@/components/ProductCard.vue'; 
-import axios from '@/utils/axios';
+import { useCartStore } from '@/stores/useCartStore'; 
+import ProductCard from '@/components/ProductCard.vue';
 
 const loading = ref(true);  // Track loading state
 const cartStore = useCartStore();
@@ -47,15 +46,11 @@ const updateQuantity = async (item, change) => {
 const proceedToCheckout = async () => {
   if (selectedItems.value.length > 0) {
     try {
-      const response = await axios.post('/api/orders', { items: selectedItems.value });
-      alert('Order placed successfully! Order ID: ' + response.data.order_id);
-      
-      // Refetch cart data to update the cart (after items have been removed)
-      await cartStore.fetchCartItems();
-
+      const data = await cartStore.checkout(selectedItems.value);
+      alert('Order placed successfully! Order ID: ' + data.order_id);
+      await cartStore.fetchCartItems();  // Refetch the cart after placing an order
       selectedItems.value = [];
     } catch (error) {
-      console.error('Error placing order:', error);
       alert('Failed to place order.');
     }
   } else {

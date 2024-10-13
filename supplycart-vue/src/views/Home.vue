@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import { useProductsStore } from '@/stores/useProducts';
+import { useProductsStore } from '@/stores/useProductStore';
 import ProductCard from '@/components/ProductCard.vue';
 import Filter from '@/components/Filter.vue'; 
 import Loading from '@/components/Loading.vue';

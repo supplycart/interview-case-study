@@ -1,38 +1,23 @@
 <script setup>
-import { onMounted, ref, computed } from 'vue';
-import axios from '@/utils/axios';
+import { ref, computed, onMounted } from 'vue';
+import { useOrderStore } from '@/stores/useOrderStore'; 
 import OrderCard from '@/components/OrderCard.vue';
 import Loading from '@/components/Loading.vue'; 
 import Error from '@/components/Error.vue';
 import StatusTabs from '@/components/StatusTabs.vue'; 
 
-const orders = ref([]);
-const loading = ref(true);
-const error = ref(null);
+const orderStore = useOrderStore(); 
 const activeStatus = ref('To Pay');
 const statuses = ['To Pay', 'To Ship', 'To Receive', 'Completed', 'Cancelled', 'Return Refund'];
 
-// Fetch all orders from the backend
-const fetchOrderHistory = async () => {
-  try {
-    loading.value = true;
-    const response = await axios.get('/api/orders');
-    orders.value = response.data.orders;
-  } catch (err) {
-    error.value = 'Failed to fetch order history.';
-  } finally {
-    loading.value = false;
-  }
-};
-
 // Fetch orders on component mount
 onMounted(() => {
-  fetchOrderHistory();
+  orderStore.fetchOrderHistory(); // Fetch order history using the store
 });
 
 // Computed property to filter orders based on selected status
 const filteredOrders = computed(() => {
-  return orders.value.filter(order => order.status === activeStatus.value);
+  return orderStore.filteredOrders(activeStatus.value);
 });
 </script>
 
@@ -48,10 +33,10 @@ const filteredOrders = computed(() => {
     />
 
     <!-- Loading state -->
-    <Loading v-if="loading" />
+    <Loading v-if="orderStore.loading" />
 
     <!-- Error state -->
-    <Error v-if="error" :error="error" />
+    <Error v-if="orderStore.error" :error="orderStore.error" />
 
     <!-- Display orders -->
     <div v-if="filteredOrders.length > 0" class="space-y-4">
@@ -63,7 +48,7 @@ const filteredOrders = computed(() => {
     </div>
 
     <!-- No orders -->
-    <div v-if="!loading && filteredOrders.length === 0" class="text-center text-gray-600">
+    <div v-if="!orderStore.loading && filteredOrders.length === 0" class="text-center text-gray-600">
       You have no orders in this category yet.
     </div>
   </div>

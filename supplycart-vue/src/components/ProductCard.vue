@@ -1,5 +1,5 @@
 <script setup>
-import { useCartStore } from '@/stores/useCart';
+import { useCartStore } from '@/stores/useCartStore';
 import { useAuthStore } from '@/stores/auth';
 import { useRouter } from 'vue-router';
 import PrimaryButton from '@/components/PrimaryButton.vue'; // Use the PrimaryButton component
