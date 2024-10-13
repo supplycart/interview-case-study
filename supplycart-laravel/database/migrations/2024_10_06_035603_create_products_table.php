@@ -16,12 +16,18 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable(); // Optional description
+            $table->text('description')->nullable();
             $table->decimal('price', 10, 2);
-            $table->string('image_url')->nullable(); // Optional image URL
-            $table->integer('stock')->nullable(); // Optional stock count
+            $table->string('image_url')->nullable();
+            $table->integer('stock')->nullable();
             $table->enum('category', ['Electronics', 'Fashion', 'Beauty', 'Home', 'Sports'])->default('Electronics');
+            $table->unsignedBigInteger('brand_id')->nullable();
+            $table->integer('category_num')->nullable();
             $table->timestamps();
+
+            // Index brand_id and category_num
+            $table->index('brand_id');
+            $table->index('category_num');
         });
     }
 

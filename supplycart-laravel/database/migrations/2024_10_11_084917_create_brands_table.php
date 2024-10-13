@@ -15,15 +15,11 @@ class CreateBrandsTable extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique(); // Brand name should be unique
+            $table->string('name')->unique();
             $table->timestamps();
-        });
 
-        // Add brand_id and category_num to products table
-        Schema::table('products', function (Blueprint $table) {
-            $table->unsignedBigInteger('brand_id')->nullable()->after('id');
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('set null');
-            $table->integer('category_num')->nullable()->after('price'); // Add category number field
+            // Index name
+            $table->index('name');
         });
     }
 

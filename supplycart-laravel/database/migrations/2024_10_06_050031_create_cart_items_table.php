@@ -15,14 +15,18 @@ class CreateCartItemsTable extends Migration
     {
         Schema::create('cart_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cart_id'); // Link to the cart
-            $table->unsignedBigInteger('product_id'); // Link to the product
-            $table->integer('quantity'); // Quantity of the product in the cart
+            $table->unsignedBigInteger('cart_id');
+            $table->unsignedBigInteger('product_id');
+            $table->integer('quantity');
             $table->timestamps();
 
-            // Foreign key constraints
+            // Foreign keys
             $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+
+            // Index cart_id and product_id
+            $table->index('cart_id');
+            $table->index('product_id');
         });
     }
 

@@ -18,11 +18,15 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->decimal('total_price', 10, 2);
             $table->enum('status', ['To Pay', 'To Ship', 'To Receive', 'Completed', 'Cancelled', 'Return Refund'])->default('To Pay');
-            $table->timestamp('date')->useCurrent(); // Order date
+            $table->timestamp('date')->useCurrent();
             $table->timestamps();
 
             // Foreign keys
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            // Index user_id and status
+            $table->index('user_id');
+            $table->index('status');
         });
     }
 
