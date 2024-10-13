@@ -31,12 +31,12 @@ const router = createRouter({
       meta: { title: 'Forgot Password', middleware: ['guest'] },
       component: () => import('../views/auth/ForgotPassword.vue'),
     },
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      meta: { title: 'Dashboard', middleware: ['auth', 'verified'] },
-      component: () => import('../views/Dashboard.vue'),
-    },
+    // {
+    //   path: '/dashboard',
+    //   name: 'dashboard',
+    //   meta: { title: 'Dashboard', middleware: ['auth', 'verified'] },
+    //   component: () => import('../views/Dashboard.vue'),
+    // },
     {
       path: '/verify-email',
       name: 'verify-email',
