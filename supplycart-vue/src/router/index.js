@@ -69,22 +69,19 @@ router.beforeEach(async (to, from, next) => {
 
   const auth = useAuthStore()
 
-  // Fetch user info if not logged in yet
   if (!auth.isLoggedIn) {
     await auth.fetchUser()
   }
 
-  // Check if route requires auth and user is not logged in
-  if (to.meta.middleware.includes('auth') && !auth.isLoggedIn) {
-    return next({ name: 'login' }) // Redirect to login if not authenticated
-  }
-
-  // Redirect logged-in users away from guest routes (e.g., login/register)
-  if (to.meta.middleware.includes('guest') && auth.isLoggedIn) {
-    return next({ name: 'home' }) // Redirect logged-in users to dashboard
-  }
-
-  next() // Proceed to the route if everything is valid
+  if (to.meta.middleware.includes('guest') && auth.isLoggedIn) next({ name: 'dashboard' })
+  else if (
+    to.meta.middleware.includes('verified') &&
+    auth.isLoggedIn &&
+    !auth.user.email_verified_at
+  )
+    next({ name: 'verify-email' })
+  else if (to.meta.middleware.includes('auth') && !auth.isLoggedIn) next({ name: 'login' })
+  else next()
 })
 
 export default router
