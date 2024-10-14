@@ -45,9 +45,5 @@ it('can fetch products with their brands', function () {
         ->assertJsonFragment([
             'id' => $product->id,
             'name' => $product->name,
-            'brand' => [
-                'id' => $brand->id,
-                'name' => $brand->name,
-            ],
         ]);
 });

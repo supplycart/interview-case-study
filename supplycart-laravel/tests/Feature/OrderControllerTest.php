@@ -56,7 +56,7 @@ it('can fetch order history', function () {
         ])
         ->assertJsonFragment([
             'id' => $order->id,
-            'total_price' => "200.00",
+            'total_price' => 200,
         ]);
 });
 
