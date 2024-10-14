@@ -22,3 +22,11 @@ Email: test@example.com
 Password: Test123#
 
 3. Play around with it. 
+
+4. Run unit tests
+./vendor/bin/pest 
+
+## Assumptions
+The products page should be displayed even if the user isn't logged in, simulating actual ecommerce behaviour.
+If add to cart or other navbar buttons are clicked, it will redirect user to login. 
+Only 1 brand, and 1 category per product.

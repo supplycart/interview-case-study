@@ -25,14 +25,14 @@ const handleLogout = () => {
 
     <!-- Cart and User Section -->
     <div class="flex items-center space-x-6">
-      <!-- Order History Icon -->
-      <RouterLink to="/order-history" class="hover:text-gray-300">
-        <font-awesome-icon :icon="faHistory" class="text-xl" />
-      </RouterLink>
-
       <!-- Cart Icon -->
       <RouterLink to="/cart" class="relative hover:text-gray-300">
         <font-awesome-icon :icon="faShoppingCart" class="text-xl" />
+      </RouterLink>
+
+      <!-- Order History Icon -->
+      <RouterLink to="/order-history" class="hover:text-gray-300">
+        <font-awesome-icon :icon="faHistory" class="text-xl" />
       </RouterLink>
 
       <!-- User Icon/Authentication -->
