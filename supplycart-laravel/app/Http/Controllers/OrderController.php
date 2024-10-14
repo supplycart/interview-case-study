@@ -9,6 +9,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
@@ -39,16 +40,15 @@ class OrderController extends Controller
     // Create a new order
     public function store(Request $request)
     {
-        // Validate the incoming items array
         $orderData = $request->validate([
-            'items' => 'required|array|min:1', // Ensure the 'items' field is an array and not empty
-            'items.*.product_id' => 'required|integer|exists:products,id', // Each product ID must exist in the 'products' table
-            'items.*.quantity' => 'required|integer|min:1', // Quantity must be at least 1
+            'items' => 'required|array|min:1',
+            'items.*.product_id' => 'required|integer|exists:products,id',
+            'items.*.quantity' => 'required|integer|min:1',
         ]);
 
-        $totalPrice = 0; // Initialize total price
+        $totalPrice = 0;
 
-        // Create an order
+        // Create the order
         $order = Order::create([
             'user_id' => auth()->id(),
             'total_price' => 0,
@@ -58,46 +58,39 @@ class OrderController extends Controller
 
         // Loop through each item and create OrderItem, while calculating the total price from DB
         foreach ($orderData['items'] as $item) {
-            $product = Product::find($item['product_id']); // Retrieve the product from the database
+            $product = Product::find($item['product_id']);
 
-            if (!$product) {
-                return response()->json(['message' => 'Product not found'], 404); // Handle product not found
-            }
-
-            $itemPrice = $product->price; // Fetch the product price from DB
-            $itemQuantity = $item['quantity']; // Quantity from the request
-
-            // Add the subtotal for this item to the total price
-            $totalPrice += $itemPrice * $itemQuantity;
-
-            // Create an order item
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $product->id,
-                'quantity' => $itemQuantity,
-                'price' => $itemPrice, // Save the product price from DB
-            ]);
-
-            // Subtract the ordered quantity from product stock
-            $product->stock -= $itemQuantity;
-
-            // If stock becomes negative or zero, throw error
-            if ($product->stock < 0) {
+            if ($product->stock < $item['quantity']) {
                 return response()->json(['message' => 'Insufficient stock for product: ' . $product->name], 400);
             }
 
-            $product->save(); // Save the updated product stock value
+            $totalPrice += $product->price * $item['quantity'];
 
-            // Remove item from cart after order is placed
-            CartItem::where('cart_id', auth()->user()->cart->id)
-                ->where('product_id', $product->id)
-                ->delete();
+            // Create order item
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $product->id,
+                'quantity' => $item['quantity'],
+                'price' => $product->price,
+            ]);
+
+            // Update stock
+            $product->stock -= $item['quantity'];
+            $product->save();
+
+            // Check if the user has a cart
+            $cart = auth()->user()->cart;
+            if ($cart) {
+                // Remove item from the cart
+                CartItem::where('cart_id', $cart->id)
+                        ->where('product_id', $product->id)
+                        ->delete();
+            }
         }
 
-        // Update the order with the calculated total price
-        $order->update([
-            'total_price' => $totalPrice,
-        ]);
+        // Update the order total price
+        $order->total_price = $totalPrice;
+        $order->save();
 
         return response()->json(['message' => 'Order created successfully', 'order_id' => $order->id]);
     }

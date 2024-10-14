@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('image_url')->nullable();
             $table->integer('stock')->nullable();
             $table->enum('category', ['Electronics', 'Fashion', 'Beauty', 'Home', 'Sports'])->default('Electronics');
-            $table->unsignedBigInteger('brand_id')->nullable();
+            $table->unsignedBigInteger('brand_id');
             $table->integer('category_num')->nullable();
             $table->timestamps();
 

@@ -27,7 +27,7 @@ class ProductFactory extends Factory
             'created_at' => now(),
             'updated_at' => now(),
             'category' => $categories[array_rand($categories)],
-            'brand_id' => rand(1, 5)
+            'brand_id' => rand(1, 5),
         ];
     }
 }
