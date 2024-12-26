@@ -19,9 +19,9 @@ class ProductSeeder extends Seeder
                 'sku' => 'SKU-1',
                 'description' => 'Product 1 description',
                 'variations' => [
-                    ['sku' => 'SKU-1-1', 'price' => 100],
-                    ['sku' => 'SKU-1-2', 'price' => 200],
-                    ['sku' => 'SKU-1-3', 'price' => 300],
+                    ['name' => 'Product 1 variation 1', 'sku' => 'SKU-1-1', 'price' => 100],
+                    ['name' => 'Product 1 variation 2', 'sku' => 'SKU-1-2', 'price' => 200],
+                    ['name' => 'Product 1 variation 3', 'sku' => 'SKU-1-3', 'price' => 300],
                 ],
             ],
             [
@@ -29,9 +29,9 @@ class ProductSeeder extends Seeder
                 'sku' => 'SKU-2',
                 'description' => 'Product 2 description',
                 'variations' => [
-                    ['sku' => 'SKU-2-1', 'price' => 100],
-                    ['sku' => 'SKU-2-2', 'price' => 200],
-                    ['sku' => 'SKU-2-3', 'price' => 300],
+                    ['name' => 'Product 2 variation 1', 'sku' => 'SKU-2-1', 'price' => 100],
+                    ['name' => 'Product 2 variation 2', 'sku' => 'SKU-2-3', 'price' => 300],
+                    ['name' => 'Product 2 variation 3', 'sku' => 'SKU-2-2', 'price' => 200],
                 ],
             ],
             [
@@ -39,9 +39,9 @@ class ProductSeeder extends Seeder
                 'sku' => 'SKU-3',
                 'description' => 'Product 3 description',
                 'variations' => [
-                    ['sku' => 'SKU-3-1', 'price' => 100],
-                    ['sku' => 'SKU-3-2', 'price' => 200],
-                    ['sku' => 'SKU-3-3', 'price' => 300],
+                    ['name' => 'Product 3 variation 1', 'sku' => 'SKU-3-1', 'price' => 100],
+                    ['name' => 'Product 3 variation 2', 'sku' => 'SKU-3-2', 'price' => 200],
+                    ['name' => 'Product 3 variation 3', 'sku' => 'SKU-3-3', 'price' => 300],
                 ],
             ],
         ];
@@ -58,6 +58,7 @@ class ProductSeeder extends Seeder
                 $productModel->variations()->firstOrCreate([
                     'sku' => $variation['sku'],
                 ], [
+                    'name' => $variation['name'],
                     'price' => $variation['price'],
                 ]);
             }
