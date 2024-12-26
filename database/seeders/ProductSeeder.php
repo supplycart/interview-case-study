@@ -47,7 +47,7 @@ class ProductSeeder extends Seeder
         ];
 
         foreach ($products as $product) {
-            $productModel = Product::create([
+            $productModel = Product::firstOrCreate([
                 'sku' => $product['sku'],
             ], [
                 'name' => $product['name'],
@@ -55,7 +55,7 @@ class ProductSeeder extends Seeder
             ]);
 
             foreach ($product['variations'] as $variation) {
-                $productModel->variations()->create([
+                $productModel->variations()->firstOrCreate([
                     'sku' => $variation['sku'],
                 ], [
                     'price' => $variation['price'],
