@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -27,6 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('products', ProductController::class)
     ->only(['index', 'show']);
 
+    Route::prefix('cart')->group(function () {
+        Route::get('/', [CartController::class, 'show'])->name('cart.show');
+    });
 });
 
 require __DIR__ . '/auth.php';
