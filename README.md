@@ -74,3 +74,5 @@ We look forward to reviewing your implementation and discussing your approach du
 ---
 
 P/S: If you think there is a better way for us to assess your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
+
+Pull request
