@@ -1,7 +1,9 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 const props = defineProps({
     product: Object,
@@ -13,15 +15,22 @@ function formatPrice(price) {
 
 const selectedVariation = ref(props.product.variations[0]);
 const quantity = ref(1);
-const addToCart = () => {
-    console.log(
-        'Product Id is ' +
-            props.product.id +
-            ' Variation Id is ' +
-            selectedVariation.value.id +
-            ' Quantity is: ' +
-            quantity.value,
-    );
+const addToCart = (variation, quantity) => {
+    const form = useForm({
+        product_variation_id: variation.id,
+        quantity: quantity,
+        route: route().current(),
+        product_id: variation.product_id,
+    });
+
+    form.post(route('cart.add'), {
+        onSuccess: () => {
+            toast.success('Product added to cart successfully.');
+        },
+        onError: () => {
+            toast.error('Something went wrong.');
+        },
+    });
 };
 </script>
 
@@ -87,7 +96,7 @@ const addToCart = () => {
                     />
                     <button
                         type="submit"
-                        @click="addToCart"
+                        @click="addToCart(selectedVariation, quantity)"
                         class="flex-inital rounded-lg bg-blue-600 p-2 text-white hover:bg-blue-800"
                     >
                         Add To Cart
