@@ -9,6 +9,10 @@ defineProps({
 function isArrayNullOrEmpty(arr) {
     return arr === null || arr === undefined || arr.length === 0;
 }
+
+function formatPrice(price) {
+    return (Math.round(price * 100) / 100).toFixed(2);
+}
 </script>
 
 <template>
@@ -34,7 +38,7 @@ function isArrayNullOrEmpty(arr) {
                         <a
                             v-for="product in products.data"
                             :key="product.id"
-                            href="#"
+                            :href="route('products.show', product.id)"
                             class="group"
                         >
                             <img
@@ -59,12 +63,9 @@ function isArrayNullOrEmpty(arr) {
                                 RM
                                 {{
                                     !isArrayNullOrEmpty(product.variations)
-                                        ? (
-                                              Math.round(
-                                                  product.variations[0].price *
-                                                      100,
-                                              ) / 100
-                                          ).toFixed(2)
+                                        ? formatPrice(
+                                              product.variations[0].price,
+                                          )
                                         : null
                                 }}
                             </p>
