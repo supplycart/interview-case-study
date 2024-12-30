@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -26,7 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('products', ProductController::class)
-    ->only(['index', 'show']);
+        ->only(['index', 'show']);
 
     Route::prefix('cart')->group(function () {
         Route::get('/', [CartController::class, 'show'])->name('cart.show');
@@ -35,6 +36,10 @@ Route::middleware('auth')->group(function () {
         Route::delete('/cart-item', [CartController::class, 'deleteCartItem'])->name('cart.delete.item');
         Route::get('/checkout', [CartController::class, 'showCheckout'])->name('cart.show.checkout');
         Route::post('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+    });
+
+    Route::prefix('order')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('order.index');
     });
 });
 

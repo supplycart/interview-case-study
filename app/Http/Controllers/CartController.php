@@ -125,7 +125,7 @@ class CartController extends Controller
 
 
         // redirect to order history
-        return redirect()->back();
+        return redirect()->route('order.index');
     }
 
     public function deleteCartItem(Request $request)
