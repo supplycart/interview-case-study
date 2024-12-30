@@ -1,6 +1,7 @@
 <script setup>
+import PaginationLinks from '@/Components/PaginationLinks.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 
 defineProps({
     products: Object,
@@ -73,17 +74,7 @@ function formatPrice(price) {
                     </div>
 
                     <div class="my-4 flex justify-center gap-8">
-                        <Link
-                            v-for="link in products.links"
-                            :key="link.label"
-                            :href="link.url"
-                            v-html="link.label"
-                            :class="{
-                                'text-slate-300': !link.url,
-                                'font-medium text-blue-500': link.active,
-                            }"
-                        >
-                        </Link>
+                        <PaginationLinks :paginator-links="products.links"/>
                     </div>
                 </div>
             </div>
