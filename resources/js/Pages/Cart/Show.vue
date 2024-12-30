@@ -4,7 +4,7 @@ import { Head, useForm } from '@inertiajs/vue3';
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
 
-defineProps({
+const props = defineProps({
     cart: Object,
     checkout_summary: Object,
 });
@@ -55,7 +55,7 @@ const removeCartItem = (item) => {
                 My Cart
             </h2>
         </template>
-
+        {{ isCartEmpty }}
         <div class="mx-auto max-w-7xl py-12 sm:px-6 lg:px-8">
             <div
                 class="flex justify-center overflow-hidden bg-white px-4 py-8 shadow-sm sm:rounded-lg"
@@ -66,6 +66,16 @@ const removeCartItem = (item) => {
                     >
                         <div class="w-full max-w-5xl flex-none lg:w-2/3">
                             <div class="space-y-6">
+                                <!-- Empty Cart Placeholder -->
+                                <div
+                                    v-if="
+                                        cart.items === null ||
+                                        cart.items.length === 0
+                                    "
+                                    class="flex h-64 justify-center rounded-lg border border-white bg-white p-4 text-lg md:p-6"
+                                >
+                                    <p>Your cart is empty.</p>
+                                </div>
                                 <!-- Cart items -->
                                 <div
                                     v-for="item in cart.items"
@@ -337,6 +347,11 @@ const removeCartItem = (item) => {
                                 <a
                                     :href="route('cart.show.checkout')"
                                     class="flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                                    :class="{
+                                        'pointer-events-none bg-slate-300':
+                                            props.cart.items === null ||
+                                            props.cart.items.length === 0,
+                                    }"
                                     >Proceed to Checkout</a
                                 >
 
