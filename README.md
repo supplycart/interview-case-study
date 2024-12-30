@@ -35,3 +35,4 @@ $ php artisan migrate
 $ php artisan db:seed
 ```
 7. Serve the app by running `npm run dev` and `php artisan serve` in their own terminals
+8. You will need to set your own mail configuration in the env file to receive verification emails. I personally use mailtrap.io for email testing.
