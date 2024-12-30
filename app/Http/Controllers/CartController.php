@@ -12,7 +12,8 @@ use Inertia\Inertia;
 class CartController extends Controller
 {
 
-    public function addToCart(Request $request) {
+    public function addToCart(Request $request)
+    {
         $validatedData = $request->validate([
             'product_variation_id' => 'required|integer|exists:product_variations,id',
             'quantity' => 'required|integer|min:1',
@@ -33,8 +34,31 @@ class CartController extends Controller
 
     public function show()
     {
+        $cart = $this->getCurrentCart();
+
+        // calculate grand total
+        $grandTotal = $cart->items->sum(function ($item) {
+            return $item->productVariation->price * $item->quantity;
+        });
+
+        // calculate discount
+        $discount = 0; // no discount implementation yet
+
+        // calculate discounted price
+        $discountedPrice = $grandTotal - $discount;
+
+        $tax = $discountedPrice * 0.06;
+
+        $netPrice = $discountedPrice + $tax;
+
         return Inertia::render('Cart/Show', [
-            'cart' => $this->getCurrentCart(),
+            'cart' => $cart,
+            'checkout_summary' => [
+                'grand_total' => $grandTotal,
+                'discount' => $discount,
+                'tax' => $tax,
+                'net_price' => $netPrice,
+            ],
         ]);
     }
 
