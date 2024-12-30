@@ -47,7 +47,7 @@ class CartController extends Controller
             $cart = $this->createCart();
         }
 
-        return $cart;
+        return $cart->loadMissing('items.productVariation.product');
     }
 
     private function createCart()
