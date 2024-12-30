@@ -1,6 +1,8 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, router, useForm } from '@inertiajs/vue3';
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 defineProps({
     cart: Object,
@@ -12,10 +14,19 @@ function formatPrice(price) {
 }
 
 const updateQuantity = (item) => {
-    // todo implement router call
-    console.log(
-        item.product_variation_id + ' quantity updated to ' + item.quantity,
-    );
+    const form = useForm({
+        product_variation_id: item.product_variation_id,
+        quantity: item.quantity,
+    });
+
+    form.patch(route('cart.update.quantity'), {
+        onSuccess: () => {
+            toast.success('Quantity updated successfully.');
+        },
+        onError: () => {
+            toast.error('Something went wrong.');
+        },
+    });
 };
 
 const removeCartItem = (item) => {

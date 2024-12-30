@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('cart')->group(function () {
         Route::get('/', [CartController::class, 'show'])->name('cart.show');
         Route::post('/', [CartController::class, 'addToCart'])->name('cart.add');
+        Route::patch('/quantity', [CartController::class, 'updateQuantity'])->name('cart.update.quantity');
     });
 });
 

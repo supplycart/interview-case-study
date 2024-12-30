@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CartStatus;
 use App\Models\Cart;
+use App\Models\CartItem;
 use App\Models\ProductVariation;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
@@ -60,6 +61,22 @@ class CartController extends Controller
                 'net_price' => $netPrice,
             ],
         ]);
+    }
+
+    public function updateQuantity(Request $request)
+    {
+        $validatedData = $request->validate([
+            'product_variation_id' => 'required|integer|exists:product_variations,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $cart = $this->getCurrentCart();
+
+        $cartItem = $cart->items->where('product_variation_id', $validatedData['product_variation_id'])->firstOrFail();
+        $cartItem->quantity = $validatedData['quantity'];
+        $cartItem->save();
+
+        return redirect()->back();
     }
 
     private function getCurrentCart()
