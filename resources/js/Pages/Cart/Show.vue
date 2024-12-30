@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, router, useForm } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
 
@@ -15,7 +15,7 @@ function formatPrice(price) {
 
 const updateQuantity = (item) => {
     const form = useForm({
-        product_variation_id: item.product_variation_id,
+        cart_item_id: item.id,
         quantity: item.quantity,
     });
 
@@ -30,7 +30,19 @@ const updateQuantity = (item) => {
 };
 
 const removeCartItem = (item) => {
-    console.log('cart item removed:' + item.product_variation_id);
+    const form = useForm({
+        cart_item_id: item.id,
+        quantity: item.quantity,
+    });
+
+    form.delete(route('cart.delete.item'), {
+        onSuccess: () => {
+            toast.success('Item removed successfully.');
+        },
+        onError: () => {
+            toast.error('Something went wrong.');
+        },
+    });
 };
 </script>
 

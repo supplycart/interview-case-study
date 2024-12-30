@@ -66,15 +66,28 @@ class CartController extends Controller
     public function updateQuantity(Request $request)
     {
         $validatedData = $request->validate([
-            'product_variation_id' => 'required|integer|exists:product_variations,id',
+            'cart_item_id' => 'required|integer|exists:cart_items,id',
             'quantity' => 'required|integer|min:1',
         ]);
 
         $cart = $this->getCurrentCart();
 
-        $cartItem = $cart->items->where('product_variation_id', $validatedData['product_variation_id'])->firstOrFail();
+        $cartItem = $cart->items->findOrFail($validatedData['cart_item_id']);
         $cartItem->quantity = $validatedData['quantity'];
         $cartItem->save();
+
+        return redirect()->back();
+    }
+
+    public function deleteCartItem(Request $request) {
+        $validatedData = $request->validate([
+            'cart_item_id' => 'required|integer|exists:cart_items,id',
+        ]);
+
+        $cart = $this->getCurrentCart();
+
+        $cartItem = $cart->items->findOrFail($validatedData['cart_item_id']);
+        $cartItem->delete();
 
         return redirect()->back();
     }
