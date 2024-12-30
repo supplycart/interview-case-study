@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
         Route::patch('/quantity', [CartController::class, 'updateQuantity'])->name('cart.update.quantity');
         Route::delete('/cart-item', [CartController::class, 'deleteCartItem'])->name('cart.delete.item');
         Route::get('/checkout', [CartController::class, 'showCheckout'])->name('cart.show.checkout');
+        Route::post('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     });
 });
 

@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\CartStatus;
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Order;
 use App\Models\ProductVariation;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class CartController extends Controller
@@ -63,7 +65,70 @@ class CartController extends Controller
         ]);
     }
 
-    public function deleteCartItem(Request $request) {
+    public function checkout(Request $request)
+    {
+        // validate
+        $validatedData = $request->validate([
+            'contact_name' => 'required|max:255',
+            'contact_number' => ['required', 'regex:/^6?0?(1[15]?\d{8}|[4-79]\d{7}|8[2-9]\{6}|3\d{8})$/'],
+            'address' => 'required|max:255',
+            'postcode' => 'required|digits:5',
+            'city' => 'required|max:255',
+            'state' => 'required|max:255',
+            'remarks' => 'sometimes',
+            'cardholder_name' => 'required',
+            'card_number' => [
+                'required',
+                'regex:/^[0-9]{13,19}$/', // Accepts only numbers with 13 to 19 digits
+            ],
+            'card_expiry' => [
+                'required',
+                'regex:/^(0[1-9]|1[0-2])\/\d{4}$/', // Validates MM/YYYY format
+            ],
+            'card_cvv' => 'required|numeric|digits:3',
+        ]);
+
+
+        $summary = $this->getCartSummary();
+        $cart = $summary['cart'];
+        $checkoutSummary = $summary['checkout_summary'];
+        $user = auth()->user();
+
+        DB::transaction(function () use ($user, $cart, $checkoutSummary, $validatedData) {
+            // Update cart status
+            $cart->status = CartStatus::CHECKOUT_COMPLETED->value;
+            $cart->save();
+            $order = $user->orders()->create([
+                ...$validatedData,
+                ...$checkoutSummary,
+            ]);
+
+            $orderItems = [];
+            foreach ($cart->items as $item) {
+                $orderItems[] = [
+                    'product_variation_id' => $item->product_variation_id,
+                    'product_name' => $item->productVariation->product->name,
+                    'variation_name' => $item->productVariation->name,
+                    'price' => $item->productVariation->price,
+                    'quantity' => $item->quantity,
+                ];
+            }
+
+            $order->items()->createMany($orderItems);
+
+            // Update cart status
+            $cart->status = CartStatus::CHECKOUT_COMPLETED->value;
+            $cart->save();
+        });
+
+
+
+        // redirect to order history
+        return redirect()->back();
+    }
+
+    public function deleteCartItem(Request $request)
+    {
         $validatedData = $request->validate([
             'cart_item_id' => 'required|integer|exists:cart_items,id',
         ]);

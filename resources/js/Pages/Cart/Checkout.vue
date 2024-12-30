@@ -1,7 +1,10 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import TextInput from '@/Components/TextInput.vue';
+import ValidationErrorMessage from '@/Components/ValidationErrorMessage.vue';
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 defineProps({
     cart: Object,
@@ -11,6 +14,33 @@ defineProps({
 function formatPrice(price) {
     return (Math.round(price * 100) / 100).toFixed(2);
 }
+
+const form = useForm({
+    contact_name: '',
+    contact_number: '',
+    address: '',
+    postcode: '',
+    city: '',
+    state: '',
+    remarks: '',
+    cardholder_name: '',
+    card_number: '',
+    card_expiry: '',
+    card_cvv: '',
+});
+
+const checkout = () => {
+    if (form.hasErrors) form.clearErrors();
+
+    form.post(route('cart.checkout'), {
+        onSuccess: () => {
+            toast.success('Order placed successfully.');
+        },
+        onError: () => {
+            toast.error('Something went wrong.');
+        },
+    });
+};
 </script>
 
 <template>
@@ -22,7 +52,6 @@ function formatPrice(price) {
                 Checkout
             </h2>
         </template>
-
         <div class="mx-auto max-w-7xl py-12 sm:px-6 lg:px-8">
             <div
                 class="flex justify-center overflow-hidden bg-white px-4 py-8 shadow-sm sm:rounded-lg"
@@ -38,7 +67,10 @@ function formatPrice(price) {
                                 with our easy-to-use payment process.
                             </p>
 
-                            <form class="mt-8 max-w-lg">
+                            <form
+                                class="mt-8 max-w-lg"
+                                @submit.prevent="checkout"
+                            >
                                 <div class="grid gap-4">
                                     <h3
                                         class="text-2xl font-extrabold text-gray-800"
@@ -49,49 +81,77 @@ function formatPrice(price) {
                                         <TextInput
                                             type="text"
                                             placeholder="Contact Name"
+                                            v-model="form.contact_name"
                                             class="w-full bg-gray-100 px-4 py-3.5 text-sm text-gray-800 focus:bg-transparent"
+                                        />
+                                        <ValidationErrorMessage
+                                            v-model="form.errors.contact_name"
                                         />
                                     </div>
                                     <div>
                                         <TextInput
                                             type="number"
-                                            placeholder="Contact Name"
+                                            placeholder="Contact Number"
+                                            v-model="form.contact_number"
                                             class="w-full bg-gray-100 px-4 py-3.5 text-sm text-gray-800 focus:bg-transparent"
+                                        />
+                                        <ValidationErrorMessage
+                                            v-model="form.errors.contact_number"
                                         />
                                     </div>
                                     <div>
                                         <TextInput
                                             type="text"
                                             placeholder="Address"
+                                            v-model="form.address"
                                             class="w-full bg-gray-100 px-4 py-3.5 text-sm text-gray-800 focus:bg-transparent"
+                                        />
+                                        <ValidationErrorMessage
+                                            v-model="form.errors.address"
                                         />
                                     </div>
                                     <div>
                                         <TextInput
                                             type="text"
                                             placeholder="Postcode"
+                                            v-model="form.postcode"
                                             class="w-full bg-gray-100 px-4 py-3.5 text-sm text-gray-800 focus:bg-transparent"
+                                        />
+                                        <ValidationErrorMessage
+                                            v-model="form.errors.postcode"
                                         />
                                     </div>
                                     <div>
                                         <TextInput
                                             type="text"
                                             placeholder="City"
+                                            v-model="form.city"
                                             class="w-full bg-gray-100 px-4 py-3.5 text-sm text-gray-800 focus:bg-transparent"
+                                        />
+                                        <ValidationErrorMessage
+                                            v-model="form.errors.city"
                                         />
                                     </div>
                                     <div>
                                         <TextInput
                                             type="text"
                                             placeholder="State"
+                                            v-model="form.state"
                                             class="w-full bg-gray-100 px-4 py-3.5 text-sm text-gray-800 focus:bg-transparent"
+                                        />
+                                        <ValidationErrorMessage
+                                            v-model="form.errors.state"
                                         />
                                     </div>
                                     <div>
                                         <textarea
                                             type="text"
                                             placeholder="Special Remarks"
+                                            v-model="form.remarks"
                                             class="w-full rounded-md border-gray-300 bg-gray-100 px-4 py-3.5 text-sm text-gray-800 shadow-sm focus:border-indigo-500 focus:bg-transparent focus:ring-indigo-500"
+                                        />
+                                        <ValidationErrorMessage
+                                            v-model="form.errors.remarks"
                                         />
                                     </div>
 
@@ -104,7 +164,13 @@ function formatPrice(price) {
                                         <TextInput
                                             type="text"
                                             placeholder="Cardholder's Name"
+                                            v-model="form.cardholder_name"
                                             class="w-full bg-gray-100 px-4 py-3.5 text-sm text-gray-800 focus:bg-transparent"
+                                        />
+                                        <ValidationErrorMessage
+                                            v-model="
+                                                form.errors.cardholder_name
+                                            "
                                         />
                                     </div>
 
@@ -133,31 +199,47 @@ function formatPrice(price) {
                                         <TextInput
                                             type="number"
                                             placeholder="Card Number"
+                                            v-model="form.card_number"
                                             class="w-full border-none bg-gray-100 px-4 py-3.5 text-sm text-gray-800 shadow-none focus:border-transparent focus:bg-transparent focus:ring-transparent"
+                                        />
+                                        <ValidationErrorMessage
+                                            v-model="form.errors.card_number"
                                         />
                                     </div>
 
                                     <div class="grid grid-cols-2 gap-4">
                                         <div>
                                             <TextInput
-                                                type="number"
-                                                placeholder="EXP."
+                                                type="text"
+                                                placeholder="Expiry Date MM/YYYY"
+                                                v-model="form.card_expiry"
                                                 class="w-full bg-gray-100 px-4 py-3.5 text-sm text-gray-800 focus:bg-transparent"
+                                                maxlength="7"
+                                            />
+                                            <ValidationErrorMessage
+                                                v-model="
+                                                    form.errors.card_expiry
+                                                "
                                             />
                                         </div>
                                         <div>
                                             <TextInput
                                                 type="number"
                                                 placeholder="CVV"
+                                                v-model="form.card_cvv"
                                                 class="w-full bg-gray-100 px-4 py-3.5 text-sm text-gray-800 focus:bg-transparent"
+                                            />
+                                            <ValidationErrorMessage
+                                                v-model="form.errors.card_cvv"
                                             />
                                         </div>
                                     </div>
                                 </div>
 
                                 <button
-                                    type="button"
-                                    class="mt-8 w-40 rounded-md bg-blue-700 py-3.5 text-sm tracking-wide text-white hover:bg-blue-800"
+                                    type="submit"
+                                    :disabled="form.processing"
+                                    class="mt-8 w-40 rounded-md bg-blue-700 py-3.5 text-sm tracking-wide text-white hover:bg-blue-800 disabled:bg-slate-700"
                                 >
                                     Pay
                                 </button>
