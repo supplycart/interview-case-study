@@ -193,6 +193,12 @@ const showingNavigationDropdown = ref(false);
                         >
                             Products
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('cart.show')"
+                            :active="route().current('cart.show')"
+                        >
+                            View Cart
+                        </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
