@@ -10,4 +10,9 @@ class CartItem extends Model
         'product_variation_id',
         'quantity',
     ];
+
+    public function productVariation()
+    {
+        return $this->belongsTo(ProductVariation::class);
+    }
 }
