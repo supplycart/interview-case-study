@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/', [CartController::class, 'addToCart'])->name('cart.add');
         Route::patch('/quantity', [CartController::class, 'updateQuantity'])->name('cart.update.quantity');
         Route::delete('/cart-item', [CartController::class, 'deleteCartItem'])->name('cart.delete.item');
+        Route::get('/checkout', [CartController::class, 'showCheckout'])->name('cart.show.checkout');
     });
 });
 

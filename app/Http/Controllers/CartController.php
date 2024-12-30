@@ -35,31 +35,8 @@ class CartController extends Controller
 
     public function show()
     {
-        $cart = $this->getCurrentCart();
-
-        // calculate grand total
-        $grandTotal = $cart->items->sum(function ($item) {
-            return $item->productVariation->price * $item->quantity;
-        });
-
-        // calculate discount
-        $discount = 0; // no discount implementation yet
-
-        // calculate discounted price
-        $discountedPrice = $grandTotal - $discount;
-
-        $tax = $discountedPrice * 0.06;
-
-        $netPrice = $discountedPrice + $tax;
-
         return Inertia::render('Cart/Show', [
-            'cart' => $cart,
-            'checkout_summary' => [
-                'grand_total' => $grandTotal,
-                'discount' => $discount,
-                'tax' => $tax,
-                'net_price' => $netPrice,
-            ],
+            ...$this->getCartSummary(),
         ]);
     }
 
@@ -77,6 +54,13 @@ class CartController extends Controller
         $cartItem->save();
 
         return redirect()->back();
+    }
+
+    public function showCheckout()
+    {
+        return Inertia::render('Cart/Checkout', [
+            ...$this->getCartSummary(),
+        ]);
     }
 
     public function deleteCartItem(Request $request) {
@@ -108,5 +92,35 @@ class CartController extends Controller
     {
         $user = auth()->user();
         return $user->carts()->create();
+    }
+
+    private function getCartSummary()
+    {
+        $cart = $this->getCurrentCart();
+
+        // calculate grand total
+        $grandTotal = $cart->items->sum(function ($item) {
+            return $item->productVariation->price * $item->quantity;
+        });
+
+        // calculate discount
+        $discount = 0; // no discount implementation yet
+
+        // calculate discounted price
+        $discountedPrice = $grandTotal - $discount;
+
+        $tax = $discountedPrice * 0.06;
+
+        $netPrice = $discountedPrice + $tax;
+
+        return [
+            'cart' => $cart,
+            'checkout_summary' => [
+                'grand_total' => $grandTotal,
+                'discount' => $discount,
+                'tax' => $tax,
+                'net_price' => $netPrice,
+            ],
+        ];
     }
 }
