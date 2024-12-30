@@ -111,6 +111,7 @@ class CartController extends Controller
                     'variation_name' => $item->productVariation->name,
                     'price' => $item->productVariation->price,
                     'quantity' => $item->quantity,
+                    'image' => $item->productVariation->image,
                 ];
             }
 

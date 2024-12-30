@@ -12,5 +12,6 @@ class OrderItem extends Model
         'variation_name',
         'price',
         'quantity',
+        'image',
     ];
 }

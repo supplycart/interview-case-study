@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('variation_name');
             $table->decimal('price', 14, 4);
             $table->integer('quantity');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
