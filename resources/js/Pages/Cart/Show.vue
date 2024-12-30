@@ -319,7 +319,7 @@ const removeCartItem = (item) => {
                                         <dt
                                             class="text-base font-bold text-gray-900"
                                         >
-                                            Net
+                                            Net Price
                                         </dt>
                                         <dd
                                             class="text-base font-bold text-gray-900"
@@ -335,7 +335,7 @@ const removeCartItem = (item) => {
                                 </div>
 
                                 <a
-                                    href="#"
+                                    :href="route('cart.show.checkout')"
                                     class="flex w-full items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
                                     >Proceed to Checkout</a
                                 >
