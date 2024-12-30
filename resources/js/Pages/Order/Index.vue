@@ -12,10 +12,9 @@ function formatPrice(price) {
 }
 
 const getDate = (date) =>
-    new Date(date).toLocaleDateString('en-us', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
+    new Date(date).toLocaleString('en-us', {
+        dateStyle: 'medium',
+        timeStyle: 'medium',
     });
 
 const getReadableOrderStatus = (orderStatus) => {
