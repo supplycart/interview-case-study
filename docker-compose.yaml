@@ -1,0 +1,43 @@
+services:
+  app:
+    build:
+      context: ./
+    container_name: supplycart_web
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+      - ./docker/supervisor.conf:/etc/supervisord.conf
+      - ./docker/php.ini:/usr/local/etc/php/conf.d/app.ini
+      - ./docker/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./docker/nginx.conf:/etc/nginx/sites-enabled/default
+    ports:
+      - 8100:80
+    entrypoint: [bash, ./docker/run.sh]
+    networks:
+      - default
+  db:
+    image: mysql:8
+    container_name: my_db
+    restart: unless-stopped
+    ports:
+      - 3400:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    working_dir: /var/www/
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./:/var/www
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
