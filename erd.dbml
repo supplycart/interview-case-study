@@ -1,0 +1,91 @@
+enum ActivityLogType {
+  LOGIN
+  LOGOUT
+  ADD_TO_CART
+  REMOVE_FROM_CART
+}
+
+Table users {
+  id int [primary key]
+  name varchar
+  email varchar
+  email_verified_at timestamp
+  password varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_activity_logs {
+  id int [primary key]
+  user_id int [ref: > users.id]
+  type ActivityLogType
+  metadata JSON
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table products {
+  id int [primary key]
+  category_id int [ref: > product_categories.id]
+  brand_id int [ref: > product_brands.id]
+  name varchar
+  price decimal
+  description text
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table product_brands {
+  id int [primary key]
+  name varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table product_categories {
+  id int [primary key]
+  name varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table category_brands {
+  id int [primary key]
+  category_id int [ref: > product_categories.id]
+  brand_id int [ref: > product_brands.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table carts {
+  id int [primary key]
+  users_id int [ref: > users.id]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table cart_items {
+  id int [primary key]
+  cart_id int [ref: > carts.id]
+  product_id int [ref: > products.id]
+  quantity int
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table orders {
+  id int [primary key]
+  users_id int [ref: > users.id]
+  total_price decimal
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table order_items {
+  id int [primary key]
+  order_id int [ref: > orders.id]
+  product_id int [ref: > products.id]
+  quantity int
+  created_at timestamp
+  updated_at timestamp
+}
