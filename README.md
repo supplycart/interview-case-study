@@ -16,6 +16,7 @@ This case study is designed for candidates to showcase their skills and coding s
 ## Requirements
 
 You must work on this assignment using:
+
 - Vue (optional for BE dev)
 - TailwindCSS
 - Laravel (optional for FE dev)
@@ -74,3 +75,16 @@ We look forward to reviewing your implementation and discussing your approach du
 ---
 
 P/S: If you think there is a better way for us to assess your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
+
+# Installation
+
+```console
+$ composer install
+$ php artisan migrate
+```
+
+# Running app
+
+```console
+$ composer run dev
+```

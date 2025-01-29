@@ -1,0 +1,23 @@
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: "supplycart"
+      MYSQL_ROOT_PASSWORD: "password"
+    ports:
+      - "4000:3306"
+    expose:
+      - "4000"
+  app:
+    depends_on:
+      be:
+        condition: service_started
+    build: .
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "80:8000"
+    expose:
+      - "80"
