@@ -26,7 +26,7 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable()->index();
             $table->foreignId('brand_id')->nullable()->index();
             $table->timestamps();
-            
+
             $table->foreign('category_id')->references('id')->on('product_categories');
             $table->foreign('brand_id')->references('id')->on('product_brands');
         });

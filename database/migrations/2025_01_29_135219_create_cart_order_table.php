@@ -33,11 +33,11 @@ return new class extends Migration
         // orders
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')->nullable()->index();
+            $table->foreignId('user_id')->nullable()->index();
             $table->decimal('total_price', 9, 3);
             $table->timestamps();
 
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();

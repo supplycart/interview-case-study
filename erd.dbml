@@ -15,7 +15,7 @@ Table users {
   updated_at timestamp
 }
 
-Table user_activity_logs {
+Table user_logs {
   id int [primary key]
   user_id int [ref: > users.id]
   type ActivityLogType
