@@ -1,3 +1,21 @@
+# Running app using Docker
+
+```console
+$ docker compose up --build --detach
+$ docker exec -it supplycart_app fish -c "php artisan migrate && php artisan db:seed"
+```
+
+# Running app manually
+
+```console
+$ composer install
+$ pnpm install && pnpm run build
+$ php artisan migrate && php artisan db:seed
+$ composer run dev
+```
+
+---
+
 <p align="center">
     <img align="center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
 </p>
@@ -75,19 +93,3 @@ We look forward to reviewing your implementation and discussing your approach du
 ---
 
 P/S: If you think there is a better way for us to assess your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
-
-# Running app manually
-
-```console
-$ composer install
-$ pnpm install && pnpm run build
-$ php artisan migrate && php artisan db:seed
-$ composer run dev
-```
-
-# Running app using Docker
-
-```console
-$ docker compose up --build
-$ docker exec -it supplycart_app fish -c "php artisan migrate && php artisan db:seed"
-```
