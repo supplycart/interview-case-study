@@ -1,6 +1,9 @@
 services:
   nginx:
     container_name: supplycart_nginx
+    depends_on:
+      app:
+        condition: service_started
     image: nginx:alpine
     restart: unless-stopped
     ports:
@@ -9,22 +12,17 @@ services:
       - "8000"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      app:
-        condition: service_started
 
   app:
     container_name: supplycart_app
-    build:
-      context: .
-      dockerfile: Dockerfile
+    depends_on:
+      mysql:
+        condition: service_started
+    build: .
     restart: unless-stopped
     working_dir: /var/www
     ports:
       - "9000:9000"
-    depends_on:
-      mysql:
-        condition: service_started
 
   mysql:
     container_name: supplycart_mysql

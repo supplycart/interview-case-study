@@ -76,16 +76,18 @@ We look forward to reviewing your implementation and discussing your approach du
 
 P/S: If you think there is a better way for us to assess your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
 
-# Installation
+# Running app manually
 
 ```console
 $ composer install
 $ pnpm install && pnpm run build
 $ php artisan migrate && php artisan db:seed
+$ composer run dev
 ```
 
-# Running app
+# Running app using Docker
 
 ```console
-$ composer run dev
+$ docker compose up --build
+$ docker exec -it supplycart_app fish -c "php artisan migrate && php artisan db:seed"
 ```
