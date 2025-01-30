@@ -80,8 +80,8 @@ P/S: If you think there is a better way for us to assess your technical skills, 
 
 ```console
 $ composer install
-$ php artisan migrate
-$ php artisan db:seed
+$ pnpm install && pnpm run build
+$ php artisan migrate && php artisan db:seed
 ```
 
 # Running app
