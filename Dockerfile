@@ -25,9 +25,14 @@ COPY . .
 # Install Laravel dependencies
 RUN composer install --no-dev --prefer-dist --optimize-autoloader
 
+# TODO: install node modules
 # RUN pnpm install && pnpm run build
-# RUN php artisan migrate && php artisan db:seed
 
 # set proper permissions for Laravel related file access
 RUN chown -R www-data:www-data /var/www
 RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+
+CMD ["php-fpm"]
+
+# TODO: do migration after running php-fpm
+# RUN php artisan migrate && php artisan db:seed

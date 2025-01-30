@@ -8,7 +8,6 @@ services:
     expose:
       - "8000"
     volumes:
-      - .:/var/www
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       app:
@@ -23,10 +22,6 @@ services:
     working_dir: /var/www
     ports:
       - "9000:9000"
-    # expose:
-    #   - "9000"
-    volumes:
-      - .:/var/www
     depends_on:
       mysql:
         condition: service_started
@@ -40,5 +35,3 @@ services:
       MYSQL_ROOT_PASSWORD: password
     ports:
       - "3306:3306"
-    # expose:
-    #   - "3306"
