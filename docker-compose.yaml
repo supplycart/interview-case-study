@@ -1,0 +1,44 @@
+services:
+  nginx:
+    container_name: supplycart_nginx
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    expose:
+      - "8000"
+    volumes:
+      - .:/var/www
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      app:
+        condition: service_started
+
+  app:
+    container_name: supplycart_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    working_dir: /var/www
+    ports:
+      - "9000:9000"
+    # expose:
+    #   - "9000"
+    volumes:
+      - .:/var/www
+    depends_on:
+      mysql:
+        condition: service_started
+
+  mysql:
+    container_name: supplycart_mysql
+    image: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: supplycart
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+    # expose:
+    #   - "3306"
