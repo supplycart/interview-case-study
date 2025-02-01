@@ -1,20 +1,19 @@
 <script setup>
+import PriceDisplay from '@/Components/PriceDisplay.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 
-const { id, name, price, brandName, categoryName } = defineProps({
+const { name, price, brandName, categoryName } = defineProps({
     id: Number,
     name: String,
     price: Number,
     brandName: String,
     categoryName: String,
 });
-
-console.log({ id, name, price, brandName, categoryName });
 </script>
 
 <template>
-    <Head title="Cart" />
+    <Head title="Product" />
 
     <AuthenticatedLayout>
         <template #header>
@@ -27,8 +26,28 @@ console.log({ id, name, price, brandName, categoryName });
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        <!-- TODO: put product details here -->
-                        You're logged in!
+                        <div class="space-y-4">
+                            <p class="text-lg">
+                                <span class="font-semibold text-gray-700">
+                                    Price:
+                                </span>
+                                <span class="font-bold text-green-600">
+                                    <PriceDisplay :price="price" />
+                                </span>
+                            </p>
+                            <p class="text-lg">
+                                <span class="font-semibold text-gray-700">
+                                    Brand:
+                                </span>
+                                {{ brandName }}
+                            </p>
+                            <p class="text-lg">
+                                <span class="font-semibold text-gray-700">
+                                    Category:
+                                </span>
+                                {{ categoryName }}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

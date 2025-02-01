@@ -26,9 +26,8 @@ class ProductController extends Controller {
             ->first();
 
         return Inertia::render('Product/Detail', [
-            'id' => $product->id,
             'name' => $product->name,
-            'price' => $product->price,
+            'price' => (float) $product->price,
             'brandName' => $product->brandName,
             'categoryName' => $product->categoryName,
         ]);

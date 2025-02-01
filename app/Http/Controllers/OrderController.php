@@ -24,8 +24,8 @@ class OrderController extends Controller {
 
         return Inertia::render('Order/View', [
             'orderList' => $orderList->map(fn ($order) => [
-                'orderId' => $order->id,
-                'totalPrice' => $order->total_price,
+                'orderId' => (int) $order->id,
+                'totalPrice' => (float) $order->total_price,
                 'createdAt' => $order->created_at
             ]),
         ]);
@@ -56,14 +56,14 @@ class OrderController extends Controller {
 
         return Inertia::render('Order/Detail', [
             'order' => [
-                'orderId' => $order->id,
-                'totalPrice' => $order->total_price,
+                'orderId' => (int) $order->id,
+                'totalPrice' => (float) $order->total_price,
                 'createdAt' => $order->created_at
             ],
             'productList' => $productList->map(fn ($product) => [
-                'productId' => $product->id,
+                'productId' => (int) $product->id,
                 'productName' => $product->name,
-                'productPrice' => $product->price,
+                'productPrice' => (float) $product->price,
                 'brandName' => $product->brandName,
                 'categoryName' => $product->categoryName,
             ]),

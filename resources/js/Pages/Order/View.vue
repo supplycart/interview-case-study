@@ -1,5 +1,6 @@
 <script setup>
 import NavLink from '@/Components/NavLink.vue';
+import PriceDisplay from '@/Components/PriceDisplay.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 
@@ -67,7 +68,9 @@ const { orderList } = defineProps({ orderList: Array });
                                             <td
                                                 class="cursor-pointer px-4 py-3"
                                             >
-                                                {{ row.totalPrice }}
+                                                <PriceDisplay
+                                                    :price="row.totalPrice"
+                                                />
                                             </td>
                                             <td
                                                 class="cursor-pointer px-4 py-3"

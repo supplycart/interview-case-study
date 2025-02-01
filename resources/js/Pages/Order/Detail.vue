@@ -2,6 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import NavLink from '@/Components/NavLink.vue';
+import PriceDisplay from '@/Components/PriceDisplay.vue';
 
 const { order, productList } = defineProps({
     order: {
@@ -77,7 +78,9 @@ const { orderId, totalPrice, createdAt } = order;
                                             {{ row.categoryName }}
                                         </td>
                                         <td class="cursor-pointer px-4 py-3">
-                                            {{ row.productPrice }}
+                                            <PriceDisplay
+                                                :price="row.productPrice"
+                                            />
                                         </td>
                                     </tr>
                                 </tbody>
