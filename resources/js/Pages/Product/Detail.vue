@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import PriceDisplay from '@/Components/PriceDisplay.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import QuantitySelector from '@/Components/QuantitySelector.vue';
 
 const { id, name, description, price, brandName, categoryName } = defineProps({
     id: Number,
@@ -45,20 +46,7 @@ const addToCart = () => {
                 </button>
 
                 <div class="flex items-center space-x-3">
-                    <span class="font-semibold text-gray-700">Quantity:</span>
-                    <button
-                        @click="quantity > 1 ? quantity-- : null"
-                        class="rounded-md bg-gray-300 px-3 py-2 text-lg hover:bg-gray-400"
-                    >
-                        −
-                    </button>
-                    <span class="text-lg font-bold">{{ quantity }}</span>
-                    <button
-                        @click="quantity++"
-                        class="rounded-md bg-gray-300 px-3 py-2 text-lg hover:bg-gray-400"
-                    >
-                        +
-                    </button>
+                    <QuantitySelector v-model="quantity" />
                 </div>
             </div>
         </template>
