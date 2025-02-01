@@ -15,6 +15,11 @@ const cartTotalPrice = computed(() =>
         0,
     ),
 );
+
+const checkout = () => {
+    // TODO: submit the form to add to create an order
+    alert('Checking out');
+};
 </script>
 
 <template>
@@ -25,6 +30,18 @@ const cartTotalPrice = computed(() =>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 Cart
             </h2>
+
+            <div
+                v-if="cartItemList.length > 0"
+                class="mt-4 flex items-center space-x-8"
+            >
+                <button
+                    @click="checkout"
+                    class="rounded-md bg-red-600 px-6 py-3 text-white hover:bg-red-500"
+                >
+                    Checkout
+                </button>
+            </div>
         </template>
 
         <div class="py-12">
@@ -43,6 +60,7 @@ const cartTotalPrice = computed(() =>
                                         class="bg-gray-100 text-sm uppercase text-gray-700"
                                     >
                                         <tr>
+                                            <th class="border-b px-4 py-3"></th>
                                             <th class="border-b px-4 py-3">
                                                 Name
                                             </th>
@@ -64,6 +82,36 @@ const cartTotalPrice = computed(() =>
                                             :key="index"
                                             class="border-b hover:bg-gray-50"
                                         >
+                                            <td class="px-4 py-3">
+                                                <label
+                                                    class="relative flex cursor-pointer items-center"
+                                                >
+                                                    <input
+                                                        type="checkbox"
+                                                        checked
+                                                        class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-slate-300 shadow transition-all checked:border-slate-800 checked:bg-slate-800 hover:shadow-md"
+                                                        id="check"
+                                                    />
+                                                    <span
+                                                        class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-white opacity-0 peer-checked:opacity-100"
+                                                    >
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            class="h-3.5 w-3.5"
+                                                            viewBox="0 0 20 20"
+                                                            fill="currentColor"
+                                                            stroke="currentColor"
+                                                            stroke-width="1"
+                                                        >
+                                                            <path
+                                                                fill-rule="evenodd"
+                                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                                clip-rule="evenodd"
+                                                            ></path>
+                                                        </svg>
+                                                    </span>
+                                                </label>
+                                            </td>
                                             <td class="px-4 py-3">
                                                 <NavLink
                                                     :href="`/product/${row.productId}`"
@@ -99,7 +147,7 @@ const cartTotalPrice = computed(() =>
                                         </tr>
                                         <tr class="bg-gray-100 font-semibold">
                                             <td
-                                                colspan="3"
+                                                colspan="4"
                                                 class="px-4 py-3 text-right"
                                             >
                                                 Total:
