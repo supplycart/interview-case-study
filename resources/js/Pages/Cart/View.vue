@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Cart" />
 
     <AuthenticatedLayout>
         <template #header>

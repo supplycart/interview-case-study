@@ -32,6 +32,7 @@ Route::controller(CartController::class)->group(function () {
 
 Route::controller(OrderController::class)->group(function () {
     Route::get('/order', 'view')->name('order.view');
+    Route::get('/order/{orderId}', 'detail');
 })->middleware(['auth', 'verified'])->name('order');
 
 require __DIR__.'/auth.php';
