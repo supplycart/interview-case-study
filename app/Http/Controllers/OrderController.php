@@ -44,7 +44,12 @@ class OrderController extends Controller {
             ->where('orders.id', $id)
             ->first();
         $productList = DB::table('products')
-            ->select('products.id', 'products.name')
+            ->select(
+                'products.name', 'products.price',
+                'product_brands.name as brandName', 'product_categories.name as categoryName'
+            )
+            ->leftJoin('product_brands', 'product_brands.id', '=', 'products.brand_id')
+            ->leftJoin('product_categories', 'product_categories.id', '=', 'products.category_id')
             ->leftJoin('order_items', 'order_items.product_id', '=', 'products.id')
             ->leftJoin('orders', 'orders.id', '=', 'order_items.order_id')
             ->where('orders.id', $id)
@@ -57,8 +62,10 @@ class OrderController extends Controller {
                 'createdAt' => $order->created_at
             ],
             'productList' => $productList->map(fn ($product) => [
-                'productId' => $product->id,
-                'productName' => $product->name
+                'productName' => $product->name,
+                'productPrice' => $product->price,
+                'brandName' => $product->brandName,
+                'categoryName' => $product->categoryName,
             ]),
         ]);
     }

@@ -33,7 +33,57 @@ const { orderId, totalPrice, createdAt } = order;
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="bg-white shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">Product list here</div>
+                    <div
+                        v-if="productList.length <= 0"
+                        class="p-6 text-gray-900"
+                    >
+                        Product list here
+                    </div>
+                    <div v-else>
+                        <div
+                            class="overflow-x-auto rounded-lg border border-gray-200 shadow-md"
+                        >
+                            <table class="w-full border-collapse text-left">
+                                <thead
+                                    class="bg-gray-100 text-sm uppercase text-gray-700"
+                                >
+                                    <tr>
+                                        <th class="border-b px-4 py-3">Name</th>
+                                        <th class="border-b px-4 py-3">
+                                            Brand
+                                        </th>
+                                        <th class="border-b px-4 py-3">
+                                            Category
+                                        </th>
+                                        <th class="border-b px-4 py-3">
+                                            Price
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr
+                                        v-for="(row, index) in productList"
+                                        :key="index"
+                                        class="border-b hover:bg-gray-50"
+                                    >
+                                        <td class="cursor-pointer px-4 py-3">
+                                            {{ row.productName }}
+                                        </td>
+                                        <td class="cursor-pointer px-4 py-3">
+                                            {{ row.brandName }}
+                                        </td>
+                                        <td class="cursor-pointer px-4 py-3">
+                                            {{ row.categoryName }}
+                                        </td>
+                                        <td class="cursor-pointer px-4 py-3">
+                                            {{ row.productPrice }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
