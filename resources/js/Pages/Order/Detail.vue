@@ -65,7 +65,7 @@ const { orderId, totalPrice, createdAt } = order;
                                     >
                                         <td class="cursor-pointer px-4 py-3">
                                             <NavLink
-                                                :href="`/product/${row.productId}`"
+                                                :href="`/product/order/${row.productId}`"
                                                 class="font-medium text-indigo-600 hover:text-indigo-500"
                                             >
                                                 {{ row.productName }}

@@ -38,6 +38,7 @@ Route::controller(OrderController::class)->group(function () {
 
 Route::controller(ProductController::class)->group(function () {
     Route::get('/product/{productId}', 'detail');
+    Route::get('/product/order/{productId}', 'orderDetail');
 })->name('product');
 
 require __DIR__.'/auth.php';

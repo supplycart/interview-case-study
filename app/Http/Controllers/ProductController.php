@@ -32,4 +32,27 @@ class ProductController extends Controller {
             'categoryName' => $product->categoryName,
         ]);
     }
+
+    /**
+     * Display the product detail from order.
+     */
+    public function orderDetail(Request $request, int $id): Response
+    {
+        $product = DB::table('products')
+            ->select(
+                'products.id', 'products.name', 'products.price',
+                'product_brands.name as brandName', 'product_categories.name as categoryName'
+            )
+            ->leftJoin('product_brands', 'product_brands.id', '=', 'products.brand_id')
+            ->leftJoin('product_categories', 'product_categories.id', '=', 'products.category_id')
+            ->where('products.id', $id)
+            ->first();
+
+        return Inertia::render('Product/OrderDetail', [
+            'name' => $product->name,
+            'price' => (float) $product->price,
+            'brandName' => $product->brandName,
+            'categoryName' => $product->categoryName,
+        ]);
+    }
 }

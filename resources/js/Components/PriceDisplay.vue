@@ -5,5 +5,5 @@ const { price } = defineProps({
 </script>
 
 <template>
-    <span class="font-bold text-green-600">$ {{ price.toFixed(2) }}</span>
+    <span class="p-px font-bold text-green-600">$ {{ price.toFixed(2) }}</span>
 </template>
