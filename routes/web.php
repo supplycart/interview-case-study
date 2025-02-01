@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -23,5 +25,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::controller(CartController::class)->group(function () {
+    Route::get('/cart', 'view')->name('cart.view');
+})->middleware(['auth', 'verified'])->name('cart');
+
+Route::controller(OrderController::class)->group(function () {
+    Route::get('/order', 'view')->name('order.view');
+})->middleware(['auth', 'verified'])->name('order');
 
 require __DIR__.'/auth.php';
