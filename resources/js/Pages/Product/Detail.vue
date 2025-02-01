@@ -4,9 +4,10 @@ import PriceDisplay from '@/Components/PriceDisplay.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 
-const { id, name, price, brandName, categoryName } = defineProps({
+const { id, name, description, price, brandName, categoryName } = defineProps({
     id: Number,
     name: String,
+    description: String,
     price: Number,
     brandName: String,
     categoryName: String,
@@ -30,6 +31,9 @@ const addToCart = () => {
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 {{ name }}
             </h2>
+            <p class="mt-2 text-lg text-gray-600">
+                {{ description }}
+            </p>
 
             <!-- Add to Cart Button & Quantity Selector -->
             <div class="mt-4 flex items-center space-x-8">

@@ -3,9 +3,9 @@ import PriceDisplay from '@/Components/PriceDisplay.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 
-const { name, price, brandName, categoryName } = defineProps({
-    id: Number,
+const { name, description, price, brandName, categoryName } = defineProps({
     name: String,
+    description: String,
     price: Number,
     brandName: String,
     categoryName: String,
@@ -20,6 +20,9 @@ const { name, price, brandName, categoryName } = defineProps({
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 {{ name }}
             </h2>
+            <p class="mt-2 text-lg text-gray-600">
+                {{ description }}
+            </p>
         </template>
 
         <div class="py-12">

@@ -17,7 +17,7 @@ class ProductController extends Controller {
     {
         $product = DB::table('products')
             ->select(
-                'products.id', 'products.name', 'products.price',
+                'products.id', 'products.name', 'products.description', 'products.price',
                 'product_brands.name as brandName', 'product_categories.name as categoryName'
             )
             ->leftJoin('product_brands', 'product_brands.id', '=', 'products.brand_id')
@@ -26,7 +26,9 @@ class ProductController extends Controller {
             ->first();
 
         return Inertia::render('Product/Detail', [
+            'id' => $product->id,
             'name' => $product->name,
+            'description' => $product->description,
             'price' => (float) $product->price,
             'brandName' => $product->brandName,
             'categoryName' => $product->categoryName,
@@ -40,7 +42,7 @@ class ProductController extends Controller {
     {
         $product = DB::table('products')
             ->select(
-                'products.id', 'products.name', 'products.price',
+                'products.id', 'products.name', 'products.description', 'products.price',
                 'product_brands.name as brandName', 'product_categories.name as categoryName'
             )
             ->leftJoin('product_brands', 'product_brands.id', '=', 'products.brand_id')
@@ -50,6 +52,7 @@ class ProductController extends Controller {
 
         return Inertia::render('Product/OrderDetail', [
             'name' => $product->name,
+            'description' => $product->description,
             'price' => (float) $product->price,
             'brandName' => $product->brandName,
             'categoryName' => $product->categoryName,
