@@ -36,7 +36,6 @@ class OrderController extends Controller {
      */
     public function detail(Request $request, int $id): Response
     {
-        // $order = Order::where('id', $id)->first();
         $order = DB::table('orders')
             ->select(
                 'orders.id', 'orders.total_price', 'orders.created_at',
@@ -45,7 +44,7 @@ class OrderController extends Controller {
             ->first();
         $productList = DB::table('products')
             ->select(
-                'products.name', 'products.price',
+                'products.id', 'products.name', 'products.price',
                 'product_brands.name as brandName', 'product_categories.name as categoryName'
             )
             ->leftJoin('product_brands', 'product_brands.id', '=', 'products.brand_id')
@@ -62,6 +61,7 @@ class OrderController extends Controller {
                 'createdAt' => $order->created_at
             ],
             'productList' => $productList->map(fn ($product) => [
+                'productId' => $product->id,
                 'productName' => $product->name,
                 'productPrice' => $product->price,
                 'brandName' => $product->brandName,

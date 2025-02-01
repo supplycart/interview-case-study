@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import NavLink from '@/Components/NavLink.vue';
 
 const { order, productList } = defineProps({
     order: {
@@ -33,13 +34,7 @@ const { orderId, totalPrice, createdAt } = order;
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="bg-white shadow-sm sm:rounded-lg">
-                    <div
-                        v-if="productList.length <= 0"
-                        class="p-6 text-gray-900"
-                    >
-                        Product list here
-                    </div>
-                    <div v-else>
+                    <div class="p-6 text-gray-900">
                         <div
                             class="overflow-x-auto rounded-lg border border-gray-200 shadow-md"
                         >
@@ -68,7 +63,12 @@ const { orderId, totalPrice, createdAt } = order;
                                         class="border-b hover:bg-gray-50"
                                     >
                                         <td class="cursor-pointer px-4 py-3">
-                                            {{ row.productName }}
+                                            <NavLink
+                                                :href="`/product/${row.productId}`"
+                                                class="font-medium text-indigo-600 hover:text-indigo-500"
+                                            >
+                                                {{ row.productName }}
+                                            </NavLink>
                                         </td>
                                         <td class="cursor-pointer px-4 py-3">
                                             {{ row.brandName }}

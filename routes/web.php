@@ -6,6 +6,7 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -34,5 +35,9 @@ Route::controller(OrderController::class)->group(function () {
     Route::get('/order', 'view')->name('order.view');
     Route::get('/order/{orderId}', 'detail');
 })->middleware(['auth', 'verified'])->name('order');
+
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/product/{productId}', 'detail');
+})->name('product');
 
 require __DIR__.'/auth.php';
