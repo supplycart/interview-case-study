@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
 
+use App\Helpers\UserLogger;
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -33,6 +35,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        UserLogger::login($request->user()->id);
+
         return redirect()->intended(route('product.view', absolute: false));
     }
 
@@ -41,12 +45,14 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        UserLogger::logout($request->user()->id);
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
+        
         return redirect('/');
     }
 }

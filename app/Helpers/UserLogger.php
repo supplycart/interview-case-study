@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Enums\UserLogType;
 
 class UserLogger {
-    // TODO: test this function
     public static function login(int $userId) {
         UserLog::insert([
             'user_id' => $userId,
@@ -17,7 +16,6 @@ class UserLogger {
         ]);
     }
     
-    // TODO: test this function
     public static function logout(int $userId) {
         UserLog::insert([
             'user_id' => $userId,

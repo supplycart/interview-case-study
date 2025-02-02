@@ -19,7 +19,7 @@ return new class extends Migration
                 'add_to_cart', 'remove_from_cart', 'update_cart_quantity',
                 'checkout'
             ]);
-            $table->json('metadata');
+            $table->json('metadata')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
