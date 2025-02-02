@@ -26,9 +26,9 @@ const { productList } = defineProps({ productList: Array });
                   <thead class="bg-gray-100 text-sm uppercase text-gray-700">
                     <tr>
                       <th class="border-b px-4 py-3">Name</th>
-                      <th class="border-b px-4 py-3">Price</th>
                       <th class="border-b px-4 py-3">Brand</th>
                       <th class="border-b px-4 py-3">Category</th>
+                      <th class="border-b px-4 py-3">Price</th>
                     </tr>
                   </thead>
 

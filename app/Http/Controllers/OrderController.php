@@ -9,6 +9,8 @@ use Inertia\Response;
 use App\Models\User;
 use App\Models\Order;
 
+use App\Helpers\UserLogger;
+
 class OrderController extends Controller {
     /**
      * Display the user's order.
@@ -121,6 +123,12 @@ class OrderController extends Controller {
             ->update([
                 'is_active' => false,
             ]);
+
+        // set log
+        UserLogger::checkout($user->id, [
+            'orderId' => $newOrderId,
+            'orderItemList' => $orderItemList
+        ]);
 
         return Inertia::location(route('order.view'));
     }

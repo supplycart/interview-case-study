@@ -8,6 +8,8 @@ use Inertia\Response;
 
 use App\Models\CartItem;
 
+use App\Helpers\UserLogger;
+
 class CartController extends Controller {
     /**
      * Display the user's cart.
@@ -61,23 +63,35 @@ class CartController extends Controller {
             ->first();
 
         if (is_null($cartItem)) {
-            CartItem::insert([
+            $cartItemData = [
                 'cart_id' => $cart->id,
                 'product_id' => $productId,
                 'quantity' => $quantity,
                 'created_at' => now()
+            ];
+
+            CartItem::insert($cartItemData);
+            UserLogger::addToCart($user->id, [
+                'cartId' => $cart->id,
+                'cartItem' => $cartItemData,
             ]);
-            
+
             return Inertia::location(route('cart.view'));
         }
 
+        $newQuantity = $cartItem->quantity + $quantity;
         DB::table('cart_items')
             ->where('cart_id', $cart->id)
             ->where('product_id', $productId)
             ->where('is_active', true)
             ->update([
-                'quantity' => $cartItem->quantity + $quantity,
+                'quantity' => $newQuantity,
             ]);
+        UserLogger::updateCartQuantity($user->id, [
+            'cartId' => $cart->id,
+            'productId' => $productId,
+            'quantity' => $newQuantity
+        ]);
 
         return Inertia::location(route('cart.view'));
     }
@@ -99,6 +113,11 @@ class CartController extends Controller {
             ->update([
                 'quantity' => $quantity,
             ]);
+        UserLogger::updateCartQuantity($user->id, [
+            'cartId' => $cartId,
+            'productId' => $productId,
+            'quantity' => $quantity
+        ]);
     }
 
     /**
@@ -114,5 +133,8 @@ class CartController extends Controller {
             ->update([
                 'is_active' => false,
             ]);
+        UserLogger::removeFromCart($user->id, [
+            'cartItemId' => $cartItemId,
+        ]);
     }
 }

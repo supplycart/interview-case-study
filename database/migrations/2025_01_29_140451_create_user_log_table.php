@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('user_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->index();
-            $table->enum('type', ['login', 'logout', 'add_to_cart', 'remove_from_cart']);
+            $table->enum('type', [
+                'login', 'logout',
+                'add_to_cart', 'remove_from_cart', 'update_cart_quantity',
+                'checkout'
+            ]);
             $table->json('metadata');
             $table->timestamps();
 
