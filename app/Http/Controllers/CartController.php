@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
 
+use App\Models\CartItem;
+
 class CartController extends Controller {
     /**
      * Display the user's cart.
@@ -33,5 +35,34 @@ class CartController extends Controller {
                 'productPrice' => (float) $item->productPrice,
             ]),
         ]);
+    }
+
+    /**
+     * Add item to cart.
+     */
+    public function addItemToCart(Request $request)
+    {
+        $user = $request->user();
+        $productId = $request->input('productId');
+        $quantity = $request->input('quantity', 1);
+
+        $cart = DB::table('carts')
+            ->select('carts.id')
+            ->leftJoin('users', 'users.id', '=', 'carts.user_id')
+            ->where('users.id', $user->id)
+            ->first();
+
+        DB::table('cart_items')
+            ->leftJoin('carts', 'carts.id', '=', 'cart_items.cart_id')
+            ->leftJoin('users', 'users.id', '=', 'carts.user_id')
+            ->where('users.id', $user->id)
+            ->where('carts.id', $cart->id)
+            ->insert([
+                'cart_id' => $cart->id,
+                'product_id' => $productId,
+                'quantity' => $quantity,
+            ]);
+
+        return Inertia::location(route('cart.view'));
     }
 }

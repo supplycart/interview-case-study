@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(CartController::class)->group(function () {
     Route::get('/cart', 'view')->name('cart.view');
+    Route::post('/cart', 'addItemToCart')->name('cart.add');
 })->middleware(['auth', 'verified'])->name('cart');
 
 Route::controller(OrderController::class)->group(function () {
