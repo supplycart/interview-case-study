@@ -11,6 +11,31 @@ use App\Models\Order;
 
 class ProductController extends Controller {
     /**
+     * Display the product list.
+     */
+    public function view(Request $request): Response
+    {
+        $productList = DB::table('products')
+            ->select(
+                'products.id', 'products.name', 'products.price',
+                'product_brands.name as brandName', 'product_categories.name as categoryName'
+            )
+            ->leftJoin('product_brands', 'product_brands.id', '=', 'products.brand_id')
+            ->leftJoin('product_categories', 'product_categories.id', '=', 'products.category_id')
+            ->get();
+
+        return Inertia::render('Product/View', [
+            'productList' => $productList->map(fn ($product) => [
+                'id' => (int) $product->id,
+                'name' => $product->name,
+                'price' => (float) $product->price,
+                'brandName' => $product->brandName,
+                'categoryName' => $product->categoryName,
+            ]),
+        ]);
+    }
+
+    /**
      * Display the product detail.
      */
     public function detail(Request $request, int $id): Response

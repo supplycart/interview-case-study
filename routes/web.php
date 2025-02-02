@@ -40,6 +40,7 @@ Route::controller(OrderController::class)->group(function () {
 })->middleware(['auth', 'verified'])->name('order');
 
 Route::controller(ProductController::class)->group(function () {
+    Route::get('/product', 'view')->name('product.view');
     Route::get('/product/{productId}', 'detail');
     Route::get('/product/order/{productId}', 'orderDetail')->middleware(['auth', 'verified']);
 })->name('product');
