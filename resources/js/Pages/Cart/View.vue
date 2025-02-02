@@ -63,6 +63,7 @@ const removeCartItem = (cartItemId) => {
                 <table class="w-full border-collapse text-left">
                   <thead class="bg-gray-100 text-sm uppercase text-gray-700">
                     <tr>
+                      <th class="border-b px-4 py-3"></th>
                       <th class="border-b px-4 py-3">Name</th>
                       <th class="border-b px-4 py-3">Price</th>
                       <th class="border-b px-4 py-3">Quantity</th>
@@ -76,6 +77,14 @@ const removeCartItem = (cartItemId) => {
                       :key="index"
                       class="border-b hover:bg-gray-50"
                     >
+                      <td class="px-4 py-3">
+                        <button
+                          @click="removeCartItem(row.cartItemId)"
+                          class="rounded-md bg-red-600 px-6 py-3 text-white hover:bg-red-500"
+                        >
+                          Remove
+                        </button>
+                      </td>
                       <td class="px-4 py-3">
                         <NavLink
                           :href="`/product/${row.productId}`"
@@ -108,7 +117,7 @@ const removeCartItem = (cartItemId) => {
                       </td>
                     </tr>
                     <tr class="bg-gray-100 font-semibold">
-                      <td colspan="3" class="px-4 py-3 text-right">Total:</td>
+                      <td colspan="4" class="px-4 py-3 text-right">Total:</td>
                       <td class="px-4 py-3">
                         <PriceDisplay :price="cartTotalPrice" />
                       </td>
