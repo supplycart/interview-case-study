@@ -18,7 +18,7 @@ class CartController extends Controller {
         $cartItemList = DB::table('carts')
             ->select(
                 'carts.id as cartId',
-                'cart_items.quantity as cartItemQuantity',
+                'cart_items.id as cartItemId', 'cart_items.quantity as cartItemQuantity',
                 'products.id as productId', 'products.name as productName', 'products.price as productPrice',
             )
             ->leftJoin('cart_items', 'cart_items.cart_id', '=', 'carts.id')
@@ -30,6 +30,7 @@ class CartController extends Controller {
         return Inertia::render('Cart/View', [
             'cartItemList' => $cartItemList->map(fn ($item) => [
                 'cartId' => (int) $item->cartId,
+                'cartItemId' => (int) $item->cartItemId,
                 'cartItemQuantity' => (int) $item->cartItemQuantity,
                 'productId' => (int) $item->productId,
                 'productName' => $item->productName,
@@ -53,18 +54,65 @@ class CartController extends Controller {
             ->where('users.id', $user->id)
             ->first();
 
-        DB::table('cart_items')
-            ->leftJoin('carts', 'carts.id', '=', 'cart_items.cart_id')
-            ->leftJoin('users', 'users.id', '=', 'carts.user_id')
-            ->where('users.id', $user->id)
-            ->where('carts.id', $cart->id)
-            ->insert([
+        $cartItem = DB::table('cart_items')
+            ->where('cart_id', $cart->id)
+            ->where('product_id', $productId)
+            ->where('is_active', true)
+            ->first();
+
+        if (is_null($cartItem)) {
+            CartItem::insert([
                 'cart_id' => $cart->id,
                 'product_id' => $productId,
                 'quantity' => $quantity,
                 'created_at' => now()
             ]);
+            
+            return Inertia::location(route('cart.view'));
+        }
+
+        DB::table('cart_items')
+            ->where('cart_id', $cart->id)
+            ->where('product_id', $productId)
+            ->where('is_active', true)
+            ->update([
+                'quantity' => $cartItem->quantity + $quantity,
+            ]);
 
         return Inertia::location(route('cart.view'));
+    }
+
+    /**
+     * Update cart item quantity.
+     */
+    public function updateQuantity(Request $request)
+    {
+        $user = $request->user();
+        $cartId = $request->input('cartId');
+        $productId = $request->input('productId');
+        $quantity = $request->input('quantity', 1);
+
+        DB::table('cart_items')
+            ->where('cart_id', $cartId)
+            ->where('product_id', $productId)
+            ->where('is_active', true)
+            ->update([
+                'quantity' => $quantity,
+            ]);
+    }
+
+    /**
+     * Delete cart item.
+     */
+    public function delete(Request $request)
+    {
+        $user = $request->user();
+        $cartItemId = $request->input('cartItemId');
+
+        DB::table('cart_items')
+            ->where('id', $cartItemId)
+            ->update([
+                'is_active' => false,
+            ]);
     }
 }

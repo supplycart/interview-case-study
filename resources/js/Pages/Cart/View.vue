@@ -1,5 +1,4 @@
 <script setup>
-import { reactive } from 'vue';
 import NavLink from '@/Components/NavLink.vue';
 import PriceDisplay from '@/Components/PriceDisplay.vue';
 import QuantitySelector from '@/Components/QuantitySelector.vue';
@@ -21,6 +20,14 @@ const cartTotalPrice = computed(() =>
 
 const checkout = () => {
   router.post(`/order/checkout`);
+};
+const quantityUpdated = (cartId, productId, updatedQuantity) => {
+  router.post('cart/update', { cartId, productId, quantity: updatedQuantity });
+};
+const removeCartItem = (cartItemId) => {
+  if (confirm('Are you sure you want to remove this item from the cart?')) {
+    router.post('/cart/delete', { cartItemId });
+  }
 };
 </script>
 
@@ -81,7 +88,13 @@ const checkout = () => {
                         <PriceDisplay :price="row.productPrice" />
                       </td>
                       <td class="cursor-pointer px-4 py-3">
-                        <QuantitySelector v-model="row.cartItemQuantity" />
+                        <QuantitySelector
+                          @onValueUpdate="
+                            quantityUpdated(row.cartId, row.productId, $event)
+                          "
+                          @onValueEmpty="removeCartItem(row.cartItemId)"
+                          v-model="row.cartItemQuantity"
+                        />
                       </td>
                       <td class="cursor-pointer px-4 py-3">
                         <PriceDisplay

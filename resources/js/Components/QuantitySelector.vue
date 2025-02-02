@@ -2,19 +2,32 @@
 const props = defineProps({
   modelValue: {
     type: Number,
-    default: 1,
+    default: 0,
   },
 });
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits([
+  'update:modelValue',
+  'onValueUpdate',
+  'onValueEmpty',
+]);
 
 const decrease = () => {
-  if (props.modelValue > 1) {
-    emit('update:modelValue', props.modelValue - 1);
+  if (props.modelValue <= 1) {
+    emit('onValueEmpty');
+    return;
   }
+
+  const newValue = props.modelValue - 1;
+
+  emit('update:modelValue', newValue);
+  emit('onValueUpdate', newValue);
 };
 const increase = () => {
-  emit('update:modelValue', props.modelValue + 1);
+  const newValue = props.modelValue + 1;
+
+  emit('update:modelValue', newValue);
+  emit('onValueUpdate', newValue);
 };
 </script>
 
@@ -22,14 +35,14 @@ const increase = () => {
   <div class="flex items-center space-x-2">
     <button
       @click="decrease"
-      class="px-2 py-1 bg-gray-300 rounded hover:bg-gray-400"
+      class="rounded bg-gray-300 px-2 py-1 hover:bg-gray-400"
     >
       −
     </button>
     <span class="font-bold">{{ modelValue }}</span>
     <button
       @click="increase"
-      class="px-2 py-1 bg-gray-300 rounded hover:bg-gray-400"
+      class="rounded bg-gray-300 px-2 py-1 hover:bg-gray-400"
     >
       +
     </button>

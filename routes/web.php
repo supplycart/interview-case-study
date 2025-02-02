@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function () {
 Route::controller(CartController::class)->group(function () {
     Route::get('/cart', 'view')->name('cart.view');
     Route::post('/cart', 'addItemToCart')->name('cart.add');
+    Route::post('/cart/update', 'updateQuantity')->name('cart.update');
+    Route::post('/cart/delete', 'delete')->name('cart.delete');
 })->middleware(['auth', 'verified'])->name('cart');
 
 Route::controller(OrderController::class)->group(function () {

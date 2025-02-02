@@ -1,5 +1,4 @@
 <script setup>
-import NavLink from '@/Components/NavLink.vue';
 import PriceDisplay from '@/Components/PriceDisplay.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { Head } from '@inertiajs/vue3';
