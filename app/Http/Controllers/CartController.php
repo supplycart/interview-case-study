@@ -24,6 +24,7 @@ class CartController extends Controller {
             ->leftJoin('cart_items', 'cart_items.cart_id', '=', 'carts.id')
             ->leftJoin('products', 'products.id', '=', 'cart_items.product_id')
             ->where('carts.user_id', $user->id)
+            ->where('cart_items.is_active', true)
             ->get();
 
         return Inertia::render('Cart/View', [
@@ -61,6 +62,7 @@ class CartController extends Controller {
                 'cart_id' => $cart->id,
                 'product_id' => $productId,
                 'quantity' => $quantity,
+                'created_at' => now()
             ]);
 
         return Inertia::location(route('cart.view'));

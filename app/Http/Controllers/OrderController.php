@@ -69,4 +69,59 @@ class OrderController extends Controller {
             ]),
         ]);
     }
+
+    /**
+     * Add item to cart.
+     */
+    public function checkout(Request $request)
+    {
+        $user = $request->user();
+
+        $cart = DB::table('carts')
+            ->select('carts.id')
+            ->leftJoin('users', 'users.id', '=', 'carts.user_id')
+            ->where('users.id', $user->id)
+            ->first();
+
+        $orderItemList = DB::table('cart_items')
+            ->select(
+                'products.id as productId', 'products.price',
+                'cart_items.quantity'
+            )
+            ->leftJoin('carts', 'carts.id', '=', 'cart_items.cart_id')
+            ->leftJoin('products', 'products.id', '=', 'cart_items.product_id')
+            ->where('carts.id', $cart->id)
+            ->where('cart_items.is_active', true)
+            ->get();
+
+        // create new order
+        $orderTotalPrice = $orderItemList->reduce(
+            fn ($sum, $item) => ($sum += $item->price * $item->quantity)
+        );
+        $newOrderId = DB::table('orders')
+            ->insertGetId([
+                'user_id' => $user->id,
+                'total_price' => $orderTotalPrice,
+                'created_at' => now(),
+            ]);
+
+        DB::table('order_items')
+            ->insert($orderItemList->map(fn ($item) => [
+                'order_id' => $newOrderId,
+                'product_id' => $item->productId,
+                'quantity' => $item->quantity,
+            ])->toArray());
+
+        // clean current cart
+        DB::table('cart_items')
+            ->leftJoin('carts', 'carts.id', '=', 'cart_items.cart_id')
+            ->leftJoin('users', 'users.id', '=', 'carts.user_id')
+            ->where('users.id', $user->id)
+            ->where('carts.id', $cart->id)
+            ->update([
+                'is_active' => false,
+            ]);
+
+        return Inertia::location(route('order.view'));
+    }
 }

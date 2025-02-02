@@ -69,6 +69,7 @@ Table cart_items {
   cart_id int [ref: > carts.id]
   product_id int [ref: > products.id]
   quantity int
+  is_active boolean
   created_at timestamp
   updated_at timestamp
 }

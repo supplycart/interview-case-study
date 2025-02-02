@@ -1,25 +1,26 @@
 <script setup>
+import { reactive } from 'vue';
 import NavLink from '@/Components/NavLink.vue';
 import PriceDisplay from '@/Components/PriceDisplay.vue';
 import QuantitySelector from '@/Components/QuantitySelector.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { router } from '@inertiajs/vue3';
 import { Head } from '@inertiajs/vue3';
 import { computed } from 'vue';
 
 const { cartItemList } = defineProps({ cartItemList: Array });
 
-const totalItemPrice = (itemPrice, quantity) => itemPrice * quantity;
+const itemTotalPrice = (itemPrice, quantity) => itemPrice * quantity;
 const cartTotalPrice = computed(() =>
   cartItemList.reduce(
     (total, item) =>
-      total + totalItemPrice(item.productPrice, item.cartItemQuantity),
+      total + itemTotalPrice(item.productPrice, item.cartItemQuantity),
     0,
   ),
 );
 
 const checkout = () => {
-  // TODO: submit the form to add to create an order
-  alert('Checking out');
+  router.post(`/order/checkout`);
 };
 </script>
 
@@ -55,7 +56,6 @@ const checkout = () => {
                 <table class="w-full border-collapse text-left">
                   <thead class="bg-gray-100 text-sm uppercase text-gray-700">
                     <tr>
-                      <th class="border-b px-4 py-3"></th>
                       <th class="border-b px-4 py-3">Name</th>
                       <th class="border-b px-4 py-3">Price</th>
                       <th class="border-b px-4 py-3">Quantity</th>
@@ -69,36 +69,6 @@ const checkout = () => {
                       :key="index"
                       class="border-b hover:bg-gray-50"
                     >
-                      <td class="px-4 py-3">
-                        <label
-                          class="relative flex cursor-pointer items-center"
-                        >
-                          <input
-                            type="checkbox"
-                            checked
-                            class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-slate-300 shadow transition-all checked:border-slate-800 checked:bg-slate-800 hover:shadow-md"
-                            id="check"
-                          />
-                          <span
-                            class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-white opacity-0 peer-checked:opacity-100"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              class="h-3.5 w-3.5"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                              stroke="currentColor"
-                              stroke-width="1"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                          </span>
-                        </label>
-                      </td>
                       <td class="px-4 py-3">
                         <NavLink
                           :href="`/product/${row.productId}`"
@@ -116,7 +86,7 @@ const checkout = () => {
                       <td class="cursor-pointer px-4 py-3">
                         <PriceDisplay
                           :price="
-                            totalItemPrice(
+                            itemTotalPrice(
                               row.productPrice,
                               row.cartItemQuantity,
                             )
@@ -125,7 +95,7 @@ const checkout = () => {
                       </td>
                     </tr>
                     <tr class="bg-gray-100 font-semibold">
-                      <td colspan="4" class="px-4 py-3 text-right">Total:</td>
+                      <td colspan="3" class="px-4 py-3 text-right">Total:</td>
                       <td class="px-4 py-3">
                         <PriceDisplay :price="cartTotalPrice" />
                       </td>
