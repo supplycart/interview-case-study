@@ -15,11 +15,16 @@ The recommended way is **using the Docker** because you don't need to install an
 #   - 8000
 #   - 3306 (MySQL default port)
 
-# Run below command & wait until all of the containers have started.
+# Run either of the below command & wait about 1 minutes until all of the containers have started.
 # Container list:
 #   - supplycart_mysql
 #   - supplycart_app
 
+$ docker compose up --build
+
+# OR
+
+# run this instead if you don't want to check the container's log
 $ docker compose up --build --detach
 ```
 
