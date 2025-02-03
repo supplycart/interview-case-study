@@ -1,35 +1,24 @@
 services:
-  nginx:
-    container_name: supplycart_nginx
-    depends_on:
-      app:
-        condition: service_started
-    image: nginx:alpine
-    restart: unless-stopped
-    ports:
-      - "8000:80"
-    expose:
-      - "8000"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-
   app:
-    container_name: supplycart_app
-    depends_on:
-      mysql:
-        condition: service_started
     build: .
+    container_name: supplycart_app
     restart: unless-stopped
     working_dir: /var/www
     ports:
-      - "9000:9000"
-
+      - '8000:8000'
+    depends_on:
+      mysql:
+        condition: service_healthy
   mysql:
-    container_name: supplycart_mysql
     image: mysql
+    container_name: supplycart_mysql
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: supplycart
       MYSQL_ROOT_PASSWORD: password
     ports:
-      - "3306:3306"
+      - '3306:3306'
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
+      timeout: 20s
+      retries: 10

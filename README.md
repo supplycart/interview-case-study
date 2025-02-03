@@ -1,13 +1,14 @@
-# Running app using Docker
+# Running App
 
-```console
+## Using Docker
+
+```bash
 $ docker compose up --build --detach
-$ docker exec -it supplycart_app fish -c "php artisan migrate && php artisan db:seed"
 ```
 
-# Running app manually
+## Without Docker
 
-```console
+```bash
 $ composer install
 $ pnpm install && pnpm run build
 $ php artisan migrate && php artisan db:seed
@@ -26,18 +27,18 @@ This case study is designed for candidates to showcase their skills and coding s
 
 ## Instructions
 
--   Fork this repo to your github account
--   Complete the tasks given
--   Once completed, create a PR to this repository
--   Lastly, add some guidance or instruction on how to run your code
+- Fork this repo to your github account
+- Complete the tasks given
+- Once completed, create a PR to this repository
+- Lastly, add some guidance or instruction on how to run your code
 
 ## Requirements
 
 You must work on this assignment using:
 
--   Vue (optional for BE dev)
--   TailwindCSS
--   Laravel (optional for FE dev)
+- Vue (optional for BE dev)
+- TailwindCSS
+- Laravel (optional for FE dev)
 
 ## Tasks
 
@@ -84,9 +85,9 @@ While completing the above tasks, we will be particularly looking at how you han
 
 ## Submission Guidelines
 
--   Ensure your code is well-commented and follows PSR-12 coding standards for PHP.
--   Include a README.md file with setup instructions and any assumptions made.
--   If you have suggestions for improving this case study, feel free to include them in your submission.
+- Ensure your code is well-commented and follows PSR-12 coding standards for PHP.
+- Include a README.md file with setup instructions and any assumptions made.
+- If you have suggestions for improving this case study, feel free to include them in your submission.
 
 We look forward to reviewing your implementation and discussing your approach during the interview process.
 
