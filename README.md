@@ -1,3 +1,7 @@
+<p align="center">
+    <img align="center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
+</p>
+
 # Running App
 
 ## Using Docker
@@ -15,11 +19,9 @@ $ php artisan migrate && php artisan db:seed
 $ composer run dev
 ```
 
----
+# ERD
 
-<p align="center">
-    <img align="center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
-</p>
+![erd.svg](erd.svg 'erd.svg by dbdiagram.io')
 
 # Supplycart Interview Case Study
 
