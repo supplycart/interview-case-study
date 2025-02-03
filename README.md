@@ -2,6 +2,44 @@
     <img align="center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
 </p>
 
+# Running the App
+
+There are 2 ways to running this project: **using Docker** or **without using Docker**
+
+The recommended way is **using the Docker** because you don't need to install any dependencies into your local machine.
+
+## Using Docker
+
+```bash
+# Make sure you don't have any app using the below ports before running the command:
+#   - 8000
+#   - 3306 (MySQL default port)
+
+# Run below command & wait until all of the containers have started.
+# Container list:
+#   - supplycart_mysql
+#   - supplycart_app
+
+$ docker compose up --build --detach
+```
+
+## Without Docker
+
+```bash
+$ composer install
+$ pnpm install && pnpm run build
+$ php artisan migrate && php artisan db:seed
+$ composer run dev # or 'php artisan serve'
+```
+
+# Accessing the app
+
+Go to `http://localhost:8000` in your browser.
+
+# ERD
+
+![erd.svg](erd.svg 'erd.svg by dbdiagram.io')
+
 # Supplycart Interview Case Study
 
 This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned.
@@ -75,16 +113,3 @@ We look forward to reviewing your implementation and discussing your approach du
 ---
 
 P/S: If you think there is a better way for us to assess your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
-
-# Installation
-
-```console
-$ composer install
-$ php artisan migrate
-```
-
-# Running app
-
-```console
-$ composer run dev
-```
