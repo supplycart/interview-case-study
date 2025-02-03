@@ -1,19 +1,19 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-const props = defineProps({
+const { items, columns, filters } = defineProps({
   items: Array,
   columns: Array,
   filters: Object,
 });
 
 const searchQuery = ref('');
-const selectedFilters = ref({ ...props.filters });
+const selectedFilters = ref({ ...filters });
 const sortKey = ref('');
 const sortOrder = ref('asc');
 
 const filteredItems = computed(() => {
-  return props.items
+  return items
     .filter((item) => {
       return (
         (!searchQuery.value ||
@@ -95,6 +95,7 @@ const sortBy = (key) => {
             </th>
           </tr>
         </thead>
+
         <tbody>
           <tr
             v-for="(row, index) in filteredItems"
