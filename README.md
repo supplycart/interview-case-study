@@ -36,6 +36,14 @@ $ composer run dev # or 'php artisan serve'
 
 Go to `http://localhost:8000` in your browser.
 
+# Tech Stack
+
+1. MySQL v9.2
+2. Laravel PHP Framework v11
+3. PHP v8.4
+4. VueJS v3.5
+5. Inertia.js
+
 # ERD
 
 ![erd.svg](erd.svg 'erd.svg by dbdiagram.io')
