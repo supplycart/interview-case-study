@@ -42,7 +42,7 @@ Go to `http://localhost:8000` in your browser.
 2. Laravel PHP Framework v11
 3. PHP v8.4
 4. VueJS v3.5
-5. Inertia.js
+5. Inertia.js v2
 
 # ERD
 
