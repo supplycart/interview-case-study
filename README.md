@@ -63,7 +63,7 @@ Since most people might not have their personal server, it will be good if Suppl
 
 Most free servers that I know of that can actually run Laravel or PHP app does not comes with a free package for both MySQL DB server & PHP server (we used to be able to do this on Heroku before the Free tier was removed).
 
-So, by being able to actually build & run a Laravel application within a container, you can confidently deploy them to any free server regardless whether they have integration with DB server or since within the container itself, we can spin up a small instance of a DB server.
+Assuming the app is able to be built & run within the container itself, we can definitely be sure that it'll run properly in any environment that supports container apps. Also, by using docker compose, we can definitely spin up a very small container of DB server (in this project's case MySQL) for free.
 
 ---
 
