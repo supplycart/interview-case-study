@@ -18,10 +18,10 @@ const filteredItems = computed(() => {
       return (
         (!searchQuery.value ||
           item.name.toLowerCase().includes(searchQuery.value.toLowerCase())) &&
-        (!selectedFilters.value.brand ||
-          item.brandName === selectedFilters.value.brand) &&
-        (!selectedFilters.value.category ||
-          item.categoryName === selectedFilters.value.category)
+        (!selectedFilters.value.brandName ||
+          item.brandName === selectedFilters.value.brandName) &&
+        (!selectedFilters.value.categoryName ||
+          item.categoryName === selectedFilters.value.categoryName)
       );
     })
     .sort((a, b) => {
@@ -55,28 +55,31 @@ const sortBy = (key) => {
         class="w-full rounded border px-4 py-2"
       />
 
-      <select v-model="selectedFilters.brand" class="rounded border px-4 py-2">
+      <select
+        v-model="selectedFilters.brandName"
+        class="rounded border px-4 py-2"
+      >
         <option value="">All Brands</option>
         <option
-          v-for="brand in [...new Set(items.map((p) => p.brandName))]"
-          :key="brand"
-          :value="brand"
+          v-for="brandName in [...new Set(items.map((p) => p.brandName))]"
+          :key="brandName"
+          :value="brandName"
         >
-          {{ brand }}
+          {{ brandName }}
         </option>
       </select>
 
       <select
-        v-model="selectedFilters.category"
+        v-model="selectedFilters.categoryName"
         class="rounded border px-4 py-2"
       >
         <option value="">All Categories</option>
         <option
-          v-for="category in [...new Set(items.map((p) => p.categoryName))]"
-          :key="category"
-          :value="category"
+          v-for="categoryName in [...new Set(items.map((p) => p.categoryName))]"
+          :key="categoryName"
+          :value="categoryName"
         >
-          {{ category }}
+          {{ categoryName }}
         </option>
       </select>
     </div>

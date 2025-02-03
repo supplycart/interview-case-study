@@ -29,7 +29,7 @@ const { productList } = defineProps({ productList: Array });
               { key: 'categoryName', label: 'Category' },
               { key: 'price', label: 'Price' },
             ]"
-            :filters="{ brand: '', category: '' }"
+            :filters="{ brandName: '', categoryName: '' }"
           >
             <template #price="{ item }">
               <PriceDisplay :price="item.price" />
