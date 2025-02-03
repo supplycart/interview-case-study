@@ -48,6 +48,20 @@ Go to `http://localhost:8000` in your browser.
 
 ![erd.svg](erd.svg 'erd.svg by dbdiagram.io')
 
+# Suggestions on improving this Case Study
+
+Allow DevOp or Senior SOftware Engineer to showcase their skill by adding a `Bonus Task` to run the application using `Docker container` or `Docker compose`.
+
+Since most people might not have their personal server, it will be good if Supplycart able to test them whether they are able to at least build & run a Docker container on their localhost since once you have run a container, it'll always run as expected no matter the environment (technically, you can just plug & play the container to any server to deploy them).
+
+### Reason
+
+Most free servers that I know of that can actually run Laravel or PHP app does not comes with a free package for both MySQL DB server & PHP server (we used to be able to do this on Heroku before the Free tier was removed).
+
+So, by being able to actually build & run a Laravel application within a container, you can confidently deploy them to any free server regardless whether they have integration with DB server or since within the container itself, we can spin up a small instance of a DB server.
+
+---
+
 # Supplycart Interview Case Study
 
 This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned.
