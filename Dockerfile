@@ -30,8 +30,11 @@ COPY .env.example .env
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
-RUN pnpm install && pnpm run build
+RUN pnpm install && \
+    pnpm run build
 
 # serve app
 EXPOSE 8000
-CMD php artisan migrate --force && php artisan db:seed && php artisan serve --host=0.0.0.0 --port=8000
+CMD php artisan migrate --force && \
+    php artisan db:seed && \
+    php artisan serve --host=0.0.0.0 --port=8000

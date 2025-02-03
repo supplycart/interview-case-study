@@ -14,14 +14,6 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // TODO: remove admin if not enough time to finish lol
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('password123'),
-        ]);
-
         // normal customer user
         User::create([
             'name' => 'User',
