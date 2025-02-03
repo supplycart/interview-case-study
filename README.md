@@ -2,11 +2,24 @@
     <img align="center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
 </p>
 
-# Running App
+# Running the App
+
+There are 2 ways to running this project: **using Docker** or **without using Docker**
+
+The recommended way is **using the Docker** because you don't need to install any dependencies into your local machine.
 
 ## Using Docker
 
 ```bash
+# Make sure you don't have any app using the below ports before running the command:
+#   - 8000
+#   - 3306 (MySQL default port)
+
+# Run below command & wait until all of the containers have started.
+# Container list:
+#   - supplycart_mysql
+#   - supplycart_app
+
 $ docker compose up --build --detach
 ```
 
@@ -16,8 +29,12 @@ $ docker compose up --build --detach
 $ composer install
 $ pnpm install && pnpm run build
 $ php artisan migrate && php artisan db:seed
-$ composer run dev
+$ composer run dev # or 'php artisan serve'
 ```
+
+# Accessing the app
+
+Go to `http://localhost:8000` in your browser.
 
 # ERD
 
