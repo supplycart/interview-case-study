@@ -112,4 +112,12 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    /**
+     * For JWT authentication
+     */
+    'token' => [
+        'driver' => 'jwt',
+        'provider' => 'users',
+        'hash' => false,
+    ],
 ];
