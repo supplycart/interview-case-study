@@ -6,6 +6,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { router } from '@inertiajs/vue3';
 import { Head } from '@inertiajs/vue3';
 import { computed } from 'vue';
+import FilterableTable from '@/Components/FilterableTable.vue';
 
 const { cartItemList } = defineProps({ cartItemList: Array });
 
@@ -56,76 +57,60 @@ const removeCartItem = (cartItemId) => {
         <div class="bg-white shadow-sm sm:rounded-lg">
           <div class="p-6 text-gray-900">
             <h1 v-if="cartItemList.length <= 0">Your cart is empty.</h1>
-            <div v-else>
-              <div
-                class="overflow-x-auto rounded-lg border border-gray-200 shadow-md"
-              >
-                <table class="w-full border-collapse text-left">
-                  <thead class="bg-gray-100 text-sm uppercase text-gray-700">
-                    <tr>
-                      <th class="border-b px-4 py-3"></th>
-                      <th class="border-b px-4 py-3">Name</th>
-                      <th class="border-b px-4 py-3">Price</th>
-                      <th class="border-b px-4 py-3">Quantity</th>
-                      <th class="border-b px-4 py-3">Total Price</th>
-                    </tr>
-                  </thead>
 
-                  <tbody>
-                    <tr
-                      v-for="(row, index) in cartItemList"
-                      :key="index"
-                      class="border-b hover:bg-gray-50"
-                    >
-                      <td class="px-4 py-3">
-                        <button
-                          @click="removeCartItem(row.cartItemId)"
-                          class="rounded-md bg-red-600 px-6 py-3 text-white hover:bg-red-500"
-                        >
-                          Remove
-                        </button>
-                      </td>
-                      <td class="px-4 py-3">
-                        <NavLink
-                          :href="`/product/${row.productId}`"
-                          class="font-medium text-indigo-600 hover:text-indigo-500"
-                        >
-                          {{ row.productName }}
-                        </NavLink>
-                      </td>
-                      <td class="cursor-pointer px-4 py-3">
-                        <PriceDisplay :price="row.productPrice" />
-                      </td>
-                      <td class="cursor-pointer px-4 py-3">
-                        <QuantitySelector
-                          @onValueUpdate="
-                            quantityUpdated(row.cartId, row.productId, $event)
-                          "
-                          @onValueEmpty="removeCartItem(row.cartItemId)"
-                          v-model="row.cartItemQuantity"
-                        />
-                      </td>
-                      <td class="cursor-pointer px-4 py-3">
-                        <PriceDisplay
-                          :price="
-                            itemTotalPrice(
-                              row.productPrice,
-                              row.cartItemQuantity,
-                            )
-                          "
-                        />
-                      </td>
-                    </tr>
-                    <tr class="bg-gray-100 font-semibold">
-                      <td colspan="4" class="px-4 py-3 text-right">Total:</td>
-                      <td class="px-4 py-3">
-                        <PriceDisplay :price="cartTotalPrice" />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <FilterableTable
+              v-else
+              :items="cartItemList"
+              :columns="[
+                { key: 'action', label: '' },
+                { key: 'productName', label: 'Name' },
+                { key: 'productPrice', label: 'Price' },
+                { key: 'quantity', label: 'Quantity' },
+                { key: 'totalPrice', label: 'Total Price' },
+              ]"
+              :isCartTotalPriceEnabled="true"
+              :cartTotalPrice="cartTotalPrice"
+            >
+              <template #action="{ item }">
+                <button
+                  @click="removeCartItem(item.cartItemId)"
+                  class="rounded-md bg-red-600 px-6 py-3 text-white hover:bg-red-500"
+                >
+                  Remove
+                </button>
+              </template>
+
+              <template #productName="{ item }">
+                <NavLink
+                  :href="`/product/${item.productId}`"
+                  class="font-medium text-indigo-600 hover:text-indigo-500"
+                >
+                  {{ item.productName }}
+                </NavLink>
+              </template>
+
+              <template #productPrice="{ item }">
+                <PriceDisplay :price="item.productPrice" />
+              </template>
+
+              <template #quantity="{ item }">
+                <QuantitySelector
+                  @onValueUpdate="
+                    quantityUpdated(item.cartId, item.productId, $event)
+                  "
+                  @onValueEmpty="removeCartItem(item.cartItemId)"
+                  v-model="item.cartItemQuantity"
+                />
+              </template>
+
+              <template #totalPrice="{ item }">
+                <PriceDisplay
+                  :price="
+                    itemTotalPrice(item.productPrice, item.cartItemQuantity)
+                  "
+                />
+              </template>
+            </FilterableTable>
           </div>
         </div>
       </div>

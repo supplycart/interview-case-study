@@ -1,10 +1,23 @@
 <script setup>
 import { ref, computed } from 'vue';
+import PriceDisplay from '@/Components/PriceDisplay.vue';
 
-const { items, columns, filters } = defineProps({
+const { items, columns, isFilterEnabled, filters } = defineProps({
   items: Array,
   columns: Array,
+  isFilterEnabled: {
+    type: Boolean,
+    default: false,
+  },
   filters: Object,
+  isCartTotalPriceEnabled: {
+    type: Boolean,
+    default: false,
+  },
+  cartTotalPrice: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const searchQuery = ref('');
@@ -47,7 +60,7 @@ const sortBy = (key) => {
 
 <template>
   <div>
-    <div class="mb-4 flex gap-4">
+    <div v-if="isFilterEnabled" class="mb-4 flex gap-4">
       <input
         v-model="searchQuery"
         type="text"
@@ -108,6 +121,15 @@ const sortBy = (key) => {
             <td v-for="col in columns" :key="col.key" class="px-4 py-3">
               <slot :name="col.key" :item="row">
                 {{ row[col.key] }}
+              </slot>
+            </td>
+          </tr>
+
+          <tr v-if="isCartTotalPriceEnabled" class="bg-gray-100 font-semibold">
+            <td colspan="4" class="px-4 py-3 text-right">Total:</td>
+            <td class="px-4 py-3">
+              <slot :name="cartTotalPrice">
+                <PriceDisplay :price="cartTotalPrice" />
               </slot>
             </td>
           </tr>

@@ -1,11 +1,8 @@
 <script setup>
-import { ref, watch } from 'vue';
-import { router } from '@inertiajs/vue3';
 import PriceDisplay from '@/Components/PriceDisplay.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import FilterableTable from '@/Components/FilterableTable.vue';
-import NavLink from '@/Components/NavLink.vue';
 
 const { productList } = defineProps({ productList: Array });
 </script>
@@ -29,6 +26,7 @@ const { productList } = defineProps({ productList: Array });
               { key: 'categoryName', label: 'Category' },
               { key: 'price', label: 'Price' },
             ]"
+            :is-filter-enabled="true"
             :filters="{ brandName: '', categoryName: '' }"
           >
             <template #price="{ item }">
