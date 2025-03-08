@@ -4,7 +4,7 @@ namespace App\Actions\Modules\Registration;
 
 use App\Models\User;
 
-class SendVerificationEmail
+class SendVerificationEmailAction
 {
     public static function execute(User $user) : void
     {
