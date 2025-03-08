@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Actions\Modules\Registration\CreateAction as RegistrationCreateAction;
+use App\Actions\Modules\General\Registration\CreateAction as RegistrationCreateAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Registration\RegistrationRequest;
 
