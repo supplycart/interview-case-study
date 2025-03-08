@@ -17,6 +17,17 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            // personal details
+            $table->string('phone_no', 50)->nullable();
+            $table->string('address_line_1', 100)->nullable();
+            $table->string('address_line_2', 100)->nullable();
+            $table->string('address_line_3', 100)->nullable();
+
+            // membership details
+            $table->boolean('is_member')->default(false);
+            $table->boolean('is_membership_requested')->default(false);
+
             $table->rememberToken();
             $table->timestamps();
         });
