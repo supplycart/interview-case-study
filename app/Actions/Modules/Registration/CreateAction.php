@@ -10,7 +10,7 @@ class CreateAction
     {
         $user = UserStandardActions::store($request);
 
-        SendVerificationEmail::execute($user);
+        SendVerificationEmailAction::execute($user);
 
         return $user;
     }
