@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Modules\Registration;
+namespace App\Actions\Modules\General\Registration;
 
 use App\Models\User;
 

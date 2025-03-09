@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\Models\User;
+namespace App\Actions\Models\Product;
 
-use App\Models\User;
+use App\Models\Product;
 
 class StandardActions
 {
@@ -10,16 +10,16 @@ class StandardActions
     {
         if (!isset($request))
         {
-            return User::paginate();
+            return Product::paginate();
         }
 
-        $users = User::query();
+        $products = Product::query();
 
         if (isset($request['filters']) && !empty($request['filters']))
         {
             $filters = $request['filters'];
 
-            $users->query()
+            $products->query()
                 ->when(isset($filters['name']), function($subquery) use ($filters) { $subquery->where('name', $filters['name']); })
                 ->when(isset($filters['email']), function($subquery) use ($filters) { $subquery->where('email', $filters['email']); })
                 ->when(isset($filters['phone_no']), function($subquery) use ($filters) { $subquery->where('name', $filters['phone_no']); })
@@ -30,43 +30,43 @@ class StandardActions
         {
             $search = $request['search'];
 
-            $users->query()
+            $products->query()
                 ->where('name', 'like', "%{$search}%")
                 ->orWhere('email', 'like', "%{$search}%")
                 ->orWhere('phone_no', 'like', "%{$search}%")
                 ;
         }
 
-        return $users->paginate();
+        return $products->paginate();
     }
 
     public static function show($id)
     {
-        $user = User::findOrFail($id);
+        $product = Product::findOrFail($id);
 
-        return $user;
+        return $product;
     }
 
     public static function store($request)
     {
-        $user = User::create($request);
+        $product = Product::create($request);
 
-        return $user;
+        return $product;
     }
 
     public static function update($id, $request)
     {
-        $user = User::findOrFail($id);
-        $user = $user->update($request);
+        $product = Product::findOrFail($id);
+        $product = $product->update($request);
 
-        return $user;
+        return $product;
     }
 
     public static function delete($id)
     {
-        $user = User::findOrFail($id);
-        $user = $user->delete();
+        $product = Product::findOrFail($id);
+        $product = $product->delete();
 
-        return $user;
+        return $product;
     }
 }
