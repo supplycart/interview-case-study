@@ -13,13 +13,12 @@ class StandardActions
             return CartItem::paginate();
         }
 
-        $search = $request['search'];
-        $filters = $request['filters'];
+        $cartItems = CartItem::query();
 
-        $cartItems = CartItem::model();
-
-        if (isset($filters) && !empty($filters))
+        if (isset($request['filters']) && !empty($request['filters']))
         {
+            $filters = $request['filters'];
+
             $cartItems->query()
                 ->when(isset($filters['name']), function($subquery) use ($filters) { $subquery->where('name', $filters['name']); })
                 ->when(isset($filters['email']), function($subquery) use ($filters) { $subquery->where('email', $filters['email']); })
@@ -27,8 +26,10 @@ class StandardActions
                 ;
         }
 
-        if (isset($search))
+        if (isset($request['search']))
         {
+            $search = $request['search'];
+
             $cartItems->query()
                 ->where('name', 'like', "%{$search}%")
                 ->orWhere('email', 'like', "%{$search}%")

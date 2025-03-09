@@ -13,21 +13,22 @@ class StandardActions
             return Category::paginate();
         }
 
-        $search = $request['search'];
-        $filters = $request['filters'];
+        $categorys = Category::query();
 
-        $categorys = Category::model();
-
-        if (isset($filters) && !empty($filters))
+        if (isset($request['filters']) && !empty($request['filters']))
         {
+            $filters = $request['filters'];
+
             $categorys->query()
                 ->when(isset($filters['name']), function($subquery) use ($filters) { $subquery->where('name', $filters['name']); })
                 ->when(isset($filters['position']), function($subquery) use ($filters) { $subquery->where('position', $filters['position']); })
                 ;
         }
 
-        if (isset($search))
+        if (isset($request['search']))
         {
+            $search = $request['search'];
+
             $categorys->query()
                 ->where('name', 'like', "%{$search}%")
                 ;

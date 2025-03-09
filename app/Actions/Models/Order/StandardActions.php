@@ -13,13 +13,12 @@ class StandardActions
             return Order::paginate();
         }
 
-        $search = $request['search'];
-        $filters = $request['filters'];
+        $orders = Order::query();
 
-        $orders = Order::model();
-
-        if (isset($filters) && !empty($filters))
+        if (isset($request['filters']) && !empty($request['filters']))
         {
+            $filters = $request['filters'];
+
             $orders->query()
                 ->when(isset($filters['number']), function($subquery) use ($filters) { $subquery->where('name', $filters['number']); })
                 ->when(isset($filters['name']), function($subquery) use ($filters) { $subquery->where('name', $filters['name']); })
@@ -29,8 +28,10 @@ class StandardActions
                 ;
         }
 
-        if (isset($search))
+        if (isset($request['search']))
         {
+            $search = $request['search'];
+
             $orders->query()
                 ->where('number', 'like', "%{$search}%")
                 ->orWhere('name', 'like', "%{$search}%")
