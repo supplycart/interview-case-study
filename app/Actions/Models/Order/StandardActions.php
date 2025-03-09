@@ -20,10 +20,11 @@ class StandardActions
             $filters = $request['filters'];
 
             $orders->query()
-                ->when(isset($filters['number']), function($subquery) use ($filters) { $subquery->where('name', $filters['number']); })
+                ->when(isset($filters['user_id']), function($subquery) use ($filters) { $subquery->where('user_id', $filters['user_id']); })
+                ->when(isset($filters['number']), function($subquery) use ($filters) { $subquery->where('number', $filters['number']); })
                 ->when(isset($filters['name']), function($subquery) use ($filters) { $subquery->where('name', $filters['name']); })
                 ->when(isset($filters['email']), function($subquery) use ($filters) { $subquery->where('email', $filters['email']); })
-                ->when(isset($filters['phone_no']), function($subquery) use ($filters) { $subquery->where('name', $filters['phone_no']); })
+                ->when(isset($filters['phone_no']), function($subquery) use ($filters) { $subquery->where('phone_no', $filters['phone_no']); })
                 ->when(isset($filters['date']), function($subquery) use ($filters) { $subquery->whereDate('created_at', $filters['date']); })
                 ;
         }
@@ -53,14 +54,6 @@ class StandardActions
 
     public static function store($request)
     {
-        // TODO: to complete later
-        $orderRequest = [];
-        $orderRequest['user_id'] = $request['user_id'];
-        $orderRequest['number'] = CustomActions::generateDocumentNumber($request['user_id']);
-        $orderRequest['subtotal'] = $request['subtotal'];
-        $orderRequest['discount_amount'] = $request['discount_amount'];
-        $orderRequest['grand_total'] = $request['grand_total'];
-
         $order = Order::create($request);
 
         return $order;
