@@ -9,7 +9,8 @@ class GetListingAction
     // actions not part of Resource standards are placed here
     public static function execute($user, $request = [])
     {
-        $request['user_id'] = $user->id;
+        $request['filters'] = [];
+        $request['filters']['user_id'] = $user->id;
 
         $cartItems = OrderStandardActions::index($request);
 

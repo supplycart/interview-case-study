@@ -13,6 +13,11 @@ class Order extends Model
         'id', 'created_at'
     ];
 
+    protected $casts = [
+        'created_at'  => 'date:Y-m-d H:i:s',
+    ];
+
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

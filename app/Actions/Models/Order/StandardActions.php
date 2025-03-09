@@ -19,7 +19,7 @@ class StandardActions
         {
             $filters = $request['filters'];
 
-            $orders->query()
+            $orders
                 ->when(isset($filters['user_id']), function($subquery) use ($filters) { $subquery->where('user_id', $filters['user_id']); })
                 ->when(isset($filters['number']), function($subquery) use ($filters) { $subquery->where('number', $filters['number']); })
                 ->when(isset($filters['name']), function($subquery) use ($filters) { $subquery->where('name', $filters['name']); })
@@ -33,7 +33,7 @@ class StandardActions
         {
             $search = $request['search'];
 
-            $orders->query()
+            $orders
                 ->where('number', 'like', "%{$search}%")
                 ->orWhere('name', 'like', "%{$search}%")
                 ->orWhere('email', 'like', "%{$search}%")
