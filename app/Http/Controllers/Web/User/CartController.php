@@ -6,6 +6,7 @@ use App\Actions\Modules\User\Cart\CreateAction;
 use App\Actions\Modules\User\Cart\DeleteAction;
 use App\Actions\Modules\User\Cart\GetListingAction;
 use App\Actions\Modules\User\Cart\UpdateAction;
+use App\Actions\Models\Order\CustomActions as OrderCustomActions;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CartRequest;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +18,19 @@ class CartController extends Controller
     {
         $user = Auth::user();
         $cartItems = GetListingAction::execute($user);
+        $cartItemsSubtotal = $cartItems->pluck('subtotal')->toArray();
+
+        $subtotal = OrderCustomActions::calculateSubtotal($cartItemsSubtotal);
+        $roundingAdjustment = 0; // OrderCustomActions::calculateRoundingAdjustment($cartItemsSubtotal); // NOTE: missed out in migrations
+        $discountAmount = 0; // $request['discount_amount] // NOTE: not within scope
+        $grandTotal = OrderCustomActions::calculateGrandTotal($subtotal, $roundingAdjustment, $discountAmount);
 
         $props = [];
         $props['cartItems'] = $cartItems;
+        $props['subtotal'] = number_format($subtotal, 2);
+        $props['roundingAdjustment'] = number_format($roundingAdjustment, 2);
+        $props['discountAmount'] = number_format($discountAmount, 2);
+        $props['grandTotal'] = number_format($grandTotal, 2);
 
         return Inertia::render('user/cart/Index', $props);
     }

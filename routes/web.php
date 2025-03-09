@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\User\ProductController as UserProductController;
 use App\Http\Controllers\Web\User\CartController as UserCartController;
+use App\Http\Controllers\Web\User\OrderController as UserOrderController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -17,6 +18,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
     Route::resource('cart', UserCartController::class, [ 'except' => 'store' ]);
     Route::post('cart', [ UserCartController::class, 'store' ])->name('add-to-cart');
+
+    Route::resource('order', UserOrderController::class);
 });
 
 require __DIR__.'/settings.php';
