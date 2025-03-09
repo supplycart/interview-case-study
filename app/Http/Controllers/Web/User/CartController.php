@@ -9,6 +9,7 @@ use App\Actions\Modules\User\Cart\UpdateAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CartRequest;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class CartController extends Controller
 {
@@ -17,7 +18,10 @@ class CartController extends Controller
         $user = Auth::user();
         $cartItems = GetListingAction::execute($user);
 
-        return $cartItems;
+        $props = [];
+        $props['cartItems'] = $cartItems;
+
+        return Inertia::render('user/cart/Index', $props);
     }
 
     public static function create($id)
@@ -28,7 +32,7 @@ class CartController extends Controller
     public static function store(CartRequest $request)
     {
         $user = Auth::user();
-        $cartItem = CreateAction::execute($user, $request->validated());
+        CreateAction::execute($user, $request->validated());
 
         return redirect()->back();
     }
@@ -45,15 +49,15 @@ class CartController extends Controller
 
     public static function update(CartRequest $request, $id)
     {
-        $cartItem = UpdateAction::execute($id, $request->validated());
+        UpdateAction::execute($id, $request->validated());
 
-        return $cartItem;
+        return redirect()->back();
     }
 
     public static function destroy($id)
     {
-        $cartItem = DeleteAction::execute($id);
+        DeleteAction::execute($id);
 
-        return $cartItem;
+        return redirect()->back();
     }
 }

@@ -2,6 +2,7 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { SharedData, type BreadcrumbItem } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
+// import { BookOpen, Folder, LayoutGrid, ShoppingBag } from 'lucide-vue-next';
 
 import {
   Table,
@@ -14,35 +15,29 @@ import {
 } from '@/components/ui/table'
 
 interface Props {
-    products: any;
+    cartItems: any;
 }
 
 const props = defineProps<Props>();
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Product',
-        href: '/product',
+        title: 'Cart',
+        href: '/cart',
     },
 ];
 
-function addToCart(product: any)
+function removeFromCart(cartItemId: number)
 {
-    let form = useForm({
-        product_id: product.id,
-        product_title: product.title,
-        product_description: product.description,
-        quantity: 1,
-        unit_price: product.price,
-    })
+    let form = useForm({});
 
-    form.post(route('add-to-cart'));
+    form.delete(route('cart.destroy', cartItemId));
 }
 
 </script>
 
 <template>
-    <Head title="Product" />
+    <Head title="cartItem" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
@@ -51,17 +46,23 @@ function addToCart(product: any)
                     <TableRow>
                         <TableHead>Title</TableHead>
                         <TableHead>Description</TableHead>
-                        <TableHead>Price</TableHead>
+                        <TableHead>Unit Price</TableHead>
+                        <TableHead>Quantity</TableHead>
+                        <TableHead>Subtotal</TableHead>
                         <TableHead></TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    <TableRow v-for="product in props.products.data">
-                        <TableCell class="font-medium">{{ product.title }}</TableCell>
-                        <TableCell>{{ product.description }}</TableCell>
-                        <TableCell>{{ product.price }}</TableCell>
+                    <TableRow v-for="cartItem in props.cartItems.data">
+                        <TableCell class="font-medium">{{ cartItem.product_title }}</TableCell>
+                        <TableCell>{{ cartItem.product_description }}</TableCell>
+                        <TableCell>{{ cartItem.unit_price }}</TableCell>
+                        <TableCell>{{ cartItem.quantity }}</TableCell>
+                        <TableCell>{{ cartItem.subtotal }}</TableCell>
                         <TableCell>
-                            <Button @click="addToCart(product)">Add To Cart</Button>
+                            <button @click="removeFromCart(cartItem.id)">
+                                Remove
+                            </button>
                         </TableCell>
                     </TableRow>
                 </TableBody>

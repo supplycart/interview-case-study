@@ -15,6 +15,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
     Route::get('product', [ UserProductController::class, 'index' ])->name('product');
 
+    Route::resource('cart', UserCartController::class, [ 'except' => 'store' ]);
     Route::post('cart', [ UserCartController::class, 'store' ])->name('add-to-cart');
 });
 
