@@ -2,12 +2,10 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { SharedData, User, type BreadcrumbItem } from '@/types';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
-// import { BookOpen, Folder, LayoutGrid, ShoppingBag } from 'lucide-vue-next';
 
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -30,7 +28,7 @@ const props = defineProps<Props>();
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Cart',
-        href: '/cart',
+        href: '/user/cart',
     },
 ];
 
@@ -38,7 +36,7 @@ function removeFromCart(cartItemId: number)
 {
     let form = useForm({});
 
-    form.delete(route('cart.destroy', cartItemId));
+    form.delete(route('user.cart.destroy', cartItemId));
 }
 
 function confirmOrder()
@@ -54,7 +52,7 @@ function confirmOrder()
             cart_item_ids: cartItemIds
         });
 
-        form.post(route('order.store'));
+        form.post(route('user.order.store'));
     }
 }
 
@@ -119,9 +117,9 @@ function confirmOrder()
                         <TableCell ColSpan="2"></TableCell>
                         <TableCell ColSpan="2">Confirm Purchase</TableCell>
                         <TableCell>
-                            <Button @click="confirmOrder()">
-                                OK
-                            </Button>
+                            <button @click="confirmOrder()">
+                                Place Order
+                            </button>
                         </TableCell>
                         <TableCell></TableCell>
                     </TableRow>

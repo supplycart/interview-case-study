@@ -11,22 +11,22 @@ import AppLogo from './AppLogo.vue';
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
-        href: '/dashboard',
+        href: '/user/dashboard',
         icon: LayoutGrid,
     },
     {
         title: 'Product',
-        href: '/product',
+        href: '/user/product',
         icon: Folder,
     },
     {
         title: 'Order',
-        href: '/order',
+        href: '/user/order',
         icon: FolderClock,
     },
     {
         title: 'Cart',
-        href: '/cart',
+        href: '/user/cart',
         icon: ShoppingBag,
     },
 ];

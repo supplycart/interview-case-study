@@ -28,13 +28,13 @@ const props = defineProps<Props>();
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Order',
-        href: '/order',
+        href: '/user/order',
     },
 ];
 
 function open(id: number)
 {
-    window.location.href = '/order/'+id;
+    window.location.href = '/user/order/'+id;
 }
 
 </script>

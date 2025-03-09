@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
-import { SharedData, type BreadcrumbItem } from '@/types';
-import { Head, useForm, usePage } from '@inertiajs/vue3';
+import { type BreadcrumbItem } from '@/types';
+import { Head, useForm } from '@inertiajs/vue3';
 
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -22,7 +21,7 @@ const props = defineProps<Props>();
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Product',
-        href: '/product',
+        href: '/user/product',
     },
 ];
 
@@ -36,7 +35,7 @@ function addToCart(product: any)
         unit_price: product.price,
     })
 
-    form.post(route('add-to-cart'));
+    form.post(route('user.add-to-cart'));
 }
 
 </script>
@@ -61,7 +60,7 @@ function addToCart(product: any)
                         <TableCell>{{ product.description }}</TableCell>
                         <TableCell>{{ product.price }}</TableCell>
                         <TableCell>
-                            <Button @click="addToCart(product)">Add To Cart</Button>
+                            <button @click="addToCart(product)">Add To Cart</button>
                         </TableCell>
                     </TableRow>
                 </TableBody>
