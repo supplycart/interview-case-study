@@ -63,7 +63,7 @@ class StandardActions
     public static function delete($id)
     {
         $cartItem = CartItem::findOrFail($id);
-        $cartItem = $cartItem->delete();
+        $cartItem->delete();
 
         return $cartItem;
     }

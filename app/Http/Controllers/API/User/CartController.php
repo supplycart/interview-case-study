@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\User;
 
 use App\Actions\Modules\User\Cart\CreateAction;
+use App\Actions\Modules\User\Cart\DeleteAction;
 use App\Actions\Modules\User\Cart\GetListingAction;
 use App\Actions\Modules\User\Cart\UpdateAction;
 use App\Http\Controllers\Controller;
@@ -49,8 +50,10 @@ class CartController extends Controller
         return $cartItem;
     }
 
-    public static function delete($id)
+    public static function destroy($id)
     {
-        abort(404);
+        $cartItem = DeleteAction::execute($id);
+
+        return $cartItem;
     }
 }
