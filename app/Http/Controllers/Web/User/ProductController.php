@@ -11,10 +11,9 @@ class ProductController extends Controller
 {
     public static function index()
     {
-        $props = [];
-        $props['message'] = 'This is test message';
-
         $user = Auth::user();
+
+        $props = [];
         $props['products'] = GetListingAction::execute($user);
 
         return Inertia::render('user/product/Index', $props);
