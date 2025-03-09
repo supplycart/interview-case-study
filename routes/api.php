@@ -4,6 +4,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\RegistrationController;
 
 use App\Http\Controllers\API\User\ProductController as UserProductController;
+use App\Http\Controllers\API\User\CartController as UserCartController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,10 +28,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
             'only' => [ 'index', 'show']
         ]);
 
-        // // order
-        // Route::get();
+        // cart
+        Route::resource('cart', UserCartController::class);
 
-        // // cart
+        // // order
         // Route::get();
 
     });

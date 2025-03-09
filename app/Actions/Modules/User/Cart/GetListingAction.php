@@ -2,7 +2,16 @@
 
 namespace App\Actions\Modules\User\Cart;
 
+use App\Actions\Models\CartItem\StandardActions as CartItemStandardActions;
+
 class GetListingAction
 {
-    // actions not part of Resource standards are placed here
+    public static function execute($user, $request = [])
+    {
+        $request['user_id'] = $user->id;
+
+        $cartItems = CartItemStandardActions::index($request);
+
+        return $cartItems;
+    }
 }

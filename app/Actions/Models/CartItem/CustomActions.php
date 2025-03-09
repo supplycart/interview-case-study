@@ -4,7 +4,7 @@ namespace App\Actions\Models\CartItem;
 
 class CustomActions
 {
-    public function calculateItemSubtotal($request)
+    public static function calculateItemSubtotal($request)
     {
         $quantity = floatval($request['quantity']);
         $unitPrice = floatval($request['unit_price']);
@@ -18,7 +18,7 @@ class CustomActions
      * $itemsSubtotal : [ 1.99, 4.99, 6.99 ] ;
      * $subtotal = 13.97
      */
-    public function calculateSubtotal($itemsSubtotal)
+    public static function calculateSubtotal($itemsSubtotal)
     {
         $subtotal = array_sum($itemsSubtotal);
 
@@ -29,7 +29,7 @@ class CustomActions
      * $subtotal : 13.97
      * $roundingAdjustment : 14.00 - 13.97 = 0.03
      */
-    public function calculateRoundingAdjustment($subtotal)
+    public static function calculateRoundingAdjustment($subtotal)
     {
         $roundedSubtotal = round($subtotal);
 
@@ -45,7 +45,7 @@ class CustomActions
      *
      * $grandTotal = 13.97 + 0.03 - 4.00 = 10.00
      */
-    public function calculateGrandTotal($subtotal, $roundingAdjustment, $discountAmount)
+    public static function calculateGrandTotal($subtotal, $roundingAdjustment, $discountAmount)
     {
         $grandTotal = $subtotal + $roundingAdjustment - $discountAmount;
 
