@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\User;
 
 use App\Actions\Modules\User\Cart\CreateAction;
 use App\Actions\Modules\User\Cart\GetListingAction;
-
+use App\Actions\Modules\User\Cart\UpdateAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CartRequest;
 use Illuminate\Support\Facades\Auth;
@@ -42,9 +42,11 @@ class CartController extends Controller
         abort(404);
     }
 
-    public static function update($id, $request)
+    public static function update(CartRequest $request, $id)
     {
-        abort(404);
+        $cartItem = UpdateAction::execute($id, $request->validated());
+
+        return $cartItem;
     }
 
     public static function delete($id)
