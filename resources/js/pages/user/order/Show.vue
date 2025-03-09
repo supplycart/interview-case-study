@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
-import { SharedData, type BreadcrumbItem } from '@/types';
-import { Head, useForm, usePage } from '@inertiajs/vue3';
+import { type BreadcrumbItem } from '@/types';
+import { Head } from '@inertiajs/vue3';
 
 import {
   Table,
@@ -17,9 +17,7 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
 } from '@/components/ui/card';
 
 interface Props {
@@ -38,8 +36,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/order',
     },
 ];
-
-console.log(props.order.order_items)
 
 </script>
 
