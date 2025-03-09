@@ -2,46 +2,58 @@
 
 namespace App\Http\Controllers\Web\User;
 
-use App\Actions\Modules\User\Product\GetListingAction;
+use App\Actions\Modules\User\Cart\CreateAction;
+use App\Actions\Modules\User\Cart\DeleteAction;
+use App\Actions\Modules\User\Cart\GetListingAction;
+use App\Actions\Modules\User\Cart\UpdateAction;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\User\CartRequest;
 use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
 
 class CartController extends Controller
 {
     public static function index()
     {
-        dd('index');
+        $user = Auth::user();
+        $cartItems = GetListingAction::execute($user);
+
+        return $cartItems;
     }
 
     public static function create($id)
     {
-        dd('create');
+        abort(404);
     }
 
-    public static function store(Request $request)
+    public static function store(CartRequest $request)
     {
-        dd('store', $request->all());
+        $user = Auth::user();
+        $cartItem = CreateAction::execute($user, $request->validated());
+
+        return redirect()->back();
     }
 
     public static function show($id)
     {
-        dd('show');
+        abort(404);
     }
 
     public static function edit($id)
     {
-        dd('edit');
+        abort(404);
     }
 
-    public static function update($id, $request)
+    public static function update(CartRequest $request, $id)
     {
-        dd('update');
+        $cartItem = UpdateAction::execute($id, $request->validated());
+
+        return $cartItem;
     }
 
-    public static function delete($id)
+    public static function destroy($id)
     {
-        dd('delete');
+        $cartItem = DeleteAction::execute($id);
+
+        return $cartItem;
     }
 }
