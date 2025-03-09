@@ -40,7 +40,10 @@ class OrderController extends Controller
     {
         $order = GetDetailAction::execute($id);
 
-        return $order;
+        $props = [];
+        $props['order'] = $order;
+
+        return Inertia::render('user/order/Show', $props);
     }
 
     public static function edit($id)
