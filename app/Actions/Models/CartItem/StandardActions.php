@@ -19,10 +19,9 @@ class StandardActions
         {
             $filters = $request['filters'];
 
-            $cartItems->query()
-                ->when(isset($filters['name']), function($subquery) use ($filters) { $subquery->where('name', $filters['name']); })
-                ->when(isset($filters['email']), function($subquery) use ($filters) { $subquery->where('email', $filters['email']); })
-                ->when(isset($filters['phone_no']), function($subquery) use ($filters) { $subquery->where('name', $filters['phone_no']); })
+            $cartItems
+                ->when(isset($filters['user_id']), function($subquery) use ($filters) { $subquery->where('user_id', $filters['user_id']); })
+                ->when(isset($filters['product_id']), function($subquery) use ($filters) { $subquery->where('product_id', $filters['product_id']); })
                 ;
         }
 
@@ -30,10 +29,9 @@ class StandardActions
         {
             $search = $request['search'];
 
-            $cartItems->query()
-                ->where('name', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%")
-                ->orWhere('phone_no', 'like', "%{$search}%")
+            $cartItems
+                ->where('product_title', 'like', "%{$search}%")
+                ->orWhere('product_description', 'like', "%{$search}%")
                 ;
         }
 
@@ -57,7 +55,7 @@ class StandardActions
     public static function update($id, $request)
     {
         $cartItem = CartItem::findOrFail($id);
-        $cartItem = $cartItem->update($request);
+        $cartItem->update($request);
 
         return $cartItem;
     }
@@ -65,7 +63,7 @@ class StandardActions
     public static function delete($id)
     {
         $cartItem = CartItem::findOrFail($id);
-        $cartItem = $cartItem->delete();
+        $cartItem->delete();
 
         return $cartItem;
     }
