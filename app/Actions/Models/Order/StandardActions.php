@@ -20,10 +20,11 @@ class StandardActions
             $filters = $request['filters'];
 
             $orders->query()
-                ->when(isset($filters['number']), function($subquery) use ($filters) { $subquery->where('name', $filters['number']); })
+                ->when(isset($filters['user_id']), function($subquery) use ($filters) { $subquery->where('user_id', $filters['user_id']); })
+                ->when(isset($filters['number']), function($subquery) use ($filters) { $subquery->where('number', $filters['number']); })
                 ->when(isset($filters['name']), function($subquery) use ($filters) { $subquery->where('name', $filters['name']); })
                 ->when(isset($filters['email']), function($subquery) use ($filters) { $subquery->where('email', $filters['email']); })
-                ->when(isset($filters['phone_no']), function($subquery) use ($filters) { $subquery->where('name', $filters['phone_no']); })
+                ->when(isset($filters['phone_no']), function($subquery) use ($filters) { $subquery->where('phone_no', $filters['phone_no']); })
                 ->when(isset($filters['date']), function($subquery) use ($filters) { $subquery->whereDate('created_at', $filters['date']); })
                 ;
         }

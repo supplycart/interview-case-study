@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\User;
 
 use App\Actions\Modules\User\Order\CreateAction;
 use App\Actions\Modules\User\Order\DeleteAction;
+use App\Actions\Modules\User\Order\GetDetailAction;
 use App\Actions\Modules\User\Order\GetListingAction;
 use App\Actions\Modules\User\Order\UpdateAction;
 use App\Http\Controllers\Controller;
@@ -15,9 +16,9 @@ class OrderController extends Controller
     public static function index()
     {
         $user = Auth::user();
-        $cartItems = GetListingAction::execute($user);
+        $order = GetListingAction::execute($user);
 
-        return $cartItems;
+        return $order;
     }
 
     public static function create($id)
@@ -34,7 +35,9 @@ class OrderController extends Controller
 
     public static function show($id)
     {
-        abort(404);
+        $order = GetDetailAction::execute($id);
+
+        return $order;
     }
 
     public static function edit($id)
