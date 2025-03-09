@@ -2,30 +2,70 @@
 
 namespace App\Actions\Models\CartItem;
 
+use App\Models\CartItem;
+
 class StandardActions
 {
-    public static function index()
+    public static function index($request)
     {
-        dd('index');
+        if (!isset($request))
+        {
+            return CartItem::paginate();
+        }
+
+        $search = $request['search'];
+        $filters = $request['filters'];
+
+        $cartItems = CartItem::model();
+
+        if (isset($filters) && !empty($filters))
+        {
+            $cartItems->query()
+                ->when(isset($filters['name']), function($subquery) use ($filters) { $subquery->where('name', $filters['name']); })
+                ->when(isset($filters['email']), function($subquery) use ($filters) { $subquery->where('email', $filters['email']); })
+                ->when(isset($filters['phone_no']), function($subquery) use ($filters) { $subquery->where('name', $filters['phone_no']); })
+                ;
+        }
+
+        if (isset($search))
+        {
+            $cartItems->query()
+                ->where('name', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhere('phone_no', 'like', "%{$search}%")
+                ;
+        }
+
+        return $cartItems->paginate();
     }
 
     public static function show($id)
     {
-        dd('show');
+        $cartItem = CartItem::findOrFail($id);
+
+        return $cartItem;
     }
 
     public static function store($request)
     {
-        dd('store');
+        $cartItem = CartItem::create($request);
+
+        return $cartItem;
     }
 
     public static function update($id, $request)
     {
-        dd('update');
+        $cartItem = CartItem::findOrFail($id);
+        $cartItem = $cartItem->update($request);
+
+        return $cartItem;
     }
 
     public static function delete($id)
     {
-        dd('delete');
+        $cartItem = CartItem::findOrFail($id);
+        $cartItem = $cartItem->delete();
+
+        return $cartItem;
     }
 }

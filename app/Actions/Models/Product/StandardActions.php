@@ -2,30 +2,70 @@
 
 namespace App\Actions\Models\Product;
 
+use App\Models\Product;
+
 class StandardActions
 {
-    public static function index()
+    public static function index($request)
     {
-        dd('index');
+        if (!isset($request))
+        {
+            return Product::paginate();
+        }
+
+        $search = $request['search'];
+        $filters = $request['filters'];
+
+        $products = Product::model();
+
+        if (isset($filters) && !empty($filters))
+        {
+            $products->query()
+                ->when(isset($filters['name']), function($subquery) use ($filters) { $subquery->where('name', $filters['name']); })
+                ->when(isset($filters['email']), function($subquery) use ($filters) { $subquery->where('email', $filters['email']); })
+                ->when(isset($filters['phone_no']), function($subquery) use ($filters) { $subquery->where('name', $filters['phone_no']); })
+                ;
+        }
+
+        if (isset($search))
+        {
+            $products->query()
+                ->where('name', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhere('phone_no', 'like', "%{$search}%")
+                ;
+        }
+
+        return $products->paginate();
     }
 
     public static function show($id)
     {
-        dd('show');
+        $product = Product::findOrFail($id);
+
+        return $product;
     }
 
     public static function store($request)
     {
-        dd('store');
+        $product = Product::create($request);
+
+        return $product;
     }
 
     public static function update($id, $request)
     {
-        dd('update');
+        $product = Product::findOrFail($id);
+        $product = $product->update($request);
+
+        return $product;
     }
 
     public static function delete($id)
     {
-        dd('delete');
+        $product = Product::findOrFail($id);
+        $product = $product->delete();
+
+        return $product;
     }
 }
