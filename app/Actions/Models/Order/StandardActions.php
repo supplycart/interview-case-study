@@ -53,14 +53,6 @@ class StandardActions
 
     public static function store($request)
     {
-        // TODO: to complete later
-        $orderRequest = [];
-        $orderRequest['user_id'] = $request['user_id'];
-        $orderRequest['number'] = CustomActions::generateDocumentNumber($request['user_id']);
-        $orderRequest['subtotal'] = $request['subtotal'];
-        $orderRequest['discount_amount'] = $request['discount_amount'];
-        $orderRequest['grand_total'] = $request['grand_total'];
-
         $order = Order::create($request);
 
         return $order;

@@ -4,6 +4,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\RegistrationController;
 
 use App\Http\Controllers\API\User\ProductController as UserProductController;
+use App\Http\Controllers\API\User\OrderController as UserOrderController;
 use App\Http\Controllers\API\User\CartController as UserCartController;
 
 use Illuminate\Http\Request;
@@ -31,8 +32,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         // cart
         Route::resource('cart', UserCartController::class);
 
-        // // order
-        // Route::get();
+        // order
+        Route::resource('order', UserOrderController::class);
 
     });
 });
