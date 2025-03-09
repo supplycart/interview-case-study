@@ -2,7 +2,14 @@
 
 namespace App\Actions\Modules\User\Product;
 
+use App\Actions\Models\Product\StandardActions as ProductStandardActions;
+
 class GetDetailAction
 {
-    // actions not part of Resource standards are placed here
+    public static function execute($id)
+    {
+        $product = ProductStandardActions::show($id);
+
+        return $product;
+    }
 }
