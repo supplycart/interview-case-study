@@ -17,5 +17,7 @@ class UpdateAction
         $cartItemRequest['subtotal'] = CartItemCustomActions::calculateItemSubtotal($cartItemRequest);
 
         $cartItem = CartItemStandardActions::update($cartItem->id, $cartItemRequest);
+
+        return $cartItem;
     }
 }
