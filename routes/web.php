@@ -19,7 +19,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::resource('cart', UserCartController::class, [ 'except' => 'store' ]);
     Route::post('cart', [ UserCartController::class, 'store' ])->name('add-to-cart');
 
-    Route::resource('order', UserOrderController::class);
+    Route::resource('order', App\Http\Controllers\Web\User\OrderController::class);
 });
 
 require __DIR__.'/settings.php';
