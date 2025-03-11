@@ -13,6 +13,13 @@ import {
 } from '@/components/ui/table'
 import TableFooter from '@/components/ui/table/TableFooter.vue';
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+} from '@/components/ui/card';
+
 interface Props {
     cartItems: any;
     subtotal: string;
@@ -63,72 +70,82 @@ function confirmOrder()
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-            <Table v-if="props.cartItems.data.length > 0">
-                <TableHeader>
-                    <TableRow>
-                        <TableHead>Title</TableHead>
-                        <TableHead>Description</TableHead>
-                        <TableHead>Unit Price</TableHead>
-                        <TableHead>Quantity</TableHead>
-                        <TableHead>Subtotal</TableHead>
-                        <TableHead></TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    <TableRow v-for="cartItem in props.cartItems.data">
-                        <TableCell class="font-medium">{{ cartItem.product_title }}</TableCell>
-                        <TableCell>{{ cartItem.product_description }}</TableCell>
-                        <TableCell>{{ cartItem.unit_price }}</TableCell>
-                        <TableCell>{{ cartItem.quantity }}</TableCell>
-                        <TableCell>{{ cartItem.subtotal }}</TableCell>
-                        <TableCell>
-                            <button @click="removeFromCart(cartItem.id)">
-                                Remove
-                            </button>
-                        </TableCell>
-                    </TableRow>
-                </TableBody>
-                <TableFooter>
-                    <TableRow>
-                        <TableCell ColSpan="2"></TableCell>
-                        <TableCell ColSpan="2">Subtotal</TableCell>
-                        <TableCell>{{ subtotal }}</TableCell>
-                        <TableCell></TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell ColSpan="2"></TableCell>
-                        <TableCell ColSpan="2">Rounding</TableCell>
-                        <TableCell>{{ roundingAdjustment }}</TableCell>
-                        <TableCell></TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell ColSpan="2"></TableCell>
-                        <TableCell ColSpan="2">Discount</TableCell>
-                        <TableCell>{{ discountAmount }}</TableCell>
-                        <TableCell></TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell ColSpan="2"></TableCell>
-                        <TableCell ColSpan="2">Grand Total</TableCell>
-                        <TableCell>{{ grandTotal }}</TableCell>
-                        <TableCell></TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell ColSpan="2"></TableCell>
-                        <TableCell ColSpan="2">Confirm Purchase</TableCell>
-                        <TableCell>
-                            <button @click="confirmOrder()">
-                                Place Order
-                            </button>
-                        </TableCell>
-                        <TableCell></TableCell>
-                    </TableRow>
-                </TableFooter>
-            </Table>
 
-            <div v-if="props.cartItems.data.length <= 0">
-                Your cart is empty.
-            </div>
+            <Card>
+                <CardHeader>
+                    <CardDescription>
+                        <strong>Cart Items</strong>
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Table v-if="props.cartItems.data.length > 0">
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>Title</TableHead>
+                                <TableHead>Description</TableHead>
+                                <TableHead>Unit Price</TableHead>
+                                <TableHead>Quantity</TableHead>
+                                <TableHead>Subtotal</TableHead>
+                                <TableHead></TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            <TableRow v-for="cartItem in props.cartItems.data">
+                                <TableCell class="font-medium">{{ cartItem.product_title }}</TableCell>
+                                <TableCell>{{ cartItem.product_description }}</TableCell>
+                                <TableCell>{{ cartItem.unit_price }}</TableCell>
+                                <TableCell>{{ cartItem.quantity }}</TableCell>
+                                <TableCell>{{ cartItem.subtotal }}</TableCell>
+                                <TableCell>
+                                    <button @click="removeFromCart(cartItem.id)">
+                                        Remove
+                                    </button>
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                        <TableFooter>
+                            <TableRow>
+                                <TableCell ColSpan="2"></TableCell>
+                                <TableCell ColSpan="2">Subtotal</TableCell>
+                                <TableCell>{{ subtotal }}</TableCell>
+                                <TableCell></TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell ColSpan="2"></TableCell>
+                                <TableCell ColSpan="2">Rounding</TableCell>
+                                <TableCell>{{ roundingAdjustment }}</TableCell>
+                                <TableCell></TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell ColSpan="2"></TableCell>
+                                <TableCell ColSpan="2">Discount</TableCell>
+                                <TableCell>{{ discountAmount }}</TableCell>
+                                <TableCell></TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell ColSpan="2"></TableCell>
+                                <TableCell ColSpan="2">Grand Total</TableCell>
+                                <TableCell>{{ grandTotal }}</TableCell>
+                                <TableCell></TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell ColSpan="2"></TableCell>
+                                <TableCell ColSpan="2">Confirm Purchase</TableCell>
+                                <TableCell>
+                                    <button @click="confirmOrder()">
+                                        Place Order
+                                    </button>
+                                </TableCell>
+                                <TableCell></TableCell>
+                            </TableRow>
+                        </TableFooter>
+                    </Table>
+
+                    <div v-if="props.cartItems.data.length <= 0">
+                        Your cart is empty.
+                    </div>
+                </CardContent>
+            </Card>
         </div>
     </AppLayout>
 </template>
