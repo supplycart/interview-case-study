@@ -33,7 +33,7 @@ class OrderController extends Controller
     {
         $order = CreateAction::execute($request->validated());
 
-        return $order;
+        return redirect()->route('user.order.show', $order->id);
     }
 
     public static function show($id)

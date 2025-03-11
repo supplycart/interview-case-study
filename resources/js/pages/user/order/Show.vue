@@ -6,7 +6,6 @@ import { Head } from '@inertiajs/vue3';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -29,11 +28,11 @@ const props = defineProps<Props>();
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Order',
-        href: '/order',
+        href: '/user/order',
     },
     {
         title: props.order.number,
-        href: '/order',
+        href: '/user/order/'+props.order.id,
     },
 ];
 
