@@ -3,6 +3,7 @@
 namespace App\Actions\Modules\General\Registration;
 
 use App\Actions\Models\User\StandardActions as UserStandardActions;
+use Illuminate\Auth\Events\Registered;
 
 class CreateAction
 {
@@ -10,7 +11,7 @@ class CreateAction
     {
         $user = UserStandardActions::store($request);
 
-        SendVerificationEmailAction::execute($user);
+        event(new Registered($user));
 
         return $user;
     }
