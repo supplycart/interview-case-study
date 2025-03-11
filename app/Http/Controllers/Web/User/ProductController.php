@@ -13,9 +13,15 @@ class ProductController extends Controller
     public static function index()
     {
         $user = Auth::user();
+        $productListingRequest = [
+            'paginate' => 10,
+            'orderBy' => 'id',
+            'orderDirection' => 'desc',
+        ];
+        $products = GetListingAction::execute($user, $productListingRequest);
 
         $props = [];
-        $props['products'] = GetListingAction::execute($user);
+        $props['products'] = $products;
 
         return Inertia::render('user/product/Index', $props);
     }
