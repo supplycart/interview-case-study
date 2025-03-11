@@ -2,8 +2,7 @@
 
 namespace App\Actions\Models\ActivityLog;
 
-use App\Models\User;
-use Spatie\Activitylog\Models\Activity;
+use App\Models\ActivityLog;
 
 class StandardActions
 {
@@ -11,10 +10,10 @@ class StandardActions
     {
         if (!isset($request))
         {
-            return Activity::paginate();
+            return ActivityLog::paginate();
         }
 
-        $activityLogs = Activity::query();
+        $activityLogs = ActivityLog::query();
 
         if (isset($request['filters']) && !empty($request['filters']))
         {
