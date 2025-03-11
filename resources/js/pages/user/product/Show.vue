@@ -30,13 +30,14 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 function addToCart(product: any)
 {
+    let price = parseFloat(product.price.replaceAll(',',''));
     let form = useForm({
         product_id: product.id,
         product_title: product.title,
         product_description: product.description,
         quantity: 1,
-        unit_price: product.price,
-    })
+        unit_price: price,
+    });
 
     form.post(route('user.add-to-cart'));
 }
