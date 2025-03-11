@@ -21,6 +21,7 @@ import {
 
 interface Props {
     products: any;
+    categories: any;
 }
 
 const props = defineProps<Props>();
@@ -74,6 +75,18 @@ function nextPage()
     window.location.href = route('user.product.index', {'page': nextNumber})
 }
 
+function filterListing(categoryId : number)
+{
+    if (categoryId == 0)
+    {
+        window.location.href = route('user.product.index')
+    }
+    else
+    {
+        window.location.href = route('user.product.index', {'category_id': categoryId})
+    }
+}
+
 </script>
 
 <template>
@@ -89,6 +102,16 @@ function nextPage()
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
+
+                    <div class="flex">
+                        <span @click="filterListing(0)" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer">
+                            All Category
+                        </span>
+                        <span @click="filterListing(category.id)" v-for="category in props.categories.data" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 cursor-pointer">
+                            {{ category.name }}
+                        </span>
+                    </div>
+
                     <Table v-if="props.products.data.length > 0">
                         <TableHeader>
                             <TableRow>

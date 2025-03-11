@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Web\User;
 
-use App\Actions\Modules\User\Product\GetDetailAction;
-use App\Actions\Modules\User\Product\GetListingAction;
+use App\Actions\Modules\User\Product\GetDetailAction as ProductGetDetailAction;
+use App\Actions\Modules\User\Product\GetListingAction as ProductGetListingAction;
+use App\Actions\Modules\User\Category\GetListingAction as CategoryGetListingAction;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ProductController extends Controller
 {
-    public static function index()
+    public static function index(Request $request)
     {
         $user = Auth::user();
         $productListingRequest = [
@@ -18,10 +20,19 @@ class ProductController extends Controller
             'orderBy' => 'id',
             'orderDirection' => 'desc',
         ];
-        $products = GetListingAction::execute($user, $productListingRequest);
+
+        if (isset($request['category_id']))
+        {
+            $productListingRequest['filters']['category_id'] = $request['category_id'];
+        }
+
+        $products = ProductGetListingAction::execute($user, $productListingRequest);
+
+        $categories = CategoryGetListingAction::execute();
 
         $props = [];
         $props['products'] = $products;
+        $props['categories'] = $categories;
 
         return Inertia::render('user/product/Index', $props);
     }
@@ -41,7 +52,7 @@ class ProductController extends Controller
         $user = Auth::user();
 
         $props = [];
-        $props['product'] = GetDetailAction::execute($id, $user);
+        $props['product'] = ProductGetDetailAction::execute($id, $user);
 
         return Inertia::render('user/product/Show', $props);
     }
