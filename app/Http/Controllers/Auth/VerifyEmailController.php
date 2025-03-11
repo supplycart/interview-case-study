@@ -22,6 +22,11 @@ class VerifyEmailController extends Controller
             /** @var \Illuminate\Contracts\Auth\MustVerifyEmail $user */
             $user = $request->user();
             event(new Verified($user));
+
+            activity()
+                ->causedBy($user)
+                ->performedOn($user)
+                ->log($user->name . ' has verified their email');
         }
 
         return redirect()->intended(route('user.dashboard', absolute: false).'?verified=1');
