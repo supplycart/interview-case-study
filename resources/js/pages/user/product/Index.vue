@@ -39,13 +39,14 @@ function open(id: number)
 
 function addToCart(product: any)
 {
+    let price = parseFloat(product.price.replaceAll(',',''));
     let form = useForm({
         product_id: product.id,
         product_title: product.title,
         product_description: product.description,
         quantity: 1,
-        unit_price: product.price,
-    })
+        unit_price: price,
+    });
 
     form.post(route('user.add-to-cart'));
 }
@@ -75,8 +76,10 @@ function addToCart(product: any)
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            <TableRow v-for="product in props.products.data"  v-on:click="open(product.id)" class="cursor-pointer">
-                                <TableCell class="font-medium">{{ product.title }}</TableCell>
+                            <TableRow v-for="product in props.products.data">
+                                <TableCell class="font-medium cursor-pointer" v-on:click="open(product.id)" >
+                                    {{ product.title }}
+                                </TableCell>
                                 <TableCell>{{ product.description }}</TableCell>
                                 <TableCell>{{ product.price }}</TableCell>
                                 <TableCell>

@@ -117,14 +117,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <TableCell>{{ index + 1 }}</TableCell>
                                 <TableCell class="font-medium">{{ orderItem.product_title }}</TableCell>
                                 <TableCell>{{ orderItem.product_description }}</TableCell>
-                                <TableCell>{{ orderItem.unit_price }}</TableCell>
+                                <TableCell>{{ orderItem.financial_unit_price }}</TableCell>
                                 <TableCell>{{ orderItem.quantity }}</TableCell>
-                                <TableCell>{{ orderItem.subtotal }}</TableCell>
+                                <TableCell>{{ orderItem.financial_subtotal }}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell Colspan="3"></TableCell>
                                 <TableCell Colspan="2">Subtotal</TableCell>
-                                <TableCell>{{ props.order.subtotal }}</TableCell>
+                                <TableCell>{{ props.order.financial_subtotal }}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell Colspan="3"></TableCell>
@@ -139,7 +139,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <TableRow>
                                 <TableCell Colspan="3"></TableCell>
                                 <TableCell Colspan="2">Grand Total</TableCell>
-                                <TableCell>{{ props.order.grand_total }}</TableCell>
+                                <TableCell>{{ props.order.financial_grand_total }}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>

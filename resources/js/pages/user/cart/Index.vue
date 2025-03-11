@@ -100,9 +100,9 @@ function open(id: number)
                                     {{ cartItem.product_title }}
                                 </TableCell>
                                 <TableCell>{{ cartItem.product_description }}</TableCell>
-                                <TableCell>{{ cartItem.unit_price }}</TableCell>
+                                <TableCell>{{ cartItem.financial_unit_price }}</TableCell>
                                 <TableCell>{{ cartItem.quantity }}</TableCell>
-                                <TableCell>{{ cartItem.subtotal }}</TableCell>
+                                <TableCell>{{ cartItem.financial_subtotal }}</TableCell>
                                 <TableCell>
                                     <button @click="removeFromCart(cartItem.id)">
                                         Remove

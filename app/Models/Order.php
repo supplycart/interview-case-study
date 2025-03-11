@@ -17,6 +17,20 @@ class Order extends Model
         'created_at'  => 'date:Y-m-d H:i:s',
     ];
 
+    protected $appends = [
+        'financial_subtotal',
+        'financial_grand_total',
+    ];
+
+    public function getFinancialSubtotalAttribute()
+    {
+        return number_format($this->subtotal, 2);
+    }
+
+    public function getFinancialGrandTotalAttribute()
+    {
+        return number_format($this->grand_total, 2);
+    }
 
     public function user()
     {
