@@ -35,7 +35,7 @@ class StandardActions
                 ;
         }
 
-        return $activityLogs->paginate();
+        return $activityLogs->orderBy('id', 'desc')->paginate();
     }
 
     public static function show($id)
