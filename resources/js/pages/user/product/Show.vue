@@ -44,7 +44,7 @@ function addToCart(product: any)
 </script>
 
 <template>
-    <Head title="props.product.title" />
+    <Head :title="props.product.title" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">

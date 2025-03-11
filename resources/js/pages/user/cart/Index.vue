@@ -63,6 +63,11 @@ function confirmOrder()
     }
 }
 
+function open(id: number)
+{
+    window.location.href = '/user/product/'+id;
+}
+
 </script>
 
 <template>
@@ -91,7 +96,9 @@ function confirmOrder()
                         </TableHeader>
                         <TableBody>
                             <TableRow v-for="cartItem in props.cartItems.data">
-                                <TableCell class="font-medium">{{ cartItem.product_title }}</TableCell>
+                                <TableCell class="font-medium cursor-pointer" @click="open(cartItem.product_id)">
+                                    {{ cartItem.product_title }}
+                                </TableCell>
                                 <TableCell>{{ cartItem.product_description }}</TableCell>
                                 <TableCell>{{ cartItem.unit_price }}</TableCell>
                                 <TableCell>{{ cartItem.quantity }}</TableCell>
