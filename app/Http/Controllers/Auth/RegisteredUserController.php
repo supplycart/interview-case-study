@@ -42,10 +42,15 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        activity()
+            ->causedBy($user)
+            ->performedOn($user)
+            ->log('User has successfully registered their account');
+
         event(new Registered($user));
 
         Auth::login($user);
 
-        return to_route('dashboard');
+        return to_route('user.dashboard');
     }
 }
