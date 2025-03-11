@@ -23,7 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
         'as' => 'user.',
     ], function() {
         Route::get('dashboard', [ App\Http\Controllers\Web\DashboardController::class, 'index' ])->name('dashboard');
-        Route::get('product', [ App\Http\Controllers\Web\User\ProductController::class, 'index' ])->name('product');
+        Route::resource('product', App\Http\Controllers\Web\User\ProductController::class)->only([ 'index', 'show' ]);
 
         Route::resource('cart', App\Http\Controllers\Web\User\CartController::class, [ 'except' => 'store' ]);
         Route::post('cart', [ App\Http\Controllers\Web\User\CartController::class, 'store' ])->name('add-to-cart');
