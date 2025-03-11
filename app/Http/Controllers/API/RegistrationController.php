@@ -10,7 +10,11 @@ class RegistrationController extends Controller
 {
     public function register(RegistrationRequest $request)
     {
-        $registration = RegistrationCreateAction::execute($request->validated());
+        $registrationRequest = $request->validated();
+        $registrationRequest['is_member'] = $request['is_member'] == 'yes';
+        $registrationRequest['password'] = bcrypt($request['password']);
+
+        $registration = RegistrationCreateAction::execute($registrationRequest);
 
         $message = "";
 

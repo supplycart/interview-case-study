@@ -2,10 +2,16 @@
 
 namespace App\Actions\Modules\General\Authentication;
 
+use App\Http\Requests\Auth\LoginRequest;
+
 class LoginAction
 {
-    public static function execute()
+    public static function execute(LoginRequest $request)
     {
-        // TODO: implement login action
+        $request->authenticate();
+
+        $token = $request->user()->createToken('api-token');
+
+        return $token;
     }
 }

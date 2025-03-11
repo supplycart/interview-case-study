@@ -33,6 +33,12 @@ class OrderController extends Controller
     {
         $order = CreateAction::execute($request->validated());
 
+        $user = Auth::user();
+        activity()
+            ->causedBy($user)
+            ->performedOn($order)
+            ->log("{$user->name} has placed an order #{$order->number}");
+
         return redirect()->route('user.order.show', $order->id);
     }
 

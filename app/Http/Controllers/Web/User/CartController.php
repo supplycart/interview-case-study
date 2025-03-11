@@ -43,7 +43,12 @@ class CartController extends Controller
     public static function store(CartRequest $request)
     {
         $user = Auth::user();
-        CreateAction::execute($user, $request->validated());
+        $cartItem = CreateAction::execute($user, $request->validated());
+
+        activity()
+            ->causedBy($user)
+            ->performedOn($cartItem)
+            ->log("{$user->name} added {$cartItem->product_title} into cart");
 
         return redirect()->back();
     }
@@ -60,14 +65,26 @@ class CartController extends Controller
 
     public static function update(CartRequest $request, $id)
     {
-        UpdateAction::execute($id, $request->validated());
+        $user = Auth::user();
+        $cartItem = UpdateAction::execute($id, $request->validated());
+
+        activity()
+            ->causedBy($user)
+            ->performedOn($cartItem)
+            ->log("{$user->name} updated {$cartItem->product_title} quantity to {$cartItem->quantity}");
 
         return redirect()->back();
     }
 
     public static function destroy($id)
     {
-        DeleteAction::execute($id);
+        $user = Auth::user();
+        $cartItem = DeleteAction::execute($id);
+
+        activity()
+            ->causedBy($user)
+            ->performedOn($cartItem)
+            ->log("{$user->name} removed {$cartItem->product_title} from cart");
 
         return redirect()->back();
     }

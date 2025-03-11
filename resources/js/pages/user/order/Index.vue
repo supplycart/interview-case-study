@@ -64,8 +64,8 @@ function open(id: number)
                         <TableBody>
                             <TableRow v-for="order in props.orders.data" v-on:click="open(order.id)" class="cursor-pointer">
                                 <TableCell class="font-medium">{{ order.number }}</TableCell>
-                                <TableCell>{{ order.subtotal }}</TableCell>
-                                <TableCell>{{ order.grand_total }}</TableCell>
+                                <TableCell>{{ order.financial_subtotal }}</TableCell>
+                                <TableCell>{{ order.financial_grand_total }}</TableCell>
                                 <TableCell>{{ order.created_at }}</TableCell>
                             </TableRow>
                         </TableBody>
