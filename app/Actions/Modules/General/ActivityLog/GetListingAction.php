@@ -13,8 +13,8 @@ class GetListingAction
         $request['filters']['causer_id'] = $user->id;
         $request['filters']['causer_type'] = User::class;
 
-        $cartItems = ActivityLogStandardActions::index($request);
+        $activityLogs = ActivityLogStandardActions::index($request);
 
-        return $cartItems;
+        return $activityLogs;
     }
 }
