@@ -29,6 +29,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::post('cart', [ App\Http\Controllers\Web\User\CartController::class, 'store' ])->name('add-to-cart');
 
         Route::resource('order', App\Http\Controllers\Web\User\OrderController::class);
+
+        Route::get('activity_log', [ App\Http\Controllers\Web\User\ActivityLogController::class, 'index' ])->name('activity-log');
     });
 });
 
