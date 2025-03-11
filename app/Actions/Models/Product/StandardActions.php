@@ -23,21 +23,8 @@ class StandardActions
         {
             $filters = $request['filters'];
 
-            $products->query()
-                ->when(isset($filters['name']), function($subquery) use ($filters) { $subquery->where('name', $filters['name']); })
-                ->when(isset($filters['email']), function($subquery) use ($filters) { $subquery->where('email', $filters['email']); })
-                ->when(isset($filters['phone_no']), function($subquery) use ($filters) { $subquery->where('name', $filters['phone_no']); })
-                ;
-        }
-
-        if (isset($request['search']))
-        {
-            $search = $request['search'];
-
-            $products->query()
-                ->where('name', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%")
-                ->orWhere('phone_no', 'like', "%{$search}%")
+            $products
+                ->when(isset($filters['category_id']), function($subquery) use ($filters) { $subquery->where('category_id', $filters['category_id']); })
                 ;
         }
 
