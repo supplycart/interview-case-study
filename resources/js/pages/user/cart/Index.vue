@@ -11,7 +11,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import TableFooter from '@/components/ui/table/TableFooter.vue';
 
 import {
   Card,
@@ -19,6 +18,7 @@ import {
   CardDescription,
   CardHeader,
 } from '@/components/ui/card';
+import CardFooter from '@/components/ui/card/CardFooter.vue';
 
 interface Props {
     cartItems: any;
@@ -102,8 +102,6 @@ function confirmOrder()
                                     </button>
                                 </TableCell>
                             </TableRow>
-                        </TableBody>
-                        <TableFooter>
                             <TableRow>
                                 <TableCell ColSpan="2"></TableCell>
                                 <TableCell ColSpan="2">Subtotal</TableCell>
@@ -128,23 +126,19 @@ function confirmOrder()
                                 <TableCell>{{ grandTotal }}</TableCell>
                                 <TableCell></TableCell>
                             </TableRow>
-                            <TableRow>
-                                <TableCell ColSpan="2"></TableCell>
-                                <TableCell ColSpan="2">Confirm Purchase</TableCell>
-                                <TableCell>
-                                    <button @click="confirmOrder()">
-                                        Place Order
-                                    </button>
-                                </TableCell>
-                                <TableCell></TableCell>
-                            </TableRow>
-                        </TableFooter>
+                        </TableBody>
                     </Table>
 
                     <div v-if="props.cartItems.data.length <= 0">
                         Your cart is empty.
                     </div>
                 </CardContent>
+                <CardFooter class="flex flex-grow" v-if="props.cartItems.data.length > 0">
+                    <button type="button" @click="confirmOrder()"
+                        class="grow text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        Place Order
+                    </button>
+                </CardFooter>
             </Card>
         </div>
     </AppLayout>

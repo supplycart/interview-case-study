@@ -9,9 +9,11 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function() {
 
-    Route::prefix('user')->group(function () {
+    Route::group([
+        'prefix' => 'user',
+        'as' => 'user.',
+    ], function() {
         Route::get('dashboard', [ App\Http\Controllers\Web\DashboardController::class, 'index' ])->name('dashboard');
-
         Route::get('product', [ App\Http\Controllers\Web\User\ProductController::class, 'index' ])->name('product');
 
         Route::resource('cart', App\Http\Controllers\Web\User\CartController::class, [ 'except' => 'store' ]);

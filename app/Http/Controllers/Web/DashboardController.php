@@ -22,7 +22,7 @@ class DashboardController extends Controller
         $props = [];
         $props['products'] = $products;
         $props['countProducts'] = $products->total();
-        $props['countCartItems'] = $cartItems->total();
+        $props['countCartItems'] = collect($cartItems->items())->sum('quantity');
         $props['countOrders'] = $orders->total();
         $props['sumOfGrandTotalOrders'] = number_format(collect($orders->items())->sum('grand_total'), 2);
 

@@ -42,7 +42,7 @@ function addToCart(product: any)
         unit_price: product.price,
     })
 
-    form.post(route('add-to-cart'));
+    form.post(route('user.add-to-cart'));
 }
 
 </script>

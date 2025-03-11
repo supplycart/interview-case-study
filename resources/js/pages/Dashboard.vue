@@ -33,7 +33,7 @@ const props = defineProps<Props>();
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Dashboard',
-        href: '/dashboard',
+        href: '/user/dashboard',
     },
 ];
 
@@ -47,7 +47,7 @@ function addToCart(product: any)
         unit_price: product.price,
     })
 
-    form.post(route('add-to-cart'));
+    form.post(route('user.add-to-cart'));
 }
 
 </script>
