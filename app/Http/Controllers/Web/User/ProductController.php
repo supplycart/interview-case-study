@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\User;
 
+use App\Actions\Modules\User\Product\GetDetailAction;
 use App\Actions\Modules\User\Product\GetListingAction;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,12 @@ class ProductController extends Controller
 
     public static function show($id)
     {
-        dd('show');
+        $user = Auth::user();
+
+        $props = [];
+        $props['product'] = GetDetailAction::execute($id, $user);
+
+        return Inertia::render('user/product/Show', $props);
     }
 
     public static function edit($id)

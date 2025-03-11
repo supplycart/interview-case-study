@@ -32,6 +32,11 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+function open(id: number)
+{
+    window.location.href = '/user/product/'+id;
+}
+
 function addToCart(product: any)
 {
     let form = useForm({
@@ -70,7 +75,7 @@ function addToCart(product: any)
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            <TableRow v-for="product in props.products.data">
+                            <TableRow v-for="product in props.products.data"  v-on:click="open(product.id)" class="cursor-pointer">
                                 <TableCell class="font-medium">{{ product.title }}</TableCell>
                                 <TableCell>{{ product.description }}</TableCell>
                                 <TableCell>{{ product.price }}</TableCell>
