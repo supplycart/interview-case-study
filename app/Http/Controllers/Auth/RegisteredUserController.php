@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
         activity()
             ->causedBy($user)
             ->performedOn($user)
-            ->log('User has successfully registered their account');
+            ->log($user->name . ' has successfully registered their account');
 
         event(new Registered($user));
 

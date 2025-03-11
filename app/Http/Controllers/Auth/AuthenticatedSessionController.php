@@ -38,7 +38,7 @@ class AuthenticatedSessionController extends Controller
         activity()
             ->causedBy($user)
             ->performedOn($user)
-            ->log('User has successfully logged in');
+            ->log($user->name . ' has successfully logged in');
 
         return redirect()->intended(route('user.dashboard', absolute: false));
     }
@@ -53,7 +53,7 @@ class AuthenticatedSessionController extends Controller
         activity()
             ->causedBy($user)
             ->performedOn($user)
-            ->log('User has successfully logged out');
+            ->log($user->name . ' has successfully logged out');
 
         Auth::guard('web')->logout();
 

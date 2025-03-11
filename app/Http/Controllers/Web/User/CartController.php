@@ -48,7 +48,7 @@ class CartController extends Controller
         activity()
             ->causedBy($user)
             ->performedOn($cartItem)
-            ->log("User added {$cartItem->product_title} into cart");
+            ->log("{$user->name} added {$cartItem->product_title} into cart");
 
         return redirect()->back();
     }
@@ -71,7 +71,7 @@ class CartController extends Controller
         activity()
             ->causedBy($user)
             ->performedOn($cartItem)
-            ->log("User updated {$cartItem->product_title} quantity to {$cartItem->quantity}");
+            ->log("{$user->name} updated {$cartItem->product_title} quantity to {$cartItem->quantity}");
 
         return redirect()->back();
     }
@@ -84,7 +84,7 @@ class CartController extends Controller
         activity()
             ->causedBy($user)
             ->performedOn($cartItem)
-            ->log("User removed {$cartItem->product_title} from cart");
+            ->log("{$user->name} removed {$cartItem->product_title} from cart");
 
         return redirect()->back();
     }

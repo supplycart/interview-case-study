@@ -37,7 +37,7 @@ class OrderController extends Controller
         activity()
             ->causedBy($user)
             ->performedOn($order)
-            ->log("User has placed an order #{$order->number}");
+            ->log("{$user->name} has placed an order #{$order->number}");
 
         return redirect()->route('user.order.show', $order->id);
     }

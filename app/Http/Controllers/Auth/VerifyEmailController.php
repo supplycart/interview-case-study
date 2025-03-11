@@ -26,7 +26,7 @@ class VerifyEmailController extends Controller
             activity()
                 ->causedBy($user)
                 ->performedOn($user)
-                ->log('User has verified their email');
+                ->log($user->name . ' has verified their email');
         }
 
         return redirect()->intended(route('user.dashboard', absolute: false).'?verified=1');
