@@ -15,7 +15,12 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        $products = ProductGetListingAction::execute($user);
+        $productListingRequest = [
+            'paginate' => 5,
+            'orderBy' => 'id',
+            'orderDirection' => 'desc',
+        ];
+        $products = ProductGetListingAction::execute($user, $productListingRequest);
         $orders = OrderGetListingAction::execute($user);
         $cartItems = CartGetListingAction::execute($user);
 
