@@ -25,13 +25,6 @@ return new class extends Migration
             $table->decimal('discounted_rate_for_member', 4, 2)->nullable()->comment('maximum: 99.99%');
             $table->decimal('discounted_price_for_member', 8, 2)->nullable();
 
-            // image/video/attachment
-            $table->string('attachment_1_filepath')->nullable();
-            $table->string('attachment_2_filepath')->nullable();
-            $table->string('attachment_3_filepath')->nullable();
-            $table->string('attachment_4_filepath')->nullable();
-            $table->string('attachment_5_filepath')->nullable();
-
             // to show or not to show the product in the listing
             $table->boolean('is_available')->default(true);
 
