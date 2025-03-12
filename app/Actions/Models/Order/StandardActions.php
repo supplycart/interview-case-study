@@ -47,7 +47,7 @@ class StandardActions
 
     public static function show($id)
     {
-        $order = Order::with('orderItems')->findOrFail($id);
+        $order = Order::with(['user', 'orderItems'])->findOrFail($id);
 
         return $order;
     }
