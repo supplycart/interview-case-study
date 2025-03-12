@@ -55,7 +55,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="grid items-center w-full gap-4">
                             <div class="flex flex-col space-y-1.5">
                                 <p class="text-sm text-muted-foreground">Name</p>
-                                <Label>{{ props.order.name ?? '-' }}</Label>
+                                <Label>{{ props.order.user.name ?? '-' }}</Label>
                             </div>
 
                             <div class="flex flex-col space-y-1.5">
