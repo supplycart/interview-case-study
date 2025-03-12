@@ -52,11 +52,12 @@ function open(id: number)
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Table>
+                    <Table v-if="props.orders.data.length > 0">
                         <TableHeader>
                             <TableRow>
                                 <TableHead>Number</TableHead>
                                 <TableHead>Subtotal</TableHead>
+                                <TableHead>Rounding</TableHead>
                                 <TableHead>GrandTotal</TableHead>
                                 <TableHead>Created At</TableHead>
                             </TableRow>
@@ -65,11 +66,16 @@ function open(id: number)
                             <TableRow v-for="order in props.orders.data" v-on:click="open(order.id)" class="cursor-pointer">
                                 <TableCell class="font-medium">{{ order.number }}</TableCell>
                                 <TableCell>{{ order.financial_subtotal }}</TableCell>
+                                <TableCell>{{ order.rounding_adjustment }}</TableCell>
                                 <TableCell>{{ order.financial_grand_total }}</TableCell>
                                 <TableCell>{{ order.created_at }}</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
+
+                    <div v-if="props.orders.data.length <= 0">
+                        Orders is empty.
+                    </div>
                 </CardContent>
             </Card>
         </div>
