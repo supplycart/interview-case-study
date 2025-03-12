@@ -25,6 +25,7 @@ return new class extends Migration
             // order details
             $table->string('number')->unique();
             $table->decimal('subtotal', 10, 2)->default(0.00);
+            $table->decimal('rounding_adjustment', 10, 2)->default(0.00);
             $table->decimal('discount_amount', 10, 2)->default(0.00);
             $table->string('discount_description', 100)->nullable();
             $table->decimal('grand_total', 10, 2)->default(0.00);
