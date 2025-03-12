@@ -21,7 +21,7 @@ class CreateAction
         $cartItemsSubtotal = $cartItems->pluck('subtotal')->toArray();
 
         $subtotal = OrderCustomActions::calculateSubtotal($cartItemsSubtotal);
-        $roundingAdjustment = 0; // OrderCustomActions::calculateRoundingAdjustment($cartItemsSubtotal); // NOTE: missed out in migrations
+        $roundingAdjustment = OrderCustomActions::calculateRoundingAdjustment($subtotal);
         $discountAmount = 0; // $request['discount_amount] // NOTE: not within scope
         $grandTotal = OrderCustomActions::calculateGrandTotal($subtotal, $roundingAdjustment, $discountAmount);
 
