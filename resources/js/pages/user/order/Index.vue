@@ -52,7 +52,7 @@ function open(id: number)
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Table>
+                    <Table v-if="props.orders.data.length > 0">
                         <TableHeader>
                             <TableRow>
                                 <TableHead>Number</TableHead>
@@ -70,6 +70,10 @@ function open(id: number)
                             </TableRow>
                         </TableBody>
                     </Table>
+
+                    <div v-if="props.orders.data.length <= 0">
+                        Orders is empty.
+                    </div>
                 </CardContent>
             </Card>
         </div>
