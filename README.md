@@ -20,12 +20,27 @@ You may go to: https://supply-cart-case-study.reisdev.xyz/ to access the system.
 
 ### Why there's no email sending in the test site?
 
-Due to DigitalOcean recently blocked SMTP ports, Mailgun configuration cannot follow the default out-of-the-box setup. That's why email may appear not being sent on the [test site](https://supply-cart-case-study.reisdev.xyz/). I instead just linked it to my mailtrap account. Therefore if you wish to test, please let me know so I can give you the verification link or you can clone the project and use your own mailtrap/mailgun credentials in the .env file.
+Due to DigitalOcean recently blocked SMTP ports, Mailgun configuration cannot follow the default out-of-the-box setup. That's why I've turned off the verify email on the [test site](https://supply-cart-case-study.reisdev.xyz/).
 
 <p>
     <img align="center" src="public/assets/notes/smtp port blocked.png">
     You may refer here for more information: <a href="https://docs.digitalocean.com/support/why-is-smtp-blocked/">docs.digitalocean.com/support/why-is-smtp-blocked</a>
 </p>
+
+Therefore, if you wish to test the verify email please do the following in `App\Models\User.php`
+
+```php
+// before (App\Models\User.php)
+class User extends Authenticatable
+```
+
+```php
+// after (App\Models\User.php)
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+class User extends Authenticatable implements MustVerifyEmail
+```
 
 ### Local Test
 
