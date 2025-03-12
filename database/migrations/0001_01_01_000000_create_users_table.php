@@ -26,7 +26,6 @@ return new class extends Migration
 
             // membership details
             $table->boolean('is_member')->default(false);
-            $table->boolean('is_membership_requested')->default(false);
 
             $table->rememberToken();
             $table->timestamps();
