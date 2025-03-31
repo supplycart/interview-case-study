@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>@yield("title", "default")</title>
+        <title>@yield("title", "defaultpage")</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -16,9 +16,6 @@
         @vite('resources/css/app.css')
     </head>
     <body class="antialiased">
-
-        <h1 class="text-9xl font-bold underline">
-            Hello world!
-        </h1>
+        @yield("content")
     </body>
 </html>
