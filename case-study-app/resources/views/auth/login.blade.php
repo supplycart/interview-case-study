@@ -66,7 +66,7 @@
 
         <p class="mt-10 text-center text-sm/6 text-gray-500">
             Don't have an account?
-            <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Create one now</a>
+            <a href="{{route("register")}}" class="font-semibold text-indigo-600 hover:text-indigo-500">Create one now</a>
         </p>
     </div>
 </div>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,7 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::middleware("auth")->group(function() {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name("home");
+    Route::get('/', [ProductController::class, "index"])->name("home");
 });
 
 Route::get('/login', [AuthController::class, "login"])
