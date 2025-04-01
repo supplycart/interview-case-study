@@ -15,16 +15,28 @@ class CartController extends Controller
 {
     function viewCart()
     {
-        $cart = Cart::where('id_user', Auth::user()->id)
-                    ->latest()
-                    ->first();
-        $cartItems = CartItem::where('id_cart', $cart->id)
+        $currentUserCart = Cart::where('id_user', Auth::user()->id)
+                               ->get();
+
+        if(count($currentUserCart) > 0) //User has existing carts, so get a cart that has not been checked out yet.
+        {
+            $validPO = PurchaseOrder::whereIn('id_cart', $currentUserCart->pluck('id'))
+                               ->get();
+            $cart = $currentUserCart->whereNotIn('id', $validPO->pluck('id_cart'))->first();
+
+            $cartItems = CartItem::where('id_cart', $cart->id)
                              ->get();
 
-        $product = Product::whereIn('id', $cartItems->pluck('id_product'))
-                           ->get()
-                           ->keyBy('id');
+            $product = Product::whereIn('id', $cartItems->pluck('id_product'))
+                              ->get()
+                              ->keyBy('id');
 
+        }
+        else
+        {
+            $cartItems = $product = [];
+        }
+        
         return view('cart.viewCart', compact('cart', 'cartItems', 'product'));
     }
 
@@ -62,7 +74,7 @@ class CartController extends Controller
             $cartItem->id_product = $key;
             $cartItem->quantity = $quantities;
             $cartItem->price = $quantities * $products[$key]->product_price;
-            
+
             $cartItem->save();
         }
         return redirect(route("home"))
