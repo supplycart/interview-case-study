@@ -32,7 +32,7 @@ Route::middleware("auth")->group(function() {
 
     Route::post('/updateOrder', [POController::class, "updateOrder"])->name('updateOrder');
 
-
+    Route::get('/logout', [AuthController::class, "logout"])->name('logout');
 });
 
 Route::get('/login', [AuthController::class, "login"])

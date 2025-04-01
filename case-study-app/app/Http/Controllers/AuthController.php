@@ -57,4 +57,10 @@ class AuthController extends Controller
         return redirect(route("register"))
             ->with("error", "Failed to create account");
     }
+
+    function logout()
+    {
+        Auth::logout();
+        return redirect(route("login"));
+    }
 }
