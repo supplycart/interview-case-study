@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 use App\Models\Cart;
 use App\Models\CartItem;
@@ -39,7 +38,7 @@ class CartController extends Controller
         if(count($currentUserCart) > 0) //User has existing carts, so get a cart that has not been checked out yet.
         {
             $validPO = PurchaseOrder::whereIn('id_cart', $currentUserCart->pluck('id'))
-                               ->get();  
+                               ->get();
             $cart = $currentUserCart->whereNotIn('id', $validPO->pluck('id_cart'))->first();
             if($cart == NULL) //All carts have associated PO == create new cart
             {
@@ -65,10 +64,9 @@ class CartController extends Controller
             $cartItem->price = $quantities * $products[$key]->product_price;
             
             $cartItem->save();
-
-            return redirect(route("home"))
-                ->with("success", count($request->qty)." items added to Cart!");
         }
+        return redirect(route("home"))
+            ->with("success", count($request->qty)." items added to Cart!");
     }
 
     function createOrder(Request $request)

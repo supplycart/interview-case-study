@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\POController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,14 @@ Route::middleware("auth")->group(function() {
     Route::get('/viewCart', [CartController::class, "viewCart"])->name('viewCart');
 
     Route::post('/createOrder', [CartController::class, "createOrder"])->name('createOrder');
+
+    Route::get('/viewPO', [POController::class, "viewPO"])->name('viewPO');
+    
+    Route::get('/viewPOItems/{id}', [POController::class, "viewPOItems"])->name('viewPOItems');
+
+    Route::post('/updateOrder', [POController::class, "updateOrder"])->name('updateOrder');
+
+
 });
 
 Route::get('/login', [AuthController::class, "login"])
