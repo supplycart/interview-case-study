@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,12 @@ use App\Http\Controllers\ProductController;
 
 Route::middleware("auth")->group(function() {
     Route::get('/', [ProductController::class, "index"])->name("home");
+
+    Route::post('/addToCart', [CartController::class, "addToCart"])->name("addToCart");
+
+    Route::get('/viewCart', [CartController::class, "viewCart"])->name('viewCart');
+
+    Route::post('/createOrder', [CartController::class, "createOrder"])->name('createOrder');
 });
 
 Route::get('/login', [AuthController::class, "login"])
