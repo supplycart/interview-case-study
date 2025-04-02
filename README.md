@@ -94,10 +94,16 @@ Steps to run the website locally (Windows)
 
 8. Run "php artisan key:generate"
 
-9. Open another instance of terminal and navigate to the same directory.
+9. Run "php artisan migrate"
 
-10. Run "php artisan migrate"
+10. Type "yes" when asked whether or not to create an sqlite database.
 
-10. In one instance, run "php artisan serve"
+11. Run "npm install tailwindcss @tailwindcss/vite"
 
-11. In another instance, run "npm run dev"
+11. Open another instance of terminal and navigate to the same directory.
+
+12. In one instance, run "php artisan serve"
+
+13. In another instance, run "npm run dev"
+
+14. Open a browser and type "http://127.0.0.1:8000/" in the search bar.
