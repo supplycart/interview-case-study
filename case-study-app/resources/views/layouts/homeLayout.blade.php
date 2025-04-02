@@ -84,13 +84,9 @@
         <script>
             var route = document.getElementById("currentRoute").value;
 
-            console.log(document.getElementById(route));
-
             document.getElementById(route).className = "block py-2 px-3 text-white bg-amber-500 rounded-sm ";
             document.getElementById(route).className += "md:bg-transparent md:text-amber-600 md:p-0 ";
             document.getElementById(route).className += "dark:text-white md:dark:text-amber-500";
-
-            console.log(document.getElementById(route));
 
         </script>
     </body>
