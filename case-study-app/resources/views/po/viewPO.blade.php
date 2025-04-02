@@ -1,7 +1,8 @@
 @extends('layouts.homeLayout')
 @section('content')
+<div class="w-full h-full flex justify-center">
     <div class="w-full max-w-4/5 content-between">
-        <table class="table-auto w-full text-md text-left rtl:text-right text-black dark:text-black">
+        <table class="my-5 table-auto w-full text-md text-left rtl:text-right text-black dark:text-black">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th>#</th>
@@ -12,7 +13,8 @@
             </thead>
             <tbody>
                 @foreach($purchaseOrder as $key => $po)
-                    <tr class="bg-white border-b dark:bg-gray-400 dark:border-gray-700 border-gray-200">
+                    <tr class="bg-white border-b dark:bg-gray-400 dark:border-gray-700 border-gray-200
+                    odd:bg-blue-200 even:bg-gray-100">
                         <td>{{$key + 1}}</td>
                         <td>{{$po->created_at}}</td>
                         <td>
@@ -33,4 +35,5 @@
             </tbody>
         </table>
     </div>
+</div>
 @endsection

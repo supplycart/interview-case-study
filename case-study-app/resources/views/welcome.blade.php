@@ -37,7 +37,6 @@
                     Add to Cart
                 </button>
             </div>
-
         </div>
     </form>
 @endsection

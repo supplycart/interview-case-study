@@ -24,20 +24,21 @@ class CartController extends Controller
                                ->get();
             $cart = $currentUserCart->whereNotIn('id', $validPO->pluck('id_cart'))->first();
 
-            $cartItems = CartItem::where('id_cart', $cart->id)
-                             ->get();
+            if($cart != NULL)
+            {
+                $cartItems = CartItem::where('id_cart', $cart->id)
+                                     ->get();
 
-            $product = Product::whereIn('id', $cartItems->pluck('id_product'))
-                              ->get()
-                              ->keyBy('id');
+                $product = Product::whereIn('id', $cartItems->pluck('id_product'))
+                                  ->get()
+                                  ->keyBy('id');
+                return view('cart.viewCart', compact('cart', 'cartItems', 'product'));
 
+            }
         }
-        else
-        {
-            $cartItems = $product = [];
-        }
-        
+        $cartItems = $product = [];
         return view('cart.viewCart', compact('cart', 'cartItems', 'product'));
+
     }
 
     function addToCart(Request $request)
