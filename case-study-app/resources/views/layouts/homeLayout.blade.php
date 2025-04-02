@@ -15,7 +15,7 @@
         </style>
         @vite('resources/css/app.css')
     </head>
-    <body class="antialiased">
+    <body class="antialiased bg-amber-100">
         <nav class="bg-sky-500 border-gray-500 dark:bg-blue-800">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="{{route("home")}}" class="flex items-center space-x-3 rtl:space-x-reverse">
