@@ -1,4 +1,4 @@
-@extends("layouts.default")
+@extends("layouts.loginLayout")
 @section("title", "Register")
 @section("content")
 
