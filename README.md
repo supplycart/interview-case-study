@@ -74,3 +74,30 @@ We look forward to reviewing your implementation and discussing your approach du
 ---
 
 P/S: If you think there is a better way for us to assess your technical skills, feel free to suggest. We are constantly looking to improve our interview process.
+
+---------------------------------------------
+Steps to run the website locally (Windows)
+
+1. Install PHP
+
+2. In the php.ini file, find the lines ";extension=pdo_sqlite" and ";extension=sqlite3" and remove the semicolons(";")
+
+3. Install Composer
+
+4. Clone the repository (https://github.com/Emeraldong/interview-case-study)
+
+5. Navigate to the "interview-case-study/case-study-app" directory in a terminal
+
+6. Run "composer install --ignore-platform-req=ext-fileinfo"
+
+7. Change ".env.example" file to ".env"
+
+8. Run "php artisan key:generate"
+
+9. Open another instance of terminal and navigate to the same directory.
+
+10. Run "php artisan migrate"
+
+10. In one instance, run "php artisan serve"
+
+11. In another instance, run "npm run dev"
