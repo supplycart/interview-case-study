@@ -10,7 +10,7 @@ Note: The email feature is not set up on this demo site. For full functionality,
 
 ## Requirements
 
-Runs greate on:
+Runs great on:
 - PHP 8.1
 - Composer 2.2.3
 - MySQL 8.0
