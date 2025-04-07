@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
+use Spatie\Activitylog\Facades\CauserResolver;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -34,6 +35,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        activity()
+            ->causedBy(Auth::user())
+            ->inLog('auth')
+            ->log('User logged in');
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
@@ -42,6 +48,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        activity()
+            ->causedBy(Auth::user())
+            ->inLog('auth')
+            ->log('User logged Out');
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
