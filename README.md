@@ -2,6 +2,13 @@
     <img align="center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
 </p>
 
+# Set up
+1. Ensure you have PHP laravel and composer installed. (PHP 8.4 required for Laravel 12)
+2. Set up the database, include any database changes in .env (e.g. Using xampp running locally)
+3. Run php artisan migrate, it should include test items and tables into your DB
+4. Run composer run dev
+5. Done
+
 # Supplycart Interview Case Study
 
 This case study is designed for candidates to showcase their skills and coding style focusing on Laravel, Vue and TailwindCSS. You may use more technologies apart from the 3 mentioned.
