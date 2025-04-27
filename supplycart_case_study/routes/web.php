@@ -2,9 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use Illuminate\Http\Request;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
+Route::get('/', function (Request $request) {
+    if (auth()->check()) {
+        return redirect()->route('dashboard');
+    }
+    return redirect()->route('login');
 })->name('home');
 
 Route::get('dashboard', function () {
