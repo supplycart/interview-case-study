@@ -77,7 +77,7 @@ function goToCheckout() {
           class="flex gap-4 items-center border p-4 rounded-xl bg-white dark:bg-gray-900 shadow-sm"
         >
           <img
-            :src="item.product?.image_url ?  item.product.image_url : '/images/default-product.jpg'"
+            :src="item.product?.image_url ?  item.product.image_url : '/images/products/default.png'"
             alt="Product image"
             class="w-16 h-16 object-cover rounded border"
           />

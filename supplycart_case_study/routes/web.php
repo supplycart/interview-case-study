@@ -5,6 +5,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Http\Request;
 
 Route::get('/', function (Request $request) {
@@ -30,6 +31,9 @@ Route::resource('carts', CartController::class)->only([
 Route::post('/carts/sync', [CartController::class, 'sync'])->middleware(['auth']);
 
 Route::get('/checkout', fn () => Inertia::render('Checkout'))->middleware('auth')->name('checkout');
+
+Route::post('/orders', [OrderController::class, 'store'])->middleware('auth')->name('orders.store');
+Route::get('/orders/history', [OrderController::class, 'index'])->middleware('auth')->name('orders.index');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

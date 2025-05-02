@@ -5,6 +5,7 @@ import type { BreadcrumbItem } from '@/types'
 import { computed } from 'vue'
 import { useCartStore } from '@/stores/cart'
 import { useToastStore } from '@/stores/toast'
+import axios from 'axios';
 
 const cart = useCartStore()
 const toast = useToastStore()
@@ -23,23 +24,22 @@ const total = computed(() =>
   }, 0)
 )
 
-function confirmOrder() {
+async function confirmOrder() {
   if (!cart.items.length) {
     toast.error('Cart is empty.')
     return
   }
 
-  router.post('/orders', { items: cart.items }, {
-    onSuccess: () => {
-      cart.clear()
-      toast.success('Order placed successfully!')
-      router.visit('/dashboard')
-    },
-    onError: () => {
-      toast.error('Failed to place order.')
-    }
-  })
+  try {
+    await axios.post('/orders', { items: cart.items })
+    cart.clear()
+    toast.success('Order placed successfully!')
+    router.visit('/products')
+  } catch (error) {
+    toast.error('Failed to place order.')
+  }
 }
+
 </script>
 
 <template>

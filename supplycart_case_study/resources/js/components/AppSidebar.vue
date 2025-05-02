@@ -5,7 +5,7 @@ import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, ShoppingCart } from 'lucide-vue-next';
+import { BookOpen, Folder, LayoutGrid, ShoppingCart, ReceiptText } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 import MiniCart from '@/components/MiniCart.vue'
 import { useCartStore } from '@/stores/cart'
@@ -25,6 +25,11 @@ const mainNavItems: NavItem[] = [
         href: '/carts',
         icon: ShoppingCart,
         badge: totalItems
+    },
+    {
+        title: 'Order History',
+        href: '/orders/history',
+        icon: ReceiptText,
     },
 ];
 
