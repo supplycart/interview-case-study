@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ActivityLogController;
 
 Route::get('/', function (Request $request) {
     if (auth()->check()) {
@@ -34,6 +35,10 @@ Route::get('/checkout', fn () => Inertia::render('Checkout'))->middleware('auth'
 
 Route::post('/orders', [OrderController::class, 'store'])->middleware('auth')->name('orders.store');
 Route::get('/orders/history', [OrderController::class, 'index'])->middleware('auth')->name('orders.index');
+
+Route::get('/activity-log', [ActivityLogController::class, 'index'])
+    ->middleware('auth')
+    ->name('activity-log.index');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

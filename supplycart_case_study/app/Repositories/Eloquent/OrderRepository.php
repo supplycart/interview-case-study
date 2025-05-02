@@ -35,7 +35,7 @@ class OrderRepository implements OrderRepositoryInterface
             ->toArray();
     }
 
-    public function createOrder(int $userId, string $fullName, array $items): void
+    public function createOrder(int $userId, string $fullName, array $items): Order
     {
         $total = 0;
         $orderItems = [];
@@ -62,5 +62,7 @@ class OrderRepository implements OrderRepositoryInterface
         ]);
 
         $order->products()->createMany($orderItems);
+
+        return $order;
     }
 }

@@ -31,12 +31,5 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    // public function show(Product $product)
-    // {
-    //     return $product->image_url;
-    // }
 
 }

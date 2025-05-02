@@ -38,11 +38,27 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        $this->orderRepo->createOrder(
+        $order = $this->orderRepo->createOrder(
             auth()->id(),
             auth()->user()->name ?? 'No Name',
             $request->validated()['items']
         );
+
+        activity()
+                ->causedBy(auth()->user())
+                ->performedOn($order)
+                ->withProperties([
+                    'order_id' => $order->id,
+                    'receipt_no' => $order->receipt_no,
+                    'total' => $order->total,
+                    'products' => $order->products->map(fn ($p) => [
+                        'product_id' => $p->product_id,
+                        'qty' => $p->qty,
+                        'price' => $p->price,
+                    ]),
+                ])
+                ->log('Placed an order');
+
 
         return response()->json(['message' => 'Order placed successfully']);
     }

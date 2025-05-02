@@ -31,7 +31,7 @@ class CartRepository implements CartRepositoryInterface
             ->toArray();
     }
 
-    public function addOrUpdate(int $userId, int $productId, int $qty): void
+    public function addOrUpdate(int $userId, int $productId, int $qty): Cart
     {
         $cart = Cart::where('user_id', $userId)
             ->where('product_id', $productId)
@@ -41,12 +41,14 @@ class CartRepository implements CartRepositoryInterface
             $cart->qty += $qty;
             $cart->save();
         } else {
-            Cart::create([
+            $cart = Cart::create([
                 'user_id' => $userId,
                 'product_id' => $productId,
                 'qty' => $qty,
             ]);
         }
+
+        return $cart;
     }
 
     public function bulkSync(int $userId, array $items): void

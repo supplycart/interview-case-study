@@ -43,11 +43,18 @@ class CartController extends Controller
      */
     public function store(StoreCartRequest $request)
     {
-        $this->cartRepo->addOrUpdate(
-            auth()->id(),
-            $request->product_id,
-            $request->qty
-        );
+        $cart = $this->cartRepo->addOrUpdate(
+                    auth()->id(),
+                    $request->product_id,
+                    $request->qty
+                );
+
+        activity()
+            ->causedBy(auth()->user())
+            ->performedOn($cart)
+            ->withProperties(['product_id' => $request->product_id, 'qty' => $request->qty])
+            ->log('Added product to cart');
+
 
         return response()->json(['message' => 'Cart synced']);
     }
