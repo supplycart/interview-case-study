@@ -16,6 +16,7 @@ export interface NavItem {
     href: string;
     icon?: LucideIcon;
     isActive?: boolean;
+    badge?: number | import('vue').ComputedRef<number>;
 }
 
 export interface SharedData extends PageProps {

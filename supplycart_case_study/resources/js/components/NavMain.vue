@@ -22,6 +22,12 @@ const page = usePage<SharedData>();
                     <Link :href="item.href">
                         <component :is="item.icon" />
                         <span>{{ item.title }}</span>
+                        <span
+                            v-if="item.badge && (typeof item.badge === 'number' ? item.badge : item.badge.value) > 0"
+                            class="ml-auto text-xs bg-red-500 text-white rounded-full px-2 py-0.5"
+                            >
+                            {{ typeof item.badge === 'number' ? item.badge : item.badge.value }}
+                        </span>
                     </Link>
                 </SidebarMenuButton>
             </SidebarMenuItem>

@@ -6,6 +6,8 @@ import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 import { initializeTheme } from './composables/useAppearance';
+import { createPinia } from 'pinia'
+import piniaPersistedstate from 'pinia-plugin-persistedstate'
 
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
@@ -26,8 +28,13 @@ createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
+
+        const pinia = createPinia();
+        pinia.use(piniaPersistedstate);
+
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(pinia)
             .use(ZiggyVue)
             .mount(el);
     },
