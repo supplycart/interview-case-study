@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Country;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
@@ -13,10 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            CountrySeeder::class,
+        ]);
+
         User::factory()->create([
             'name' => 'Hazim',
             'email' => 'hazim.hadis@gmail.com',
             'password' => bcrypt('password'),
+            'country_id' => Country::where('countries.code', 'MY')->first()->id,
         ]);
 
         Artisan::call('passport:client --password --name=SupplyCart --provider=users');

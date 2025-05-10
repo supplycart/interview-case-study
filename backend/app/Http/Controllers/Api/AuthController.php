@@ -14,6 +14,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Laravel\Passport\Client;
 
 class AuthController extends Controller
 {
@@ -27,7 +28,7 @@ class AuthController extends Controller
         $user->save();
         event(new Registered($user));
 
-        return response()->json(['message' => 'Register successful'], 201);
+        return response()->json(['message' => 'User registered successfully.'], 201);
     }
 
     public function verifyEmail(VerifyEmailRequest $request): JsonResponse
@@ -42,7 +43,7 @@ class AuthController extends Controller
             event(new Verified($user));
         }
 
-        return response()->json(['message' => 'Email verified.']);
+        return response()->json(['message' => 'Email verified successfully.']);
     }
 
     public function login(LoginRequest $request): JsonResponse
