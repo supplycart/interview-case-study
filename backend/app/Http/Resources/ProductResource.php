@@ -28,12 +28,12 @@ class ProductResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
+            'category_id' => $this->category_id,
+            'brand_id' => $this->brand_id,
             'description' => $this->description,
             'price_in_cents' => $price, // Use the calculated effective price
             'formatted_price' => '$' . number_format($price / 100, 2),
             'stock_quantity' => $this->stock_quantity,
-            // Include attributes if the 'attributeValues' relationship is loaded
-            // Use AttributeValueResource::collection to transform the related models
             'attributes' => AttributeValueResource::collection($this->whenLoaded('attributeValues')),
             'created_at' => $this->created_at->toIso8601String(),
         ];

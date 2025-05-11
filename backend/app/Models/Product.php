@@ -58,7 +58,6 @@ class Product extends Model
     public function attributeValues(): BelongsToMany
     {
         return $this->belongsToMany(AttributeValue::class, 'product_attribute_values');
-        // ->withTimestamps(); // if pivot table had timestamps
     }
 
     /**
