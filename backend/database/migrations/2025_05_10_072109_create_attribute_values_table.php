@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('attribute_values', function (Blueprint $table) {
             $table->id();
             $table->foreignId('attribute_id')->constrained('attributes')->onDelete('cascade');
+            $table->string('slug')->unique();
             $table->string('value')->comment('e.g., Nike, Electronics, Red, XL');
             $table->timestamps();
 
+
             $table->unique(['attribute_id', 'value']); // An attribute should have unique values
             // Foreign key attribute_id typically indexed.
-            $table->index('attribute_id'); 
+            $table->index('attribute_id');
             $table->index('value'); // Index for searching by value
         });
     }

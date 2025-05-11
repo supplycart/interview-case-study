@@ -8,9 +8,8 @@
         </div>
         <div class="flex justify-between text-gray-600">
           <span>Shipping</span>
-          <span>Free</span> <!-- Placeholder -->
+          <span>Free</span> 
         </div>
-        <!-- Add discounts, taxes if applicable -->
       </div>
       <hr class="my-4">
       <div class="flex justify-between text-lg font-bold text-gray-800 mb-6">

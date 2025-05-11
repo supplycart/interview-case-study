@@ -24,18 +24,18 @@ class ProductFilterRequest extends FormRequest
     {
         return [
             'search' => ['nullable', 'string', 'max:100'],
-            'category' => ['nullable', 'string', 'max:100'], // Or 'integer', 'exists:categories,id' if using IDs
-            'brand' => ['nullable', 'string', 'max:100'],    // Or 'integer', 'exists:brands,id'
+            'category_slug' => ['nullable', 'string', 'max:255', 'exists:categories,slug'], // Validate slug exists
+            'brand_slug' => ['nullable', 'string', 'max:255', 'exists:brands,slug'],       // Validate slug exists
             'min_price' => ['nullable', 'integer', 'min:0'],
             'max_price' => ['nullable', 'integer', 'min:0', 'gte:min_price'],
-            'sort_by' => ['nullable', 'string', 'in:name,price_in_cents,created_at,stock_quantity'],
+            // Ensure 'stock_quantity' is a reasonable sort option if applicable, otherwise remove
+            'sort_by' => ['nullable', 'string', 'in:name,price_in_cents,created_at,updated_at'],
             'sort_direction' => ['nullable', 'string', 'in:asc,desc'],
             'page' => ['nullable', 'integer', 'min:1'],
             'per_page' => ['nullable', 'integer', 'min:1', 'max:100'],
-            // Example for attribute filtering if attributes are passed as an array:
-            // 'attributes' => ['nullable', 'array'],
-            // 'attributes.*.id' => ['required_with:attributes', 'integer', 'exists:attributes,id'],
-            // 'attributes.*.value' => ['required_with:attributes', 'string'], // or 'array' for multiple values
+            // Rule for filtering by multiple attribute_value_ids
+            'attribute_value_ids' => ['nullable', 'array'],
+            'attribute_value_ids.*' => ['required', 'integer', 'exists:attribute_values,id'],
         ];
     }
 

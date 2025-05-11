@@ -12,38 +12,53 @@ export const useCartStore = defineStore('cart', {
   }),
   getters: {
     cartItems: (state) => state.items,
-    itemCount: (state) => state.items.reduce((count, item) => count + item.quantity, 0),
+    itemCount: (state) => state.items.reduce((count, item) => {
+      return count + (item?.quantity || 0);
+    }, 0),
     totalPriceInCents: (state) => {
       return state.items.reduce((total, item) => {
-        return total + (item.product.price_in_cents * item.quantity);
+        return total + ((item?.product?.price_in_cents || 0) * (item?.quantity || 0));
       }, 0);
     },
     formattedTotalPrice: (state, getters) => {
-      return '$' + (getters.totalPriceInCents / 100).toFixed(2);
+      const recalculatedTotalInCents = state.items.reduce((total, item) => {
+        return total + ((item?.product?.price_in_cents || 0) * (item?.quantity || 0));
+      }, 0);
+
+      const finalTotalInCents = (getters?.totalPriceInCents !== undefined) ? getters.totalPriceInCents : recalculatedTotalInCents;
+
+      return '$' + (finalTotalInCents / 100).toFixed(2);
     },
     isCartLoading: (state) => state.isLoading,
   },
   actions: {
     _saveCartToLocalStorage() {
-        localStorage.setItem('cartItems', JSON.stringify(this.items));
+      localStorage.setItem('cartItems', JSON.stringify(this.items));
     },
     addItem(product, quantity = 1) {
+      // Add checks here before proceeding
+      if (!product || !product.id || typeof product.stock_quantity === 'undefined' || typeof product.price_in_cents === 'undefined') {
+        console.error("Attempted to add an invalid product structure to the cart:", product);
+        toast.error("Could not add product to cart due to invalid data.");
+        return;
+      }
+
       const existingItem = this.items.find(item => item.product.id === product.id);
       if (existingItem) {
         if (existingItem.quantity + quantity <= product.stock_quantity) {
-            existingItem.quantity += quantity;
-            toast.success(`${product.name} quantity updated in cart!`);
+          existingItem.quantity += quantity;
+          toast.success(`${product.name} quantity updated in cart!`);
         } else {
-            toast.error(`Cannot add more ${product.name}. Max stock reached.`);
-            return; // Do not add if exceeding stock
+          toast.error(`Cannot add more ${product.name}. Max stock reached.`);
+          return; // Do not add if exceeding stock
         }
       } else {
         if (quantity <= product.stock_quantity) {
-            this.items.push({ product, quantity });
-            toast.success(`${product.name} added to cart!`);
+          this.items.push({ product, quantity });
+          toast.success(`${product.name} added to cart!`);
         } else {
-            toast.error(`Not enough stock for ${product.name}. Available: ${product.stock_quantity}`);
-            return;
+          toast.error(`Not enough stock for ${product.name}. Available: ${product.stock_quantity}`);
+          return;
         }
       }
       this._saveCartToLocalStorage();
@@ -63,7 +78,7 @@ export const useCartStore = defineStore('cart', {
         } else if (quantity <= 0) {
           this.removeItem(productId);
         } else {
-            toast.error(`Not enough stock for ${item.product.name}. Available: ${item.product.stock_quantity}`);
+          toast.error(`Not enough stock for ${item.product.name}. Available: ${item.product.stock_quantity}`);
         }
       }
     },
@@ -96,7 +111,6 @@ export const useCartStore = defineStore('cart', {
     clearCart() {
       this.items = [];
       this._saveCartToLocalStorage();
-      // toast.info("Cart cleared."); // Optional: notify if cleared explicitly vs after order
     },
   }
 });

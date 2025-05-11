@@ -4,10 +4,14 @@ namespace App\Services;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Category; // Import Category model
+use App\Models\Brand; // Import Brand model
+use App\Models\Attribute; // Import Attribute model
+use App\Models\AttributeValue; // Import AttributeValue model
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB; // For complex attribute filtering
+use Illuminate\Support\Facades\DB;
 
 class ProductService
 {
@@ -27,21 +31,25 @@ class ProductService
         $perPage = $filters['per_page'] ?? self::DEFAULT_PER_PAGE;
         $cacheKey = 'products_list_page_' . $page . '_per_page_' . $perPage . '_filters_' . md5(json_encode($filters)) . '_user_' . ($user ? $user->id : 'guest');
 
-        return Cache::tags(['products'])->remember($cacheKey, now()->addMinutes(self::CACHE_TTL_MINUTES), function () use ($filters, $user, $perPage) {
+        return Cache::remember($cacheKey, now()->addMinutes(self::CACHE_TTL_MINUTES), function () use ($filters, $user, $perPage) {
             $query = Product::query();
 
             // Eager load relationships for performance and to support attributes/pricing
-            $query->with(['attributeValues.attribute']); // For attribute display
+            $query->with(['attributeValues.attribute', 'category', 'brand']); // Load category and brand directly
 
-            // Apply Filters (Bonus)
+            // Apply Filters
             $this->applyTextSearchFilter($query, $filters);
             $this->applyPriceRangeFilter($query, $filters);
-            $this->applyAttributeFilters($query, $filters); // For category, brand, etc.
+            $this->applyCategoryFilter($query, $filters);
+            $this->applyBrandFilter($query, $filters);
+            $this->applyAttributeFilters($query, $filters); // For color, size, etc.
 
             // Apply Sorting
             $sortBy = $filters['sort_by'] ?? 'created_at';
             $sortDirection = $filters['sort_direction'] ?? 'desc';
-            if (in_array($sortBy, (new Product())->getFillable()) || $sortBy === 'created_at') { // Ensure sortable column
+            // Ensure sortable column, including joined relationships if necessary (more complex)
+            // For simplicity, stick to basic columns for now.
+            if (in_array($sortBy, array_merge((new Product())->getFillable(), ['created_at', 'updated_at']))) {
                 $query->orderBy($sortBy, $sortDirection);
             }
 
@@ -53,8 +61,6 @@ class ProductService
                 $products->getCollection()->transform(function (Product $product) use ($user) {
                     // Create a temporary attribute for the resource to pick up.
                     // The ProductResource will handle the actual pricing logic.
-                    // This just signals that differential pricing *might* apply.
-                    // Or, directly set a 'display_price_in_cents' attribute.
                     $product->user_specific_price_applied = true; // Flag for resource
                     return $product;
                 });
@@ -77,7 +83,7 @@ class ProductService
 
         return Cache::tags(['products', 'product_details'])->remember($cacheKey, now()->addMinutes(self::CACHE_TTL_MINUTES), function () use ($slug, $user) {
             $product = Product::where('slug', $slug)
-                ->with(['attributeValues.attribute'])
+                ->with(['attributeValues.attribute', 'category', 'brand']) // Eager load
                 ->first();
 
             if ($product && $user) {
@@ -113,8 +119,9 @@ class ProductService
         if (!empty($filters['search'])) {
             $searchTerm = '%' . $filters['search'] . '%';
             $query->where(function (Builder $q) use ($searchTerm) {
-                $q->where('name', 'ILIKE', $searchTerm) // ILIKE for case-insensitive (PostgreSQL)
-                    ->orWhere('description', 'ILIKE', $searchTerm);
+                // Use LIKE for broader SQL compatibility
+                $q->where('name', 'LIKE', $searchTerm)
+                    ->orWhere('description', 'LIKE', $searchTerm);
             });
         }
     }
@@ -122,43 +129,67 @@ class ProductService
     private function applyPriceRangeFilter(Builder $query, array $filters): void
     {
         if (isset($filters['min_price'])) {
-            $query->where('price_in_cents', '>=', $filters['min_price'] * 100); // Assuming min_price is in dollars
+            // Ensure correct type hinting or casting if necessary, though int * 100 is usually fine
+            $query->where('price_in_cents', '>=', (int)$filters['min_price'] * 100);
         }
         if (isset($filters['max_price'])) {
-            $query->where('price_in_cents', '<=', $filters['max_price'] * 100); // Assuming max_price is in dollars
+            // Ensure correct type hinting or casting if necessary
+            $query->where('price_in_cents', '<=', (int)$filters['max_price'] * 100);
         }
     }
 
+    /**
+     * Apply category filter based on category slug.
+     */
+    private function applyCategoryFilter(Builder $query, array $filters): void
+    {
+        if (!empty($filters['category_slug'])) {
+            $query->whereHas('category', function (Builder $qCategory) use ($filters) {
+                $qCategory->where('slug', $filters['category_slug']);
+            });
+        }
+    }
+
+    /**
+     * Apply brand filter based on brand slug.
+     */
+    private function applyBrandFilter(Builder $query, array $filters): void
+    {
+        if (!empty($filters['brand_slug'])) {
+            $query->whereHas('brand', function (Builder $qBrand) use ($filters) {
+                $qBrand->where('slug', $filters['brand_slug']);
+            });
+        }
+    }
+
+    /**
+     * Apply filtering based on generic product attributes (color, size, etc.).
+     * Expects filters['attributes'] as an array of attribute value IDs.
+     * Example: ['attributes' => [1, 5, 8]] where 1 is 'Red', 5 is 'M', 8 is '128GB'.
+     *
+     * Note: This applies an "AND" logic if multiple attribute values are provided.
+     * A product must have *all* specified attribute values to be included.
+     * Implementing "OR" logic (product has attribute value A *or* B) or
+     * finding products that have *any* of a set of attribute values for a *single* attribute type
+     * would require more complex joins or subqueries.
+     */
     private function applyAttributeFilters(Builder $query, array $filters): void
     {
-        // Example for 'category' and 'brand' if passed as direct filters
-        // This assumes 'category' and 'brand' are attribute *names* and their values are filter values.
-        $attributeFilters = [];
-        if (!empty($filters['category'])) {
-            $attributeFilters[] = ['name' => 'Category', 'value' => $filters['category']];
-        }
-        if (!empty($filters['brand'])) {
-            $attributeFilters[] = ['name' => 'Brand', 'value' => $filters['brand']];
-        }
-        // Add more direct attribute filters (e.g., color, size) if they are top-level query params
+        if (!empty($filters['attribute_value_ids']) && is_array($filters['attribute_value_ids'])) {
+            // Filter by a list of AttributeValue IDs
+            $attributeValueIds = $filters['attribute_value_ids'];
 
-        // Generic attribute filter if 'attributes' is an array:
-        // ['attributes' => [ ['id' => 1, 'value' => 'Red'], ['id' => 2, 'value' => 'XL'] ] ]
-        // Or ['attributes' => [ 'Color' => 'Red', 'Size' => 'XL' ] ] if mapping names to values
-        if (!empty($filters['attributes']) && is_array($filters['attributes'])) {
-            foreach ($filters['attributes'] as $attrFilter) {
-                if (isset($attrFilter['name']) && isset($attrFilter['value'])) {
-                    $attributeFilters[] = ['name' => $attrFilter['name'], 'value' => $attrFilter['value']];
-                }
-            }
-        }
+            // To filter by multiple attribute values using AND logic (product must have all),
+            // we join the `product_attribute_value` table multiple times or use a GROUP BY clause
+            // to count the matches. The GROUP BY approach is generally more efficient.
 
-        foreach ($attributeFilters as $attrFilter) {
-            $query->whereHas('attributeValues', function (Builder $qVal) use ($attrFilter) {
-                $qVal->where('value', $attrFilter['value'])
-                    ->whereHas('attribute', function (Builder $qAttr) use ($attrFilter) {
-                        $qAttr->where('name', $attrFilter['name']);
-                    });
+            // Ensure we only count distinct attribute value matches per product.
+            $query->whereIn('products.id', function ($subQuery) use ($attributeValueIds) {
+                $subQuery->select('product_id')
+                    ->from('product_attribute_value')
+                    ->whereIn('attribute_value_id', $attributeValueIds)
+                    ->groupBy('product_id')
+                    ->havingRaw('COUNT(DISTINCT attribute_value_id) = ?', [count($attributeValueIds)]); // AND logic
             });
         }
     }

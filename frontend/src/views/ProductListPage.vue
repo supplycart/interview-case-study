@@ -64,7 +64,7 @@
       ...mapState(useProductStore, ['productList', 'isProductLoading', 'productError', 'productPagination']),
     },
     methods: {
-      ...mapActions(useProductStore, ['fetchProducts', 'fetchAttributeOptions']), // fetchAttributeOptions for bonus
+      ...mapActions(useProductStore, ['fetchProducts', 'fetchFilterOptions']),
       changePage(page) {
         if (page > 0 && page <= this.productPagination.totalPages) {
           this.fetchProducts(page);
@@ -73,7 +73,7 @@
     },
     created() {
       this.fetchProducts(); // Fetch initial products
-      this.fetchAttributeOptions(); // Bonus: Fetch filter options
+      this.fetchFilterOptions(); // Fetch filter options
     }
   };
   </script>

@@ -18,11 +18,9 @@ class AttributeValueResource extends JsonResource
             'id' => $this->id,
             'value' => $this->value,
             // 'attribute_id' => $this->attribute_id, // Usually not needed if attribute name is present
-            'attribute_name' => $this->whenLoaded('attribute', function() {
-                return $this->attribute->name; // Assumes 'attribute' relation is eager loaded
+            'attribute_name' => $this->whenLoaded('attribute', function () {
+                return $this->attribute->name;
             }),
-            // You can add a link to the attribute itself if needed
-            // 'attribute_link' => $this->whenLoaded('attribute', route('api.attributes.show', $this->attribute_id)),
         ];
     }
 }

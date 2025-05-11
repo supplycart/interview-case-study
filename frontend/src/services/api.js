@@ -33,11 +33,9 @@ apiClient.interceptors.response.use(response => {
 });
 
 // CSRF for Sanctum SPA (if not using Bearer Tokens exclusively)
-// This is typically needed for the initial login/register if Sanctum expects CSRF cookie
 export async function fetchCsrfToken() {
   try {
     await axios.get( (import.meta.env.VITE_APP_URL || '<http://localhost>') + '/sanctum/csrf-cookie', { withCredentials: true });
-    // console.log('CSRF cookie fetched');
   } catch (error) {
     console.error('Error fetching CSRF cookie:', error);
   }

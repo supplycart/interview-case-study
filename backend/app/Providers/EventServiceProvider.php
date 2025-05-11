@@ -2,14 +2,13 @@
 
 namespace App\Providers;
 
-use App\Events\UserLoggedOut; // Import the UserLoggedOut event
-use App\Events\UserLoggedIn; // Import the UserLoggedIn event (assuming you have this event)
-use App\Events\OrderPlaced; // Import the OrderPlaced event (assuming you have this event)
+use App\Events\UserLoggedOut;
+use App\Events\UserLoggedIn;
+use App\Events\OrderPlaced;
 use App\Listeners\LogUserActivityListener; // Import your listener
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -26,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
             LogUserActivityListener::class,
         ],
         UserLoggedOut::class => [
+            LogUserActivityListener::class,
+        ],
+        OrderPlaced::class => [
             LogUserActivityListener::class,
         ],
     ];

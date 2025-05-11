@@ -6,22 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'slug',
         'description',
         'price_in_cents',
         'stock_quantity',
+        'category_id',
+        'brand_id',
     ];
 
     /**
@@ -60,7 +58,7 @@ class Product extends Model
     public function attributeValues(): BelongsToMany
     {
         return $this->belongsToMany(AttributeValue::class, 'product_attribute_values');
-            // ->withTimestamps(); // if pivot table had timestamps
+        // ->withTimestamps(); // if pivot table had timestamps
     }
 
     /**
@@ -69,6 +67,22 @@ class Product extends Model
     public function userSpecificPrices(): HasMany
     {
         return $this->hasMany(UserProductPrice::class);
+    }
+
+    /**
+     * Get the category that the product belongs to.
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get the brand that the product belongs to.
+     */
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(Brand::class);
     }
 
     /**

@@ -60,7 +60,7 @@
     name: 'OrderHistoryPage',
     components: { OrderListItem, LoadingSpinner, AlertMessage, AppButton },
     computed: {
-      ...mapStores(useOrderStore), // Access as this.orderStore
+      ...mapStores(useOrderStore),
     },
     methods: {
       fetchUserOrders(page = 1) {

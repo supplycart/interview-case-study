@@ -42,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Products
     Route::get('/products', [ProductController::class, 'index'])->name('api.products.index');
     Route::get('/products/{product:slug}', [ProductController::class, 'show'])->name('api.products.show'); // Product by slug
+    Route::get('/product-filter-options', [ProductController::class, 'filterOptions']);
 
     // Orders
     Route::post('/orders', [OrderController::class, 'store'])->name('api.orders.store');
@@ -50,6 +51,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // User Activity Log (Bonus)
     Route::get('/user/activity-logs', [UserActivityController::class, 'index'])->name('api.user.activity');
-    // Example admin route for all logs (would need admin authorization)
-    // Route::get('/admin/activity-logs', [UserActivityController::class, 'allLogs'])->name('api.admin.activity');
 });

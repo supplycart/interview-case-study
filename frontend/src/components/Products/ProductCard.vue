@@ -1,6 +1,5 @@
 <template>
     <div class="product-card bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-      <img :src="product.image_url || '<https://via.placeholder.com/300x200.png?text=>' + product.name " :alt="product.name" class="w-full h-48 object-cover">
       <div class="p-4">
         <h3 class="text-xl font-semibold mb-2 text-gray-800">{{ product.name }}</h3>
         <p class="text-gray-600 text-sm mb-3 h-12 overflow-hidden">{{ product.description?.substring(0, 80) + (product.description?.length > 80 ? '...' : '') }}</p>

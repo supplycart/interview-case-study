@@ -71,7 +71,7 @@ class OrderService
             // Create the order
             $order = $user->orders()->create([
                 'total_amount_in_cents' => $totalAmountInCents,
-                'status' => 'pending', // Initial status
+                'status' => 'completed', // Skipped to completed for simplicity
             ]);
 
             // Create order items (batch insert if possible, or loop)

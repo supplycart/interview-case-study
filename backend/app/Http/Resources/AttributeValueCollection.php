@@ -23,22 +23,7 @@ class AttributeValueCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        // If this collection is used for a paginated result (e.g., listing all attribute values globally),
-        // then parent::toArray($request) is fine.
-        // However, if it's used within another resource (like ProductResource) to list
-        // related attribute_values, which is usually not paginated in that context,
-        // you might just want the raw collection transform.
-        //
-        // This setup assumes it could be used for both.
-        // When used with a non-paginated Illuminate\Database\Eloquent\Collection,
-        // the pagination keys ('links', 'meta') won't be present.
-
         return parent::toArray($request);
-
-        // Alternative if you *always* want just the items without top-level 'data' or pagination:
-        // return $this->collection->map(function ($item) use ($request) {
-        //     return (new AttributeValueResource($item))->toArray($request);
-        // })->all();
     }
 
     /**

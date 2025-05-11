@@ -1,6 +1,5 @@
 <template>
     <div class="cart-item flex items-center justify-between p-4 bg-white shadow rounded-lg space-x-4">
-      <img :src="item.product.image_url || `https://via.placeholder.com/80x80.png?text=${item.product.name}`" :alt="item.product.name" class="w-20 h-20 object-cover rounded">
       <div class="flex-grow">
         <h3 class="text-lg font-semibold text-gray-800">{{ item.product.name }}</h3>
         <p class="text-sm text-gray-500">Price: {{ item.product.formatted_price }}</p>
