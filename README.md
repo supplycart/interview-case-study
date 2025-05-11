@@ -344,12 +344,6 @@ Once the containers are running and `APP_KEY` is set:
     # Or for a specific test file:
     # docker compose exec app php artisan test tests/Feature/YourTest.php
     ```
-*   **Frontend (Vue - if tests are set up, e.g., Vitest):**
-    Run these commands inside the `frontend` directory or via `docker compose exec frontend_dev ...` if tests are configured to run in the container.
-    ```bash
-    cd frontend
-    npm run test # Or your specific test script
-    ```
 
 ## API Endpoints (Brief Overview)
 
