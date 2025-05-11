@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Jobs\SendVerificationEmailJob;
+use App\Mail\UserVerificationEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail; // For bonus: email verification
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail // implements MustVerifyEmail for the verification email
@@ -67,5 +70,16 @@ class User extends Authenticatable implements MustVerifyEmail // implements Must
     public function userProductPrices(): HasMany
     {
         return $this->hasMany(UserProductPrice::class);
+    }
+
+    /**
+     * Send the custom email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        // Queue to prevent registering hogging main application
+        SendVerificationEmailJob::dispatch($this);
     }
 }

@@ -21,7 +21,8 @@ RUN apk update && apk add --no-cache \
     supervisor \
     autoconf \
     make \
-    bash
+    bash \
+    nss
 
 # Clear cache
 RUN rm -rf /var/cache/apk/*
@@ -35,7 +36,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Create system user to run Composer and Artisan Commands
 RUN addgroup -g ${uid} --system ${user} && \
-    adduser -u ${uid} --system -G ${user} ${user}
+    adduser -u ${uid} --system -G ${user} ${user} && \
+    chown -R ${user}:${user} /home/${user}
 
 # Set working directory
 WORKDIR /var/www/html
@@ -52,4 +54,4 @@ COPY ./docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Expose port 9000 and start php-fpm server and supervisor
 EXPOSE 9000
-CMD ["sh", "-c", "/usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf && php-fpm"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
