@@ -21,6 +21,7 @@ This project is a full-stack e-commerce application built with a Laravel 12 (PHP
 9.  [Key Assumptions and Considerations](#key-assumptions-and-considerations)
 10. [Deployment (Conceptual Overview)](#deployment-conceptual-overview)
 11. [Troubleshooting](#troubleshooting)
+12. [Best Practices Applied](#troubleshooting)
 
 ## Database Design Schema
 ![image_alt](https://github.com/nasrulirfan/interview-case-study/blob/nasrul/dev/ERD%20Diagram%20-%20Supplycart%20Interview.png?raw=true)
@@ -408,9 +409,9 @@ Deploying this application typically involves:
 *   **Separation of Concerns:**
     *   Backend logic is distinct from frontend.
     *   Databases, caches, and mail servers are separate, replaceable services.
+*   **Modular Code** Request are implemented in Request Class, Controller are to handle requests and Services to handle Business Logic.
 *   **Infrastructure as Code:** `docker-compose.yml` and `Dockerfile` define the backend environment, making it reproducible.
 *   **Development Parity (Backend):** The Dockerized backend environment aims to mimic production more closely than a native PHP installation might, especially regarding services like Redis and distinct PHP-FPM processes.
-*   **Dependency Management:** Composer for PHP and npm/yarn for JavaScript handle package versions effectively.
 *   **Environment Variables:** Configuration is externalized from code using `.env` files, adhering to 12-factor app principles.
 *   **Live Reloading / HMR:** Essential for developer productivity, provided by Vite (frontend on host) and opcache settings (backend in Docker).
 *   **Named Volumes for Data Persistence:** Database data (PostgreSQL) and Redis data are persisted across `docker compose down/up` cycles using named volumes.
