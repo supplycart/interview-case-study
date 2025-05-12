@@ -18,4 +18,16 @@ class Country extends Model
         'tax_name',
         'tax_rate',
     ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'tax_rate' => 'float',
+        ];
+    }
 }

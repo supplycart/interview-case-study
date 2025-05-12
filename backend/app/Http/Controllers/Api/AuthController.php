@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\AuthController\LoginRequest;
 use App\Http\Requests\Api\AuthController\RegisterRequest;
 use App\Http\Requests\Api\AuthController\VerifyEmailRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Exception;
 use Illuminate\Auth\Events\Registered;
@@ -14,7 +15,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Laravel\Passport\Client;
 
 class AuthController extends Controller
 {
@@ -28,7 +28,7 @@ class AuthController extends Controller
         $user->save();
         event(new Registered($user));
 
-        return response()->json(['message' => 'User registered successfully.'], 201);
+        return $this->respond('User registered successfully.', 201);
     }
 
     public function verifyEmail(VerifyEmailRequest $request): JsonResponse
@@ -36,14 +36,14 @@ class AuthController extends Controller
         $user = $request->user();
 
         if ($user->hasVerifiedEmail()) {
-            return response()->json(['message' => 'Email already verified.'], 400);
+            return $this->respond('Email already verified.', 400);
         }
 
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
         }
 
-        return response()->json(['message' => 'Email verified successfully.']);
+        return $this->respond('Email verified successfully.');
     }
 
     public function login(LoginRequest $request): JsonResponse
@@ -61,25 +61,21 @@ class AuthController extends Controller
                 'scope' => '',
             ]);
 
-            $user = $request->user()->toArray();
-            $user['oauth'] = $response->json();
             if ($response->successful()) {
-                return response()->json([
-                    'message' => 'Logged in successfully.',
-                    'data' => $user,
-                ]);
+                $user = $request->user()->with('country')->first();
+                $user->oauth = $response->json();
+                return $this->respond('Logged in successfully.', 200, new UserResource($user));
             }
         } catch (Exception $e) {
             Log::error($e->getMessage(), $e->getTrace());
-            return response()->json(['message' => $e->getMessage()], 500);
         }
 
-        return response()->json(['Internal Server Error'], 500);
+        return $this->respond($e ?? 'Internal Server Error', 500);
     }
 
     public function logout(Request $request): JsonResponse
     {
         $request->user()->token()?->revoke();
-        return response()->json(['message' => 'Logged out successfully.']);
+        return $this->respond('Logged out successfully.');
     }
 }
