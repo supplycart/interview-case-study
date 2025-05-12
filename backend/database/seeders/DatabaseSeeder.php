@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             BrandSeeder::class,
             CategorySeeder::class,
+            ProductAndPriceSeeder::class,
         ]);
 
         User::factory()->create([

@@ -13,4 +13,5 @@ Route::get('verify-email/{id}/{hash}', [Api\AuthController::class, 'verifyEmail'
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResource('users', Api\UserController::class)->only(['index', 'show']);
+    Route::apiResource('products', Api\ProductController::class)->only(['index', 'show']);
 });
