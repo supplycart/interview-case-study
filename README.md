@@ -23,6 +23,7 @@ This project is a full-stack e-commerce application built with a Laravel 12 (PHP
 11. [Troubleshooting](#troubleshooting)
 
 ## Database Design Schema
+![image_alt](https://github.com/nasrulirfan/interview-case-study/blob/nasrul/dev/ERD%20Diagram%20-%20Supplycart%20Interview.png?raw=true)
 Please refer to the database_schema.md for detailed explaination.
 
 ## Features (All Bonus Tasks Applied)
