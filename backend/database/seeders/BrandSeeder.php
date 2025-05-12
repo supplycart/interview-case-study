@@ -13,10 +13,10 @@ class BrandSeeder extends Seeder
     public function run(): void
     {
         DB::table('brands')->insert([
-            ['name' => 'Honda'],
-            ['name' => 'Kawasaki'],
-            ['name' => 'Suzuki'],
-            ['name' => 'Yamaha'],
+            ['id' => 1, 'name' => 'Honda'],
+            ['id' => 2, 'name' => 'Kawasaki'],
+            ['id' => 3, 'name' => 'Suzuki'],
+            ['id' => 4, 'name' => 'Yamaha'],
         ]);
     }
 }
