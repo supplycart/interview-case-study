@@ -24,7 +24,7 @@ This project is a full-stack e-commerce application built with a Laravel 12 (PHP
 
 ## Database Design Schema
 ![image_alt](https://github.com/nasrulirfan/interview-case-study/blob/nasrul/dev/ERD%20Diagram%20-%20Supplycart%20Interview.png?raw=true)
-Please refer to the database_schema.md for detailed explaination.
+Please refer to the [database_schema.md](https://github.com/nasrulirfan/interview-case-study/blob/nasrul/dev/database_schema.md) for detailed explaination.
 
 ## Features (All Bonus Tasks Applied)
 *   **User Management:**
