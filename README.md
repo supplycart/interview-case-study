@@ -405,6 +405,144 @@ Deploying this application typically involves:
 ---
 
 ## Best Practices Applied
+Okay, let's list the best practices aimed for and ideally implemented *within the code* itself (Laravel backend and Vue.js frontend), in addition to the setup/infrastructure practices previously mentioned.
+
+**I. Laravel Backend Best Practices:**
+
+1.  **MVC Architecture:**
+    *   **Models:** Represent data and business logic (e.g., `User`, `Product`, `Order`). Use Eloquent ORM effectively with relationships, accessors, mutators, and model events.
+    *   **Views:** (Primarily API resources in this case) `JsonResource` and `ResourceCollection` are used for transforming models into consistent JSON responses, separating presentation from data.
+    *   **Controllers:** Handle HTTP requests, delegate business logic to services or models, and return responses. Kept lean.
+
+2.  **Service Layer (Service-Repository Pattern - Conceptual):**
+    *   **Services** (e.g., `AuthService`, `ProductService`, `OrderService`, `CartService`): Encapsulate complex business logic, keeping controllers thin and models focused on data representation. This promotes reusability and testability.
+    *   (Repositories are an optional further step for abstracting data access, not explicitly detailed but services can interact directly with Eloquent for this project size).
+
+3.  **Dependency Injection (DI) & Inversion of Control (IoC):**
+    *   Laravel's service container is used implicitly and explicitly for resolving dependencies (e.g., injecting services into controllers, mailables, jobs). This promotes loose coupling and testability.
+
+4.  **API Design & Versioning (Implicit):**
+    *   **RESTful Principles:** Adhered to for API endpoints (e.g., using appropriate HTTP verbs, resource-based URLs).
+    *   **Consistent JSON Responses:** Using API Resources (`OrderResource`, `ProductResource`, `UserResource`) ensures a standardized structure for API outputs, including data wrapping, pagination, and links.
+    *   (Explicit API versioning like `/api/v1/...` is a good practice for larger projects, not explicitly implemented here but can be added).
+
+5.  **Routing:**
+    *   Clear and organized routes in `routes/api.php`.
+    *   Use of route model binding (`{product:slug}`, `{order}`) for convenience and cleaner controller actions.
+    *   Named routes for easier URL generation (e.g., in Mailables).
+    *   Route groups for middleware application (`auth:sanctum`).
+
+6.  **Authentication & Authorization:**
+    *   **Sanctum:** Used for SPA authentication, providing a secure and straightforward way to authenticate Vue.js frontend with the Laravel backend.
+    *   **Email Verification (`MustVerifyEmail`):** Ensures users have valid email addresses.
+    *   (Role-based/Permission-based authorization using Gates/Policies would be a best practice for more complex scenarios, not explicitly detailed but can be built upon `auth:sanctum`).
+
+7.  **Error & Exception Handling:**
+    *   Laravel's built-in exception handler is used. Custom exceptions can be created for specific error scenarios.
+    *   Consistent error responses from the API (e.g., 4xx for client errors, 5xx for server errors, with meaningful messages).
+    *   Logging of errors for debugging and monitoring.
+
+8.  **Validation:**
+    *   **Form Requests:** (Or manual `Validator::make()`) Used extensively in controllers/services to validate incoming data against defined rules, ensuring data integrity.
+    *   Custom validation rules where necessary.
+
+9.  **Database Migrations & Seeding:**
+    *   **Migrations:** Define database schema in code, allowing for version control and easy schema evolution.
+    *   **Seeders & Factories:** Populate the database with initial/test data, useful for development and testing.
+
+10. **Events & Listeners / Jobs:**
+    *   **Events** (e.g., `UserRegistered`, `OrderPlaced`, `UserLoggedIn`): Decouple different parts of the application. For example, sending a verification email or logging activity after an event occurs.
+    *   **Queued Jobs** (e.g., `SendVerificationEmailJob`): Offload time-consuming tasks (like sending emails) to background workers, improving API response times.
+    *   **Mailables (`ShouldQueue`):** Specific mailables are designed to be queueable.
+
+11. **Configuration Management:**
+    *   Use of `.env` files for environment-specific configuration.
+    *   Configuration files (`config/*.php`) provide defaults and access to `.env` variables.
+
+12. **Security:**
+    *   **CSRF Protection:** Handled by Sanctum for SPA authentication.
+    *   **Input Sanitization/Validation:** Prevents common vulnerabilities like XSS (via Blade if used, or careful handling of user input) and SQL injection (via Eloquent's prepared statements).
+    *   **Password Hashing:** Laravel uses secure hashing (Bcrypt/Argon2) by default.
+    *   **Rate Limiting:** Applied to sensitive routes (e.g., login, email verification requests).
+    *   **HTTPS:** (Assumed for production deployment) Essential for secure communication.
+
+13. **Code Style & Readability:**
+    *   Adherence to PSR standards (Laravel follows these by default).
+    *   Clear naming conventions for variables, methods, classes.
+    *   Code comments for complex logic.
+
+14. **Eloquent ORM Best Practices:**
+    *   **Eager Loading (`with()`):** To prevent N+1 query problems when accessing relationships.
+    *   **Query Scopes:** For reusable query constraints.
+    *   **Accessors & Mutators:** For formatting attributes or modifying them before saving.
+    *   **Model Observers/Events:** For hooking into model lifecycle events.
+
+15. **Testing (Conceptual, as per Bonus):**
+    *   Unit tests for services, models, and critical business logic.
+    *   Feature/Integration tests for API endpoints.
+
+**II. Vue.js Frontend Best Practices:**
+
+1.  **Component-Based Architecture:**
+    *   Breaking down the UI into reusable and manageable components (e.g., `ProductCard`, `LoginForm`, `AppButton`).
+    *   Single Responsibility Principle for components.
+
+2.  **State Management (Pinia):**
+    *   Centralized state management for shared application data (e.g., user authentication, cart, product list).
+    *   Clear separation of state, getters, and actions.
+    *   Modular store design (e.g., `authStore`, `cartStore`, `productStore`).
+    *   Persistence of critical state (auth token, cart) to `localStorage`.
+
+3.  **Routing (Vue Router):**
+    *   Clear route definitions for different pages/views.
+    *   Navigation guards for protecting routes (e.g., requiring authentication, redirecting if verified/unverified).
+    *   Lazy loading routes for better initial load performance (not explicitly detailed but a common practice).
+
+4.  **API Communication (Axios):**
+    *   Centralized Axios instance (`src/services/api.js`) with base URL.
+    *   Interceptors for request (e.g., attaching auth token) and response (e.g., handling 401 errors for logout).
+    *   Fetching CSRF cookie from Sanctum before making state-changing requests.
+
+5.  **Props Down, Events Up:**
+    *   Data flows from parent to child components via props.
+    *   Child components communicate changes or actions to parents by emitting events.
+
+6.  **Reusable UI Components:**
+    *   Creating generic UI elements (e.g., `AppButton`, `AppInput`, `AlertMessage`, `LoadingSpinner`) for consistency and DRY principles.
+
+7.  **Form Handling & Validation:**
+    *   Client-side validation for immediate user feedback, complementing backend validation.
+    *   Clear error messages displayed near form fields.
+    *   Managing loading states for form submissions.
+
+8.  **Error Handling:**
+    *   Gracefully handling API errors (e.g., displaying toast notifications or alert messages).
+    *   Providing user-friendly feedback when things go wrong.
+
+9.  **Loading States & User Feedback:**
+    *   Displaying loading indicators (spinners, disabled buttons) during asynchronous operations (e.g., API calls, form submissions).
+
+10. **Code Structure & Organization:**
+    *   Logical folder structure (e.g., `components`, `views`, `stores`, `services`, `router`).
+    *   Naming conventions for files and components (e.g., PascalCase for Vue components).
+
+11. **Environment Variables (Vite):**
+    *   Using `.env.[mode]` files (e.g., `.env.development`) for environment-specific frontend configuration (like API base URL).
+
+12. **CSS Styling (TailwindCSS):**
+    *   Utility-first CSS framework for rapid UI development and consistent styling.
+
+13. **Performance (Conceptual):**
+    *   Code splitting/lazy loading (via Vue Router).
+    *   Optimizing images.
+    *   Minimizing re-renders using computed properties and careful state management.
+    *   Debouncing/throttling for frequent events (e.g., cart quantity updates).
+
+14. **Security (Client-Side):**
+    *   While most security is backend-focused, frontend avoids rendering raw HTML from user input (Vue handles this well by default).
+    *   Securely handling auth tokens (stored in Pinia, persisted to `localStorage`, sent via Authorization header).
+
+### Code Structure
 *   **Containerization for Backend & Services:** Docker isolates backend dependencies (PHP version, extensions, PostgreSQL, Redis), ensuring consistency across developer machines and easier onboarding.
 *   **Separation of Concerns:**
     *   Backend logic is distinct from frontend.
