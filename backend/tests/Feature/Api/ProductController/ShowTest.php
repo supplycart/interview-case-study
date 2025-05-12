@@ -12,7 +12,7 @@ describe('Get A Product', function () {
             ->assertJson(['message' => 'Unauthenticated.']);
     });
 
-    test('can a product', function () {
+    test('can get a product', function () {
         $user = User::where('email', 'hazim.hadis+my@gmail.com')->first();
         Passport::actingAs($user);
         $productId = Product::first()->id;

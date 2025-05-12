@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Cart;
 use App\Models\Country;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -18,23 +19,8 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             BrandSeeder::class,
             CategorySeeder::class,
+            UserAndCartSeeder::class,
             ProductAndPriceSeeder::class,
-        ]);
-
-        User::factory()->create([
-            'name' => 'Hazim',
-            'email' => 'hazim.hadis+my@gmail.com',
-            'password' => bcrypt('password'),
-            'country_id' => Country::where('countries.code', 'MY')->first()->id,
-            'email_verified_at' => now(),
-        ]);
-
-        User::factory()->create([
-            'name' => 'Hazim',
-            'email' => 'hazim.hadis+id@gmail.com',
-            'password' => bcrypt('password'),
-            'country_id' => Country::where('countries.code', 'ID')->first()->id,
-            'email_verified_at' => now(),
         ]);
 
         Artisan::call('passport:client --password --name=SupplyCart --provider=users');

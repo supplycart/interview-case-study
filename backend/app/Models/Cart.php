@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use Database\Factories\CartFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Cart extends Model
 {
+    /** @use HasFactory<CartFactory> */
+    use HasFactory;
     /**
      * The attributes that are mass assignable.
      *
