@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 abstract class Controller
 {
-    protected function respond(string $message, int $status = 200, JsonResource|array $data = null)
+    protected function respond(string $message, int $status = 200, JsonResource|array $data = null): JsonResponse
     {
         $response['message'] = $message;
 

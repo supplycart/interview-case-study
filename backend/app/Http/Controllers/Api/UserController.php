@@ -20,7 +20,7 @@ class UserController extends Controller
     {
     }
 
-    public function show(User $user)
+    public function show(User $user): JsonResponse
     {
         return $this->respond(message: 'Get user detail successful.', data: new UserResource($user));
     }
