@@ -1,5 +1,8 @@
 # Database Schema Overview
 
+## ERD Diagram
+![image alt](https://github.com/nasrulirfan/interview-case-study/blob/nasrul/dev/ERD%20Diagram%20-%20Supplycart%20Interview.png?raw=true)
+
 ## 1. Core Entities: Users, Products, and Orders
 
 ### `Users` Table
