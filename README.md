@@ -2,6 +2,8 @@
 
 This project is a full-stack e-commerce application built with a Laravel 12 (PHP) backend and a Vue.js 3 (JavaScript) frontend, containerized with Docker. It includes features like user authentication, product browsing, cart management, order placement, and bonus features like user activity logging and differential pricing.
 
+![GIF alt](https://github.com/nasrulirfan/interview-case-study/blob/nasrul/dev/SupplyCart%20Interview%20Overview.gif?raw=true)
+
 ## Table of Contents
 
 1.  [Features](#features)
