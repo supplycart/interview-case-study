@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
 {
@@ -40,7 +41,7 @@ class Product extends Model
         return $this->hasMany(Price::class);
     }
 
-    public function price()
+    public function price(): HasOne
     {
         return $this->hasOne(Price::class)->where('country_id', getUserCountry()->id);
     }

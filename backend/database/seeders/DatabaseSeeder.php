@@ -23,9 +23,18 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Hazim',
-            'email' => 'hazim.hadis@gmail.com',
+            'email' => 'hazim.hadis+my@gmail.com',
             'password' => bcrypt('password'),
             'country_id' => Country::where('countries.code', 'MY')->first()->id,
+            'email_verified_at' => now(),
+        ]);
+
+        User::factory()->create([
+            'name' => 'Hazim',
+            'email' => 'hazim.hadis+id@gmail.com',
+            'password' => bcrypt('password'),
+            'country_id' => Country::where('countries.code', 'ID')->first()->id,
+            'email_verified_at' => now(),
         ]);
 
         Artisan::call('passport:client --password --name=SupplyCart --provider=users');

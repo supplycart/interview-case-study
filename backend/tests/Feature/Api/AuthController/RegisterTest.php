@@ -39,9 +39,9 @@ describe('User Registration', function () {
                 strlen($password) < 8 ? ['password'] : ['email']
             );
 
-        assertDatabaseCount('users', 1);
+        assertDatabaseCount('users', 2);
     })->with([
-        'existing email' => ['hazim.hadis@gmail.com'],
+        'existing email' => ['hazim.hadis+my@gmail.com'],
         'invalid email format' => ['hazim.hadis+register@g.c'],
         'short password' => ['hazim.hadis+register@gmail.com', 'pass']
     ]);
