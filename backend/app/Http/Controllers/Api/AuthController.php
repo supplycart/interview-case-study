@@ -62,7 +62,7 @@ class AuthController extends Controller
             ]);
 
             if ($response->successful()) {
-                $user = $request->user()->with('country')->first();
+                $user = $request->user()->load('country');
                 $user->oauth = $response->json();
                 return $this->respond('Logged in successfully.', 200, new UserResource($user));
             }
