@@ -153,8 +153,7 @@ cd your-ecommerce-app
     *   `REDIS_PASSWORD=null` (Or your Redis password if set)
     *   `REDIS_PORT=6379`
     *   `APP_URL=http://localhost:8080` (Or your local Nginx port if different)
-    *   `FRONTEND_URL=http://localhost:5173` (Default Vite dev server URL)
-    *   `SANCTUM_STATEFUL_DOMAINS=localhost:8080,localhost:5173,127.0.0.1:5173`
+    *   `APP_FE_URL=http://localhost:5173` (Depends on the front-end port)
     *   Mail settings (for development, MailHog is configured in `docker-compose.yml`):
         ```
         MAIL_MAILER=smtp
@@ -182,7 +181,7 @@ cd your-ecommerce-app
     ```
 *   **Inside `frontend/.env.development`:**
     ```env
-    VITE_API_BASE_URL=http://localhost:8080/api
+    VITE_API_BASE_URL=http://localhost:80/api
     VITE_APP_URL=http://localhost:5173
     ```
 *   Install frontend dependencies:
@@ -316,7 +315,7 @@ Once the containers are running and `APP_KEY` is set:
     cd frontend
     npm run dev
     ```
-    Ensure your API calls from Vue are correctly pointing to `http://localhost:8080/api` (or whatever port Nginx is mapped to on your host).
+    Ensure your API calls from Vue are correctly pointing to `http://localhost:80/api` (or whatever port Nginx is mapped to on your host).
 
 ## Accessing the Application
 
