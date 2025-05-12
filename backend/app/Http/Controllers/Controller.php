@@ -3,17 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 abstract class Controller
 {
     protected function respond(string $message, int $status = 200, JsonResource|array $data = null)
     {
-        $body['message'] = $message;
+        $response['message'] = $message;
 
         if ($data) {
-            $body['data'] = $data;
+            if ($data->resource instanceof LengthAwarePaginator) {
+                $data = $data->response()->getData(true);
+                unset($data['meta']['links']);
+                $response['data'] = $data['data'];
+                $response['meta'] = $data['meta'];
+                $response['links'] = $data['links'];
+            } else {
+                $response['data'] = $data;
+            }
         }
 
-        return response()->json($body, $status);
+        return response()->json($response, $status);
     }
 }
