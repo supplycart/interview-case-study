@@ -39,5 +39,22 @@ Copy the _Client ID_ and _Client Secret_ for login API request.
 1. Environment at `backend/.postman/local.postman_environment.json`
 2. Collection at `backend/.postman/supplycart-backend.postman_collection.json`
 
+## Tasks
+1. As guest, I want to be able to register an account `POST api/register`
+2. As guest, I want to be able to login using registered account `POST api/login`
+3. As user, I want to see list of products after login `GET api/products`
+4. As user, I want to be able to add product to cart `POST api/carts`
+5. As user, I want to be able to place order for added products in cart `POST api/orders`
+6. As user, I want to see my order history `GET api/orders`
+7. As user, I want to be able to logout `GET api/logout`
+
+## Bonus Tasks
+1. Verify email after registration `GET api/verify-email/{id}/{hash}`
+2. User activity log e.g. login, logout, add to cart, place order etc `didn't do`
+3. Product attributes and filtering e.g brand, category `GET api/products?filter`
+4. Different user can see different price for products `price based on user country`
+5. Add unit tests `done Feature test using Pest`
+6. Deploy app to a server `didn't do`
+
 ### Footnote
 [^1]: You can temporarily comment out `backend/database/seeders/DatabaseSeeder.php:24` (User seeder) and/or `backend/database/seeders/DatabaseSeeder.php:25` (Cart and Order seeder) if you don't need them. You can customize and see seeded user credentials at `backend/database/seeders/UserSeeder.php`.
