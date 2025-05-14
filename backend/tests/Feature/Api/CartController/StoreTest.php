@@ -74,7 +74,7 @@ describe('Update Cart', function () {
     });
 
     test('update items in cart', function () {
-        $user = User::where('email', 'hazim.hadis+my@gmail.com')->first();
+        $user = User::where('email', 'hazim.hadis+id@gmail.com')->first();
         Passport::actingAs($user);
 
         $cartId = Cart::where('user_id', $user->id)->first()->id;

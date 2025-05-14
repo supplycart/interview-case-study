@@ -6,7 +6,7 @@ use App\Models\Country;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class UserAndCartSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.

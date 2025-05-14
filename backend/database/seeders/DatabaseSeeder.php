@@ -16,9 +16,15 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             BrandSeeder::class,
             CategorySeeder::class,
-            UserAndCartSeeder::class,
             ProductAndPriceSeeder::class,
         ]);
+
+        if (in_array(config('app.env'), ['local', 'testing'])) {
+            $this->call([
+                UserSeeder::class,
+                CartAndOrderSeeder::class,
+            ]);
+        }
 
         Artisan::call('passport:client --password --name=SupplyCart --provider=users');
         print(Artisan::output());

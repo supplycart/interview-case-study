@@ -15,7 +15,7 @@ describe('Get Cart', function () {
     });
 
     test('get empty user cart', function () {
-        $user = User::where('email', 'hazim.hadis+my@gmail.com')->first();
+        $user = User::where('email', 'hazim.hadis+id@gmail.com')->first();
         Passport::actingAs($user);
 
         getJson('api/carts')
@@ -30,7 +30,7 @@ describe('Get Cart', function () {
     });
 
     test('get not empty user cart', function () {
-        $user = User::where('email', 'hazim.hadis+my@gmail.com')->first();
+        $user = User::where('email', 'hazim.hadis+id@gmail.com')->first();
         Passport::actingAs($user);
 
         $cartId = Cart::where('user_id', $user->id)->first()->id;
