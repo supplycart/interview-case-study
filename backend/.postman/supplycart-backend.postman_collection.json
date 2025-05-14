@@ -368,6 +368,13 @@
 							"path": [
 								"api",
 								"users"
+							],
+							"query": [
+								{
+									"key": "logs",
+									"value": "1",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -385,6 +392,13 @@
 									"path": [
 										"api",
 										"users"
+									],
+									"query": [
+										{
+											"key": "logs",
+											"value": "1",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -394,7 +408,7 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Wed, 14 May 2025 20:09:49 GMT"
+									"value": "Wed, 14 May 2025 22:54:17 GMT"
 								},
 								{
 									"key": "Server",
@@ -418,7 +432,7 @@
 								},
 								{
 									"key": "Keep-Alive",
-									"value": "timeout=5, max=99"
+									"value": "timeout=5, max=100"
 								},
 								{
 									"key": "Connection",
@@ -435,6 +449,76 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Get user detail successful.\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Hazim MY\",\n        \"email\": \"hazim.hadis+my@gmail.com\",\n        \"country\": {\n            \"id\": 1,\n            \"name\": \"Malaysia\",\n            \"code\": \"MY\",\n            \"currency\": \"MYR\",\n            \"tax_name\": \"SST\",\n            \"tax_rate\": 8\n        }\n    }\n}"
+						},
+						{
+							"name": "users?logs=1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{app_url}}/api/users?logs=1",
+									"host": [
+										"{{app_url}}"
+									],
+									"path": [
+										"api",
+										"users"
+									],
+									"query": [
+										{
+											"key": "logs",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 14 May 2025 22:54:29 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.57 (Win64) OpenSSL/1.1.1s PHP/8.2.28"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Get user detail successful.\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Hazim MY\",\n        \"email\": \"hazim.hadis+my@gmail.com\",\n        \"country\": {\n            \"id\": 1,\n            \"name\": \"Malaysia\",\n            \"code\": \"MY\",\n            \"currency\": \"MYR\",\n            \"tax_name\": \"SST\",\n            \"tax_rate\": 8\n        },\n        \"logs\": [\n            {\n                \"id\": 61,\n                \"log_name\": \"auth\",\n                \"description\": \"login\",\n                \"subject_type\": null,\n                \"event\": null,\n                \"subject_id\": null,\n                \"causer_type\": \"App\\\\Models\\\\User\",\n                \"causer_id\": 1,\n                \"properties\": [],\n                \"batch_uuid\": null,\n                \"created_at\": \"2025-05-14T22:34:09.000000Z\",\n                \"updated_at\": \"2025-05-14T22:34:09.000000Z\"\n            },\n            {\n                \"id\": 62,\n                \"log_name\": \"cart\",\n                \"description\": \"updated\",\n                \"subject_type\": \"App\\\\Models\\\\Cart\",\n                \"event\": null,\n                \"subject_id\": 1,\n                \"causer_type\": \"App\\\\Models\\\\User\",\n                \"causer_id\": 1,\n                \"properties\": [],\n                \"batch_uuid\": \"87876603-6dfe-478a-8066-143a62330484\",\n                \"created_at\": \"2025-05-14T22:34:12.000000Z\",\n                \"updated_at\": \"2025-05-14T22:34:12.000000Z\"\n            },\n            {\n                \"id\": 63,\n                \"log_name\": \"cart\",\n                \"description\": \"updated\",\n                \"subject_type\": \"App\\\\Models\\\\CartItem\",\n                \"event\": \"updated\",\n                \"subject_id\": 5,\n                \"causer_type\": \"App\\\\Models\\\\User\",\n                \"causer_id\": 1,\n                \"properties\": {\n                    \"old\": {\n                        \"quantity\": 2\n                    },\n                    \"attributes\": {\n                        \"quantity\": 1\n                    }\n                },\n                \"batch_uuid\": \"87876603-6dfe-478a-8066-143a62330484\",\n                \"created_at\": \"2025-05-14T22:34:12.000000Z\",\n                \"updated_at\": \"2025-05-14T22:34:12.000000Z\"\n            },\n            {\n                \"id\": 64,\n                \"log_name\": \"cart\",\n                \"description\": \"created\",\n                \"subject_type\": \"App\\\\Models\\\\CartItem\",\n                \"event\": \"created\",\n                \"subject_id\": 20,\n                \"causer_type\": \"App\\\\Models\\\\User\",\n                \"causer_id\": 1,\n                \"properties\": {\n                    \"attributes\": {\n                        \"cart_id\": 1,\n                        \"quantity\": 2,\n                        \"product_id\": 2\n                    }\n                },\n                \"batch_uuid\": \"87876603-6dfe-478a-8066-143a62330484\",\n                \"created_at\": \"2025-05-14T22:34:12.000000Z\",\n                \"updated_at\": \"2025-05-14T22:34:12.000000Z\"\n            },\n            {\n                \"id\": 65,\n                \"log_name\": \"cart\",\n                \"description\": \"deleted\",\n                \"subject_type\": \"App\\\\Models\\\\CartItem\",\n                \"event\": \"deleted\",\n                \"subject_id\": 19,\n                \"causer_type\": \"App\\\\Models\\\\User\",\n                \"causer_id\": 1,\n                \"properties\": {\n                    \"old\": {\n                        \"cart_id\": 1,\n                        \"quantity\": 2,\n                        \"product_id\": 3\n                    }\n                },\n                \"batch_uuid\": \"87876603-6dfe-478a-8066-143a62330484\",\n                \"created_at\": \"2025-05-14T22:34:12.000000Z\",\n                \"updated_at\": \"2025-05-14T22:34:12.000000Z\"\n            },\n            {\n                \"id\": 66,\n                \"log_name\": \"order\",\n                \"description\": \"created\",\n                \"subject_type\": \"App\\\\Models\\\\Order\",\n                \"event\": \"created\",\n                \"subject_id\": 4,\n                \"causer_type\": \"App\\\\Models\\\\User\",\n                \"causer_id\": 1,\n                \"properties\": {\n                    \"attributes\": {\n                        \"total\": 0,\n                        \"number\": \"00000003\",\n                        \"user_id\": 1,\n                        \"currency\": \"MYR\",\n                        \"tax_name\": \"SST\",\n                        \"tax_rate\": \"8.00\",\n                        \"tax_amount\": 0,\n                        \"total_payable\": 0\n                    }\n                },\n                \"batch_uuid\": \"f8fc488c-b210-4d06-9b32-b08c8e8ae78f\",\n                \"created_at\": \"2025-05-14T22:35:13.000000Z\",\n                \"updated_at\": \"2025-05-14T22:35:13.000000Z\"\n            },\n            {\n                \"id\": 67,\n                \"log_name\": \"order\",\n                \"description\": \"created\",\n                \"subject_type\": \"App\\\\Models\\\\OrderItem\",\n                \"event\": \"created\",\n                \"subject_id\": 7,\n                \"causer_type\": \"App\\\\Models\\\\User\",\n                \"causer_id\": 1,\n                \"properties\": {\n                    \"attributes\": {\n                        \"total\": 6599,\n                        \"order_id\": 4,\n                        \"quantity\": 1,\n                        \"brand_name\": \"Honda\",\n                        \"product_id\": 1,\n                        \"price_amount\": 6599,\n                        \"product_name\": \"Dash 125 / Supra X 125\",\n                        \"category_name\": \"Moped\"\n                    }\n                },\n                \"batch_uuid\": \"f8fc488c-b210-4d06-9b32-b08c8e8ae78f\",\n                \"created_at\": \"2025-05-14T22:35:13.000000Z\",\n                \"updated_at\": \"2025-05-14T22:35:13.000000Z\"\n            },\n            {\n                \"id\": 68,\n                \"log_name\": \"cart\",\n                \"description\": \"deleted\",\n                \"subject_type\": \"App\\\\Models\\\\CartItem\",\n                \"event\": \"deleted\",\n                \"subject_id\": 5,\n                \"causer_type\": \"App\\\\Models\\\\User\",\n                \"causer_id\": 1,\n                \"properties\": {\n                    \"old\": {\n                        \"cart_id\": 1,\n                        \"quantity\": 1,\n                        \"product_id\": 1\n                    }\n                },\n                \"batch_uuid\": \"f8fc488c-b210-4d06-9b32-b08c8e8ae78f\",\n                \"created_at\": \"2025-05-14T22:35:13.000000Z\",\n                \"updated_at\": \"2025-05-14T22:35:13.000000Z\"\n            },\n            {\n                \"id\": 69,\n                \"log_name\": \"order\",\n                \"description\": \"created\",\n                \"subject_type\": \"App\\\\Models\\\\OrderItem\",\n                \"event\": \"created\",\n                \"subject_id\": 8,\n                \"causer_type\": \"App\\\\Models\\\\User\",\n                \"causer_id\": 1,\n                \"properties\": {\n                    \"attributes\": {\n                        \"total\": 16758,\n                        \"order_id\": 4,\n                        \"quantity\": 2,\n                        \"brand_name\": \"Honda\",\n                        \"product_id\": 2,\n                        \"price_amount\": 8379,\n                        \"product_name\": \"RS150R / RS-X / Supra GTR 150\",\n                        \"category_name\": \"Moped\"\n                    }\n                },\n                \"batch_uuid\": \"f8fc488c-b210-4d06-9b32-b08c8e8ae78f\",\n                \"created_at\": \"2025-05-14T22:35:13.000000Z\",\n                \"updated_at\": \"2025-05-14T22:35:13.000000Z\"\n            },\n            {\n                \"id\": 70,\n                \"log_name\": \"cart\",\n                \"description\": \"deleted\",\n                \"subject_type\": \"App\\\\Models\\\\CartItem\",\n                \"event\": \"deleted\",\n                \"subject_id\": 20,\n                \"causer_type\": \"App\\\\Models\\\\User\",\n                \"causer_id\": 1,\n                \"properties\": {\n                    \"old\": {\n                        \"cart_id\": 1,\n                        \"quantity\": 2,\n                        \"product_id\": 2\n                    }\n                },\n                \"batch_uuid\": \"f8fc488c-b210-4d06-9b32-b08c8e8ae78f\",\n                \"created_at\": \"2025-05-14T22:35:13.000000Z\",\n                \"updated_at\": \"2025-05-14T22:35:13.000000Z\"\n            },\n            {\n                \"id\": 71,\n                \"log_name\": \"order\",\n                \"description\": \"updated\",\n                \"subject_type\": \"App\\\\Models\\\\Order\",\n                \"event\": \"updated\",\n                \"subject_id\": 4,\n                \"causer_type\": \"App\\\\Models\\\\User\",\n                \"causer_id\": 1,\n                \"properties\": {\n                    \"old\": {\n                        \"total\": null,\n                        \"tax_amount\": null,\n                        \"total_payable\": null\n                    },\n                    \"attributes\": {\n                        \"total\": 23357,\n                        \"tax_amount\": 1868.56,\n                        \"total_payable\": 25225.56\n                    }\n                },\n                \"batch_uuid\": \"f8fc488c-b210-4d06-9b32-b08c8e8ae78f\",\n                \"created_at\": \"2025-05-14T22:35:13.000000Z\",\n                \"updated_at\": \"2025-05-14T22:35:13.000000Z\"\n            },\n            {\n                \"id\": 72,\n                \"log_name\": \"auth\",\n                \"description\": \"logout\",\n                \"subject_type\": null,\n                \"event\": null,\n                \"subject_id\": null,\n                \"causer_type\": \"App\\\\Models\\\\User\",\n                \"causer_id\": 1,\n                \"properties\": [],\n                \"batch_uuid\": null,\n                \"created_at\": \"2025-05-14T22:36:11.000000Z\",\n                \"updated_at\": \"2025-05-14T22:36:11.000000Z\"\n            },\n            {\n                \"id\": 73,\n                \"log_name\": \"auth\",\n                \"description\": \"login\",\n                \"subject_type\": null,\n                \"event\": null,\n                \"subject_id\": null,\n                \"causer_type\": \"App\\\\Models\\\\User\",\n                \"causer_id\": 1,\n                \"properties\": [],\n                \"batch_uuid\": null,\n                \"created_at\": \"2025-05-14T22:36:19.000000Z\",\n                \"updated_at\": \"2025-05-14T22:36:19.000000Z\"\n            }\n        ]\n    }\n}"
 						}
 					]
 				}
