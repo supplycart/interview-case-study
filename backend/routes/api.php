@@ -12,7 +12,7 @@ Route::get('verify-email/{id}/{hash}', [Api\AuthController::class, 'verifyEmail'
     ->name('verification.verify');
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::apiResource('users', Api\UserController::class)->only(['index', 'show']);
+    Route::apiResource('users', Api\UserController::class)->only(['index']);
     Route::apiResource('products', Api\ProductController::class)->only(['index', 'show']);
     Route::apiResource('carts', Api\CartController::class)->only(['index', 'store']);
     Route::apiResource('orders', Api\OrderController::class)->only(['index', 'store', 'show']);

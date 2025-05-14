@@ -13,16 +13,15 @@ class UserController extends Controller
 {
     public function index(): JsonResponse
     {
-        return $this->respond(message: 'Get user list successful.', data: new UserCollection(User::all()));
+        return $this->respond(message: 'Get user detail successful.', data: new UserResource(auth()->user()->load('country')));
     }
 
     public function store(Request $request)
     {
     }
 
-    public function show(User $user): JsonResponse
+    public function show(User $user)
     {
-        return $this->respond(message: 'Get user detail successful.', data: new UserResource($user));
     }
 
     public function update(Request $request, User $user)

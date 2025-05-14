@@ -5,16 +5,17 @@
     ```bash
     composer install
     ```
-2. Copy and rename `.env.example` to the folder root.
-3. Run the command below to generate `APP_KEY`
+2. Duplicate `.env.example` and rename it to `.env`.
+3. Update database and mailing credentials in the `.env`.
+4. Run the command below to generate `APP_KEY`
     ```bash
     php artisan key:generate
     ```
-4. Run the command below to generate Passport's keys
+5. Run the command below to generate Passport's keys
     ```bash
     php artisan passport:keys
     ```
-5. Run the command below to run database migration. Make sure you have correct credentials (`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`) in your `.env`. 
+6. Run the command below to run database migration. 
     ```bash
     php artisan migrate
     ```
@@ -34,6 +35,9 @@ If you choose to run database migration **with seeder**, Passport Grant Client w
 
 Copy the _Client ID_ and _Client Secret_ for login API request.
 
-## Footnote
+## Postman
+1. Environment at `backend/.postman/local.postman_environment.json`
+2. Collection at `backend/.postman/supplycart-backend.postman_collection.json`
 
+### Footnote
 [^1]: You can temporarily comment out `backend/database/seeders/DatabaseSeeder.php:24` (User seeder) and/or `backend/database/seeders/DatabaseSeeder.php:25` (Cart and Order seeder) if you don't need them. You can customize and see seeded user credentials at `backend/database/seeders/UserSeeder.php`.
