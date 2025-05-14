@@ -7,6 +7,7 @@ use App\Http\Requests\Api\AuthController\LoginRequest;
 use App\Http\Requests\Api\AuthController\RegisterRequest;
 use App\Http\Requests\Api\AuthController\VerifyEmailRequest;
 use App\Http\Resources\UserResource;
+use App\Models\Cart;
 use App\Models\User;
 use Exception;
 use Illuminate\Auth\Events\Registered;
@@ -26,6 +27,9 @@ class AuthController extends Controller
         $user = new User();
         $user->fill($validated);
         $user->save();
+
+        Cart::create(['user_id' => $user->id]);
+
         event(new Registered($user));
 
         return $this->respond('User registered successfully.', 201);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Country;
+use App\Models\User;
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\postJson;
@@ -22,6 +23,12 @@ describe('User Registration', function () {
         assertDatabaseHas('users', [
             'name' => $data['name'],
             'email' => $data['email'],
+        ]);
+
+        $user = User::where('email', $data['email'])->first();
+
+        assertDatabaseHas('carts', [
+            'user_id' => $user->id,
         ]);
     });
 
