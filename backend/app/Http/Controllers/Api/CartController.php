@@ -9,6 +9,7 @@ use App\Models\Cart;
 use App\Models\CartItem;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Facades\LogBatch;
 
 class CartController extends Controller
 {
@@ -30,6 +31,8 @@ class CartController extends Controller
         $cart = getUserCart();
         $validated = $request->validated();
 
+        LogBatch::startBatch();
+        activity('cart')->on($cart)->log('updated');
         $updateOrCreateProductIds = [];
         foreach ($validated as $item) {
             $updateOrCreateProductIds[] = $item['product_id'];
@@ -38,9 +41,15 @@ class CartController extends Controller
                 ['quantity' => $item['quantity']],
             );
         }
-        CartItem::where('cart_id', $cart->id)
+        $cartItemsToDelete = CartItem::where('cart_id', $cart->id)
             ->whereNotIn('product_id', $updateOrCreateProductIds)
-            ->delete();
+            ->get();
+        if ($cartItemsToDelete->isNotEmpty()) {
+            foreach ($cartItemsToDelete as $cartItem) {
+                $cartItem->delete();
+            }
+        }
+        LogBatch::endBatch();
         $cart->touch();
 
         return $this->respond(message: 'Update cart successful.', data: new CartResource(getUserCart()));

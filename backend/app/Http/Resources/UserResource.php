@@ -26,6 +26,7 @@ class UserResource extends JsonResource
             'oauth' => $this->when(isset($oauth), function () use ($oauth) {
                 return new OauthResource($oauth);
             }),
+            'logs' => $this->whenLoaded('logs'),
         ];
     }
 }

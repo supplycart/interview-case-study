@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Facades\LogBatch;
 
 class OrderController extends Controller
 {
@@ -45,6 +46,7 @@ class OrderController extends Controller
 
         $country = getUserCountry();
 
+        LogBatch::startBatch();
         $order = New Order();
         $order->user_id = auth()->id();
         $order->number = getOrderRunningNumber();

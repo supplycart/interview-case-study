@@ -50,7 +50,7 @@ Copy the _Client ID_ and _Client Secret_ for login API request.
 
 ## Bonus Tasks
 1. Verify email after registration `GET api/verify-email/{id}/{hash}`
-2. User activity log e.g. login, logout, add to cart, place order etc `didn't do`
+2. User activity log e.g. login, logout, add to cart, place order etc `GET api/users?log=1`
 3. Product attributes and filtering e.g brand, category `GET api/products?filter`
 4. Different user can see different price for products `price based on user country`
 5. Add unit tests `done Feature test using Pest`

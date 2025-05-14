@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\UserController\IndexRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -11,9 +12,19 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index(): JsonResponse
+    public function index(IndexRequest $request): JsonResponse
     {
-        return $this->respond(message: 'Get user detail successful.', data: new UserResource(auth()->user()->load('country')));
+        $validated = $request->validated();
+
+        $relationships = ['country'];
+        if (isset($validated['logs']) && $validated['logs']) {
+            $relationships[] = 'logs';
+        }
+
+        return $this->respond(
+            message: 'Get user detail successful.',
+            data: new UserResource(auth()->user()->load($relationships))
+        );
     }
 
     public function store(Request $request)

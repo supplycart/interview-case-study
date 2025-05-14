@@ -68,6 +68,7 @@ class AuthController extends Controller
             if ($response->successful()) {
                 $user = $request->user()->load('country');
                 $user->oauth = $response->json();
+                activity('auth')->log('login');
                 return $this->respond('Logged in successfully.', 200, new UserResource($user));
             }
         } catch (Exception $e) {
@@ -80,6 +81,7 @@ class AuthController extends Controller
     public function logout(Request $request): JsonResponse
     {
         $request->user()->token()?->revoke();
+        activity('auth')->log('logout');
         return $this->respond('Logged out successfully.');
     }
 }
