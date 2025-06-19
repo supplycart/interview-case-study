@@ -5,6 +5,7 @@ namespace App\Providers;
 use Filament\Support\Colors\Color;
 use Filament\Support\Facades\FilamentColor;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,7 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-   	    \URL::forceScheme('https');
+   	     if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 
     public function filamentColor(): void
