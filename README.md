@@ -12,13 +12,16 @@ This case study is designed for candidates to showcase their skills and coding s
 - Complete the tasks given
 - Once completed, create a PR to this repository
 - Lastly, add some guidance or instruction on how to run your code
+- Failure to meet the basic requirements outlined in this case study may result in your submission not being reviewed
 
 ## Requirements
 
 You must work on this assignment using:
-- Vue (optional for BE dev)
+- Vue
 - TailwindCSS
-- Laravel (optional for FE dev)
+- Laravel
+
+If you prefer, you're allowed to use a different tech stack, but your solution must include both a backend and a frontend built using a JavaScript framework (e.g. Vue, React, etc.). Blade-only submissions (without a JS framework) will not be accepted.
 
 ## Tasks
 
@@ -41,6 +44,8 @@ You must work on this assignment using:
 
 ## Key Evaluation Criteria
 
+**Backend**
+
 While completing the above tasks, we will be particularly looking at how you handle the following aspects:
 
 1. **Data Validation**: Proper validation of user inputs and data integrity checks.
@@ -62,6 +67,18 @@ While completing the above tasks, we will be particularly looking at how you han
 9. **API Design** (if applicable): RESTful design principles and clear documentation.
 
 10. **Error Handling**: Graceful error handling and informative error messages.
+
+**Frontend**
+
+1. **Use of JavaScript Framework**: A modern JS framework (e.g., Vue, React) is required. Blade-only implementations will not be accepted.
+
+2. **Component Structure**: UI broken into reusable, manageable components.
+
+3. **User Experience**: Clear navigation, responsiveness, and usability.
+
+4. **Styling**: Use of TailwindCSS or another CSS framework to ensure consistent design.
+
+5. **Frontend Error Handling**: Proper user feedback for failed actions or edge cases.
 
 ## Submission Guidelines
 
