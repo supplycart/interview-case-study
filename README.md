@@ -12,7 +12,7 @@ This case study is designed for candidates to showcase their skills and coding s
 - Complete the tasks given
 - Once completed, create a PR to this repository
 - Lastly, add some guidance or instruction on how to run your code
-- Failure to meet the basic requirements outlined in this case study may result in your submission not being reviewed
+- Failure to meet the basic requirements outlined in this case study may result in your submission being deprioritized during the review process
 
 ## Requirements
 
